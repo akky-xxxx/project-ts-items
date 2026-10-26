@@ -1,0 +1,14 @@
+{
+  "name": "project-ts-items",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "typecheck": "bun check"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.3"
+  },
+  "peerDependencies": {
+    "typescript": "6.0.3"
+  }
+}
