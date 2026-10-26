@@ -2,7 +2,7 @@
   "name": "project-ts-items",
   "type": "module",
   "private": true,
-  "workspaces": ["workspaces/apps/*", "workspaces/packages/*/*"],
+  "workspaces": ["workspaces/applications/*", "workspaces/packages/*/*"],
   "scripts": {
     "typecheck": "bun check"
   },
