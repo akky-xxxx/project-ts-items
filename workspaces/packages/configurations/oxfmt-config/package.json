@@ -6,7 +6,7 @@
     "fix:sort-package-json": "sort-package-json",
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "typecheck": "bun check"
+    "lint:type-check": "bun check"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
