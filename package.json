@@ -17,8 +17,8 @@
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:oxlint": "oxlint --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "prepare": "husky",
-    "typecheck": "bun check"
+    "lint:type-check": "bun check",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.4",
