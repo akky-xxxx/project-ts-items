@@ -2,8 +2,10 @@
   "name": "@ts-items/oxfmt-config",
   "type": "module",
   "scripts": {
+    "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt",
     "fix:sort-package-json": "sort-package-json",
+    "lint": "run-p lint:* -c --aggregate-output",
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check"
