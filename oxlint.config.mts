@@ -63,6 +63,7 @@ const config = defineConfig({
     "no-ternary": "off",
     "no-undefined": "off",
     "no-unneeded-ternary": "error",
+    "no-warning-comments": "off",
     "one-var": "off",
     "oxc/no-async-await": "off",
     "oxc/no-optional-chaining": "off",
