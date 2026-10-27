@@ -2,6 +2,8 @@
   "name": "@ts-items/oxlint-config-ts",
   "type": "module",
   "scripts": {
+    "fix:sort-package-json": "sort-package-json",
+    "lint:sort-package-json": "bun fix:sort-package-json --check",
     "typecheck": "bun check"
   },
   "devDependencies": {

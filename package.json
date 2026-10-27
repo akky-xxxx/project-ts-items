@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "typecheck": "bun check",
+    "fix:sort-package-json": "sort-package-json",
+    "lint:sort-package-json": "bun fix:sort-package-json --check",
     "prepare": "husky"
   },
   "devDependencies": {

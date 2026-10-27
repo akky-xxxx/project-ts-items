@@ -3,6 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "fix:sort-package-json": "sort-package-json",
+    "lint:sort-package-json": "bun fix:sort-package-json --check",
     "typecheck": "bun check"
   },
   "devDependencies": {
