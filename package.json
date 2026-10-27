@@ -7,7 +7,9 @@
     "workspaces/packages/*/*"
   ],
   "scripts": {
+    "fix:oxfmt": "oxfmt",
     "fix:sort-package-json": "sort-package-json",
+    "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "prepare": "husky",
     "typecheck": "bun check"
