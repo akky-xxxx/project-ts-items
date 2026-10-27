@@ -9,6 +9,7 @@
         "@commitlint/config-conventional": "21.2.4",
         "@commitlint/format": "21.2.3",
         "@commitlint/types": "21.2.3",
+        "@tsconfig/strictest": "2.0.8",
         "@types/bun": "1.4.3",
         "conventional-changelog-conventionalcommits": "10.4.1",
         "cspell": "10.4.0",
@@ -425,6 +426,8 @@
     "@ts-items/oxfmt-config": ["@ts-items/oxfmt-config@workspace:workspaces/packages/configurations/oxfmt-config"],
 
     "@ts-items/oxlint-config-ts": ["@ts-items/oxlint-config-ts@workspace:workspaces/packages/configurations/oxlint-config-ts"],
+
+    "@tsconfig/strictest": ["@tsconfig/strictest@2.0.8", "", {}, "sha512-XnQ7vNz5HRN0r88GYf1J9JJjqtZPiHt2woGJOo2dYqyHGGcd6OLGqSlBB6p1j9mpzja6Oe5BoPqWmeDx6X9rLw=="],
 
     "@tybys/wasm-util": ["@tybys/wasm-util@0.10.4", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A=="],
 
