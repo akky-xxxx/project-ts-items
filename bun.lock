@@ -48,6 +48,7 @@
     "workspaces/packages/configurations/oxfmt-config": {
       "name": "@ts-items/oxfmt-config",
       "devDependencies": {
+        "@ts-items/configurations": "workspace:*",
         "@types/bun": "1.4.3",
         "cspell": "10.4.0",
         "knip": "6.42.1",
