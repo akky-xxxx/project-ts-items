@@ -1,6 +1,8 @@
-import type { UserConfig } from "@commitlint/types";
-import { RuleConfigSeverity } from "@commitlint/types";
-import {directories} from "./configurations/commitlint/directories/index.mts"
+import { RuleConfigSeverity } from "@commitlint/types"
+
+import { directories } from "./configurations/commitlint/directories/index.mts"
+
+import type { UserConfig } from "@commitlint/types"
 
 const Configuration: UserConfig = {
   extends: ["@commitlint/config-conventional"],
@@ -17,6 +19,6 @@ const Configuration: UserConfig = {
     "body-leading-blank": [RuleConfigSeverity.Error, "always"],
     "body-max-line-length": [RuleConfigSeverity.Error, "always", Infinity],
   },
-};
+}
 
-export default Configuration;
+export default Configuration
