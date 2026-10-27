@@ -1,6 +1,6 @@
 import { RuleConfigSeverity } from "@commitlint/types"
 
-import { directories } from "./configurations/commitlint/directories/index.mts"
+import { directories } from "./configurations/commitlint/directories/directories.mts"
 
 import type { UserConfig } from "@commitlint/types"
 
