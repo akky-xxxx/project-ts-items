@@ -1,7 +1,7 @@
 {
   "name": "website",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "fix:sort-package-json": "sort-package-json",
     "lint:sort-package-json": "bun fix:sort-package-json --check",

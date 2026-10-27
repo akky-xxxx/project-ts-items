@@ -1,16 +1,16 @@
 {
   "name": "project-ts-items",
-  "type": "module",
   "private": true,
+  "type": "module",
   "workspaces": [
     "workspaces/applications/*",
     "workspaces/packages/*/*"
   ],
   "scripts": {
-    "typecheck": "bun check",
     "fix:sort-package-json": "sort-package-json",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "bun check"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.4",
