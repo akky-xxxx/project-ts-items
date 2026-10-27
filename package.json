@@ -16,7 +16,13 @@
     "@commitlint/types": "21.2.3",
     "@types/bun": "1.4.3",
     "conventional-changelog-conventionalcommits": "10.4.1",
-    "husky": "9.1.7"
+    "cspell": "10.4.0",
+    "husky": "9.1.7",
+    "knip": "6.42.1",
+    "npm-run-all2": "9.0.3",
+    "oxfmt": "0.74.0",
+    "oxlint": "1.89.0",
+    "sort-package-json": "4.1.0"
   },
   "peerDependencies": {
     "typescript": "6.0.3"
