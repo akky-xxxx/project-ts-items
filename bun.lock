@@ -25,6 +25,15 @@
         "typescript": "6.0.3",
       },
     },
+    "workspaces/packages/configurations/oxfmt-config": {
+      "name": "@ts-items/oxfmt-config",
+      "devDependencies": {
+        "@types/bun": "1.4.3",
+      },
+      "peerDependencies": {
+        "typescript": "6.0.3",
+      },
+    },
     "workspaces/packages/configurations/oxlint-config-ts": {
       "name": "@ts-items/oxlint-config-ts",
       "devDependencies": {
@@ -81,6 +90,8 @@
     "@simple-libs/child-process-utils": ["@simple-libs/child-process-utils@2.0.0", "", { "dependencies": { "@simple-libs/stream-utils": "^2.0.0" } }, "sha512-dvNoRKLijXnD0XoJAz94pbNuB5GQgDr55UhpSPhffDkTT0Cmcqh9jSCOtwfT2d4H6MI9E7c4SgtMuJXZ6F3c6A=="],
 
     "@simple-libs/stream-utils": ["@simple-libs/stream-utils@2.0.0", "", {}, "sha512-fCTuZK4QBa+39Oz9l4OGfJfz+GpwCp3AqO7Zch3to99xHPgstVsRFpeQ8LNd2o1Gv8raL2mCFwiaHh7bFSp5DQ=="],
+
+    "@ts-items/oxfmt-config": ["@ts-items/oxfmt-config@workspace:workspaces/packages/configurations/oxfmt-config"],
 
     "@ts-items/oxlint-config-ts": ["@ts-items/oxlint-config-ts@workspace:workspaces/packages/configurations/oxlint-config-ts"],
 
