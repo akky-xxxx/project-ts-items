@@ -2,8 +2,10 @@
   "name": "@ts-items/oxlint-config-ts",
   "type": "module",
   "scripts": {
+    "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
+    "lint": "run-p lint:* -c --aggregate-output",
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check"
