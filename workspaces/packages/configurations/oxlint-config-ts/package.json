@@ -2,11 +2,17 @@
   "name": "@ts-items/oxlint-config-ts",
   "type": "module",
   "scripts": {
+    "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
+    "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check"
   },
+  "exports": {
+    "./base": "./src/base/base.ts"
+  },
   "devDependencies": {
+    "@ts-items/configurations": "workspace:*",
     "@tsconfig/strictest": "2.0.8",
     "@types/bun": "1.4.3",
     "cspell": "10.4.0",

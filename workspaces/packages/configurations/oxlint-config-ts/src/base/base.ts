@@ -1,0 +1,35 @@
+import { defineConfig } from "oxlint"
+
+export const base = defineConfig({
+  categories: {
+    correctness: "error",
+    pedantic: "error",
+    perf: "error",
+    restriction: "error",
+    style: "error",
+    suspicious: "error",
+  },
+  plugins: ["eslint", "unicorn", "oxc", "import"],
+  rules: {
+    "explicit-function-return-type": "off",
+    "explicit-module-boundary-types": "off",
+    "exports-last": "off",
+    "filename-case": "off",
+    "group-exports": "off",
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "no-duplicate-imports": ["error", { allowSeparateTypeImports: true }],
+    "no-named-export": "off",
+    "no-nested-ternary": "error",
+    "no-null": "off",
+    "no-rest-spread-properties": "off",
+    "no-ternary": "off",
+    "no-undefined": "off",
+    "no-unneeded-ternary": "error",
+    "no-warning-comments": "off",
+    "one-var": "off",
+    "oxc/no-async-await": "off",
+    "oxc/no-optional-chaining": "off",
+    "prefer-default-export": "off",
+    "sort-imports": "off",
+  },
+})
