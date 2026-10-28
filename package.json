@@ -16,7 +16,7 @@
     "lint:cspell": "cspell lint \"**\" --no-progress",
     "lint:knip": "knip -c knip.config.mts",
     "lint:oxfmt": "bun fix:oxfmt --check",
-    "lint:oxlint": "oxlint --deny-warnings --report-unused-disable-directives --format=stylish",
+    "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check",
     "prepare": "husky"
@@ -26,7 +26,9 @@
     "@commitlint/config-conventional": "21.2.4",
     "@commitlint/format": "21.2.3",
     "@commitlint/types": "21.2.3",
+    "@ts-items/configurations": "workspace:*",
     "@ts-items/oxfmt-config": "workspace:*",
+    "@ts-items/oxlint-config-ts": "workspace:*",
     "@tsconfig/strictest": "2.0.8",
     "@types/bun": "1.4.3",
     "conventional-changelog-conventionalcommits": "10.4.1",
