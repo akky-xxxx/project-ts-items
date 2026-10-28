@@ -4,7 +4,7 @@ import { defineConfig } from "oxfmt"
  * @description
  * デフォルトで設定されてるものも意思があるものは明示的に指定しておく
  */
-export const tsItemConfig = defineConfig({
+export const base = defineConfig({
   insertFinalNewline: true,
   printWidth: 100,
   quoteProps: "consistent",

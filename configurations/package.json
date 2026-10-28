@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./oxfmt": "./oxfmt/tsItemConfig/tsItemConfig.mts"
   },
   "peerDependencies": {
     "oxfmt": "0.74.0"

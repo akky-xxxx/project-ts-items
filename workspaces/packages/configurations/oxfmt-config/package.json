@@ -1,9 +1,12 @@
 {
   "name": "@ts-items/oxfmt-config",
   "type": "module",
+  "exports": {
+    "./base": "./src/base/base.ts"
+  },
   "scripts": {
     "fix": "run-p fix:* -c --aggregate-output",
-    "fix:oxfmt": "oxfmt",
+    "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:sort-package-json": "sort-package-json",
     "lint": "run-p lint:* -c --aggregate-output",
     "lint:oxfmt": "bun fix:oxfmt --check",
