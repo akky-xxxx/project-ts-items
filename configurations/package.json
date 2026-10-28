@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./oxlint/forConfigurationFiles": "./oxlint/forConfigurationFiles/forConfigurationFiles.mts"
   },
   "peerDependencies": {
     "oxfmt": "0.74.0"
