@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 概要
 
-Bun workspaces による TypeScript モノレポ。現時点ではルートの開発ツール設定(lint / format / commitlint 等)が中心で、各 workspace はまだ雛形(`bun init` 直後の状態)のみ。
+Bun workspaces による TypeScript モノレポ。ルートの開発ツール設定(lint / format / commitlint 等)と、それを切り出した共有設定パッケージ(`oxfmt-config` / `oxlint-config`)が中心。
 
-- ランタイム / パッケージマネージャ: Bun(Node のバージョンは `.node-version` で固定)
-- TypeScript は `peerDependencies` で指定。ルートの `tsconfig.json` は `@tsconfig/strictest` を継承し、`noEmit` + `moduleResolution: bundler` + `allowImportingTsExtensions`(workspace 側の tsconfig はまだ `bun init` の雛形のまま)
+- ランタイム / パッケージマネージャ: Bun(Node のバージョンは `.node-version` で固定。oxfmt / oxlint / cspell は `.mts` 設定を Node で読むため Node 22.18 以上が必要)
+- TypeScript は `peerDependencies` で指定。ルートの `tsconfig.json` は `@tsconfig/strictest` を継承し、`noEmit` + `moduleResolution: bundler` + `allowImportingTsExtensions`
 - テストランナーはまだ導入されていない
 
 ## コマンド
@@ -15,15 +15,19 @@ Bun workspaces による TypeScript モノレポ。現時点ではルートの�
 ルートで実行する。
 
 ```bash
-bun install          # 依存インストール
+bun install          # 依存インストール(prepare で husky のセットアップと各パッケージの build も走る)
 bun lint             # lint:* を並列実行(cspell / knip / oxfmt --check / oxlint / sort-package-json --check / type-check)
 bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package-json)
+bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
+bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
 
 - oxlint は `--deny-warnings --report-unused-disable-directives` 付きで実行されるため、warning や不要な disable コメントも失敗扱いになる
-- 各 workspace の `package.json` にも `lint:sort-package-json` / `fix:sort-package-json` / `typecheck` がある(ルートの `lint:type-check` と異なり workspace 側は `typecheck` のまま。`bun --filter <name> <script>` で実行)
+- 各 workspace の `package.json` にもルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)
+- ルートの `prepare` はスクリプト名の羅列のみにし(`run-s prepare:husky prepare:build`)、実処理は `prepare:<name>` に定義する
+- workspace 内で build を個別実行する場合は `bun run build`(`bun build` は Bun 組み込みのバンドラーが起動する)
 
 ## 構成
 
@@ -36,7 +40,11 @@ workspaces/packages/*/*    # 共有パッケージ。カテゴリ/パッケー�
 - ルートの `*.config.mts` は薄いエントリにとどめ、中身は `configurations/<tool>/<name>/<name>.mts` に切り出す(例: `oxfmt.config.mts` → `configurations/oxfmt/tsItemConfig/tsItemConfig.mts`)
 - 各 workspace から `configurations/` の設定を使う場合は `"@ts-items/configurations": "workspace:*"` に依存し、`@ts-items/configurations/<tool>` で import する(公開対象は `configurations/package.json` の `exports` に追加)。ルートの `*.config.mts` は相対パスで参照する
 - 設定ファイルは `defineConfig` か `as const satisfies <ConfigType>` で型付けする
-- 共有パッケージは `@ts-items/*` スコープ。`workspaces/packages/configurations/` 配下の `oxfmt-config` / `oxlint-config` は、ルートの oxfmt / oxlint 設定をパッケージとして切り出す先として用意されている(現状は未実装)
+- 共有パッケージは `@ts-items/*` スコープ。`workspaces/packages/configurations/` 配下の `oxfmt-config` / `oxlint-config` は、ルートや各 workspace の oxfmt / oxlint 設定の実体(`baseConfig` など)を提供する
+- 公開用パッケージは `src/` を `tsc -p tsconfig.build.json` で `dist/` にトランスパイルする(`build` スクリプト。`prepublishOnly` でも実行)
+  - `exports` は `dist/` の `.js` / `.d.ts` を指し、`files` は `dist` のみ。他の workspace からも `dist/` を参照するため、`src/` を変更したら `bun prepare:build` で再ビルドしないと反映されない
+  - パッケージ自身の設定ファイル(`oxfmt.config.mts` など)は `./src/...` を相対パスで直接参照する
+  - `exports` が `dist/` を指すため knip が `src/` のエントリを辿れない。`knip.config.mts` の `entry` に `src/*/*.ts` を指定している
 - cspell / knip / oxfmt は `workspaces/**` を対象外にしている(ルート設定のみが対象)
 - cspell が未知語として報告するパッケージ名・ツール名などは `configurations/cspell/packages.txt` に1行1語で追加する
 - `extends` など設定ファイル経由でしか参照されない依存(例: `@tsconfig/strictest`)は knip が未使用と判定するため、`knip.config.mts` の `ignoreDependencies` に追加する
