@@ -21,7 +21,9 @@
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check",
-    "prepare": "husky",
+    "prepare": "run-s prepare:husky prepare:build",
+    "prepare:build": "bun --filter \"@ts-items/*\" build",
+    "prepare:husky": "husky",
     "w:fix": "bun --filter \"@ts-items/*\" fix",
     "w:lint": "bun --filter \"@ts-items/*\" lint"
   },
