@@ -1,1 +1,1 @@
-export { base as default } from "./src/base/base.ts"
+export { baseConfig as default } from "./src/baseConfig/baseConfig.ts"
