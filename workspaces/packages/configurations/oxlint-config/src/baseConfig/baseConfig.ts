@@ -1,23 +1,31 @@
 import { defineConfig } from "oxlint"
 
-export const base = defineConfig({
+import { eslintRules } from "./rules/eslintRules/eslintRules.ts"
+import { typescriptRules } from "./rules/typescriptRules/typescriptRules.ts"
+
+export const baseConfig = defineConfig({
   categories: {
     correctness: "error",
+    nursery: "off",
     pedantic: "error",
     perf: "error",
     restriction: "error",
     style: "error",
     suspicious: "error",
   },
-  plugins: ["eslint", "unicorn", "oxc", "import"],
+  plugins: ["eslint", "import", "oxc", "unicorn"],
   rules: {
+    ...eslintRules,
+    ...typescriptRules,
     "explicit-function-return-type": "off",
     "explicit-module-boundary-types": "off",
     "exports-last": "off",
     "filename-case": "off",
     "group-exports": "off",
     "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "import/no-relative-parent-imports": "off",
     "no-duplicate-imports": ["error", { allowSeparateTypeImports: true }],
+    "no-inline-comments": "off",
     "no-named-export": "off",
     "no-nested-ternary": "error",
     "no-null": "off",
