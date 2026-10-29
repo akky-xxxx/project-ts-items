@@ -1,7 +1,7 @@
-import { base } from "@ts-items/oxfmt-config/base"
+import { baseConfig } from "@ts-items/oxfmt-config/baseConfig"
 import { defineConfig } from "oxfmt"
 
 export default defineConfig({
-  ...base,
+  ...baseConfig,
   ignorePatterns: ["**/workspaces/**"],
 })

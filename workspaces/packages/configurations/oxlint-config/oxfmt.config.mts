@@ -1,1 +1,1 @@
-export { base as default } from "@ts-items/oxfmt-config/base"
+export { baseConfig as default } from "@ts-items/oxfmt-config/baseConfig"
