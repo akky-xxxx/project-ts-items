@@ -1,5 +1,5 @@
 {
-  "name": "@ts-items/oxlint-config-ts",
+  "name": "@ts-items/oxlint-config",
   "type": "module",
   "exports": {
     "./base": "./src/base/base.ts"
