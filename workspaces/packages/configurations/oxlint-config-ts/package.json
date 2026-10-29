@@ -6,15 +6,18 @@
   },
   "scripts": {
     "fix": "run-p fix:* -c --aggregate-output",
+    "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
     "lint": "run-p lint:* -c --aggregate-output",
+    "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
+    "@ts-items/oxfmt-config": "workspace:*",
     "@tsconfig/strictest": "2.0.8",
     "@types/bun": "1.4.3",
     "cspell": "10.4.0",

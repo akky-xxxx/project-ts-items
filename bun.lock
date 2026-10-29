@@ -52,6 +52,7 @@
       "name": "@ts-items/oxfmt-config",
       "devDependencies": {
         "@ts-items/configurations": "workspace:*",
+        "@ts-items/oxlint-config-ts": "workspace:*",
         "@tsconfig/strictest": "2.0.8",
         "@types/bun": "1.4.3",
         "cspell": "10.4.0",
@@ -69,6 +70,7 @@
       "name": "@ts-items/oxlint-config-ts",
       "devDependencies": {
         "@ts-items/configurations": "workspace:*",
+        "@ts-items/oxfmt-config": "workspace:*",
         "@tsconfig/strictest": "2.0.8",
         "@types/bun": "1.4.3",
         "cspell": "10.4.0",
