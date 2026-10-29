@@ -27,9 +27,10 @@
     "npm-run-all2": "9.0.3",
     "oxfmt": "0.74.0",
     "oxlint": "1.89.0",
-    "sort-package-json": "4.1.0"
+    "sort-package-json": "4.1.0",
+    "typescript": "6.0.3"
   },
   "peerDependencies": {
-    "typescript": "6.0.3"
+    "oxfmt": ">=0.74.0"
   }
 }
