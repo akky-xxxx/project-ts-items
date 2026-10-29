@@ -2,10 +2,20 @@
   "name": "@ts-items/oxlint-config",
   "type": "module",
   "exports": {
-    "./baseConfig": "./src/baseConfig/baseConfig.ts",
-    "./reactConfig": "./src/reactConfig/reactConfig.ts"
+    "./baseConfig": {
+      "types": "./dist/baseConfig/baseConfig.d.ts",
+      "default": "./dist/baseConfig/baseConfig.js"
+    },
+    "./reactConfig": {
+      "types": "./dist/reactConfig/reactConfig.d.ts",
+      "default": "./dist/reactConfig/reactConfig.js"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
@@ -16,7 +26,8 @@
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "lint:type-check": "bun check"
+    "lint:type-check": "bun check",
+    "prepublishOnly": "bun run build"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
