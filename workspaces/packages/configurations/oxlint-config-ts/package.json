@@ -1,6 +1,9 @@
 {
   "name": "@ts-items/oxlint-config-ts",
   "type": "module",
+  "exports": {
+    "./base": "./src/base/base.ts"
+  },
   "scripts": {
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxlint": "bun lint:oxlint --fix",
@@ -9,9 +12,6 @@
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check"
-  },
-  "exports": {
-    "./base": "./src/base/base.ts"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
