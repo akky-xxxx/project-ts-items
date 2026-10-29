@@ -2,7 +2,8 @@
   "name": "@ts-items/oxlint-config",
   "type": "module",
   "exports": {
-    "./base": "./src/base/base.ts"
+    "./baseConfig": "./src/baseConfig/baseConfig.ts",
+    "./reactConfig": "./src/reactConfig/reactConfig.ts"
   },
   "scripts": {
     "fix": "run-p fix:* -c --aggregate-output",
