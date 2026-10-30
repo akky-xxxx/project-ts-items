@@ -32,13 +32,15 @@ bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ## 構成
 
 ```
-configurations/            # リポジトリ固有の設定(1ディレクトリ1エクスポート)。@ts-items/configurations として workspace 化
-workspaces/applications/*  # アプリケーション(例: website)
-workspaces/packages/*/*    # 共有パッケージ。カテゴリ/パッケージ名 の2階層(例: configurations/oxfmt-config)
+scripts/<tool>/<name>/      # ルートの設定からのみ使うスクリプト(例: commitlint の directories)
+workspaces/applications/*   # アプリケーション(例: website)
+workspaces/configurations   # リポジトリ固有の設定(1ディレクトリ1エクスポート)。@ts-items/configurations として workspace 化
+workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケージ名 の2階層(例: configurations/oxfmt-config)
 ```
 
-- ルートの `*.config.mts` は薄いエントリにとどめる。oxfmt / oxlint の共通設定は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config` から import し、このリポジトリ固有の設定(commitlint の `directories`、cspell の `packages.txt`、oxlint の `forConfigurationFiles` など)は `configurations/<tool>/<name>/` に置く
-- `configurations/` の設定を workspace から使う場合は `"@ts-items/configurations": "workspace:*"` に依存し、`@ts-items/configurations/<tool>/<name>` で import する(公開対象は `configurations/package.json` の `exports` に追加)
+- ルートの `*.config.mts` は薄いエントリにとどめる。oxfmt / oxlint の共通設定は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config` から import し、このリポジトリ固有の設定(cspell の `packages.txt`、oxlint の `forConfigurationFiles` など)は `workspaces/configurations/<tool>/<name>/` に置く。ルートの設定からのみ使うスクリプトは `scripts/<tool>/<name>/` に置く
+- `workspaces/configurations/` の設定を workspace から使う場合は `"@ts-items/configurations": "workspace:*"` に依存し、`@ts-items/configurations/<tool>` で import する(`<tool>/index.mts` で集約し、公開対象は `workspaces/configurations/package.json` の `exports` に追加)
+- `@ts-items/configurations` は build せず `.mts` を直接 `exports` で公開する。自身の lint 設定を持つ
 - 設定ファイルは `defineConfig` か `as const satisfies <ConfigType>` で型付けする
 - cspell / knip / oxfmt / oxlint は、ルートでは `workspaces/**` を対象外にしている(各 workspace は自身の設定で lint する)
 
@@ -50,7 +52,7 @@ workspaces/packages/*/*    # 共有パッケージ。カテゴリ/パッケー�
   - `exports` が `dist/` を指すため knip が `src/` のエントリを辿れない。各パッケージの `knip.config.mts` の `entry` に `src/configurations/index.ts` を指定している
 - パッケージ自身の設定ファイルは、自パッケージが提供する設定なら `./src/...` を相対参照し、もう一方のパッケージの設定は `@ts-items/*-config`(= `dist/`)経由で参照する(例: `oxlint-config/oxlint.config.mts` → `./src/configurations/index.ts`、`oxlint-config/oxfmt.config.mts` → `@ts-items/oxfmt-config`)
 - `oxlint-config` 自身の lint は `typeAware: true`(`oxlint-tsgolint`)で実行される
-- cspell が未知語として報告するパッケージ名・ツール名などは `configurations/cspell/packages.txt` に1行1語で追加する
+- cspell が未知語として報告するパッケージ名・ツール名などは `workspaces/configurations/cspell/packages.txt` に1行1語で追加する
 - `extends` など設定ファイル経由でしか参照されない依存(例: `@tsconfig/strictest`)は knip が未使用と判定するため、`knip.config.mts` の `ignoreDependencies` に追加する
 
 ## コーディング規約(ツールで強制されるもの)
@@ -58,7 +60,7 @@ workspaces/packages/*/*    # 共有パッケージ。カテゴリ/パッケー�
 - フォーマット(oxfmt): セミコロンなし、ダブルクォート、printWidth 100、trailing comma all
 - import 順(oxfmt sortImports): builtin/external → internal/subpath → parent/sibling/index → type import の順にグループ化し、グループ間は空行
 - 型 import は `import type { ... }` を別文で書く(`typescript/consistent-type-imports` の separate-type-imports)
-- oxlint は全カテゴリ(correctness / pedantic / perf / restriction / style / suspicious)を error で有効化している。default export はルートの `*.mts` のみ許可、Node 組み込みモジュールは `configurations/**` とルートの `*.mts` のみ許可
+- oxlint は全カテゴリ(correctness / pedantic / perf / restriction / style / suspicious)を error で有効化している。default export はルートの `*.mts` のみ許可、Node 組み込みモジュールは `scripts/**` とルートの `*.mts` のみ許可
 - 識別子は2文字以上(`id-length`。`v` や `_` も不可)、ネストした三項演算子は禁止
 - 主な閾値(`oxlint-config/src/configurations/baseConfig/rules/eslintRules/eslintRules.ts`): `max-lines` 100 / `max-statements` 10 / `complexity` 5 / `max-depth` 3 / `max-params` 3。他に `no-magic-numbers`、`sort-keys`(asc。空行でグループ分け可)、`curly`(all)も有効
 - `bunfig.toml` により依存は exact バージョンで追加され、公開から7日未満のバージョンはインストールされない
@@ -67,4 +69,4 @@ workspaces/packages/*/*    # 共有パッケージ。カテゴリ/パッケー�
 
 - husky の `commit-msg` フックで commitlint が走る
 - type は `chore` / `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `revert` のみ
-- **scope は必須**。許可される値は `root` / `*` / `packages` と、`package.json` の `workspaces` glob に一致するディレクトリ名(例: `configurations`, `website`, `oxfmt-config`, `oxlint-config`)。workspace を追加すると自動で scope に加わる(`configurations/commitlint/directories/directories.mts`)
+- **scope は必須**。許可される値は `root` / `*` / `packages` と、`package.json` の `workspaces` glob に一致するディレクトリ名(例: `configurations`, `website`, `oxfmt-config`, `oxlint-config`)。workspace を追加すると自動で scope に加わる(`scripts/commitlint/directories/directories.mts`)
