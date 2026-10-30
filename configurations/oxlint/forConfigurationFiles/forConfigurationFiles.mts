@@ -3,7 +3,7 @@ import { defineConfig } from "oxlint"
 export const forConfigurationFiles = defineConfig({
   overrides: [
     {
-      files: ["./configurations/**", "./*.mts"],
+      files: ["./*.mts", "./scripts/**"],
       rules: {
         "no-nodejs-modules": "off",
       },
