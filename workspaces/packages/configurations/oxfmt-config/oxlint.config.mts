@@ -1,5 +1,5 @@
 import { forConfigurationFiles } from "@ts-items/configurations/oxlint/forConfigurationFiles"
-import { baseConfig } from "@ts-items/oxlint-config/baseConfig"
+import { baseConfig } from "@ts-items/oxlint-config"
 import { defineConfig } from "oxlint"
 
 const config = defineConfig({
