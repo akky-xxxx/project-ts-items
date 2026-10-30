@@ -2,9 +2,9 @@
   "name": "@ts-items/oxfmt-config",
   "type": "module",
   "exports": {
-    "./baseConfig": {
-      "types": "./dist/baseConfig/baseConfig.d.ts",
-      "default": "./dist/baseConfig/baseConfig.js"
+    ".": {
+      "types": "./dist/configurations/index.d.ts",
+      "default": "./dist/configurations/index.js"
     }
   },
   "files": [
