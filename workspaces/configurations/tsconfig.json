@@ -11,5 +11,6 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true
-  }
+  },
+  "exclude": [".dry-run", "dryRun/**/fixtures"]
 }

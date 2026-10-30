@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./cspell": "./cspell/index.mts",
+    "./dryRun": "./dryRun/index.mts",
     "./oxlint": "./oxlint/index.mts"
   },
   "scripts": {
@@ -18,7 +19,8 @@
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "lint:type-check": "bun check"
+    "lint:type-check": "bun check",
+    "test": "bun test"
   },
   "devDependencies": {
     "@ts-items/oxfmt-config": "workspace:*",
