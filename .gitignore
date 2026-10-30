@@ -94,6 +94,9 @@ coverage/
 dist/
 build/Release
 
+# Dry run working directory
+.dry-run/
+
 # TypeScript cache
 *.tsbuildinfo
 

@@ -25,7 +25,8 @@
     "prepare:build": "bun --filter \"@ts-items/*\" build",
     "prepare:husky": "husky",
     "w:fix": "bun --filter \"@ts-items/*\" fix",
-    "w:lint": "bun --filter \"@ts-items/*\" lint"
+    "w:lint": "bun --filter \"@ts-items/*\" lint",
+    "w:test": "bun --filter \"@ts-items/*\" test"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.4",
