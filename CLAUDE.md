@@ -8,7 +8,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - ランタイム / パッケージマネージャ: Bun(Node のバージョンは `.node-version` で固定。oxfmt / oxlint / cspell は `.mts` 設定を Node で読むため Node 22.18 以上が必要)
 - TypeScript は `peerDependencies` で指定。ルートの `tsconfig.json` は `@tsconfig/strictest` を継承し、`noEmit` + `moduleResolution: bundler` + `allowImportingTsExtensions`
-- テストランナーはまだ導入されていない
+- テストランナーは `bun test`。現状は共有パッケージの dry run(後述)のみ
 
 ## コマンド
 
@@ -20,6 +20,7 @@ bun lint             # lint:* を並列実行(cspell / knip / oxfmt --check / ox
 bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package-json)
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
+bun w:test           # 全パッケージの test(build してから dry run を実行)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
@@ -55,6 +56,11 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - パッケージ自身の設定ファイルは、自パッケージが提供する設定なら `./src/...` を相対参照し、もう一方のパッケージの設定は `@ts-items/*-config`(= `dist/`)経由で参照する(例: `oxlint-config/oxlint.config.mts` → `./src/configurations/index.ts`、`oxlint-config/oxfmt.config.mts` → `@ts-items/oxfmt-config`)
 - `oxlint-config` 自身の lint は `typeAware: true`(`oxlint-tsgolint`)で実行される
 - cspell が未知語として報告するパッケージ名・ツール名などは `workspaces/configurations/cspell/packages.txt` に1行1語で追加する
+- 公開資材の dry run(`dryRun/`、`test` スクリプト): `bun pm pack` した tarball を `<package>/.dry-run/node_modules/` に展開し、利用者と同じ経路(`files` / `exports`)で設定を読み込んで fixture に oxlint / oxfmt を実行する。共通処理は `@ts-items/configurations/dryRun`
+  - fixture は `dryRun/<config>/fixtures/` に置く。oxlint-config は `<rule>/{invalid,valid,disabled}.ts` で診断の有無と severity を、oxfmt-config は `<option>/{input,output}/<file>` で整形結果を検証する
+  - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更したら、対応する fixture とテストケースも追加・更新する
+  - dry run の helper(`runCommand` / `preparePackedPackage` / `lintFixtures` / `formatFixtures`)自体にも co-location でテストがある。`@ts-items/configurations` のテストは `test` スクリプト(build 不要)で実行する
+  - fixture は意図的に違反・未整形なので、各ツールの設定で `DRY_RUN_IGNORE_PATTERNS` を対象外にしている(`tsconfig.json` は `exclude` に直書き)
 - `extends` など設定ファイル経由でしか参照されない依存(例: `@tsconfig/strictest`)は knip が未使用と判定するため、`knip.config.mts` の `ignoreDependencies` に追加する
 
 ## コーディング規約(ツールで強制されるもの)
