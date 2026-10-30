@@ -2,6 +2,7 @@ import { defineConfig } from "oxlint"
 
 import { eslintRules } from "./rules/eslintRules/eslintRules.ts"
 import { typescriptRules } from "./rules/typescriptRules/typescriptRules.ts"
+import { unicornRules } from "./rules/unicornRules/unicornRules.ts"
 
 export const baseConfig = defineConfig({
   categories: {
@@ -17,6 +18,7 @@ export const baseConfig = defineConfig({
   rules: {
     ...eslintRules,
     ...typescriptRules,
+    ...unicornRules,
     "explicit-function-return-type": "off",
     "explicit-module-boundary-types": "off",
     "exports-last": "off",
