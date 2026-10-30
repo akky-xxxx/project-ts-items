@@ -9,6 +9,7 @@
     "./oxlint": "./oxlint/index.mts"
   },
   "scripts": {
+    "check-code": "run-p lint test -c --aggregate-output",
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
