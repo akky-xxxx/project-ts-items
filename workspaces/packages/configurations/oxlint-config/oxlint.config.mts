@@ -1,4 +1,4 @@
-import { forConfigurationFiles } from "@ts-items/configurations/oxlint/forConfigurationFiles"
+import { forConfigurationFiles } from "@ts-items/configurations/oxlint"
 import { defineConfig } from "oxlint"
 
 import { baseConfig } from "./src/configurations/index.ts"
