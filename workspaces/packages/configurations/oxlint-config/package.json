@@ -2,13 +2,9 @@
   "name": "@ts-items/oxlint-config",
   "type": "module",
   "exports": {
-    "./baseConfig": {
-      "types": "./dist/baseConfig/baseConfig.d.ts",
-      "default": "./dist/baseConfig/baseConfig.js"
-    },
-    "./reactConfig": {
-      "types": "./dist/reactConfig/reactConfig.d.ts",
-      "default": "./dist/reactConfig/reactConfig.js"
+    ".": {
+      "types": "./dist/configurations/index.d.ts",
+      "default": "./dist/configurations/index.js"
     }
   },
   "files": [
