@@ -5,6 +5,9 @@ import { defineConfig } from "oxlint"
 const config = defineConfig({
   extends: [baseConfig, forConfigurationFiles],
   ignorePatterns: ["workspaces/**"],
+  options: {
+    typeAware: true,
+  },
 })
 
 export default config
