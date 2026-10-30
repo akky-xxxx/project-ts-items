@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./cspell": "./cspell/index.mts",
     "./oxlint": "./oxlint/index.mts"
   },
   "scripts": {
