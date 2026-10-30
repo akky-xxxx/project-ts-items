@@ -10,6 +10,7 @@
   "scripts": {
     "a:fix": "run-p fix w:fix -c --aggregate-output",
     "a:lint": "run-p lint w:lint -c --aggregate-output",
+    "check-code": "run-p a:lint w:test -c --aggregate-output",
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
