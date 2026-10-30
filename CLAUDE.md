@@ -41,6 +41,8 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - ルートの `*.config.mts` は薄いエントリにとどめる。oxfmt / oxlint の共通設定は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config` から import し、このリポジトリ固有の設定(cspell の `packages.txt`、oxlint の `forConfigurationFiles` など)は `workspaces/configurations/<tool>/<name>/` に置く。ルートの設定からのみ使うスクリプトは `scripts/<tool>/<name>/` に置く
 - `workspaces/configurations/` の設定を workspace から使う場合は `"@ts-items/configurations": "workspace:*"` に依存し、`@ts-items/configurations/<tool>` で import する(`<tool>/index.mts` で集約し、公開対象は `workspaces/configurations/package.json` の `exports` に追加)
 - `@ts-items/configurations` は build せず `.mts` を直接 `exports` で公開する。自身の lint 設定を持つ
+  - cspell などが設定ファイル経由で Node から直接読み込むため、相対 import は拡張子(`.mts`)まで書く(拡張子なしは型チェックは通るが実行時に解決できない)
+- cspell の辞書は、workspace の `cspell.config.mts` で `@ts-items/configurations/cspell` の `getDictionarySetting(["packages"])` を spread して使う(ルートの `cspell.config.mts` は相対パスで直接指定)。辞書を追加する場合は `workspaces/configurations/cspell/<name>.txt` を置き、`dictionaryDefinitions.mts` の `dictionaryNames` に名前を足す。辞書の path は `import.meta.resolve` で絶対 URL にしているため、参照する側の位置に依存しない
 - 設定ファイルは `defineConfig` か `as const satisfies <ConfigType>` で型付けする
 - cspell / knip / oxfmt / oxlint は、ルートでは `workspaces/**` を対象外にしている(各 workspace は自身の設定で lint する)
 
