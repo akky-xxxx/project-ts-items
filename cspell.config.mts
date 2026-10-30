@@ -5,7 +5,7 @@ export default {
   dictionaryDefinitions: [
     {
       name: "packages",
-      path: "./configurations/cspell/packages.txt",
+      path: "./workspaces/configurations/cspell/packages.txt",
     },
   ],
   ignorePaths: ["./workspaces/**"],
