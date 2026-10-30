@@ -1,4 +1,4 @@
-import { withRulePrefix } from "../../../utilities/withRulePrefix/withRulePrefix.ts"
+import { withRulePrefix } from "../../../../utilities/withRulePrefix/withRulePrefix.ts"
 
 import type { DummyRuleMap } from "oxlint"
 
