@@ -1,13 +1,9 @@
+import { getDictionarySetting } from "@ts-items/configurations/cspell"
+
 import type { CSpellUserSettings } from "cspell"
 
 export default {
-  dictionaries: ["packages"],
-  dictionaryDefinitions: [
-    {
-      name: "packages",
-      path: "./workspaces/configurations/cspell/packages.txt",
-    },
-  ],
+  ...getDictionarySetting(["packages"]),
   ignorePaths: ["./workspaces/**"],
   language: "en",
   version: "0.2",
