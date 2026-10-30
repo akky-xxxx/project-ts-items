@@ -24,7 +24,8 @@
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "test": "bun run build && bun test"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
