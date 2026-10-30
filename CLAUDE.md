@@ -44,7 +44,8 @@ workspaces/packages/*/*    # 共有パッケージ。カテゴリ/パッケー�
 - 公開用パッケージは `src/` を `tsc -p tsconfig.build.json` で `dist/` にトランスパイルする(`build` スクリプト。`prepublishOnly` でも実行)
   - `exports` は `dist/` の `.js` / `.d.ts` を指し、`files` は `dist` のみ。他の workspace からも `dist/` を参照するため、`src/` を変更したら `bun prepare:build` で再ビルドしないと反映されない
   - パッケージ自身の設定ファイル(`oxfmt.config.mts` など)は `./src/...` を相対パスで直接参照する
-  - `exports` が `dist/` を指すため knip が `src/` のエントリを辿れない。`knip.config.mts` の `entry` に `src/*/*.ts` を指定している
+  - `exports` が `dist/` を指すため knip が `src/` のエントリを辿れない。`knip.config.mts` の `entry` に公開エントリ(例: `src/*/*.ts`)を指定している
+  - `oxlint-config` は設定の実体を `src/configurations/<name>/` に置き、`src/configurations/index.ts` で集約して `exports` の `"."` から公開する(`import { baseConfig, reactConfig } from "@ts-items/oxlint-config"`)。knip の `entry` は `src/configurations/index.ts`
 - cspell / knip / oxfmt は `workspaces/**` を対象外にしている(ルート設定のみが対象)
 - cspell が未知語として報告するパッケージ名・ツール名などは `configurations/cspell/packages.txt` に1行1語で追加する
 - `extends` など設定ファイル経由でしか参照されない依存(例: `@tsconfig/strictest`)は knip が未使用と判定するため、`knip.config.mts` の `ignoreDependencies` に追加する
