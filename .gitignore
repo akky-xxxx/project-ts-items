@@ -104,7 +104,6 @@ build/Release
 .cache
 .parcel-cache
 .next
-out/
 .nuxt
 
 # dotenv environment variable files
