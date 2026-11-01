@@ -4,7 +4,7 @@ import { DRY_RUN_IGNORE_PATTERNS } from "@ts-items/configurations/dryRun"
 import type { CSpellUserSettings } from "cspell"
 
 export default {
-  ...getDictionarySetting(["packages"]),
+  ...getDictionarySetting(["domain", "packages"]),
   ignorePaths: [...DRY_RUN_IGNORE_PATTERNS],
   language: "en",
   version: "0.2",
