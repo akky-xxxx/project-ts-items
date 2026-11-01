@@ -63,8 +63,8 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
   - fixture は `dryRun/<config>/fixtures/` に置く。oxlint-config は `<rule>/{invalid,valid,disabled}.ts` で診断の有無と severity を、oxfmt-config は `<option>/{input,output}/<file>` で整形結果を検証する
   - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更したら、対応する fixture とテストケースも追加・更新する
   - dry run の helper(`runCommand` / `preparePackedPackage` / `lintFixtures` / `formatFixtures`)自体にも co-location でテストがある。`@ts-items/configurations` のテストは `test` スクリプト(build 不要)で実行する
-  - fixture は意図的に違反・未整形なので、各ツールの設定で `DRY_RUN_IGNORE_PATTERNS` を対象外にしている(`tsconfig.json` は `exclude` に直書き)
-- `extends` など設定ファイル経由でしか参照されない依存(例: `@tsconfig/strictest`)は knip が未使用と判定するため、`knip.config.mts` の `ignoreDependencies` に追加する
+  - fixture は意図的に違反・未整形なので、各ツールの設定で `DRY_RUN_IGNORE_PATTERNS` を対象外にしている(`tsconfig.json` は `exclude` に直書き)。knip は `.gitignore` 済みの `.dry-run/` を自動で対象外にするため、fixture のパターンだけを持つ `DRY_RUN_FIXTURE_PATTERNS` を使う
+- knip は `tsconfig.json` の `extends` で参照する依存(例: `@tsconfig/strictest`)を使用中と判定するため、`ignoreDependencies` には追加しない。設定ファイル経由でしか参照されず knip が未使用と判定する依存が出た場合に限り、`knip.config.mts` の `ignoreDependencies` に追加する
 
 ## コーディング規約(ツールで強制されるもの)
 
