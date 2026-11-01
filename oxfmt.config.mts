@@ -3,5 +3,5 @@ import { defineConfig } from "oxfmt"
 
 export default defineConfig({
   ...baseConfig,
-  ignorePatterns: ["**/workspaces/**", "ai-communication/**"],
+  ignorePatterns: ["ai-communication/**", "workspaces/**"],
 })

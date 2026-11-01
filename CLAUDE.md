@@ -46,7 +46,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - cspell の辞書は、ルート / workspace の `cspell.config.mts` で `@ts-items/configurations/cspell` の `getDictionarySetting(["domain", "packages"])` のように、必要な辞書名を指定して spread して使う。辞書を追加する場合は `workspaces/configurations/cspell/<name>.txt` を置き、`dictionaryDefinitions.mts` の `dictionaryNames` に名前を足す。辞書の path は `import.meta.resolve` で絶対 URL にしているため、参照する側の位置に依存しない
   - `@ts-items/configurations` 自身の `cspell.config.mts` は `getDictionarySetting` を使わず辞書を直接定義している。辞書ファイル自体も自身の cspell の検査対象になるため、辞書を追加したらここにも足す
 - 設定ファイルは `defineConfig` か `as const satisfies <ConfigType>` で型付けする
-- cspell / knip / oxfmt / oxlint / 型チェック(`tsconfig.json` の `exclude`)は、ルートでは `workspaces/**` を対象外にしている(各 workspace は自身の設定で lint する)
+- cspell / knip / oxfmt / oxlint / 型チェック(`tsconfig.json` の `exclude`)は、ルートでは `workspaces/**` を対象外にしている(各 workspace は自身の設定で lint する)。パターンは `./` や `**/` を付けず `workspaces/**` の形で書く(oxfmt は `./workspaces/**` を解釈せず、何も除外されない)
 
 ### 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)
 

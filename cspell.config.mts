@@ -4,7 +4,7 @@ import type { CSpellUserSettings } from "cspell"
 
 export default {
   ...getDictionarySetting(["domain", "packages"]),
-  ignorePaths: ["./ai-communication/**", "./workspaces/**"],
+  ignorePaths: ["ai-communication/**", "workspaces/**"],
   language: "en",
   version: "0.2",
 } as const satisfies CSpellUserSettings
