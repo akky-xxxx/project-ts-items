@@ -1,23 +1,20 @@
 # @ts-items/oxfmt-config
 
-To install dependencies:
+## How to install
 
-```bash
-bun install
+```sh
+npm i -D @ts-items/oxfmt-config oxfmt
 ```
 
-To run:
+## How to use
 
-```bash
-bun run index.ts
+Create `oxfmt.config.mts`:
+
+```ts
+import { baseConfig } from "@ts-items/oxfmt-config"
+import { defineConfig } from "oxfmt"
+
+export default defineConfig({
+  ...baseConfig,
+})
 ```
-
-To type check:
-
-```bash
-bun check
-```
-
-Run `bun fmt` to format the code.
-
-This project was created using `bun init` in bun v1.4.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
