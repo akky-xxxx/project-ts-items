@@ -13,6 +13,7 @@ export const eslintRules = withRulePrefix("eslint", {
     "error",
     {
       IIFEs: true,
+      max: 50,
       skipBlankLines: true,
       skipComments: true,
     },
