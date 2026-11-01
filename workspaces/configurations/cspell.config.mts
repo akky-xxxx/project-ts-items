@@ -3,8 +3,12 @@ import { DRY_RUN_IGNORE_PATTERNS } from "./dryRun/index.mts"
 import type { CSpellUserSettings } from "cspell"
 
 export default {
-  dictionaries: ["packages"],
+  dictionaries: ["domain", "packages"],
   dictionaryDefinitions: [
+    {
+      name: "domain",
+      path: "./cspell/domain.txt",
+    },
     {
       name: "packages",
       path: "./cspell/packages.txt",

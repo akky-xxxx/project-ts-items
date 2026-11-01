@@ -1,6 +1,6 @@
 import type { DictionaryDefinition } from "cspell"
 
-const dictionaryNames = ["packages"] as const
+const dictionaryNames = ["domain", "packages"] as const
 
 type DictionaryName = (typeof dictionaryNames)[number]
 type DictionaryDefinitions = Record<DictionaryName, DictionaryDefinition>
