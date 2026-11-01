@@ -121,3 +121,7 @@ out/
 .yarn/unplugged
 .yarn/install-state.gz
 .pnp.*
+
+### AI communication
+# Claude Code / codex CLI のファイルベース連携用(CLAUDE.md / AGENTS.md を参照)
+ai-communication/
