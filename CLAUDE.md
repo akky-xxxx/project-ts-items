@@ -43,7 +43,8 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - `workspaces/configurations/` の設定を workspace から使う場合は `"@ts-items/configurations": "workspace:*"` に依存し、`@ts-items/configurations/<tool>` で import する(`<tool>/index.mts` で集約し、公開対象は `workspaces/configurations/package.json` の `exports` に追加)
 - `@ts-items/configurations` は build せず `.mts` を直接 `exports` で公開する。自身の lint 設定を持つ
   - cspell などが設定ファイル経由で Node から直接読み込むため、相対 import は拡張子(`.mts`)まで書く(拡張子なしは型チェックは通るが実行時に解決できない)
-- cspell の辞書は、ルート / workspace の `cspell.config.mts` で `@ts-items/configurations/cspell` の `getDictionarySetting(["packages"])` を spread して使う。辞書を追加する場合は `workspaces/configurations/cspell/<name>.txt` を置き、`dictionaryDefinitions.mts` の `dictionaryNames` に名前を足す。辞書の path は `import.meta.resolve` で絶対 URL にしているため、参照する側の位置に依存しない
+- cspell の辞書は、ルート / workspace の `cspell.config.mts` で `@ts-items/configurations/cspell` の `getDictionarySetting(["domain", "packages"])` のように、必要な辞書名を指定して spread して使う。辞書を追加する場合は `workspaces/configurations/cspell/<name>.txt` を置き、`dictionaryDefinitions.mts` の `dictionaryNames` に名前を足す。辞書の path は `import.meta.resolve` で絶対 URL にしているため、参照する側の位置に依存しない
+  - `@ts-items/configurations` 自身の `cspell.config.mts` は `getDictionarySetting` を使わず辞書を直接定義している。辞書ファイル自体も自身の cspell の検査対象になるため、辞書を追加したらここにも足す
 - 設定ファイルは `defineConfig` か `as const satisfies <ConfigType>` で型付けする
 - cspell / knip / oxfmt / oxlint は、ルートでは `workspaces/**` を対象外にしている(各 workspace は自身の設定で lint する)
 
@@ -55,7 +56,9 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
   - `exports` が `dist/` を指すため knip が `src/` のエントリを辿れない。各パッケージの `knip.config.mts` の `entry` に `src/configurations/index.ts` を指定している
 - パッケージ自身の設定ファイルは、自パッケージが提供する設定なら `./src/...` を相対参照し、もう一方のパッケージの設定は `@ts-items/*-config`(= `dist/`)経由で参照する(例: `oxlint-config/oxlint.config.mts` → `./src/configurations/index.ts`、`oxlint-config/oxfmt.config.mts` → `@ts-items/oxfmt-config`)
 - `oxlint-config` 自身の lint は `typeAware: true`(`oxlint-tsgolint`)で実行される
-- cspell が未知語として報告するパッケージ名・ツール名などは `workspaces/configurations/cspell/packages.txt` に1行1語で追加する
+- cspell が未知語として報告する語は、種類に応じて `workspaces/configurations/cspell/` の辞書に1行1語で追加する
+  - `packages.txt`: パッケージ名・ツール名
+  - `domain.txt`: GitHub のオーナー名など、このリポジトリ固有の固有名詞
 - 公開資材の dry run(`dryRun/`、`test` スクリプト): `bun pm pack` した tarball を `<package>/.dry-run/node_modules/` に展開し、利用者と同じ経路(`files` / `exports`)で設定を読み込んで fixture に oxlint / oxfmt を実行する。共通処理は `@ts-items/configurations/dryRun`
   - fixture は `dryRun/<config>/fixtures/` に置く。oxlint-config は `<rule>/{invalid,valid,disabled}.ts` で診断の有無と severity を、oxfmt-config は `<option>/{input,output}/<file>` で整形結果を検証する
   - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更したら、対応する fixture とテストケースも追加・更新する
