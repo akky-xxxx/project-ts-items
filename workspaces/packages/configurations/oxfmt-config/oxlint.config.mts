@@ -5,7 +5,7 @@ import { defineConfig } from "oxlint"
 
 const config = defineConfig({
   extends: [baseConfig, forConfigurationFiles],
-  ignorePatterns: ["workspaces/**", ...DRY_RUN_IGNORE_PATTERNS],
+  ignorePatterns: [...DRY_RUN_IGNORE_PATTERNS],
   options: {
     typeAware: true,
   },
