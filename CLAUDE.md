@@ -8,7 +8,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - ランタイム / パッケージマネージャ: Bun(Node のバージョンは `.node-version` で固定。oxfmt / oxlint / cspell は `.mts` 設定を Node で読むため Node 22.18 以上が必要)
 - TypeScript は `devDependencies` で指定。ルートの `tsconfig.json` は `@tsconfig/strictest` を継承し、`noEmit` + `moduleResolution: bundler` + `allowImportingTsExtensions`
-- テストランナーは `bun test`。現状は共有パッケージの dry run(後述)のみ
+- テストランナーは `bun test`。共有パッケージの dry run と、dry run の helper 自体のテストがある(いずれも後述)
 
 ## コマンド
 
@@ -20,7 +20,8 @@ bun lint             # lint:* を並列実行(cspell / knip / oxfmt --check / ox
 bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package-json)
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
-bun w:test           # 全パッケージの test(build してから dry run を実行)
+bun w:test           # 全 `@ts-items/*` の test(共有パッケージは build してから dry run を実行)
+bun check-code       # a:lint と w:test を並列実行(push 前に通す品質ゲート)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
