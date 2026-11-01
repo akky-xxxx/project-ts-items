@@ -101,6 +101,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 ### コミット/PR
 
 - Conventional Commits 形式・有効な scope に沿っているか、subject/body が英語か(`CLAUDE.md` の「コミット」を参照)
+- 破壊的変更に当たる差分のコミットに `!` と `BREAKING CHANGE:` フッターが付いているか、逆に該当しない差分に付いていないか(判定基準は `.claude/rules/commit.md` の「破壊的変更」)
 - 1コミット/1PR の粒度が適切か(cherry-pick・revert しやすい単位になっているか)
 - PR の場合、変更内容・確認方法・関連 Issue が記載されているか
 
