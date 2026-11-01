@@ -3,7 +3,7 @@ import { getDictionarySetting } from "@ts-items/configurations/cspell"
 import type { CSpellUserSettings } from "cspell"
 
 export default {
-  ...getDictionarySetting(["packages"]),
+  ...getDictionarySetting(["domain", "packages"]),
   ignorePaths: ["./ai-communication/**", "./workspaces/**"],
   language: "en",
   version: "0.2",
