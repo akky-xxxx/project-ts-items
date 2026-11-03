@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.1](https://github.com/akky-xxxx/project-ts-items/compare/oxlint-config-v0.0.1-alpha.1...oxlint-config-v0.0.1) (2026-11-03)
+
+
+### Miscellaneous Chores
+
+* **packages:** release 0.0.1 ([a3fcb16](https://github.com/akky-xxxx/project-ts-items/commit/a3fcb16c39e0518b2bba89904ad950580e1a6f84))
+
 ## [0.0.1-alpha.1](https://github.com/akky-xxxx/project-ts-items/compare/oxlint-config-v0.0.1-alpha.0...oxlint-config-v0.0.1-alpha.1) (2026-11-03)
 
 
