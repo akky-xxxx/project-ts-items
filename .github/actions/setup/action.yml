@@ -1,0 +1,23 @@
+name: setup
+description: Node.js と Bun をセットアップし、依存をインストールする
+
+inputs:
+  node-version:
+    description: Node.js のバージョン。省略時は .node-version を参照する
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - if: inputs.node-version == ''
+      uses: actions/setup-node@v7.1.0
+      with:
+        node-version-file: .node-version
+    - if: inputs.node-version != ''
+      uses: actions/setup-node@v7.1.0
+      with:
+        node-version: ${{ inputs.node-version }}
+    - uses: oven-sh/setup-bun@v2.2.0
+    - run: bun install --frozen-lockfile
+      shell: bash

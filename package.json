@@ -1,0 +1,53 @@
+{
+  "name": "project-ts-items",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "workspaces/applications/*",
+    "workspaces/configurations",
+    "workspaces/packages/*/*"
+  ],
+  "scripts": {
+    "a:fix": "run-p fix w:fix -c --aggregate-output",
+    "a:lint": "run-p lint w:lint -c --aggregate-output",
+    "check-code": "run-p a:lint w:test -c --aggregate-output",
+    "fix": "run-p fix:* -c --aggregate-output",
+    "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
+    "fix:oxlint": "bun lint:oxlint --fix",
+    "fix:sort-package-json": "sort-package-json",
+    "lint": "run-p lint:* -c --aggregate-output",
+    "lint:cspell": "cspell lint \"**\" --no-progress",
+    "lint:knip": "knip -c knip.config.mts",
+    "lint:oxfmt": "bun fix:oxfmt --check",
+    "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
+    "lint:sort-package-json": "bun fix:sort-package-json --check",
+    "lint:type-check": "bun check",
+    "prepare": "run-s prepare:husky prepare:build",
+    "prepare:build": "bun --filter \"@ts-items/*\" build",
+    "prepare:husky": "husky",
+    "w:fix": "bun --filter \"@ts-items/*\" fix",
+    "w:lint": "bun --filter \"@ts-items/*\" lint",
+    "w:test": "bun --filter \"@ts-items/*\" test"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
+    "@commitlint/format": "21.2.3",
+    "@commitlint/types": "21.2.3",
+    "@ts-items/configurations": "workspace:*",
+    "@ts-items/oxfmt-config": "workspace:*",
+    "@ts-items/oxlint-config": "workspace:*",
+    "@tsconfig/strictest": "2.0.8",
+    "@types/bun": "1.4.4",
+    "conventional-changelog-conventionalcommits": "10.4.1",
+    "cspell": "10.4.0",
+    "husky": "9.1.7",
+    "knip": "6.43.0",
+    "npm-run-all2": "9.0.4",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
+    "oxlint-tsgolint": "7.0.2005",
+    "sort-package-json": "4.1.0",
+    "typescript": "6.0.3"
+  }
+}

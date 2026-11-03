@@ -1,0 +1,38 @@
+name: check (root)
+
+on:
+  pull_request:
+    paths:
+      - "**"
+      - "!workspaces/**"
+      - workspaces/configurations/cspell/**
+      - workspaces/configurations/dryRun/**
+      - workspaces/configurations/oxlint/**
+      - workspaces/configurations/package.json
+      - "!workspaces/configurations/**/*.test.mts"
+      - workspaces/packages/configurations/oxfmt-config/package.json
+      - workspaces/packages/configurations/oxfmt-config/src/**
+      - workspaces/packages/configurations/oxfmt-config/tsconfig.build.json
+      - workspaces/packages/configurations/oxfmt-config/tsconfig.json
+      - workspaces/packages/configurations/oxlint-config/package.json
+      - workspaces/packages/configurations/oxlint-config/src/**
+      - workspaces/packages/configurations/oxlint-config/tsconfig.build.json
+      - workspaces/packages/configurations/oxlint-config/tsconfig.json
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: $/.github/actions/setup
+      - run: bun run lint

@@ -1,0 +1,72 @@
+name: check (oxfmt-config)
+
+on:
+  pull_request:
+    paths:
+      - workspaces/packages/configurations/oxfmt-config/**
+      - workspaces/packages/configurations/oxlint-config/package.json
+      - workspaces/packages/configurations/oxlint-config/src/**
+      - workspaces/packages/configurations/oxlint-config/tsconfig.build.json
+      - workspaces/packages/configurations/oxlint-config/tsconfig.json
+      - workspaces/configurations/cspell/**
+      - workspaces/configurations/dryRun/**
+      - workspaces/configurations/oxlint/**
+      - workspaces/configurations/package.json
+      - "!workspaces/configurations/**/*.test.mts"
+      - .github/workflows/check-oxfmt-config.yml
+      - .github/actions/setup/**
+      - .github/actions/node-lts-versions/**
+      - .node-version
+      - bun.lock
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: $/.github/actions/setup
+      - run: bun run lint
+        working-directory: workspaces/packages/configurations/oxfmt-config
+
+  node-versions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      versions: ${{ steps.lts.outputs.versions }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - id: lts
+        uses: $/.github/actions/node-lts-versions
+
+  test:
+    needs: node-versions
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ${{ fromJSON(needs.node-versions.outputs.versions) }}
+    name: test (node ${{ matrix.node-version }})
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: $/.github/actions/setup
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: bun run test
+        working-directory: workspaces/packages/configurations/oxfmt-config

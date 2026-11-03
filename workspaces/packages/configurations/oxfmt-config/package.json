@@ -1,0 +1,58 @@
+{
+  "name": "@ts-items/oxfmt-config",
+  "version": "0.0.1-alpha.0",
+  "description": "Shared oxfmt configuration",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akky-xxxx/project-ts-items.git",
+    "directory": "workspaces/packages/configurations/oxfmt-config"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/configurations/index.d.ts",
+      "default": "./dist/configurations/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check-code": "run-p lint test -c --aggregate-output",
+    "fix": "run-p fix:* -c --aggregate-output",
+    "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
+    "fix:oxlint": "bun lint:oxlint --fix",
+    "fix:sort-package-json": "sort-package-json",
+    "lint": "run-p lint:* -c --aggregate-output",
+    "lint:cspell": "cspell lint \"**\" --no-progress",
+    "lint:knip": "knip -c knip.config.mts",
+    "lint:oxfmt": "bun fix:oxfmt --check",
+    "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
+    "lint:sort-package-json": "bun fix:sort-package-json --check",
+    "lint:type-check": "bun check",
+    "prepublishOnly": "bun run build",
+    "test": "bun run build && bun test"
+  },
+  "devDependencies": {
+    "@ts-items/configurations": "workspace:*",
+    "@ts-items/oxlint-config": "workspace:*",
+    "@tsconfig/strictest": "2.0.8",
+    "@types/bun": "1.4.4",
+    "cspell": "10.4.0",
+    "knip": "6.43.0",
+    "npm-run-all2": "9.0.4",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
+    "oxlint-tsgolint": "7.0.2005",
+    "sort-package-json": "4.1.0",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "oxfmt": ">=0.74.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

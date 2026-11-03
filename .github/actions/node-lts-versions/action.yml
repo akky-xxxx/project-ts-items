@@ -1,0 +1,24 @@
+name: node-lts-versions
+description: サポート期間中の Node.js LTS のメジャーバージョンを列挙する
+
+outputs:
+  versions:
+    description: 'メジャーバージョンの JSON 配列(例: ["22","24"])'
+    value: ${{ steps.lts.outputs.versions }}
+
+runs:
+  using: composite
+  steps:
+    - id: lts
+      shell: bash
+      run: |
+        versions="$(
+          curl -fsSL https://raw.githubusercontent.com/nodejs/Release/main/schedule.json |
+            jq -c --arg today "$(date -u +%F)" '[
+              to_entries[]
+              | select(.value.lts != null and .value.lts <= $today and .value.end > $today)
+              | .key
+              | ltrimstr("v")
+            ]'
+        )"
+        echo "versions=$versions" >> "$GITHUB_OUTPUT"
