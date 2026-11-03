@@ -1,4 +1,4 @@
 {
-  "workspaces/packages/configurations/oxfmt-config": "0.0.1-alpha.0",
-  "workspaces/packages/configurations/oxlint-config": "0.0.1-alpha.0"
+  "workspaces/packages/configurations/oxfmt-config": "0.0.1-alpha.1",
+  "workspaces/packages/configurations/oxlint-config": "0.0.1-alpha.1"
 }
