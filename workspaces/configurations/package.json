@@ -6,7 +6,8 @@
   "exports": {
     "./cspell": "./cspell/index.mts",
     "./dryRun": "./dryRun/index.mts",
-    "./oxlint": "./oxlint/index.mts"
+    "./oxlint": "./oxlint/index.mts",
+    "./release": "./release/index.mts"
   },
   "scripts": {
     "check-code": "run-p lint test -c --aggregate-output",

@@ -80,6 +80,7 @@ Release-As: 0.2.0-alpha.0
 
 - publish 時には test を実行しない。PR の check workflow で検証済みである前提
 - Release PR は `GITHUB_TOKEN` で作られるため、Release PR に対しては check workflow が走らない
+- Release PR で生成・更新される各パッケージの `CHANGELOG.md` は、パッケージの lint(oxfmt / cspell)の対象外にしている。release-please の出力形式が oxfmt の整形結果と一致しないため。生成物なので手で整形しない
 
 ### 新しいパッケージの初回 publish
 
