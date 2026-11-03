@@ -71,8 +71,8 @@ Release-As: 0.2.0-alpha.0
 1. 作業ブランチから develop へ PR を出して merge する
 2. develop を main へ **merge commit** で取り込む
    - squash しない。squash すると個々のコミットと `bootstrap-sha` が main の履歴から失われ、版の判定と CHANGELOG が崩れる
-3. main への push で `release` workflow が動き、パッケージごとに Release PR が作成・更新される
-4. Release PR の版と CHANGELOG を確認して merge する
+3. main への push で `release` workflow が動き、リリース対象のパッケージの更新をまとめた1件の Release PR が作成・更新される
+4. Release PR に含まれる各パッケージの版と CHANGELOG を確認して merge する
 5. main にタグと GitHub Release が作られ、`bun pm pack` した tarball が `npm publish` される
    - 認証は npm の Trusted Publishing(OIDC)で、トークンは使わない。provenance も付与される
 
