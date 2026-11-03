@@ -21,7 +21,7 @@ bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
 bun w:test           # 全 `@ts-items/*` の test(共有パッケージは build してから dry run を実行)
-bun check-code       # a:lint と w:test を並列実行(push 前に通す品質ゲート)
+bun check-code       # w:test → a:lint の順に直列実行(push 前に通す品質ゲート)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
@@ -29,6 +29,7 @@ bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 - oxlint は `--deny-warnings --report-unused-disable-directives` 付きで実行されるため、warning や不要な disable コメントも失敗扱いになる
 - `@ts-items/*` パッケージにはルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)。`a:lint` / `w:lint` / `prepare:build` の対象も `@ts-items/*` のみで、`website` は含まれない
 - ルートの `prepare` はスクリプト名の羅列のみにし(`run-s prepare:husky prepare:build`)、実処理は `prepare:<name>` に定義する
+- `check-code` は `w:test` → `a:lint` の順に直列で実行する。共有パッケージの `test` は `dist/` を再ビルドし、lint は設定ファイル経由でその `dist/` を読み込むため、並列にすると書き換え中の `dist/` を読んで失敗しうる。test を先にすることで、lint は最新の `src/` から build した `dist/` を読む
 - workspace 内で build を個別実行する場合は `bun run build`(`bun build` は Bun 組み込みのバンドラーが起動する)
 
 ## 構成
