@@ -70,6 +70,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
   - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更したら、対応する fixture とテストケースも追加・更新する
   - dry run の helper(`runCommand` / `preparePackedPackage` / `lintFixtures` / `formatFixtures`)自体にも co-location でテストがある。`@ts-items/configurations` のテストは `test` スクリプト(build 不要)で実行する
   - fixture は意図的に違反・未整形なので、各ツールの設定で `DRY_RUN_IGNORE_PATTERNS` を対象外にしている(`tsconfig.json` は `exclude` に直書き)。knip は `.gitignore` 済みの `.dry-run/` を自動で対象外にするため、fixture のパターンだけを持つ `DRY_RUN_FIXTURE_PATTERNS` を使う
+- release-please が生成する各パッケージの `CHANGELOG.md` は、`@ts-items/configurations/release` の `GENERATED_RELEASE_PATTERNS` で oxfmt(`ignorePatterns`)/ cspell(`ignorePaths`)の対象外にしている。release-please の出力(見出し後の連続した空行、`*` のリストマーカー)は oxfmt の整形結果と一致せず、cspell もコミットの subject 由来の未知語で失敗しうる。いずれも生成物なので手で直さない
 - knip は `tsconfig.json` の `extends` で参照する依存(例: `@tsconfig/strictest`)を使用中と判定するため、`ignoreDependencies` には追加しない。設定ファイル経由でしか参照されず knip が未使用と判定する依存が出た場合に限り、`knip.config.mts` の `ignoreDependencies` に追加する
 
 ## コーディング規約(ツールで強制されるもの)
@@ -89,7 +90,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - develop → main は merge commit で取り込む(squash すると個々のコミットと `bootstrap-sha` が main の履歴から失われ、バージョン判定と CHANGELOG が崩れる)。同じ理由で、`Release-As` フッター付きのコミットを含むブランチも squash しない
 - パッケージの path に触れたコミットだけがそのパッケージの対象になる。バージョンを明示する場合は、対象パッケージ配下のファイルに触れるコミットに `Release-As: <version>` フッターを付ける
 - 現在は `prerelease: true` / `versioning: "prerelease"`(alpha)。正式版へ移行する際はこれらを外し、`Release-As` で版を指定する
-- パッケージを追加したら `release-please-config.json` の `packages` と `.release-please-manifest.json` に追加する
+- パッケージを追加したら `release-please-config.json` の `packages` と `.release-please-manifest.json` に追加する。あわせて、生成される `CHANGELOG.md` を lint 対象から外すため、そのパッケージの `oxfmt.config.mts` / `cspell.config.mts` に `GENERATED_RELEASE_PATTERNS` を spread する
 - publish 時は test しない(PR の check workflow で検証済みの前提)。Release PR は `GITHUB_TOKEN` で作られるため、PR の check workflow は走らない
 - npm の Trusted Publisher は、npm 上に既に存在するパッケージにしか設定できない。新しいパッケージは次の手順で初回 publish する
   - `package.json` の version と `.release-please-manifest.json` を初回の版に揃えた状態で、ローカルから `bun pm pack` した tarball を `npm publish <tarball> --access public --tag <dist-tag>` で手動 publish する(npm の認証はユーザーが行う)
