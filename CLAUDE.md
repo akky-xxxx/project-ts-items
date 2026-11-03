@@ -48,6 +48,10 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
   - `@ts-items/configurations` 自身の `cspell.config.mts` は `getDictionarySetting` を使わず辞書を直接定義している。辞書ファイル自体も自身の cspell の検査対象になるため、辞書を追加したらここにも足す
 - 設定ファイルは `defineConfig` か `as const satisfies <ConfigType>` で型付けする
 - cspell / knip / oxfmt / oxlint / 型チェック(`tsconfig.json` の `exclude`)は、ルートでは `workspaces/**` を対象外にしている(各 workspace は自身の設定で lint する)。パターンは `./` や `**/` を付けず `workspaces/**` の形で書く(oxfmt は `./workspaces/**` を解釈せず、何も除外されない)
+- ルートの cspell は `cspell.config.mts` の `enableGlobDot` / `useGitignore` で、dot ディレクトリ・ファイル(`.claude/**`・`.github/**`・`.husky/**` 等)も検査する(cspell の glob は既定で dot ディレクトリを辿らない)。`.gitignore` 済みのものは対象外になるが、次は `ignorePaths` で明示的に除外している
+  - `.git/**`: `.gitignore` に書かれていないため、`useGitignore` では除外されない
+  - `.claude/settings.local.json`: global gitignore で無視されるローカル専用ファイル。cspell は global gitignore を読まず、CI には存在しないため、検査するとローカルと CI で結果がずれる
+  - `.gitignore`: 外部テンプレート由来のファイル名パターンが中心で、文章ではないため
 
 ### 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)
 
@@ -60,6 +64,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - cspell が未知語として報告する語は、種類に応じて `workspaces/configurations/cspell/` の辞書に1行1語で追加する
   - `packages.txt`: パッケージ名・ツール名
   - `domain.txt`: GitHub のオーナー名など、このリポジトリ固有の固有名詞
+  - `commands.txt`: ツールのコマンド・オプション・組み込み関数名(例: `bunx`、git の `--oneline`、jq の `ltrimstr`)
 - 公開資材の dry run(`dryRun/`、`test` スクリプト): `bun pm pack` した tarball を `<package>/.dry-run/node_modules/` に展開し、利用者と同じ経路(`files` / `exports`)で設定を読み込んで fixture に oxlint / oxfmt を実行する。共通処理は `@ts-items/configurations/dryRun`
   - fixture は `dryRun/<config>/fixtures/` に置く。oxlint-config は `<rule>/{invalid,valid,disabled}.ts` で診断の有無と severity を、oxfmt-config は `<option>/{input,output}/<file>` で整形結果を検証する
   - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更したら、対応する fixture とテストケースも追加・更新する
