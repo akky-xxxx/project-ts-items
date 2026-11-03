@@ -1,0 +1,55 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      paths_released: ${{ steps.release.outputs.paths_released }}
+      releases_created: ${{ steps.release.outputs.releases_created }}
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v5.0.0
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.releases_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        path: ${{ fromJSON(needs.release-please.outputs.paths_released) }}
+    name: publish (${{ matrix.path }})
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: $/.github/actions/setup
+      - run: bun pm pack --destination "$RUNNER_TEMP/pack"
+        working-directory: ${{ matrix.path }}
+      # prerelease(例: 0.0.1-alpha.0)は識別子(alpha)を dist-tag にする
+      - run: |
+          version="$(node -p 'require("./package.json").version')"
+          dist_tag="latest"
+          if [[ "$version" == *-* ]]; then
+            dist_tag="${version#*-}"
+            dist_tag="${dist_tag%%.*}"
+          fi
+          npm publish "$RUNNER_TEMP"/pack/*.tgz --access public --provenance --tag "$dist_tag"
+        working-directory: ${{ matrix.path }}
