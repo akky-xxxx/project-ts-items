@@ -21,7 +21,7 @@ bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
 bun w:test           # 全 `@ts-items/*` の test(共有パッケージは build してから dry run を実行)
-bun check-code       # a:lint と w:test を並列実行(push 前に通す品質ゲート)
+bun check-code       # w:test → a:lint の順に直列実行(push 前に通す品質ゲート)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
@@ -29,6 +29,7 @@ bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 - oxlint は `--deny-warnings --report-unused-disable-directives` 付きで実行されるため、warning や不要な disable コメントも失敗扱いになる
 - `@ts-items/*` パッケージにはルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)。`a:lint` / `w:lint` / `prepare:build` の対象も `@ts-items/*` のみで、`website` は含まれない
 - ルートの `prepare` はスクリプト名の羅列のみにし(`run-s prepare:husky prepare:build`)、実処理は `prepare:<name>` に定義する
+- `check-code` は `w:test` → `a:lint` の順に直列で実行する。共有パッケージの `test` は `dist/` を再ビルドし、lint は設定ファイル経由でその `dist/` を読み込むため、並列にすると書き換え中の `dist/` を読んで失敗しうる。test を先にすることで、lint は最新の `src/` から build した `dist/` を読む
 - workspace 内で build を個別実行する場合は `bun run build`(`bun build` は Bun 組み込みのバンドラーが起動する)
 
 ## 構成
@@ -143,7 +144,7 @@ Claude Code 視点の権限は以下の通り。**読み取り専用のファイ
 4. ユーザーからレビュー到着を知らされたら、未対応の `ai-communication/<作業ディレクトリ>/review_*.md` を読む。未対応かどうかはファイル名の timestamp 順ではなく、各 review の `- reviewed_file:` が自分の直近の result を指しているかで判断する(timestamp は実際の作成順と前後することがある)
 5. 各指摘の妥当性を自分で確認し、対応要否を判断する。修正が必要なものは実装前確認ルールに従って承認を得てから実装する。対応方法が別の既存規約(生成物を手で編集しない等)からの逸脱を伴う場合は、逸脱する旨・理由・代替案を明示してユーザーの承認を得る。技術的な妥当性を自分で検証できたこと(実環境での動作確認など)は、逸脱してよいという承認を得たことの代替にならない
 6. 対応後に新しい `ai-communication/<作業ディレクトリ>/result_{timestamp}.md` を作成し、対応した指摘・見送った指摘とその理由・元になった review のファイル名を書く。以降 4〜6 を必要な回数だけ繰り返す
-7. レビューの指摘が無くなったら `retrospective` agent(`.claude/agents/retrospective.md`)を実行し、今回の作業プロセスを振り返る。agent は会話履歴を持たないため、承認フローの逸脱・手戻り・ユーザーからの指摘といった経緯メモと、対象の作業ディレクトリのパスを呼び出し時に渡す。ドキュメント反映が必要な項目が出た場合、起票の前に `gh issue list --repo akky-xxxx/project-ts-items --state open --limit 1000 --json number,title,body,comments` で OPEN issue 全件の番号・タイトル・本文・コメントを取得し、類似issueの有無を確認する(既定の `--limit` は30件までしか取得できず、本文・コメントもタイトルのみの出力には含まれないため、いずれも明示する)。類似の判定は、反映先ファイル(`CLAUDE.md`/`AGENTS.md`/`.claude/rules/*` など)が一致し、かつ指摘している問題または提案する文言の趣旨が、本文だけでなく既存のコメント(過去にこの手順で追記統合された反映案を含む)とも重なるかで行う。類似issueが無ければ**別タスク(別ブランチ)として起票**し、類似issueがあれば新規issueは作らず、`gh issue comment <issue番号> --repo akky-xxxx/project-ts-items` でその issue に今回の反映案(対象ファイル・追記文言案・理由・元タスクの1行要約)を追記コメントする。いずれの場合も現タスクの push はブロックしない。あわせて、これまでの result の `## 申し送り・レビュー観点` に「別 issue 候補」として書いた項目が起票・コメント追記のどちらも済んでいないまま残っていないか確認し、残っていれば同様に類似issue検索のうえ起票またはコメント追記する。ここでの「レビューの指摘が無くなったら」は、設計フェーズのサブループ(判断軸を変える変更の result/review)の解消ではなく、実装(Edit/Write)とその実装内容に対する result/review ループまで完了した、タスク全体としての解消を指す。設計フェーズを踏むタスクでは、設計サブループが指摘0件になった時点ではまだ実行しない。retrospective の実行契機は「レビューの指摘が無くなったら」に加えて「push の前には必ず」であり、再実行・事後実行が必要になる条件は下記「### retrospective の実行タイミング」を参照する。
+7. レビューの指摘が無くなったら `retrospective` agent(`.claude/agents/retrospective.md`)を実行し、今回の作業プロセスを振り返る。agent は会話履歴を持たないため、承認フローの逸脱・手戻り・ユーザーからの指摘といった経緯メモと、対象の作業ディレクトリのパスを呼び出し時に渡す。ドキュメント反映が必要な項目が出た場合、起票の前に `gh issue list --repo akky-xxxx/project-ts-items --state open --limit 1000 --json number,title,body,comments` で OPEN issue 全件の番号・タイトル・本文・コメントを取得し、類似issueの有無を確認する(既定の `--limit` は30件までしか取得できず、本文・コメントもタイトルのみの出力には含まれないため、いずれも明示する)。類似の判定は、反映先ファイル(`CLAUDE.md`/`AGENTS.md`/`.claude/rules/*` など)が一致し、かつ指摘している問題または提案する文言の趣旨が、本文だけでなく既存のコメント(過去にこの手順で追記統合された反映案を含む)とも重なるかで行う。類似issueが無ければ**別タスク(別ブランチ)として起票**し、類似issueがあれば新規issueは作らず、`gh issue comment <issue番号> --repo akky-xxxx/project-ts-items` でその issue に今回の反映案(対象ファイル・追記文言案・理由・元タスクの1行要約)を追記コメントする。**起票・コメント追記は、実行前に起票先(新規起票か、コメントを追記する issue の番号か)と文面(新規起票ならタイトル・本文、コメント追記ならコメント本文)をチャットで提示し、ユーザーの明示的な承認を得てから行う。本手順に「起票する」「コメント追記する」と書かれていることや、承認済みのプランにそれが含まれていることは承認の代替にならない。承認を得ずに `gh issue create` / `gh issue comment` を実行してはならない**。いずれの場合も現タスクの push はブロックしない。あわせて、これまでの result の `## 申し送り・レビュー観点` に「別 issue 候補」として書いた項目が起票・コメント追記のどちらも済んでいないまま残っていないか確認し、残っていれば同様に類似issue検索のうえ起票またはコメント追記する。ここでの「レビューの指摘が無くなったら」は、設計フェーズのサブループ(判断軸を変える変更の result/review)の解消ではなく、実装(Edit/Write)とその実装内容に対する result/review ループまで完了した、タスク全体としての解消を指す。設計フェーズを踏むタスクでは、設計サブループが指摘0件になった時点ではまだ実行しない。retrospective の実行契機は「レビューの指摘が無くなったら」に加えて「push の前には必ず」であり、再実行・事後実行が必要になる条件は下記「### retrospective の実行タイミング」を参照する。
 8. push / PR 作成に進む(`.claude/rules/pr.md` を参照)。push はユーザーが実行する
 
 ### retrospective の実行タイミング
@@ -230,3 +231,4 @@ codex が機械的に読み取れるよう、以下の形式に統一する。�
 - 作業途中の状態で `ai-communication/<作業ディレクトリ>/result_*.md` を作成すること(手順2 の設計フェーズで作成する、設計だけを書いた result は該当しない)
 - レビュー指摘を検証せずそのまま実装に反映すること(妥当性を自分で確認してから対応する)
 - レビューの指摘が解消しないまま push / PR 作成に進むこと
+- ユーザーの明示的な承認を得ずに GitHub issue を起票する、または既存 issue にコメントを追記すること(手順7 を含め、フローに起票・コメント追記と書かれていることは承認の代替にならない)
