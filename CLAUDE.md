@@ -89,8 +89,8 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - release-please(manifest モード)で `workspaces/packages/*/*` のバージョン更新・CHANGELOG・タグ(`<component>-v<version>`)・GitHub Release を行う。設定は `release-please-config.json` / `.release-please-manifest.json`、workflow は `.github/workflows/release.yml`
 - main への push で Release PR が作成・更新され、マージすると main にタグと GitHub Release が作られ、`bun pm pack` した tarball を `npm publish`(Trusted Publishing。provenance も付与される)する。prerelease は `-` 以降の識別子(例: `alpha`)を dist-tag にする
 - develop → main は merge commit で取り込む(squash すると個々のコミットと `bootstrap-sha` が main の履歴から失われ、バージョン判定と CHANGELOG が崩れる)。同じ理由で、`Release-As` フッター付きのコミットを含むブランチも squash しない
-- パッケージの path に触れたコミットだけがそのパッケージの対象になる。バージョンを明示する場合は、対象パッケージ配下のファイルに触れるコミットに `Release-As: <version>` フッターを付ける
-- 現在は `prerelease: true` / `versioning: "prerelease"`(alpha)。正式版へ移行する際はこれらを外し、`Release-As` で版を指定する
+- パッケージの path に触れたコミットだけがそのパッケージの対象になる。ただし、ファイルに触れない空コミット(`git commit --allow-empty`)は全パッケージの対象になる。バージョンを明示する場合は、対象パッケージ配下のファイルに触れるコミット(全パッケージの版を揃える場合は空コミット)に `Release-As: <version>` フッターを付ける
+- 正式版で運用している(`versioning` は既定で、`prerelease` / `prerelease-type` は使わない)。既定の versioning は版を上げても prerelease の識別子(`-alpha.0` など)を引き継ぐため、`Release-As` に prerelease の版を指定しない
 - パッケージを追加したら `release-please-config.json` の `packages` と `.release-please-manifest.json` に追加する。あわせて、生成される `CHANGELOG.md` を lint 対象から外すため、そのパッケージの `oxfmt.config.mts` / `cspell.config.mts` に `GENERATED_RELEASE_PATTERNS` を spread する
 - publish 時は test しない(PR の check workflow で検証済みの前提)。Release PR は `GITHUB_TOKEN` で作られるため、PR の check workflow は走らない
 - npm の Trusted Publisher は、npm 上に既に存在するパッケージにしか設定できない。新しいパッケージは次の手順で初回 publish する
