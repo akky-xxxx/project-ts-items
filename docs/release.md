@@ -7,7 +7,7 @@
 - 対象: `workspaces/packages/*/*` の共有パッケージ(現在は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)
 - [release-please](https://github.com/googleapis/release-please)(manifest モード)がバージョン更新・CHANGELOG・タグ・GitHub Release を担当し、`.github/workflows/release.yml` が npm への publish を行う
 - 関係するファイル
-  - `release-please-config.json`: release-please の設定(対象パッケージ、prerelease の扱いなど)
+  - `release-please-config.json`: release-please の設定(対象パッケージ、版の上がり方など)
   - `.release-please-manifest.json`: 各パッケージの現在のバージョン
   - `.github/workflows/release.yml`: main への push で動く workflow
 
@@ -25,44 +25,38 @@
 | `docs` / `chore` / `refactor` など          | 版は上がらない |
 
 - パッケージの path(例: `workspaces/packages/configurations/oxfmt-config/`)配下のファイルに触れたコミットだけが、そのパッケージの対象になる
+  - ただし、ファイルに触れない空コミット(`git commit --allow-empty`)は全パッケージの対象になる
 - 破壊的変更の判定基準は `.claude/rules/commit.md` の「破壊的変更」を参照する
 
-### 現在の設定(alpha)での上がり方
+### 現在の設定での上がり方
 
-現在は `prerelease: true` / `versioning: "prerelease"` / `prerelease-type: "alpha"` / `bump-minor-pre-major: true` で運用している。1.0.0 未満のため、破壊的変更でも major ではなく minor 相当になる。
+`versioning` は既定(`default`)、`bump-minor-pre-major: true` で運用している。1.0.0 未満のため、破壊的変更でも major ではなく minor 相当になる。
 
-| 現在の版        | `fix`           | `feat`          | 破壊的変更      |
-| --------------- | --------------- | --------------- | --------------- |
-| `0.0.1-alpha.0` | `0.0.1-alpha.1` | `0.1.0-alpha.0` | `0.1.0-alpha.0` |
-| `0.1.0-alpha.3` | `0.1.0-alpha.4` | `0.1.0-alpha.4` | `0.1.0-alpha.4` |
+| 現在の版 | `fix`   | `feat`  | 破壊的変更 |
+| -------- | ------- | ------- | ---------- |
+| `0.0.1`  | `0.0.2` | `0.1.0` | `0.1.0`    |
+| `1.2.3`  | `1.2.4` | `1.3.0` | `2.0.0`    |
 
-- patch が 0 の版(`0.1.0-alpha.N` など)では、`feat` や破壊的変更でも alpha の番号だけが上がる
-- 上の表は release-please のソース(`src/versioning-strategies/prerelease.ts`)の分岐から求めたもの。実際の版は Release PR で必ず確認する
+- 上の表は release-please のソース(`src/versioning-strategies/default.ts`)の分岐から求めたもの。実際の版は Release PR で必ず確認する
 
 ### 版を明示する(`Release-As`)
 
-自動で決まる版とは別の版にしたい場合は、対象パッケージ配下のファイルに触れるコミットの body に `Release-As` フッターを付ける。
+自動で決まる版とは別の版にしたい場合は、対象パッケージ配下のファイルに触れるコミットの body に `Release-As` フッターを付ける。全パッケージの版を揃えて明示する場合は、空コミット(`git commit --allow-empty`)に付ける。
 
 ```text
-chore(oxfmt-config): release 0.2.0-alpha.0
+chore(oxfmt-config): release 0.2.0
 
-Release-As: 0.2.0-alpha.0
+Release-As: 0.2.0
 ```
 
 - `Release-As` は他の判定より優先され、指定した版がそのまま使われる
+- `Release-As` に prerelease の版(例: `0.2.0-alpha.0`)を指定しない。既定の versioning は版を上げても prerelease の識別子を引き継ぐため、以降の版にも識別子が残る
 - `Release-As` を含むブランチは squash merge しない(フッターが履歴から失われる)
-
-### 正式版への移行
-
-1. `release-please-config.json` から `prerelease` / `prerelease-type` / `versioning` を外す
-2. 対象パッケージ配下のファイルに触れるコミットに `Release-As: 1.0.0` を付ける
-
-`Release-As` だけでは、設定が prerelease のままなので次のリリースが再び prerelease(例: `1.0.1-alpha`)になる。設定の変更とあわせて行う。
 
 ### タグと dist-tag
 
-- タグは `<component>-v<version>`(例: `oxfmt-config-v0.1.0-alpha.0`)
-- npm の dist-tag は版の `-` 以降の識別子(例: `0.1.0-alpha.0` → `alpha`)。`-` を含まない正式版は `latest`
+- タグは `<component>-v<version>`(例: `oxfmt-config-v0.1.0`)
+- npm の dist-tag は `latest`。版に `-` を含む場合(prerelease)は、`-` 以降の識別子(例: `0.1.0-alpha.0` → `alpha`)になる
 
 ## パブリッシュ
 
@@ -80,6 +74,7 @@ Release-As: 0.2.0-alpha.0
 
 - publish 時には test を実行しない。PR の check workflow で検証済みである前提
 - Release PR は `GITHUB_TOKEN` で作られるため、Release PR に対しては check workflow が走らない
+- Release PR で生成・更新される各パッケージの `CHANGELOG.md` は、パッケージの lint(oxfmt / cspell)の対象外にしている。release-please の出力形式が oxfmt の整形結果と一致しないため。生成物なので手で整形しない
 
 ### 新しいパッケージの初回 publish
 

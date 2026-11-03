@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "check-code": "run-p lint test -c --aggregate-output",
+    "check-code": "run-s test lint -c",
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",

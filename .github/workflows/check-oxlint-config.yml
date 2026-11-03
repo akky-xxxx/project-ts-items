@@ -12,6 +12,7 @@ on:
       - workspaces/configurations/dryRun/**
       - workspaces/configurations/oxlint/**
       - workspaces/configurations/package.json
+      - workspaces/configurations/release/**
       - "!workspaces/configurations/**/*.test.mts"
       - .github/workflows/check-oxlint-config.yml
       - .github/actions/setup/**
