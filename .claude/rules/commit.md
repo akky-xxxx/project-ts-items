@@ -11,7 +11,7 @@
   - revert: (reverts a previous commit)
 - cherry-pick や drop 等、コミット単位の操作をしやすい粒度
   - 実装における1機能以下
-  - ここでいう「操作をしやすい」は、コミットが意図の単位でまとまっていて cherry-pick / drop した結果が変更内容として意味をなすことを指す。各コミット単体で品質ゲート相当のチェック(`bun check-code` 等)が通ることまでは求めない。lint / format / 型チェック / dry run 等の整合性は PR として提出する最終状態で通っていればよい。CI は未導入のため、PR 提出(push)前にルートで `bun check-code` を実行して通ることを確認する
+  - ここでいう「操作をしやすい」は、コミットが意図の単位でまとまっていて cherry-pick / drop した結果が変更内容として意味をなすことを指す。各コミット単体で品質ゲート相当のチェック(`bun check-code` 等)が通ることまでは求めない。lint / format / 型チェック / dry run 等の整合性は PR として提出する最終状態で通っていればよい。PR の check workflow(`.github/workflows/check-*.yml`)は変更された path に応じた workspace だけを検査するため、PR 提出(push)前にルートで `bun check-code` を実行して通ることを確認する
   - 分割の判断軸は「その変更が単独で説明できる1つの意図を持つか」。直前のコミットに対する lint/format 対応であっても、意図が別であれば分けてよい。単体で品質ゲートを通らないことを理由にコミットをまとめて粒度を大きくしない
 - commit を実行する前に、staged される内容(diff)と commit message を提示し、ユーザーから明示的な承認を得てから `git commit` を実行する
   - 提示する diff は「自分が `git add` した分」ではなく、`git status --short` と `git diff --cached` の全体で確認する。`git rm` / `git mv` はファイル操作と同時に index を変更するため、意識していないと承認対象外の変更が同じコミットに入る

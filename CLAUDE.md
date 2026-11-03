@@ -165,7 +165,7 @@ codex には issue の id・本文のどちらも渡さない(`AGENTS.md` を参
 
 手順2で、次のいずれかに当たる場合は、実装(Edit / Write)に着手する前に**設計だけ**を `ai-communication/<作業ディレクトリ>/result_{timestamp}.md` に出力し、codex の設計レビューが解消するまでコード・設定・ドキュメントに一切触らない。
 
-- 以後の実装・レビューの判断軸になるもの(`CLAUDE.md` / `AGENTS.md` / `.claude/**` / ルートの `*.config.mts` / `workspaces/configurations/**` / CI 定義(導入した場合))を変更する。パスではなく検査基準・分類・実行条件・権限のいずれかを変えるかで判定し、既存基準に従うデータの更新(cspell 辞書への単語追加など)は含まない。「権限」には、CI のジョブ/ステップへの secrets・環境変数の追加・変更と、ワークフローの `permissions:` の変更を含む
+- 以後の実装・レビューの判断軸になるもの(`CLAUDE.md` / `AGENTS.md` / `.claude/**` / ルートの `*.config.mts` / `workspaces/configurations/**` / CI 定義(`.github/**`) / リリース設定(`release-please-config.json` / `.release-please-manifest.json`))を変更する。パスではなく検査基準・分類・実行条件・権限のいずれかを変えるかで判定し、既存基準に従うデータの更新(cspell 辞書への単語追加など)は含まない。「権限」には、CI のジョブ/ステップへの secrets・環境変数の追加・変更と、ワークフローの `permissions:` の変更を含む
 - 共有パッケージ(`workspaces/packages/**`)が提供する設定値(rules / categories / plugins / オプション)を追加・変更する。利用者側の lint / format 結果を変えるため、判断軸の変更とみなす
 - 複数 workspace にまたがる、または既存の公開インターフェース(共有パッケージの `exports` 等)・データ構造を変える
 - 判断軸や分類基準を新しく決める(どこまでを対象とするか、何を基準に分けるか)
