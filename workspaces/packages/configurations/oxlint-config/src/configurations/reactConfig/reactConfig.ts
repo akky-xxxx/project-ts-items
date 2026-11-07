@@ -20,6 +20,7 @@ export const reactConfig = defineConfig({
         extensions: ["tsx"],
       },
     ],
+    "react/jsx-fragments": ["error", "element"],
     "react/jsx-max-depth": ["error", { max: 5 }],
     "react/jsx-no-literals": "off",
     "react/jsx-props-no-spreading": "off",
