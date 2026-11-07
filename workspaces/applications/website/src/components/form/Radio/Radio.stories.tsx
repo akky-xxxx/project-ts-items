@@ -49,7 +49,8 @@ export const Japanese: Story = {
   globals: {
     locale: "ja",
   },
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(canvas.getByText("ラジオ")).toBeInTheDocument()
   },
