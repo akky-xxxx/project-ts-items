@@ -7,6 +7,15 @@ const config = defineConfig({
   options: {
     typeAware: true,
   },
+  overrides: [
+    {
+      // Request config は next-intl の規約で default export する
+      files: ["src/i18n/request.ts"],
+      rules: {
+        "import/no-default-export": "off",
+      },
+    },
+  ],
 })
 
 export default config
