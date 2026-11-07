@@ -116,8 +116,8 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 ```bash
 bun lint                                 # ルートの lint(cspell / knip / oxfmt --check / oxlint / sort-package-json --check / type-check)
-bun a:lint                               # ルート + 全 @ts-items/* の lint
-bun w:test                               # 全 @ts-items/* の test(dry run)
+bun a:lint                               # ルート + 全 @ts-items/* と website の lint
+bun w:test                               # 全 @ts-items/* と website の test(dry run / Storybook の vitest)
 bun check-code                           # w:test → a:lint(直列)
 bun --filter <package name> lint         # パッケージ単位の lint
 bun --filter <package name> test         # パッケージ単位の test
