@@ -1,5 +1,6 @@
-import { NextIntlClientProvider } from "next-intl"
+import { hasLocale, NextIntlClientProvider } from "next-intl"
 
+import { routing } from "../src/i18n/routing/routing.ts"
 import { siteDictionary } from "../src/i18n/siteDictionary/siteDictionary.ts"
 import { toLocaleMessages } from "../src/i18n/toLocaleMessages/toLocaleMessages.ts"
 
@@ -9,12 +10,32 @@ import "../src/app/reset.css"
 
 const preview: Preview = {
   decorators: [
-    (Story) => (
-      <NextIntlClientProvider locale="en" messages={toLocaleMessages(siteDictionary, "en")}>
-        <Story />
-      </NextIntlClientProvider>
-    ),
+    (Story, context) => {
+      const { locale: requestedLocale } = context.globals
+      const locale = hasLocale(routing.locales, requestedLocale)
+        ? requestedLocale
+        : routing.defaultLocale
+
+      return (
+        <NextIntlClientProvider locale={locale} messages={toLocaleMessages(siteDictionary, locale)}>
+          <Story />
+        </NextIntlClientProvider>
+      )
+    },
   ],
+  globalTypes: {
+    locale: {
+      description: "Locale for next-intl messages",
+      toolbar: {
+        dynamicTitle: true,
+        icon: "globe",
+        items: [...routing.locales],
+      },
+    },
+  },
+  initialGlobals: {
+    locale: routing.defaultLocale,
+  },
   parameters: {
     a11y: {
       // 'todo' - show a11y violations in the test UI only
