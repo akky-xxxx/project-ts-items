@@ -7,6 +7,13 @@ export const eslintRules = withRulePrefix("eslint", {
   "arrow-body-style": ["error", "as-needed"],
   "complexity": ["error", 5],
   "curly": ["warn", "all"],
+  "id-length": [
+    "error",
+    {
+      exceptions: ["_"],
+      min: 2,
+    },
+  ],
   "max-depth": ["error", 3],
   "max-lines": ["error", { max: 100 }],
   "max-lines-per-function": [
