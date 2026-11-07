@@ -6,4 +6,5 @@ export const typescriptRules = withRulePrefix("typescript", {
   "prefer-readonly-parameter-types": "off",
   "promise-function-async": "error",
   "require-await": "error",
+  "restrict-template-expressions": ["error", { allowBoolean: true, allowNumber: true }],
 } as const satisfies DummyRuleMap)
