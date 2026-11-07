@@ -18,8 +18,9 @@ export const toLocaleMessages = <Source extends Dictionary>(
 ): LocaleMessages<Source> =>
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- TS cannot infer the recursive mapped type from Object.fromEntries; the runtime shape is covered by tests
   Object.fromEntries(
-    Object.entries(dictionary).map(([key, value]) => [
-      key,
-      isTranslation(value) ? value[locale] : toLocaleMessages(value, locale),
-    ]),
+    Object.entries(dictionary).map((entry) => {
+      const [key, value] = entry
+
+      return [key, isTranslation(value) ? value[locale] : toLocaleMessages(value, locale)]
+    }),
   ) as LocaleMessages<Source>
