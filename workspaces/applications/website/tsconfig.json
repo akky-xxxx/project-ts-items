@@ -17,6 +17,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
