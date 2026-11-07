@@ -15,7 +15,7 @@ interface LintResult {
 interface Parameters {
   /** `dryRun/` からの相対パス */
   fixturesDirectory: string
-  target: "base" | "react"
+  target: "base" | "next" | "react"
 }
 
 type GetSeverity = (code: string, fixture: string) => Severity
@@ -62,8 +62,7 @@ export const lintFixtures = async (parameters: Parameters): Promise<GetSeverity>
   const workDirectory = await preparePackedPackage({
     copyDirectories: ["dryRun"],
     files: {
-      "oxlint.base.config.mts": createConsumerConfig("baseConfig"),
-      "oxlint.react.config.mts": createConsumerConfig("reactConfig"),
+      [`oxlint.${target}.config.mts`]: createConsumerConfig(`${target}Config`),
       "tsconfig.json": TSCONFIG,
     },
     packageDirectory: `${import.meta.dir}/../..`,

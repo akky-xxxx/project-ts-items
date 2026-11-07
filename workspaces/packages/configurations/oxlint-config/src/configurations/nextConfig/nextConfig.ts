@@ -16,7 +16,7 @@ export const nextConfig = defineConfig({
       },
     },
     {
-      files: ["**/app/{page,layout,loading,error,not-found,global-error,template}.tsx"],
+      files: ["**/app/**/{page,layout,loading,error,not-found,global-error,template}.tsx"],
       rules: {
         ...withRulePrefix("import", {
           "no-default-export": "off",
@@ -38,7 +38,7 @@ export const nextConfig = defineConfig({
       },
     },
     {
-      files: ["**/app/layout.tsx"],
+      files: ["**/app/**/layout.tsx"],
       rules: {
         ...withRulePrefix("eslint", {
           "new-cap": "off",
@@ -49,6 +49,14 @@ export const nextConfig = defineConfig({
         }),
         ...withRulePrefix("oxc", {
           "no-async-await": "off",
+        }),
+      },
+    },
+    {
+      files: ["**/proxy.ts"],
+      rules: {
+        ...withRulePrefix("import", {
+          "no-default-export": "off",
         }),
       },
     },
