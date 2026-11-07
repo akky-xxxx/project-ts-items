@@ -7,7 +7,7 @@ const getSeverity = await lintFixtures({
   target: "next",
 })
 
-describe("nextConfig", () => {
+describe("nextConfig の Next.js 規約ファイル向け override", () => {
   it.each([
     ["conventionFiles/app/[locale]/other.tsx", "import(no-default-export)", "error"],
     ["conventionFiles/app/[locale]/page.tsx", "import(no-default-export)", "none"],
