@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build-storybook": "storybook build",
+    "check-code": "run-s -c lint test",
     "dev": "run-p \"dev:*\" -c --aggregate-output",
     "dev:hcm": "bun prepare:hcm -w",
     "dev:next": "next dev",
@@ -23,7 +24,8 @@
     "lint:type-check": "bun check",
     "prepare": "run-p -c --aggregate-output \"prepare:*\"",
     "prepare:hcm": "hcm \"src/**/*.module.css\"",
-    "storybook": "storybook dev -p 3100"
+    "storybook": "storybook dev -p 3100",
+    "test": "vitest run --project=storybook"
   },
   "dependencies": {
     "next": "16.4.3",
