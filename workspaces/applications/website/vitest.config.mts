@@ -26,6 +26,14 @@ export default defineConfig({
           name: "storybook",
         },
       },
+      {
+        extends: true,
+        test: {
+          environment: "node",
+          include: ["src/**/*.test.ts"],
+          name: "unit",
+        },
+      },
     ],
   },
 })
