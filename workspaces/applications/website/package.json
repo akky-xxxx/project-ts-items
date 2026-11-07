@@ -14,7 +14,7 @@
     "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
     "fix:stylelint": "bun lint:stylelint --fix",
-    "lint": "run-p lint:* -c --aggregate-output",
+    "lint": "npm-run-all -s prepare:typegen -p \"lint:*\" -c --aggregate-output",
     "lint:cspell": "cspell lint \"**\" --no-progress",
     "lint:knip": "knip -c knip.config.mts",
     "lint:oxfmt": "bun fix:oxfmt --check",
@@ -24,11 +24,13 @@
     "lint:type-check": "bun check",
     "prepare": "run-p -c --aggregate-output \"prepare:*\"",
     "prepare:hcm": "hcm \"src/**/*.module.css\"",
+    "prepare:typegen": "next typegen",
     "storybook": "storybook dev -p 3100",
-    "test": "vitest run --project=storybook"
+    "test": "vitest run"
   },
   "dependencies": {
     "next": "16.4.3",
+    "next-intl": "4.14.9",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
