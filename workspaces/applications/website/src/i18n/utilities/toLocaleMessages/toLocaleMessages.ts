@@ -1,9 +1,9 @@
-import { routing } from "../routing/routing.ts"
+import { routing } from "../../constants/routing/routing.ts"
 
-import type { Dictionary } from "../Dictionary/Dictionary.ts"
-import type { Locale } from "../Locale/Locale.ts"
-import type { LocaleMessages } from "../LocaleMessages/LocaleMessages.ts"
-import type { Translation } from "../Translation/Translation.ts"
+import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
+import type { Locale } from "../../types/Locale/Locale.ts"
+import type { LocaleMessages } from "../../types/LocaleMessages/LocaleMessages.ts"
+import type { Translation } from "../../types/Translation/Translation.ts"
 
 const isTranslation = (value: Dictionary | Translation): value is Translation =>
   routing.locales.every((locale) => typeof value[locale] === "string")

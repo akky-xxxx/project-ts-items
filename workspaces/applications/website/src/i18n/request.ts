@@ -3,9 +3,9 @@ import { getRequestConfig } from "next-intl/server"
 import { notFound } from "next/navigation"
 import { locale as getRootLocale } from "next/root-params"
 
-import { routing } from "./routing/routing.ts"
-import { siteDictionary } from "./siteDictionary/siteDictionary.ts"
-import { toLocaleMessages } from "./toLocaleMessages/toLocaleMessages.ts"
+import { routing } from "./constants/routing/routing.ts"
+import { siteDictionary } from "./constants/siteDictionary/siteDictionary.ts"
+import { toLocaleMessages } from "./utilities/toLocaleMessages/toLocaleMessages.ts"
 
 const requestConfig = getRequestConfig(async (parameters) => {
   const requestedLocale = parameters.locale ?? (await getRootLocale())

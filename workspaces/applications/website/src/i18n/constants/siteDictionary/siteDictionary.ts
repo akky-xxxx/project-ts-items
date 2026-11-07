@@ -1,4 +1,4 @@
-import type { Dictionary } from "../Dictionary/Dictionary.ts"
+import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
 
 export const siteDictionary = {
   HomePage: {

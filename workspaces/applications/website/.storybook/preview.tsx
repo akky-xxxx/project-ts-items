@@ -1,8 +1,8 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 
-import { routing } from "../src/i18n/routing/routing.ts"
-import { siteDictionary } from "../src/i18n/siteDictionary/siteDictionary.ts"
-import { toLocaleMessages } from "../src/i18n/toLocaleMessages/toLocaleMessages.ts"
+import { routing } from "../src/i18n/constants/routing/routing.ts"
+import { siteDictionary } from "../src/i18n/constants/siteDictionary/siteDictionary.ts"
+import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocaleMessages.ts"
 
 import type { Preview } from "@storybook/nextjs-vite"
 

@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { Inter } from "next/font/google"
 import { notFound } from "next/navigation"
 
-import { routing } from "../../i18n/routing/routing.ts"
+import { routing } from "../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
