@@ -3,9 +3,27 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build-storybook": "storybook build",
+    "dev": "run-p \"dev:*\" -c --aggregate-output",
+    "dev:hcm": "bun prepare:hcm -w",
+    "dev:next": "next dev",
+    "dev:storybook": "bun storybook",
+    "fix": "run-s -c fix:sort-package-json fix:oxlint fix:oxfmt",
+    "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
+    "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
+    "fix:stylelint": "bun lint:stylelint --fix",
+    "lint": "run-p lint:* -c --aggregate-output",
+    "lint:cspell": "cspell lint \"**\" --no-progress",
+    "lint:knip": "knip -c knip.config.mts",
+    "lint:oxfmt": "bun fix:oxfmt --check",
+    "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "typecheck": "bun check"
+    "lint:stylelint": "stylelint --max-warnings 0 \"**/*.css\"",
+    "lint:type-check": "bun check",
+    "prepare": "run-p -c --aggregate-output \"prepare:*\"",
+    "prepare:hcm": "hcm \"src/**/*.module.css\"",
+    "storybook": "storybook dev -p 3100"
   },
   "dependencies": {
     "next": "16.4.3",
