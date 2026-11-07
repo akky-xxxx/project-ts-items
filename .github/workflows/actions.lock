@@ -19,6 +19,10 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.1.0'
         - 'oven-sh/setup-bun@v2.2.0'
+    '.github/workflows/check-website.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'actions/setup-node@v7.1.0'
+        - 'oven-sh/setup-bun@v2.2.0'
     '.github/workflows/release.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.1.0'
