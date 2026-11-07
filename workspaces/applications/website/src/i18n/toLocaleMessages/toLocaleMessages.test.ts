@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import { toLocaleMessages } from "./toLocaleMessages.ts"
 
-describe("toLocaleMessages", () => {
+describe("toLocaleMessages による locale 別メッセージへの変換", () => {
   it("末端の文言を指定した locale の文字列に置き換える", () => {
     const dictionary = { greeting: { en: "Hello", ja: "こんにちは" } }
 
