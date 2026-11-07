@@ -17,4 +17,10 @@ export const siteDictionary = {
       ja: "ts-items",
     },
   },
+  Radio: {
+    label: {
+      en: "Radio",
+      ja: "ラジオ",
+    },
+  },
 } as const satisfies Dictionary
