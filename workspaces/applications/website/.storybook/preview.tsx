@@ -5,7 +5,7 @@ import { toLocaleMessages } from "../src/i18n/toLocaleMessages/toLocaleMessages.
 
 import type { Preview } from "@storybook/nextjs-vite"
 
-import "../src/app/reset.module.css"
+import "../src/app/reset.css"
 
 const preview: Preview = {
   decorators: [

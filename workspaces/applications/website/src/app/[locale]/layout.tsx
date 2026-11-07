@@ -8,7 +8,7 @@ import { routing } from "../../i18n/routing/routing.ts"
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
-import "../reset.module.css"
+import "../reset.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
