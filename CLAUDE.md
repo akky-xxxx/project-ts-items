@@ -87,22 +87,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 
 ## リリース
 
-- release-please(manifest モード)で `workspaces/packages/*/*` のバージョン更新・CHANGELOG・タグ(`<component>-v<version>`)・GitHub Release を行う。設定は `release-please-config.json` / `.release-please-manifest.json`、workflow は `.github/workflows/release.yml`
-- main への push で Release PR が作成・更新され、マージすると main にタグと GitHub Release が作られ、`bun pm pack` した tarball を `npm publish`(Trusted Publishing。provenance も付与される)する。prerelease は `-` 以降の識別子(例: `alpha`)を dist-tag にする
-- develop → main は merge commit で取り込む(squash すると個々のコミットと `bootstrap-sha` が main の履歴から失われ、バージョン判定と CHANGELOG が崩れる)。同じ理由で、`Release-As` フッター付きのコミットを含むブランチも squash しない
-- パッケージの path に触れたコミットだけがそのパッケージの対象になる。ただし、ファイルに触れない空コミット(`git commit --allow-empty`)は全パッケージの対象になる。バージョンを明示する場合は、対象パッケージ配下のファイルに触れるコミット(全パッケージの版を揃える場合は空コミット)に `Release-As: <version>` フッターを付ける
-- 正式版で運用している(`versioning` は既定で、`prerelease` / `prerelease-type` は使わない)。既定の versioning は版を上げても prerelease の識別子(`-alpha.0` など)を引き継ぐため、`Release-As` に prerelease の版を指定しない
-- パッケージを追加したら `release-please-config.json` の `packages` と `.release-please-manifest.json` に追加する。あわせて、生成される `CHANGELOG.md` を lint 対象から外すため、そのパッケージの `oxfmt.config.mts` / `cspell.config.mts` に `GENERATED_RELEASE_PATTERNS` を spread する
-- publish 時は test しない(PR の check workflow で検証済みの前提)。Release PR は `GITHUB_TOKEN` で作られるため、PR の check workflow は走らない
-- npm の Trusted Publisher は、npm 上に既に存在するパッケージにしか設定できない。新しいパッケージは次の手順で初回 publish する
-  - `package.json` の version と `.release-please-manifest.json` を初回の版に揃えた状態で、ローカルから `bun pm pack` した tarball を `npm publish <tarball> --access public --tag <dist-tag>` で手動 publish する(npm の認証はユーザーが行う)
-  - npm の Web サイトのパッケージ設定で Trusted Publisher(このリポジトリ・`release.yml`)を設定する。設定は作成から2日以内に最初の publish が成功しないと失効するため、次の Release PR をマージする直前に設定する
-- `website` は release-please の対象外で、npm にも publish しない。`workspaces/applications/website/**` に触れるコミットが main に push されると、`.github/workflows/release-website.yml` が tag と GitHub Release を作る
-  - tag は `website-vYYYYMMDD`(日付は JST)。同じ日付の tag が既にあれば `website-vYYYYMMDD.1`、`.2` と連番を付ける
-  - リリースノートは、直前の `website-v*` tag 以降に website の path に触れたコミット(merge commit を除く)の subject の一覧。GitHub Release の Latest にはしない(`--latest=false`。Latest はパッケージの Release に残す)
-  - 連続した push の実行は `concurrency` の `queue: max` で最大100件まで待機させて1つずつ処理し、取りこぼさない(既定の `queue: single` では待機中の実行が新しい実行に置き換えられる)。処理順は GitHub 上で保証されないため、古いコミットの実行が後に動くと、その Release のノートが空になることがある
-  - release-please は tag を `<component>-v<major>.<minor>.<patch>` の形でしかパースできず、`website-v*` の Release は読み飛ばすため、パッケージのバージョン判定には影響しない
-  - Vercel へのデプロイは Vercel の Git 連携(Production Branch を `main` にする)で行い、このリポジトリの workflow では扱わない
+共有パッケージ(release-please による版の更新と npm への publish)と `website`(tag と GitHub Release の作成)のリリース運用は `docs/release.md` にまとめている。リリース設定(`release-please-config.json` / `.release-please-manifest.json` / `.github/workflows/release*.yml`)の変更、パッケージの追加、`Release-As` フッター付きのコミットの作成、develop → main の PR 作成・マージ、Release PR の確認・マージ、npm への手動 publish を行う前に読む。
 
 ## GitHub Actions
 

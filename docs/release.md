@@ -1,10 +1,10 @@
 # リリース運用(バージョニング / パブリッシュ)
 
-共有パッケージのバージョン更新と npm への公開の手順をまとめる。
+共有パッケージのバージョン更新と npm への公開の手順、および `website` の tag と GitHub Release の作成をまとめる。
 
 ## 概要
 
-- 対象: `workspaces/packages/*/*` の共有パッケージ(現在は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)
+- 対象: `workspaces/packages/*/*` の共有パッケージ(現在は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)。`website` は対象外で、別の workflow で tag と GitHub Release だけを作る(「website のリリース」を参照)
 - [release-please](https://github.com/googleapis/release-please)(manifest モード)がバージョン更新・CHANGELOG・タグ・GitHub Release を担当し、`.github/workflows/release.yml` が npm への publish を行う
 - 関係するファイル
   - `release-please-config.json`: release-please の設定(対象パッケージ、版の上がり方など)
@@ -30,7 +30,7 @@
 
 ### 現在の設定での上がり方
 
-`versioning` は既定(`default`)、`bump-minor-pre-major: true` で運用している。1.0.0 未満のため、破壊的変更でも major ではなく minor 相当になる。
+正式版で運用しており、`versioning` は既定(`default`)、`bump-minor-pre-major: true` とし、`prerelease` / `prerelease-type` は使わない。1.0.0 未満のため、破壊的変更でも major ではなく minor 相当になる。
 
 | 現在の版 | `fix`   | `feat`  | 破壊的変更 |
 | -------- | ------- | ------- | ---------- |
@@ -81,6 +81,7 @@ Release-As: 0.2.0
 npm の Trusted Publisher は、npm 上に既に存在するパッケージにしか設定できない。そのため初回だけローカルから手動で publish する。
 
 1. `release-please-config.json` の `packages` と `.release-please-manifest.json` にパッケージを追加する
+   - あわせて、生成される `CHANGELOG.md` を lint 対象から外すため、そのパッケージの `oxfmt.config.mts` / `cspell.config.mts` に `@ts-items/configurations/release` の `GENERATED_RELEASE_PATTERNS` を spread する
 2. `package.json` の `version` と `.release-please-manifest.json` を初回の版に揃える
 3. パッケージのディレクトリで tarball を作り、手動で publish する(npm へのログインは各自で行う)
 
@@ -92,6 +93,15 @@ npm の Trusted Publisher は、npm 上に既に存在するパッケージに�
 
 4. npm の Web サイトのパッケージ設定で Trusted Publisher(このリポジトリ・`release.yml`)を設定する
    - 設定は作成から2日以内に最初の publish が成功しないと失効する。次の Release PR を merge する直前に設定する
+
+## website のリリース
+
+- `website` は release-please の対象外で、npm にも publish しない。`workspaces/applications/website/**` に触れるコミットが main に push されると、`.github/workflows/release-website.yml` が tag と GitHub Release を作る
+- tag は `website-vYYYYMMDD`(日付は JST)。同じ日付の tag が既にあれば `website-vYYYYMMDD.1`、`.2` と連番を付ける
+- リリースノートは、直前の `website-v*` tag 以降に website の path に触れたコミット(merge commit を除く)の subject の一覧。GitHub Release の Latest にはしない(`--latest=false`。Latest はパッケージの Release に残す)
+- 連続した push の実行は `concurrency` の `queue: max` で最大100件まで待機させて1つずつ処理し、取りこぼさない(既定の `queue: single` では待機中の実行が新しい実行に置き換えられる)。処理順は GitHub 上で保証されないため、古いコミットの実行が後に動くと、その Release のノートが空になることがある
+- release-please は tag を `<component>-v<major>.<minor>.<patch>` の形でしかパースできず、`website-v*` の Release は読み飛ばすため、パッケージのバージョン判定には影響しない
+- Vercel へのデプロイは Vercel の Git 連携(Production Branch を `main` にする)で行い、このリポジトリの workflow では扱わない
 
 ## 公開結果の確認
 
