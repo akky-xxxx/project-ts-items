@@ -1,27 +1,33 @@
 # project-ts-items
 
-To install dependencies:
+A Bun workspaces monorepo for shared TypeScript development tool configurations.
+
+## Packages
+
+| Package                                                                        | Description          |
+| ------------------------------------------------------------------------------ | -------------------- |
+| [`@ts-items/oxfmt-config`](workspaces/packages/configurations/oxfmt-config/)   | Shared oxfmt config  |
+| [`@ts-items/oxlint-config`](workspaces/packages/configurations/oxlint-config/) | Shared oxlint config |
+
+See each package's README for installation and usage.
+
+## Development
+
+Requires [Bun](https://bun.com) and Node.js (version pinned in `.node-version`).
 
 ```bash
-bun install
+bun install      # Install dependencies (also sets up husky and builds packages)
+bun check-code   # Run tests and lint for the root and all workspaces
+bun a:fix        # Fix format / lint issues for the root and all workspaces
 ```
 
-To run:
+`bun check-code` runs the `website` Storybook tests in headless Chromium via Playwright. Install the browser before the first run and after updating `playwright`:
 
 ```bash
-bun run index.ts
+cd workspaces/applications/website
+bunx playwright install chromium
 ```
 
-To type check:
+## Contributing
 
-```bash
-bun check
-```
-
-Run `bun fmt` to format the code.
-
-This project was created using `bun init` in bun v1.4.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
-
-## Docs
-
-- [リリース運用(バージョニング / パブリッシュ)](docs/release.md)
+See [CONTRIBUTING.md](CONTRIBUTING.md).
