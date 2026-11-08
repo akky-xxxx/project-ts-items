@@ -43,3 +43,31 @@ export default defineConfig({
   },
 })
 ```
+
+### For Next.js + TypeScript projects
+
+```ts
+import { nextConfig } from "@ts-items/oxlint-config"
+import { defineConfig } from "oxlint"
+
+export default defineConfig({
+  extends: [nextConfig],
+  options: {
+    typeAware: true, // Optional but recommended. Requires `oxlint-tsgolint`
+  },
+})
+```
+
+### For Storybook with some React Project
+
+Turn off some rules that are not suitable with Storybook
+
+```ts
+import { storybookConfig } from "@ts-items/oxlint-config"
+import { defineConfig } from "oxlint"
+
+export default defineConfig({
+  extends: [storybookConfig],
+  // some config for react
+})
+```
