@@ -97,6 +97,12 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - npm の Trusted Publisher は、npm 上に既に存在するパッケージにしか設定できない。新しいパッケージは次の手順で初回 publish する
   - `package.json` の version と `.release-please-manifest.json` を初回の版に揃えた状態で、ローカルから `bun pm pack` した tarball を `npm publish <tarball> --access public --tag <dist-tag>` で手動 publish する(npm の認証はユーザーが行う)
   - npm の Web サイトのパッケージ設定で Trusted Publisher(このリポジトリ・`release.yml`)を設定する。設定は作成から2日以内に最初の publish が成功しないと失効するため、次の Release PR をマージする直前に設定する
+- `website` は release-please の対象外で、npm にも publish しない。`workspaces/applications/website/**` に触れるコミットが main に push されると、`.github/workflows/release-website.yml` が tag と GitHub Release を作る
+  - tag は `website-vYYYYMMDD`(日付は JST)。同じ日付の tag が既にあれば `website-vYYYYMMDD.1`、`.2` と連番を付ける
+  - リリースノートは、直前の `website-v*` tag 以降に website の path に触れたコミット(merge commit を除く)の subject の一覧。GitHub Release の Latest にはしない(`--latest=false`。Latest はパッケージの Release に残す)
+  - 連続した push の実行は `concurrency` の `queue: max` で最大100件まで待機させて1つずつ処理し、取りこぼさない(既定の `queue: single` では待機中の実行が新しい実行に置き換えられる)。処理順は GitHub 上で保証されないため、古いコミットの実行が後に動くと、その Release のノートが空になることがある
+  - release-please は tag を `<component>-v<major>.<minor>.<patch>` の形でしかパースできず、`website-v*` の Release は読み飛ばすため、パッケージのバージョン判定には影響しない
+  - Vercel へのデプロイは Vercel の Git 連携(Production Branch を `main` にする)で行い、このリポジトリの workflow では扱わない
 
 ## GitHub Actions
 
