@@ -16,7 +16,7 @@ secrets・アクセストークン(npm の公開用トークン、GitHub のト�
 - secrets・環境変数は必要なジョブ/ステップにのみ渡す。ワークフローの top-level `env:` には置かない
 - `permissions:` は既定を `contents: read` とし、必要なジョブでのみ広げる
 - CI 専用の捨て値(漏れても実害の無い値)をワークフローに直書きする場合は、捨て値である旨をコメントで明記する
-- CI 定義への secrets・環境変数の追加/変更と `permissions:` の変更は、`CLAUDE.md` の「設計フェーズに入る条件」にいう権限の変更にあたる
+- CI 定義への secrets・環境変数の追加/変更と `permissions:` の変更は、`.claude/rules/ai-communication.md` の「設計フェーズに入る条件」にいう権限の変更にあたる
 
 ## `.env.example`(環境変数を参照するコードを追加した場合)
 
