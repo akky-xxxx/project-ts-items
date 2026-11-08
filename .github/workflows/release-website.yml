@@ -1,0 +1,55 @@
+name: release (website)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - workspaces/applications/website/**
+
+permissions: {}
+
+# 採番が競合しないよう直列に実行する。既定の queue: single は待機中の実行を新しい実行で置き換えるため、
+# queue: max で連続した push の実行をすべて待機させる
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # 既存の tag とリリースノート用のコミット履歴を参照するため、全履歴を取得する
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      # tag は website-vYYYYMMDD(JST)。同じ日付の tag があれば .1 / .2 ... と連番を付ける
+      - id: tag
+        run: |
+          prefix="website-v$(TZ=Asia/Tokyo date +%Y%m%d)"
+          same_day="$(git tag -l "$prefix" "$prefix.*" --sort=-v:refname | sed -n 1p)"
+          tag="$prefix"
+          if [[ "$same_day" == "$prefix" ]]; then
+            tag="$prefix.1"
+          fi
+          if [[ "$same_day" == "$prefix".* ]]; then
+            tag="$prefix.$((${same_day##*.} + 1))"
+          fi
+          previous="$(git tag -l "website-v*" --sort=-v:refname | sed -n 1p)"
+          range="HEAD"
+          if [[ -n "$previous" ]]; then
+            range="$previous..HEAD"
+          fi
+          git log --no-merges --format="- %s (%h)" "$range" -- workspaces/applications/website \
+            > "$RUNNER_TEMP/notes.md"
+          echo "name=$tag" >> "$GITHUB_OUTPUT"
+      - run: |
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "$TAG" \
+            --notes-file "$RUNNER_TEMP/notes.md" --latest=false
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.name }}
