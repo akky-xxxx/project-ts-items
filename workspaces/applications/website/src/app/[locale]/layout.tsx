@@ -1,16 +1,15 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { getTranslations } from "next-intl/server"
-import { Inter } from "next/font/google"
 import { notFound } from "next/navigation"
 
+import { FONT_VARIABLES } from "../../constants/FONT_VARIABLES/FONT_VARIABLES.ts"
 import { routing } from "../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
 import "../reset.css"
-
-const inter = Inter({ subsets: ["latin"] })
+import "./global.css"
 
 type Props = LayoutProps<"/[locale]">
 
@@ -37,8 +36,8 @@ const RootLayout = async (props: Props): Promise<ReactNode> => {
   }
 
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
+    <html className={FONT_VARIABLES.join(" ")} lang={locale}>
+      <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
