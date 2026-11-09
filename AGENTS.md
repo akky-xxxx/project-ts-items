@@ -44,8 +44,9 @@ codex はこのリポジトリにおいて**レビュワー専任**として動�
 
 このファイルはレビュー観点の要約であり、詳細な規約は以下を一次情報として参照する。内容が矛盾する場合はこちらを優先する。
 
-- `CLAUDE.md`: リポジトリ構成、コマンド、共有パッケージの設計、ツールで強制される規約、コミット規約の正式な定義
-- `.claude/rules/*.md`: コミット・PR・機密情報の取り扱いルール
+- `CLAUDE.md`: リポジトリ構成、コマンドの正式な定義
+- `.claude/rules/*.md`: 共有パッケージの設計(`publish-packages.md`)、ツールで強制される規約(`coding-guideline.md`)、GitHub Actions(`github-actions.md`)、コミット(`commit.md`)・PR(`pr.md`)・機密情報(`secrets.md`)の取り扱い、AI 間のファイルベース連携(`ai-communication.md`)のルール
+- `docs/release.md`: 共有パッケージと `website` のリリース運用
 - `scripts/commitlint/directories/`: 有効な commit scope の算出方法(`package.json` の `workspaces` glob に一致するディレクトリ名)
 
 ## プロジェクト構成(レビューに必要な最小限)
@@ -56,7 +57,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 - `workspaces/configurations`: リポジトリ固有の設定(`@ts-items/configurations`。build せず `.mts` を直接公開)
 - `workspaces/packages/*/*`: 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`。`src/` を `dist/` に build して公開)
 
-詳細は `CLAUDE.md` の「構成」「共有パッケージ」を参照。
+詳細は `CLAUDE.md` の「構成」と `.claude/rules/publish-packages.md` を参照。
 
 ## レビュー観点
 
@@ -100,7 +101,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 ### コミット/PR
 
-- Conventional Commits 形式・有効な scope に沿っているか、subject/body が英語か(`CLAUDE.md` の「コミット」を参照)
+- Conventional Commits 形式・有効な scope に沿っているか、subject/body が英語か(`.claude/rules/commit.md` を参照)
 - 破壊的変更に当たる差分のコミットに `!` と `BREAKING CHANGE:` フッターが付いているか、逆に該当しない差分に付いていないか(判定基準は `.claude/rules/commit.md` の「破壊的変更」)
 - 1コミット/1PR の粒度が適切か(cherry-pick・revert しやすい単位になっているか)
 - PR の場合、変更内容・確認方法・関連 Issue が記載されているか
@@ -116,8 +117,8 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 ```bash
 bun lint                                 # ルートの lint(cspell / knip / oxfmt --check / oxlint / sort-package-json --check / type-check)
-bun a:lint                               # ルート + 全 @ts-items/* の lint
-bun w:test                               # 全 @ts-items/* の test(dry run)
+bun a:lint                               # ルート + 全 @ts-items/* と website の lint
+bun w:test                               # 全 @ts-items/* と website の test(dry run / Storybook の vitest)
 bun check-code                           # w:test → a:lint(直列)
 bun --filter <package name> lint         # パッケージ単位の lint
 bun --filter <package name> test         # パッケージ単位の test

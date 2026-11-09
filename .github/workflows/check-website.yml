@@ -1,0 +1,55 @@
+name: check (website)
+
+on:
+  pull_request:
+    paths:
+      - workspaces/applications/website/**
+      - workspaces/packages/configurations/oxfmt-config/package.json
+      - workspaces/packages/configurations/oxfmt-config/src/**
+      - workspaces/packages/configurations/oxfmt-config/tsconfig.build.json
+      - workspaces/packages/configurations/oxfmt-config/tsconfig.json
+      - workspaces/packages/configurations/oxlint-config/package.json
+      - workspaces/packages/configurations/oxlint-config/src/**
+      - workspaces/packages/configurations/oxlint-config/tsconfig.build.json
+      - workspaces/packages/configurations/oxlint-config/tsconfig.json
+      - workspaces/configurations/oxlint/**
+      - workspaces/configurations/package.json
+      - "!workspaces/configurations/**/*.test.mts"
+      - .github/workflows/check-website.yml
+      - .github/actions/setup/**
+      - .node-version
+      - bun.lock
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: $/.github/actions/setup
+      - run: bun run lint
+        working-directory: workspaces/applications/website
+
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: $/.github/actions/setup
+      # Storybook のテストは Playwright の Chromium(headless)で実行する
+      - run: bunx playwright install --with-deps chromium
+        working-directory: workspaces/applications/website
+      - run: bun run test
+        working-directory: workspaces/applications/website

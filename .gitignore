@@ -6,7 +6,8 @@
 ._*
 
 # Custom folder icons
-Icon
+Icon
+
 
 # Volume root files
 .DocumentRevisions-V100
@@ -105,6 +106,7 @@ build/Release
 .parcel-cache
 .next
 .nuxt
+next-env.d.ts
 
 # dotenv environment variable files
 .env
@@ -121,6 +123,13 @@ build/Release
 .yarn/install-state.gz
 .pnp.*
 
+# happy css modules
+**/*.module.css.d.ts*
+
 ### AI communication
 # Claude Code / codex CLI のファイルベース連携用(CLAUDE.md / AGENTS.md を参照)
 ai-communication/
+
+# storybook
+*storybook.log
+storybook-static

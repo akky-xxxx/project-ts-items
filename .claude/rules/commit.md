@@ -27,6 +27,13 @@
   - 新しいタスク(別 issue 等)に着手する際は、既存の作業ブランチを使い回さず、`develop` の最新から新しく作業ブランチを切る。ブランチを切り替えたら `git branch --show-current` 等で対象タスク用のブランチになっていることを確認してから最初の変更に入る
 - 一時的な確認(整形結果のプレビュー等)の目的で `git stash` を使わない。`git stash pop` は直前に自分が stash したとは限らず、リポジトリに残っている無関係な stash(他ブランチ・他セッションのもの)を誤って適用する恐れがある。一時退避が必要な場合は `git diff` の出力確認や、リポジトリ外(スクラッチディレクトリ等)へのファイル書き出しで代替する。
 
+## メッセージの形式
+
+- husky の `commit-msg` フックで commitlint が走る
+- type は `chore` / `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `revert` のみ
+- **scope は必須**。許可される値は `root` / `*` / `packages` と、`package.json` の `workspaces` glob に一致するディレクトリ名(例: `configurations`, `website`, `oxfmt-config`, `oxlint-config`)。workspace を追加すると自動で scope に加わる(`scripts/commitlint/directories/directories.mts`)
+- type/scope 以外の説明文(subject/body)は英語で書く(チャットでの応答等における日本語既定の例外。commitlint による機械的な強制は無いが、コミット履歴は英語で統一している)
+
 ## 破壊的変更
 
 - 破壊的変更を含むコミットは、type/scope の直後に `!` を付ける(例: `feat(oxlint-config)!: enable no-console rule`)。既存の履歴もこの形式で書かれている
