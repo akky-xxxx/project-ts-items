@@ -1,6 +1,6 @@
 {
   "name": "@ts-items/oxlint-config",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Strict shared oxlint configuration",
   "homepage": "https://github.com/akky-xxxx/project-ts-items/tree/main/workspaces/packages/configurations/oxlint-config#readme",
   "bugs": {
