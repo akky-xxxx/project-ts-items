@@ -7,7 +7,7 @@ import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocal
 
 import type { Preview } from "@storybook/nextjs-vite"
 
-import "../src/app/reset.css"
+import "../src/app/[locale]/reset.css"
 import "../src/app/[locale]/global.css"
 
 const preview: Preview = {

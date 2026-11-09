@@ -8,7 +8,7 @@ import { routing } from "../../i18n/constants/routing/routing.ts"
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
-import "../reset.css"
+import "./reset.css"
 import "./global.css"
 
 type Props = LayoutProps<"/[locale]">
