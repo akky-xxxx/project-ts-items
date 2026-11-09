@@ -9,6 +9,13 @@ const config = defineConfig({
   },
   overrides: [
     {
+      // Font loader (next/font) の関数は大文字始まりだが constructor ではない
+      files: ["src/constants/FONT_VARIABLES/FONT_VARIABLES.ts"],
+      rules: {
+        "eslint/new-cap": "off",
+      },
+    },
+    {
       // Request config は next-intl の規約で default export する
       files: ["src/i18n/request.ts"],
       rules: {
