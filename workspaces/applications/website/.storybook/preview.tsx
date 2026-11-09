@@ -1,5 +1,6 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 
+import { FONT_VARIABLES } from "../src/constants/FONT_VARIABLES/FONT_VARIABLES.ts"
 import { routing } from "../src/i18n/constants/routing/routing.ts"
 import { siteDictionary } from "../src/i18n/constants/siteDictionary/siteDictionary.ts"
 import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocaleMessages.ts"
@@ -7,8 +8,12 @@ import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocal
 import type { Preview } from "@storybook/nextjs-vite"
 
 import "../src/app/reset.css"
+import "../src/app/[locale]/global.css"
 
 const preview: Preview = {
+  beforeAll: () => {
+    document.documentElement.classList.add(...FONT_VARIABLES)
+  },
   decorators: [
     (Story, context) => {
       const { locale: requestedLocale } = context.globals
