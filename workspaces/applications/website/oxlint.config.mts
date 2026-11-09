@@ -23,6 +23,11 @@ const config = defineConfig({
       },
     },
   ],
+  rules: {
+    // Zod 公式の import スタイル(import * as z from "zod")を踏襲する
+    "eslint/id-length": ["error", { exceptions: ["_", "z"], min: 2 }],
+    "import/no-namespace": ["error", { ignore: ["zod", "zod/mini"] }],
+  },
 })
 
 export default config
