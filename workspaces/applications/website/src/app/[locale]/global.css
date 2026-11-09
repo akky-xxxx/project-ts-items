@@ -1,8 +1,36 @@
 :root {
-  --font-sans: var(--font-noto-sans-jp), sans-serif;
+  --color-background: light-dark(#fff, #141a19);
+  --color-heading-text: light-dark(#202827, #e4ebe7);
+  --color-text: light-dark(#687371, #9baaa3);
   --font-mono: var(--font-jetbrains-mono), var(--font-noto-sans-jp), monospace;
+  --font-sans: var(--font-noto-sans-jp), sans-serif;
+
+  color-scheme: light dark;
+}
+
+:root[data-theme="system"] {
+  color-scheme: light dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-family: var(--font-mono);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-heading-text);
 }
