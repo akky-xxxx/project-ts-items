@@ -9,7 +9,7 @@
     "dev:hcm": "bun prepare:hcm -w",
     "dev:next": "next dev",
     "dev:storybook": "bun storybook",
-    "fix": "run-s -c fix:sort-package-json fix:oxlint fix:oxfmt",
+    "fix": "run-s -c fix:stylelint fix:sort-package-json fix:oxlint fix:oxfmt",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
