@@ -23,4 +23,16 @@ export const siteDictionary = {
       ja: "ラジオ",
     },
   },
+  header: {
+    navigation: {
+      changeLog: {
+        en: "Change log",
+        ja: "更新履歴",
+      },
+      package: {
+        en: "Packages",
+        ja: "パッケージ",
+      },
+    },
+  },
 } as const satisfies Dictionary
