@@ -1,3 +1,4 @@
+import { CheckedIcon } from "./CheckedIcon/CheckedIcon.tsx"
 import { CommandIcon } from "./CommandIcon/CommandIcon.tsx"
 import { DEFAULT_SIZE } from "./constants/DEFAULT_SIZE/DEFAULT_SIZE.ts"
 import { GitHubIcon } from "./GitHubIcon/GitHubIcon.tsx"
@@ -24,6 +25,7 @@ type Props = Pick<SVGAttributes<unknown>, "height" | "width">
 
 const Icons: FC<Props> = (props) => (
   <div style={WrapperStyle}>
+    <CheckedIcon {...IconSize} {...props} />
     <CommandIcon {...IconSize} {...props} />
     <GitHubIcon {...IconSize} {...props} />
     <LanguageIcon {...IconSize} {...props} />
