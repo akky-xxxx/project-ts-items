@@ -1,4 +1,5 @@
 :root {
+  --border-color: light-dark(#e3e8e6, #303c36);
   --color-background: light-dark(#fff, #141a19);
   --color-heading-text: light-dark(#202827, #e4ebe7);
   --color-text: light-dark(#687371, #9baaa3);
@@ -6,6 +7,7 @@
   --font-sans: var(--font-noto-sans-jp), sans-serif;
 
   color-scheme: light dark;
+  font-size: 62.5%;
 }
 
 :root[data-theme="system"] {
@@ -24,6 +26,8 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-mono);
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
 
 h1,
