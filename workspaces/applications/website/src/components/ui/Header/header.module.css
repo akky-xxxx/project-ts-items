@@ -1,7 +1,7 @@
 .root {
   align-items: center;
   background-color: var(--color-background);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--color-border);
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   padding: 2.65rem 5rem;

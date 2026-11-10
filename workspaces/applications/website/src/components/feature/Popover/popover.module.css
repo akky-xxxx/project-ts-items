@@ -1,6 +1,6 @@
 .root {
   background-color: var(--color-background);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: var(--color-boxshadow) 0 8px 24px;
   margin-top: 8px;

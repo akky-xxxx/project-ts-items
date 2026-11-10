@@ -1,6 +1,6 @@
 :root {
-  --border-color: light-dark(#e3e8e6, #303c36);
   --color-background: light-dark(#fff, #141a19);
+  --color-border: light-dark(#e3e8e6, #303c36);
   --color-boxshadow: light-dark(#14261f10, #0000002b);
   --color-heading-text: light-dark(#202827, #e4ebe7);
   --color-text: light-dark(#687371, #9baaa3);
