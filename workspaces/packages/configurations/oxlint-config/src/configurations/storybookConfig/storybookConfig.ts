@@ -2,6 +2,7 @@ import { defineConfig } from "oxlint"
 
 import { withRulePrefix } from "../../utilities/withRulePrefix/withRulePrefix.ts"
 
+/* oxlint-disable no-magic-numbers */
 export const storybookConfig = defineConfig({
   overrides: [
     {
@@ -22,6 +23,7 @@ export const storybookConfig = defineConfig({
       files: ["**/*.stories.*"],
       rules: {
         ...withRulePrefix("eslint", {
+          "max-lines": ["error", 300],
           "no-magic-numbers": "off",
           "no-param-reassign": "off",
         }),
