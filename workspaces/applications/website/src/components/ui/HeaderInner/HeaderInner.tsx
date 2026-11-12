@@ -13,7 +13,7 @@ export const HeaderInner: FC<Props> = (props) => {
   const { navigationElement, toolElement } = props
 
   return (
-    <header className={styles.root}>
+    <div className={styles.root}>
       <Link className={styles.siteName} href="/">
         <span className={styles.projectName}>ts-items</span>
         <span aria-hidden="true">/</span>
@@ -23,6 +23,6 @@ export const HeaderInner: FC<Props> = (props) => {
       {navigationElement}
 
       {toolElement}
-    </header>
+    </div>
   )
 }
