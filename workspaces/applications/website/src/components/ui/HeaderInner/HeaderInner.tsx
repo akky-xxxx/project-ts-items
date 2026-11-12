@@ -2,14 +2,14 @@ import { Link } from "../../../utilities/navigation/navigation.ts"
 
 import type { FC, ReactElement } from "react"
 
-import styles from "./header.module.css"
+import styles from "./headerInner.module.css"
 
 type Props = {
   navigationElement: ReactElement
   toolElement: ReactElement
 }
 
-export const Header: FC<Props> = (props) => {
+export const HeaderInner: FC<Props> = (props) => {
   const { navigationElement, toolElement } = props
 
   return (
