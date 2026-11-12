@@ -8,13 +8,13 @@ import type { ReactNode, ChangeEvent, FC } from "react"
 
 import styles from "./optionSwitcher.module.css"
 
-interface Item {
+type Item = {
   iconElement?: ReactNode
   labelText: string
   value: string
 }
 
-interface Props {
+type Props = {
   handleChange: (value: string) => void
   items: Item[]
   legendText: string

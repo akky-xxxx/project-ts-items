@@ -2,7 +2,7 @@ import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildre
 
 import styles from "./popover.module.css"
 
-interface Props {
+type Props = {
   id: string
 }
 

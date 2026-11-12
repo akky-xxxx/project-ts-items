@@ -4,7 +4,7 @@ import type { FC, ReactElement } from "react"
 
 import styles from "./header.module.css"
 
-interface Props {
+type Props = {
   navigationElement: ReactElement
   toolElement: ReactElement
 }

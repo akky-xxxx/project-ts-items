@@ -4,13 +4,13 @@ import { startTransition, useState, ViewTransition } from "react"
 
 import type { FC, ReactNode } from "react"
 
-interface Item {
+type Item = {
   contents: ReactNode
   id: string
   tab: ReactNode
 }
 
-interface Props {
+type Props = {
   items: Item[]
 }
 

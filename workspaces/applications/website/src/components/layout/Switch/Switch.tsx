@@ -2,7 +2,7 @@ import type { FC, ReactElement } from "react"
 
 import styles from "./switch.module.css"
 
-interface Props {
+type Props = {
   items: (ReactElement & Required<Pick<ReactElement, "key">>)[]
 }
 

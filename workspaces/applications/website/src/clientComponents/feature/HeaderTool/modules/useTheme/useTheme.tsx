@@ -12,7 +12,7 @@ import type { OptionSwitcher } from "../../../OptionSwitcher/OptionSwitcher.tsx"
 import type { ComponentProps } from "react"
 import type * as z from "zod/mini"
 
-interface Input {
+type Input = {
   darkThemeText: string
   lightThemeText: string
   systemThemeText: string
