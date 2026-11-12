@@ -20,7 +20,7 @@ describe("setTheme", () => {
     vi.stubEnv("NODE_ENV", "development")
     await setTheme(theme)
 
-    expect(set).toHaveBeenCalledExactlyOnceWith("theme", theme, {
+    expect(set).toHaveBeenCalledExactlyOnceWith("THEME", theme, {
       maxAge: A_YEAR,
       path: "/",
       sameSite: "lax",
@@ -32,7 +32,7 @@ describe("setTheme", () => {
     vi.stubEnv("NODE_ENV", "production")
     await setTheme("dark")
 
-    expect(set).toHaveBeenCalledWith("theme", "dark", expect.objectContaining({ secure: true }))
+    expect(set).toHaveBeenCalledWith("THEME", "dark", expect.objectContaining({ secure: true }))
   })
 
   it.each(["", "Dark", "unknown"])("setTheme(%j) // 不正な値は無視する", async (theme) => {

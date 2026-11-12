@@ -97,7 +97,7 @@ export const TestForThemeSelection: Story = {
       within(canvasElement).getByRole("button", { name: "{lightThemeText}" }),
     ).toBeInTheDocument()
     await waitFor(async () => {
-      await expect(cookies().set).toHaveBeenCalledWith("theme", "light", expect.anything())
+      await expect(cookies().set).toHaveBeenCalledWith("THEME", "light", expect.anything())
     })
   },
   tags: ["!autodocs"],
