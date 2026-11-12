@@ -6,7 +6,7 @@ import { THEME_SWITCHER_ICON_PROPS } from "../../../../constants/THEME_SWITCHER_
 import type { themeSchema } from "../../../../../../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
 
-interface Input {
+type Input = {
   darkThemeText: string
   lightThemeText: string
   systemThemeText: string

@@ -1,6 +1,6 @@
 import { preparePackedPackage, runCommand } from "@ts-items/configurations/dryRun"
 
-interface FormatResult {
+type FormatResult = {
   actual: string
   expected: string
 }

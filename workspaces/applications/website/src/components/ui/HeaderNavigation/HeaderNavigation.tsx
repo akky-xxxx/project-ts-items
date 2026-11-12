@@ -4,7 +4,7 @@ import type { FC } from "react"
 
 import styles from "./headerNavigation.module.css"
 
-interface Props {
+type Props = {
   changeLogText: string
   packageText: string
 }

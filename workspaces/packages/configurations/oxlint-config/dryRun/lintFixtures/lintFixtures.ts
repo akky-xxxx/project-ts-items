@@ -6,17 +6,17 @@ import type { Target } from "../createConsumerConfig/createConsumerConfig.ts"
 
 type Severity = "error" | "none" | "warning"
 
-interface Diagnostic {
+type Diagnostic = {
   code: string
   filename: string
   severity: Exclude<Severity, "none">
 }
 
-interface LintResult {
+type LintResult = {
   diagnostics: Diagnostic[]
 }
 
-interface Parameters {
+type Parameters = {
   /** `dryRun/` からの相対パス */
   fixturesDirectory: string
   target: Target

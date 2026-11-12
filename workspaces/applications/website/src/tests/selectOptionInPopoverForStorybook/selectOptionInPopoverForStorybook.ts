@@ -1,6 +1,6 @@
 import { expect, userEvent, waitFor, within } from "storybook/test"
 
-interface Input {
+type Input = {
   /** Popover を開くボタンのアクセシブルネーム(現在選択中の選択肢名と一致する前提) */
   buttonName: string
   legendText: string

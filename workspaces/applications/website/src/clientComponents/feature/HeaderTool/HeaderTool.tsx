@@ -13,7 +13,7 @@ import type * as z from "zod/mini"
 
 import styles from "./headerTool.module.css"
 
-interface Props {
+type Props = {
   darkThemeText: string
   languageLegendText: string
   lightThemeText: string
