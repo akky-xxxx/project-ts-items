@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.header {
+  background-color: var(--color-background);
+  position: sticky;
+  top: 0;
+  transition: background-color var(--duration-theme-transition);
+  z-index: 1;
+}
+
+.main {
+  flex-grow: 1;
+  isolation: isolate;
+}

@@ -1,12 +1,12 @@
 import { expect, within } from "storybook/test"
 
 import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
-import { Header } from "./Header.tsx"
+import { HeaderInner } from "./HeaderInner.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 const meta = {
-  component: Header,
+  component: HeaderInner,
 
   argTypes: {
     navigationElement: { control: false },
@@ -16,7 +16,7 @@ const meta = {
     navigationElement: <DummyForStorybook label="navigationElement" />,
     toolElement: <DummyForStorybook label="toolElement" />,
   },
-} satisfies Meta<typeof Header>
+} satisfies Meta<typeof HeaderInner>
 
 export default meta
 

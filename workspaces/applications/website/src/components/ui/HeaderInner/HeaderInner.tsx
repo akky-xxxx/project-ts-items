@@ -2,18 +2,18 @@ import { Link } from "../../../utilities/navigation/navigation.ts"
 
 import type { FC, ReactElement } from "react"
 
-import styles from "./header.module.css"
+import styles from "./headerInner.module.css"
 
 type Props = {
   navigationElement: ReactElement
   toolElement: ReactElement
 }
 
-export const Header: FC<Props> = (props) => {
+export const HeaderInner: FC<Props> = (props) => {
   const { navigationElement, toolElement } = props
 
   return (
-    <header className={styles.root}>
+    <div className={styles.root}>
       <Link className={styles.siteName} href="/">
         <span className={styles.projectName}>ts-items</span>
         <span aria-hidden="true">/</span>
@@ -23,6 +23,6 @@ export const Header: FC<Props> = (props) => {
       {navigationElement}
 
       {toolElement}
-    </header>
+    </div>
   )
 }
