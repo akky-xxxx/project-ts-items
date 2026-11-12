@@ -1,6 +1,7 @@
 import { defineConfig } from "oxlint"
 
 import { eslintRules } from "./rules/eslintRules/eslintRules.ts"
+import { importRules } from "./rules/importRules/importRules.ts"
 import { typescriptRules } from "./rules/typescriptRules/typescriptRules.ts"
 import { unicornRules } from "./rules/unicornRules/unicornRules.ts"
 
@@ -17,6 +18,7 @@ export const baseConfig = defineConfig({
   plugins: ["eslint", "import", "oxc", "unicorn"],
   rules: {
     ...eslintRules,
+    ...importRules,
     ...typescriptRules,
     ...unicornRules,
     "explicit-function-return-type": "off",

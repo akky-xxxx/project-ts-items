@@ -36,7 +36,14 @@ export const eslintRules = withRulePrefix("eslint", {
       string: true,
     },
   ],
-  "no-magic-numbers": "warn",
+  "no-magic-numbers": [
+    "warn",
+    {
+      ignoreNumericLiteralTypes: true,
+      ignoreReadonlyClassProperties: true,
+      ignoreTypeIndexes: true,
+    },
+  ],
   "no-param-reassign": [
     "error",
     {
