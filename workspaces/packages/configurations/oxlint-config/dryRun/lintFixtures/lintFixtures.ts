@@ -1,5 +1,9 @@
 import { preparePackedPackage, runCommand } from "@ts-items/configurations/dryRun"
 
+import { createConsumerConfig } from "../createConsumerConfig/createConsumerConfig.ts"
+
+import type { Target } from "../createConsumerConfig/createConsumerConfig.ts"
+
 type Severity = "error" | "none" | "warning"
 
 interface Diagnostic {
@@ -15,7 +19,7 @@ interface LintResult {
 interface Parameters {
   /** `dryRun/` からの相対パス */
   fixturesDirectory: string
-  target: "base" | "next" | "react"
+  target: Target
 }
 
 type GetSeverity = (code: string, fixture: string) => Severity
@@ -25,18 +29,6 @@ const isLintResult = (value: unknown): value is LintResult =>
   value !== null &&
   "diagnostics" in value &&
   Array.isArray(value.diagnostics)
-
-const createConsumerConfig = (configName: string): string => `
-import { ${configName} } from "@ts-items/oxlint-config"
-import { defineConfig } from "oxlint"
-
-export default defineConfig({
-  extends: [${configName}],
-  options: {
-    typeAware: true,
-  },
-})
-`
 
 const TSCONFIG = JSON.stringify({
   compilerOptions: {
@@ -62,7 +54,7 @@ export const lintFixtures = async (parameters: Parameters): Promise<GetSeverity>
   const workDirectory = await preparePackedPackage({
     copyDirectories: ["dryRun"],
     files: {
-      [`oxlint.${target}.config.mts`]: createConsumerConfig(`${target}Config`),
+      [`oxlint.${target}.config.mts`]: createConsumerConfig(target),
       "tsconfig.json": TSCONFIG,
     },
     packageDirectory: `${import.meta.dir}/../..`,
