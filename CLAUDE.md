@@ -59,6 +59,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
   - `domain.txt`: GitHub のオーナー名など、このリポジトリ固有の固有名詞
   - `commands.txt`: ツールのコマンド・オプション・組み込み関数名(例: `bunx`、git の `--oneline`、jq の `ltrimstr`)
 - knip は `tsconfig.json` の `extends` で参照する依存(例: `@tsconfig/strictest`)を使用中と判定するため、`ignoreDependencies` には追加しない。設定ファイル経由でしか参照されず knip が未使用と判定する依存が出た場合に限り、`knip.config.mts` の `ignoreDependencies` に追加する
+- 同じディレクトリ階層に、大文字小文字だけが異なるディレクトリ名・ファイル名を作らない(例: 型の `Dictionary/Dictionary.ts` と値の `dictionary/dictionary.ts`)。1ディレクトリ1エクスポートと、型は UpperCamelCase・値は camelCase という命名規約を組み合わせると、型と値に同じ語を使ったときに起きる。macOS の既定のファイルシステム(大文字小文字を区別しない)では同じパスとして上書きされ、CI(Linux)では別のファイルになる。設計時に変更予定のパスを並べた段階で確認し、値の側を別名にする
 
 ## リリース
 
