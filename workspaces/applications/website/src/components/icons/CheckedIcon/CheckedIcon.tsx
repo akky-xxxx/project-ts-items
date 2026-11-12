@@ -1,6 +1,6 @@
 import type { FC, SVGAttributes } from "react"
 
-type Props = Pick<SVGAttributes<unknown>, "height" | "name" | "width">
+type Props = Pick<SVGAttributes<unknown>, "aria-hidden" | "height" | "name" | "width">
 
 const DEFAULT_HEIGHT = 8
 const DEFAULT_WIDTH = 11
@@ -10,6 +10,7 @@ export const CheckedIcon: FC<Props> = (props) => {
 
   return (
     <svg
+      aria-hidden={props["aria-hidden"]}
       height={height}
       width={width}
       name={name}

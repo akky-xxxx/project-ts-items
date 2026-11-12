@@ -1,4 +1,3 @@
-/* oxlint-disable import/max-dependencies */
 import { CheckedIcon } from "./CheckedIcon/CheckedIcon.tsx"
 import { CommandIcon } from "./CommandIcon/CommandIcon.tsx"
 import { DEFAULT_SIZE } from "./constants/DEFAULT_SIZE/DEFAULT_SIZE.ts"

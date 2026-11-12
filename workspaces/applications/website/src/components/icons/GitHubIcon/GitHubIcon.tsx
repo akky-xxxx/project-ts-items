@@ -2,18 +2,21 @@ import { DEFAULT_SIZE } from "../constants/DEFAULT_SIZE/DEFAULT_SIZE"
 
 import type { FC, SVGAttributes } from "react"
 
-type Props = Pick<SVGAttributes<unknown>, "height" | "width">
+type Props = Pick<SVGAttributes<unknown>, "aria-hidden" | "aria-label" | "height" | "width">
 
 export const GitHubIcon: FC<Props> = (props) => {
   const { height = DEFAULT_SIZE, width = DEFAULT_SIZE } = props
 
   return (
     <svg
-      height={height}
-      width={width}
-      name="GitHub"
-      viewBox="0 0 24 24"
+      aria-hidden={props["aria-hidden"]}
+      aria-label="GitHub"
       fill="none"
+      height={height}
+      name="GitHub"
+      role="img"
+      viewBox="0 0 24 24"
+      width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

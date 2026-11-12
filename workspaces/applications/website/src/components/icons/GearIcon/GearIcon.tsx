@@ -1,6 +1,9 @@
 import type { FC, SVGAttributes } from "react"
 
-type Props = Pick<SVGAttributes<unknown>, "height" | "name" | "width">
+type Props = Pick<
+  SVGAttributes<unknown>,
+  "aria-hidden" | "aria-label" | "height" | "name" | "role" | "width"
+>
 
 const DEFAULT_HEIGHT = 32
 const DEFAULT_WIDTH = 32
@@ -10,11 +13,14 @@ export const GearIcon: FC<Props> = (props) => {
 
   return (
     <svg
-      height={height}
-      width={width}
-      name={name}
-      viewBox="0 0 24 24"
+      aria-hidden={props["aria-hidden"]}
+      aria-label={props["aria-label"]}
       fill="none"
+      height={height}
+      name={name}
+      role={props.role}
+      viewBox="0 0 24 24"
+      width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
