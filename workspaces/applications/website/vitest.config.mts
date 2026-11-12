@@ -28,9 +28,11 @@ export default defineConfig({
       },
       {
         extends: true,
+        // Tsconfig の jsx: preserve(Next.js 向け)のままだと .tsx を変換できないため
+        oxc: { jsx: { runtime: "automatic" } },
         test: {
           environment: "node",
-          include: ["src/**/*.test.ts"],
+          include: ["src/**/*.test.ts{,x}"],
           name: "unit",
         },
       },
