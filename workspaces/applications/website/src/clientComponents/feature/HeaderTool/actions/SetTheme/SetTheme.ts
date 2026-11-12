@@ -2,6 +2,8 @@
 
 import { cookies } from "next/headers"
 
+import { COOKIE_KEY_THEME } from "../../../../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
+
 import type { themeSchema } from "../../../../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
 
@@ -17,7 +19,7 @@ export const setTheme = async (theme: string): Promise<void> => {
 
   const cookieStore = await cookies()
 
-  cookieStore.set("theme", theme, {
+  cookieStore.set(COOKIE_KEY_THEME, theme, {
     maxAge: A_YEAR,
     path: "/",
     sameSite: "lax",
