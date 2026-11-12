@@ -7,6 +7,23 @@ const getSeverity = await lintFixtures({ fixturesDirectory: "baseConfig/fixtures
 describe("baseConfig の typescriptRules", () => {
   it.each([
     [
+      "consistentTypeDefinitions/declaration.d.cts",
+      "typescript(consistent-type-definitions)",
+      "none",
+    ],
+    [
+      "consistentTypeDefinitions/declaration.d.mts",
+      "typescript(consistent-type-definitions)",
+      "none",
+    ],
+    [
+      "consistentTypeDefinitions/declaration.d.ts",
+      "typescript(consistent-type-definitions)",
+      "none",
+    ],
+    ["consistentTypeDefinitions/invalid.ts", "typescript(consistent-type-definitions)", "error"],
+    ["consistentTypeDefinitions/valid.ts", "typescript(consistent-type-definitions)", "none"],
+    [
       "preferReadonlyParameterTypes/disabled.ts",
       "typescript(prefer-readonly-parameter-types)",
       "none",
