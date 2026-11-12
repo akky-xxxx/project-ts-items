@@ -2,13 +2,14 @@ import { DEFAULT_SIZE } from "../constants/DEFAULT_SIZE/DEFAULT_SIZE"
 
 import type { FC, SVGAttributes } from "react"
 
-type Props = Pick<SVGAttributes<unknown>, "height" | "width">
+type Props = Pick<SVGAttributes<unknown>, "aria-hidden" | "height" | "width">
 
 export const CommandIcon: FC<Props> = (props) => {
   const { height = DEFAULT_SIZE, width = DEFAULT_SIZE } = props
 
   return (
     <svg
+      aria-hidden={props["aria-hidden"]}
       height={height}
       width={width}
       name="Command"

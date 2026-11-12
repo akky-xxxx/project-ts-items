@@ -2,18 +2,24 @@ import { DEFAULT_SIZE } from "../constants/DEFAULT_SIZE/DEFAULT_SIZE"
 
 import type { FC, SVGAttributes } from "react"
 
-type Props = Pick<SVGAttributes<unknown>, "height" | "name" | "width">
+type Props = Pick<
+  SVGAttributes<unknown>,
+  "aria-hidden" | "aria-label" | "height" | "name" | "role" | "width"
+>
 
 export const MoonIcon: FC<Props> = (props) => {
   const { height = DEFAULT_SIZE, name, width = DEFAULT_SIZE } = props
 
   return (
     <svg
-      height={height}
-      width={width}
-      name={name}
-      viewBox="0 0 24 24"
+      aria-hidden={props["aria-hidden"]}
+      aria-label={props["aria-label"]}
       fill="none"
+      height={height}
+      name={name}
+      role={props.role}
+      viewBox="0 0 24 24"
+      width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

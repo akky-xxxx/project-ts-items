@@ -1,0 +1,30 @@
+.root {
+  align-items: center;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.languageButton {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  column-gap: 6px;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
+.themeButton {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: grid;
+  padding: 0;
+  place-items: center;
+}
+
+.anchor {
+  align-items: center;
+  color: var(--color-text);
+  display: inline-flex;
+}

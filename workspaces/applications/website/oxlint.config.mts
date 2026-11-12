@@ -34,8 +34,11 @@ const config = defineConfig({
     },
     {
       // Src/tests/** は stories からのみ import を許可する
+      // Play 関数はアサーションが並ぶため statement 数を緩和する
       files: ["**/*.stories.tsx"],
       rules: {
+        // oxlint-disable-next-line no-magic-numbers
+        "eslint/max-statements": ["error", 20],
         "eslint/no-restricted-imports": ["error", { paths: restrictedPaths }],
       },
     },
