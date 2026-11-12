@@ -6,6 +6,7 @@
   --color-heading-text: light-dark(#202827, #e4ebe7);
   --color-text: light-dark(#687371, #9baaa3);
   --color-text-accent: light-dark(#287664, #8bc7ab);
+  --duration-theme-transition: 200ms;
   --font-mono: var(--font-jetbrains-mono), var(--font-noto-sans-jp), monospace;
   --font-sans: var(--font-noto-sans-jp), sans-serif;
 
@@ -32,8 +33,8 @@ body {
   font-size: 1.4rem;
   line-height: 1.6;
   transition:
-    background-color 200ms,
-    color 200ms;
+    background-color var(--duration-theme-transition),
+    color var(--duration-theme-transition);
 }
 
 h1,
