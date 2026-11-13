@@ -7,9 +7,6 @@ import { HeaderTool } from "../../clientComponents/feature/HeaderTool/HeaderTool
 import { RootLayout } from "../../components/layout/RootLayout/RootLayout.tsx"
 import { HeaderInner } from "../../components/ui/HeaderInner/HeaderInner.tsx"
 import { HeaderNavigation } from "../../components/ui/HeaderNavigation/HeaderNavigation.tsx"
-
-import "./reset.css"
-import "./global.css"
 import { COOKIE_KEY_THEME } from "../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
 import { FONT_VARIABLES } from "../../constants/FONT_VARIABLES/FONT_VARIABLES.ts"
 import { routing } from "../../i18n/constants/routing/routing.ts"
@@ -17,6 +14,9 @@ import { getThemeFromCookie } from "../../utilities/getThemeFromCookie/getThemeF
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
+
+import "./reset.css"
+import "./global.css"
 
 type Props = LayoutProps<"/[locale]">
 
