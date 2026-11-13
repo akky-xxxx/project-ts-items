@@ -1,6 +1,7 @@
 import { createTranslator, useLocale, useTranslations } from "next-intl"
 import { expect, within } from "storybook/test"
 
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { PackageCard } from "./PackageCard.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -11,8 +12,6 @@ const descriptionMessages = {
   en: { description: "First line<br></br>Second line" },
   ja: { description: "一行目<br></br>二行目" },
 } as const
-
-const renderLineBreak = () => <br />
 
 const Localized: FC<ComponentProps<typeof PackageCard>> = (props) => {
   const locale = useLocale()

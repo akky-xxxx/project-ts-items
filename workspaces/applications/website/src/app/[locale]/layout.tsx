@@ -28,10 +28,14 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
     notFound()
   }
   const translate = await getTranslations({ locale, namespace: "Metadata" })
+  const siteTitle = translate("title")
 
   return {
     description: translate("description"),
-    title: translate("title"),
+    title: {
+      default: siteTitle,
+      template: `%s | ${siteTitle}`,
+    },
   }
 }
 

@@ -1,5 +1,7 @@
 import { DOCS_LAYOUT } from "./constants/DOCS_LAYOUT/DOCS_LAYOUT.ts"
 import { HEADER } from "./constants/HEADER/HEADER.ts"
+import { PACKAGES } from "./constants/PACKAGES/PACKAGES.ts"
+import { PAGES } from "./constants/PAGES/PAGES.ts"
 import { UI } from "./constants/UI/UI.ts"
 
 import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
@@ -38,4 +40,6 @@ export const siteDictionary = {
     },
   },
   header: HEADER,
+  packages: PACKAGES,
+  pages: PAGES,
 } as const satisfies Dictionary
