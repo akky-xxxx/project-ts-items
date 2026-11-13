@@ -32,7 +32,9 @@ const meta = {
   args: {
     children: <LongContents text="children" />,
     docsSidebarElement: <LongContents text="docsSidebarElement" />,
+    docsSidebarLabelText: "{docsSidebarLabelText}",
     tocElement: <LongContents text="tocElement" />,
+    tocLabelText: "{tocLabelText}",
   },
 } satisfies Meta<typeof DocsLayout>
 
@@ -40,14 +42,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const expectWithinVisibleArea = async (
-  element: HTMLElement | undefined,
-  headerElement: HTMLElement,
-) => {
-  if (!element) {
-    throw new Error("element is not found")
-  }
-
+const expectWithinVisibleArea = async (element: HTMLElement, headerElement: HTMLElement) => {
   const { bottom, top } = element.getBoundingClientRect()
   await expect(top).toBeGreaterThanOrEqual(headerElement.getBoundingClientRect().bottom)
   await expect(bottom).toBeLessThanOrEqual(window.innerHeight)
@@ -58,14 +53,18 @@ export const Default: Story = {}
 export const TestForLandmarks: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const [docsSidebarNavigationElement] = canvas.getAllByRole("navigation")
+    const docsSidebarNavigationElement = canvas.getByRole("navigation", {
+      name: "{docsSidebarLabelText}",
+    })
     await expect(docsSidebarNavigationElement).toHaveTextContent("{docsSidebarElement0}")
 
     const mainElement = within(canvas.getByRole("main"))
     await expect(mainElement.getByText("{children0}")).toBeInTheDocument()
 
     const complementaryElement = within(canvas.getByRole("complementary"))
-    const tocNavigationElement = within(complementaryElement.getByRole("navigation"))
+    const tocNavigationElement = within(
+      complementaryElement.getByRole("navigation", { name: "{tocLabelText}" }),
+    )
     await expect(tocNavigationElement.getByText("{tocElement0}")).toBeInTheDocument()
   },
   tags: ["!autodocs"],
@@ -80,7 +79,9 @@ export const TestForStickyColumnsBelowHeader: Story = {
     window.scrollTo({ top: document.documentElement.scrollHeight })
 
     const headerElement = canvas.getByRole("banner")
-    const [docsSidebarNavigationElement] = canvas.getAllByRole("navigation")
+    const docsSidebarNavigationElement = canvas.getByRole("navigation", {
+      name: "{docsSidebarLabelText}",
+    })
     await expectWithinVisibleArea(docsSidebarNavigationElement, headerElement)
     await expectWithinVisibleArea(canvas.getByRole("complementary"), headerElement)
   },

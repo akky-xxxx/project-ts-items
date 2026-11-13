@@ -1,3 +1,4 @@
+import { DOCS_LAYOUT } from "./constants/DOCS_LAYOUT/DOCS_LAYOUT.ts"
 import { HEADER } from "./constants/HEADER/HEADER.ts"
 
 import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
@@ -25,5 +26,6 @@ export const siteDictionary = {
       ja: "ラジオ",
     },
   },
+  docsLayout: DOCS_LAYOUT,
   header: HEADER,
 } as const satisfies Dictionary
