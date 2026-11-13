@@ -86,6 +86,29 @@ export const TestForStickyColumnsBelowHeader: Story = {
   tags: ["!autodocs"],
 }
 
+/**
+ * ページ最下部では sticky の列が grid の末尾に押し上げられ、上端がヘッダーの下に潜る(sticky の仕様として許容する)。
+ * ここでは列が footer に重ならないことを検証する
+ */
+export const TestForStickyColumnsAboveFooter: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    window.scrollTo({ top: document.documentElement.scrollHeight })
+
+    const footerTop = canvas.getByRole("contentinfo").getBoundingClientRect().top
+    const docsSidebarNavigationElement = canvas.getByRole("navigation", {
+      name: "{docsSidebarLabelText}",
+    })
+    await expect(docsSidebarNavigationElement.getBoundingClientRect().bottom).toBeLessThanOrEqual(
+      footerTop,
+    )
+    await expect(
+      canvas.getByRole("complementary").getBoundingClientRect().bottom,
+    ).toBeLessThanOrEqual(footerTop)
+  },
+  tags: ["!autodocs"],
+}
+
 export const TestForLongUnbreakableMain: Story = {
   args: {
     children: "children.".repeat(100),
