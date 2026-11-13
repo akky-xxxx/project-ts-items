@@ -24,12 +24,17 @@ const WithRootLayout: FC<ComponentProps<typeof DocsLayout>> = (props) => (
 const meta = {
   component: DocsLayout,
 
-  args: {
-    children: <LongContents text="children." />,
-    docsSidebarElement: <LongContents text="docsSidebarElement." />,
-    tocElement: <LongContents text="tocElement." />,
+  argTypes: {
+    children: { control: false },
+    docsSidebarElement: { control: false },
+    tocElement: { control: false },
   },
-} satisfies Meta
+  args: {
+    children: <LongContents text="children" />,
+    docsSidebarElement: <LongContents text="docsSidebarElement" />,
+    tocElement: <LongContents text="tocElement" />,
+  },
+} satisfies Meta<typeof DocsLayout>
 
 export default meta
 
@@ -54,14 +59,14 @@ export const TestForLandmarks: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const [docsSidebarNavigationElement] = canvas.getAllByRole("navigation")
-    await expect(docsSidebarNavigationElement).toHaveTextContent("{docsSidebarElement.0}")
+    await expect(docsSidebarNavigationElement).toHaveTextContent("{docsSidebarElement0}")
 
     const mainElement = within(canvas.getByRole("main"))
-    await expect(mainElement.getByText("{children.0}")).toBeInTheDocument()
+    await expect(mainElement.getByText("{children0}")).toBeInTheDocument()
 
     const complementaryElement = within(canvas.getByRole("complementary"))
     const tocNavigationElement = within(complementaryElement.getByRole("navigation"))
-    await expect(tocNavigationElement.getByText("{tocElement.0}")).toBeInTheDocument()
+    await expect(tocNavigationElement.getByText("{tocElement0}")).toBeInTheDocument()
   },
   tags: ["!autodocs"],
 }
@@ -86,8 +91,8 @@ export const TestForStickyColumnsBelowHeader: Story = {
 export const TestForLongUnbreakableMain: Story = {
   args: {
     children: "children.".repeat(100),
-    docsSidebarElement: <LongContents length={10} text="docsSidebarElement." />,
-    tocElement: <LongContents length={10} text="tocElement." />,
+    docsSidebarElement: <LongContents length={10} text="docsSidebarElement" />,
+    tocElement: <LongContents length={10} text="tocElement" />,
   },
   play: async ({ canvasElement }) => {
     const mainElement = within(canvasElement).getByRole("main")
