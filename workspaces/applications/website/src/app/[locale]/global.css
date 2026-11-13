@@ -46,6 +46,8 @@ h4,
 h5,
 h6 {
   color: var(--color-heading-text);
+  font-weight: normal;
+  margin-block: 0;
 }
 
 .visuallyHidden {
