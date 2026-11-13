@@ -16,7 +16,7 @@ const HEADER_INNER_ELEMENT = (
 )
 
 const WithRootLayout: FC<ComponentProps<typeof DocsLayout>> = (props) => (
-  <RootLayout headerInnerElement={HEADER_INNER_ELEMENT}>
+  <RootLayout headerInnerElement={HEADER_INNER_ELEMENT} thisYear={2026}>
     <DocsLayout {...props} />
   </RootLayout>
 )
@@ -72,12 +72,9 @@ export const TestForLandmarks: Story = {
 }
 
 export const TestForStickyColumnsBelowHeader: Story = {
-  args: {
-    children: "children.".repeat(10),
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    window.scrollTo({ top: document.documentElement.scrollHeight })
+    canvas.getByRole("main").scrollIntoView({ block: "end" })
 
     const headerElement = canvas.getByRole("banner")
     const docsSidebarNavigationElement = canvas.getByRole("navigation", {
@@ -85,6 +82,29 @@ export const TestForStickyColumnsBelowHeader: Story = {
     })
     await expectWithinVisibleArea(docsSidebarNavigationElement, headerElement)
     await expectWithinVisibleArea(canvas.getByRole("complementary"), headerElement)
+  },
+  tags: ["!autodocs"],
+}
+
+/**
+ * ページ最下部では sticky の列が grid の末尾に押し上げられ、上端がヘッダーの下に潜る(sticky の仕様として許容する)。
+ * ここでは列が footer に重ならないことを検証する
+ */
+export const TestForStickyColumnsAboveFooter: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    window.scrollTo({ top: document.documentElement.scrollHeight })
+
+    const footerTop = canvas.getByRole("contentinfo").getBoundingClientRect().top
+    const docsSidebarNavigationElement = canvas.getByRole("navigation", {
+      name: "{docsSidebarLabelText}",
+    })
+    await expect(docsSidebarNavigationElement.getBoundingClientRect().bottom).toBeLessThanOrEqual(
+      footerTop,
+    )
+    await expect(
+      canvas.getByRole("complementary").getBoundingClientRect().bottom,
+    ).toBeLessThanOrEqual(footerTop)
   },
   tags: ["!autodocs"],
 }

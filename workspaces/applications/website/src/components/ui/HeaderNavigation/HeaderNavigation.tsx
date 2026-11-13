@@ -1,3 +1,4 @@
+import { GITHUB_REPOSITORY_URL } from "../../../constants/GITHUB_REPOSITORY_URL/GITHUB_REPOSITORY_URL.ts"
 import { Link } from "../../../utilities/navigation/navigation.ts"
 
 import type { FC } from "react"
@@ -24,7 +25,7 @@ export const HeaderNavigation: FC<Props> = (props) => {
         <li>
           <a
             className={styles.link}
-            href="https://github.com/akky-xxxx/project-ts-items/releases"
+            href={`${GITHUB_REPOSITORY_URL}/releases`}
             rel="noopener noreferrer"
             target="_blank"
           >

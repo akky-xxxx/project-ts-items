@@ -45,6 +45,8 @@ const Layout = async (props: Props): Promise<ReactNode> => {
 
   const cookieObject = await cookies()
   const theme = getThemeFromCookie(cookieObject.get(COOKIE_KEY_THEME))
+  // oxlint-disable-next-line react/purity -- Server Component renders once per request (dynamic via cookies()), so computing the year here keeps it current instead of fixing it at module load
+  const thisYear = new Date().getFullYear()
   const headerTranslate = await getTranslations("header")
   const headerInnerElement = (
     <HeaderInner
@@ -71,7 +73,9 @@ const Layout = async (props: Props): Promise<ReactNode> => {
     <html className={FONT_VARIABLES.join(" ")} data-theme={theme} lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <RootLayout headerInnerElement={headerInnerElement}>{children}</RootLayout>
+          <RootLayout headerInnerElement={headerInnerElement} thisYear={thisYear}>
+            {children}
+          </RootLayout>
         </NextIntlClientProvider>
       </body>
     </html>

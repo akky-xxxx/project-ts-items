@@ -12,10 +12,12 @@ const meta = {
   argTypes: {
     children: { control: false },
     headerInnerElement: { control: false },
+    thisYear: { control: "number" },
   },
   args: {
     children: <LongContents />,
     headerInnerElement: <DummyForStorybook label="headerInnerElement" />,
+    thisYear: 2026,
   },
 } satisfies Meta<typeof RootLayout>
 
@@ -32,6 +34,26 @@ export const TestForLandmarks: Story = {
     await expect(headerElement.getByText("{headerInnerElement}")).toBeInTheDocument()
     await expect(canvas.getByText("{children0}")).toBeInTheDocument()
     await expect(canvas.queryByRole("main")).not.toBeInTheDocument()
+  },
+  tags: ["!autodocs"],
+}
+
+export const TestForFooter: Story = {
+  play: async ({ canvasElement }) => {
+    const footerElement = within(canvasElement).getByRole("contentinfo")
+    await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
+
+    const footer = within(footerElement)
+    await expect(footer.getByRole("link", { name: "GitHub" })).toMatchObject({
+      href: "https://github.com/akky-xxxx/project-ts-items",
+      rel: "noopener noreferrer",
+      target: "_blank",
+    })
+    await expect(footer.getByRole("link", { name: "npm" })).toMatchObject({
+      href: "https://www.npmjs.com/org/ts-items",
+      rel: "noopener noreferrer",
+      target: "_blank",
+    })
   },
   tags: ["!autodocs"],
 }
