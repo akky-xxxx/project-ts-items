@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl"
+import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
@@ -80,4 +81,33 @@ export const Ja: Story = {
 export const En: Story = {
   ...EN_LOCALE_FOR_STORYBOOK,
   render: (args) => <Localized {...args} />,
+}
+
+export const TestForHeading: Story = {
+  ...En,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const headingElement = canvas.getByRole("heading", { level: 1, name: "Packages" })
+    await expect(headingElement).toBeInTheDocument()
+  },
+  tags: ["!autodocs"],
+}
+
+export const TestForDescription: Story = {
+  ...En,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByText("Packages managed by @ts-items.")).toBeInTheDocument()
+  },
+  tags: ["!autodocs"],
+}
+
+export const TestForListItems: Story = {
+  ...En,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const listElement = canvas.getByRole("list")
+    await expect(within(listElement).getAllByRole("listitem")).toHaveLength(2)
+  },
+  tags: ["!autodocs"],
 }
