@@ -77,3 +77,4 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - `.claude/rules/pr.md`: PR 作成ルール
 - `.claude/rules/publish-packages.md`(`workspaces/packages/**`): 共有パッケージの構成・build・dry run
 - `.claude/rules/secrets.md`: 機密情報の取り扱い
+- `.claude/rules/test.md`(`**/*.stories.{mts,ts,tsx}`・`**/*.test.{mts,ts,tsx}`): テストの書き方(期待値の固定など)
