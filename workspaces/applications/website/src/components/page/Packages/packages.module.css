@@ -1,0 +1,13 @@
+.root {
+  margin-inline: auto;
+  max-width: min(100% - 64px, var(--contents-width));
+  padding-top: 36px;
+}
+
+.description {
+  margin-block: 16px 0;
+}
+
+.packageCardListWrapper {
+  margin-top: 30px;
+}

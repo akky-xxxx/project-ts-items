@@ -33,12 +33,14 @@ const config = defineConfig({
       },
     },
     {
-      // [locale] 配下の layout は Server Component で再レンダリング・memo 比較が起きないため、
-      // Owner と parent を分けて JSX を props で渡すことを許可する
+      // 次のファイルは再レンダリングの性能を考慮しなくてよいため、JSX・配列を props で直接渡すことを許可する
+      // - [locale] 配下の layout / page: Server Component で再レンダリング・memo 比較が起きない
+      // - stories: Storybook でのみ描画される
       // Glob では [ と ] が文字クラスになるため、[[] と []] で表す
-      files: ["src/app/[[]locale[]]/**/layout.tsx"],
+      files: ["src/app/[[]locale[]]/**/{layout,page}.tsx", "**/*.stories.tsx"],
       rules: {
         "react-perf/jsx-no-jsx-as-prop": "off",
+        "react-perf/jsx-no-new-array-as-prop": "off",
       },
     },
     {
