@@ -37,3 +37,23 @@ export const TestForLandmarks: Story = {
   },
   tags: ["!autodocs"],
 }
+
+export const TestForFooter: Story = {
+  play: async ({ canvasElement }) => {
+    const footerElement = within(canvasElement).getByRole("contentinfo")
+    await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
+
+    const footer = within(footerElement)
+    await expect(footer.getByRole("link", { name: "GitHub" })).toMatchObject({
+      href: "https://github.com/akky-xxxx/project-ts-items",
+      rel: "noopener noreferrer",
+      target: "_blank",
+    })
+    await expect(footer.getByRole("link", { name: "npm" })).toMatchObject({
+      href: "https://www.npmjs.com/org/ts-items",
+      rel: "noopener noreferrer",
+      target: "_blank",
+    })
+  },
+  tags: ["!autodocs"],
+}
