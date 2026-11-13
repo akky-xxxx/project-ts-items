@@ -5,8 +5,8 @@ import type { Dictionary } from "../../../../types/Dictionary/Dictionary.ts"
 export const PAGES = {
   packages: {
     pageDescription: {
-      en: `The package list that managed by ${PROJECT_NAME}.`,
-      ja: `${PROJECT_NAME} で管理されてるパッケージ一覧です`,
+      en: `Packages managed by ${PROJECT_NAME}.`,
+      ja: `${PROJECT_NAME} で管理しているパッケージの一覧です`,
     },
     pageTitle: {
       en: "Packages",
