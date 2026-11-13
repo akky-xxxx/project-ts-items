@@ -17,3 +17,38 @@
   flex-grow: 1;
   isolation: isolate;
 }
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  font-size: 12px;
+  padding-block: 26px;
+}
+
+.footerInner {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-inline: auto;
+  max-width: 1080px;
+}
+
+.services {
+  column-gap: 16px;
+  display: flex;
+  list-style: none;
+  margin-block: 0;
+  margin-left: auto;
+  padding-left: 0;
+}
+
+.serviceLink {
+  align-items: center;
+  color: var(--color-text);
+  column-gap: 8px;
+  display: inline-flex;
+  text-decoration: none;
+
+  &::after {
+    content: "↗";
+  }
+}

@@ -12,10 +12,12 @@ const meta = {
   argTypes: {
     children: { control: false },
     headerInnerElement: { control: false },
+    thisYear: { control: "number" },
   },
   args: {
     children: <LongContents />,
     headerInnerElement: <DummyForStorybook label="headerInnerElement" />,
+    thisYear: new Date().getFullYear(),
   },
 } satisfies Meta<typeof RootLayout>
 

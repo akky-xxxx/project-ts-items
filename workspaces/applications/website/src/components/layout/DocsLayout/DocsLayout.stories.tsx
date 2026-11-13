@@ -16,7 +16,7 @@ const HEADER_INNER_ELEMENT = (
 )
 
 const WithRootLayout: FC<ComponentProps<typeof DocsLayout>> = (props) => (
-  <RootLayout headerInnerElement={HEADER_INNER_ELEMENT}>
+  <RootLayout headerInnerElement={HEADER_INNER_ELEMENT} thisYear={2026}>
     <DocsLayout {...props} />
   </RootLayout>
 )

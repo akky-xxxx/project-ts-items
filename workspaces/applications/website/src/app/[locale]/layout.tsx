@@ -20,6 +20,8 @@ import "./global.css"
 
 type Props = LayoutProps<"/[locale]">
 
+const THIS_YEAR = new Date().getFullYear()
+
 export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }))
 
 export const generateMetadata = async (props: Props): Promise<Metadata> => {
@@ -71,7 +73,9 @@ const Layout = async (props: Props): Promise<ReactNode> => {
     <html className={FONT_VARIABLES.join(" ")} data-theme={theme} lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <RootLayout headerInnerElement={headerInnerElement}>{children}</RootLayout>
+          <RootLayout headerInnerElement={headerInnerElement} thisYear={THIS_YEAR}>
+            {children}
+          </RootLayout>
         </NextIntlClientProvider>
       </body>
     </html>
