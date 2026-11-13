@@ -48,7 +48,7 @@ Claude Code 視点の権限は以下の通り。**読み取り専用のファイ
 タスクは GitHub issue で管理することを基本とする。`task.md` はローカルの git 管理外ファイルで作業デバイスに縛られるが、issue ならどのデバイスからでも起票・追記でき、着手前に内容を詰めておける。
 
 - issue の指定は、ユーザーがチャットで issue 番号 / URL を渡す形と、`task.md` に issue の URL / 番号だけが書かれている形のどちらでもよい。後者の場合、`task.md` 本文は issue への参照とみなし、要件は issue 側を読む
-- issue 番号のみ渡された場合は `gh issue view <issue 番号> --repo akky-xxxx/project-ts-items` で参照する。issue の URL を渡された場合は URL 自体がリポジトリを一意に定めるため `gh issue view <URL>` をそのまま使う
+- issue 番号のみ渡された場合は `gh issue view <issue 番号> --repo akky-xxxx/project-ts-items --json title,body,comments` で参照する。issue の URL を渡された場合は URL 自体がリポジトリを一意に定めるため `gh issue view <URL> --json title,body,comments` とする。要件の追加・変更はコメントに書かれることがあるため、本文とコメントの両方を読む(非 TTY の出力では、オプションなしだとコメントの中身が含まれず、`--comments` を付けると本文が含まれない。TTY でも、オプションなしでは最新のコメント1件しか表示されない)
 - issue 本文が曖昧で複数の解釈が成り立つ場合は、自分で解釈を確定せず実装前確認ルールに従ってユーザーに確認する
 - issue に対応案(修正方法・テストの直し方など)が書かれていても、それは要件ではなく提案として扱う。設計フェーズの有無に関わらず、採用前に妥当性(テストが検出すべき変更を検出できるか等)を自分で検証する。異なる方針を採る場合や対応案に疑義がある場合は、Plan Mode のプランにその旨と理由を書いて承認を得る。issue に書かれていることは、その内容が正しいことの根拠にならない
 - `ai-communication/<作業ディレクトリ>/result_{timestamp}.md` には issue 番号・URL を一切書かない。`- task:` 行に限らず、経緯説明やレビュー対応の記述であっても同様(過去の result に番号が残っていた、といった言及自体は許すが、その番号自体は書かない)。issue 本文の丸写しも行わない。codex に渡すのはレビューに必要な範囲の背景だけで、これは従来通り
