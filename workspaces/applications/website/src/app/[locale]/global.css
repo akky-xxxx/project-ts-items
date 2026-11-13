@@ -6,6 +6,7 @@
   --color-heading-text: light-dark(#202827, #e4ebe7);
   --color-text: light-dark(#687371, #9baaa3);
   --color-text-accent: light-dark(#287664, #8bc7ab);
+  --contents-width: 1080px;
   --duration-theme-transition: 200ms;
   --font-mono: var(--font-jetbrains-mono), var(--font-noto-sans-jp), monospace;
   --font-sans: var(--font-noto-sans-jp), sans-serif;
