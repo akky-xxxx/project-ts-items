@@ -45,23 +45,23 @@ const Layout = async (props: Props): Promise<ReactNode> => {
 
   const cookieObject = await cookies()
   const theme = getThemeFromCookie(cookieObject.get(COOKIE_KEY_THEME))
-  const navigationTranslate = await getTranslations("header")
+  const headerTranslate = await getTranslations("header")
   const headerInnerElement = (
     <HeaderInner
       navigationElement={
         <HeaderNavigation
-          changeLogText={navigationTranslate("navigation.changeLog")}
-          packageText={navigationTranslate("navigation.package")}
+          changeLogText={headerTranslate("navigation.changeLog")}
+          packageText={headerTranslate("navigation.package")}
         />
       }
       toolElement={
         <HeaderTool
-          darkThemeText={navigationTranslate("theme.dark")}
-          languageLegendText={navigationTranslate("language")}
-          lightThemeText={navigationTranslate("theme.light")}
-          systemThemeText={navigationTranslate("theme.system")}
+          darkThemeText={headerTranslate("theme.dark")}
+          languageLegendText={headerTranslate("language")}
+          lightThemeText={headerTranslate("theme.light")}
+          systemThemeText={headerTranslate("theme.system")}
           theme={theme}
-          themeLegendText={navigationTranslate("theme.legend")}
+          themeLegendText={headerTranslate("theme.legend")}
         />
       }
     />
