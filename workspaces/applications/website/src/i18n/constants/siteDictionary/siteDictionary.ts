@@ -24,6 +24,10 @@ export const siteDictionary = {
     },
   },
   header: {
+    language: {
+      en: "Language",
+      ja: "言語",
+    },
     navigation: {
       changeLog: {
         en: "Change log",
@@ -32,6 +36,24 @@ export const siteDictionary = {
       package: {
         en: "Packages",
         ja: "パッケージ",
+      },
+    },
+    theme: {
+      dark: {
+        en: "Dark",
+        ja: "ダーク",
+      },
+      legend: {
+        en: "Theme",
+        ja: "テーマ",
+      },
+      light: {
+        en: "Light",
+        ja: "ライト",
+      },
+      system: {
+        en: "System",
+        ja: "システム",
       },
     },
   },
