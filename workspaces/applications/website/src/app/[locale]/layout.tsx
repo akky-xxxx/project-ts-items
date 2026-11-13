@@ -31,7 +31,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   }
 }
 
-const RootLayout = async (props: Props): Promise<ReactNode> => {
+const Layout = async (props: Props): Promise<ReactNode> => {
   const { children, params } = props
   const { locale } = await params
   const cookieObject = await cookies()
@@ -50,4 +50,4 @@ const RootLayout = async (props: Props): Promise<ReactNode> => {
   )
 }
 
-export default RootLayout
+export default Layout
