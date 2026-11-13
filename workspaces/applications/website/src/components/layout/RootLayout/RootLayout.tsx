@@ -1,7 +1,7 @@
-import { BLANK_LINK_PROPERTIES } from "../../../constants/BLANK_LINK_PROPERTIES/BLANK_LINK_PROPERTIES.ts"
 import { GITHUB_REPOSITORY_URL } from "../../../constants/GITHUB_REPOSITORY_URL/GITHUB_REPOSITORY_URL.ts"
 import { NPM_ORGANIZATION_URL } from "../../../constants/NPM_ORGANIZATION_URL/NPM_ORGANIZATION_URL.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
+import { ExternalLink } from "../../ui/ExternalLink/ExternalLink.tsx"
 
 import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
 import type { ReactElement } from "react"
@@ -10,11 +10,12 @@ import styles from "./rootLayout.module.css"
 
 type Props = {
   headerInnerElement: ReactElement
+  newTabText: string
   thisYear: number
 }
 
 export const RootLayout: FcWithChildren<Props> = (props) => {
-  const { children, headerInnerElement, thisYear } = props
+  const { children, headerInnerElement, newTabText, thisYear } = props
 
   return (
     <div className={styles.root}>
@@ -30,23 +31,15 @@ export const RootLayout: FcWithChildren<Props> = (props) => {
 
           <ul className={styles.services}>
             <li>
-              <a
-                {...BLANK_LINK_PROPERTIES}
-                className={styles.serviceLink}
-                href={GITHUB_REPOSITORY_URL}
-              >
+              <ExternalLink href={GITHUB_REPOSITORY_URL} newTabText={newTabText}>
                 GitHub
-              </a>
+              </ExternalLink>
             </li>
 
             <li>
-              <a
-                {...BLANK_LINK_PROPERTIES}
-                className={styles.serviceLink}
-                href={NPM_ORGANIZATION_URL}
-              >
+              <ExternalLink href={NPM_ORGANIZATION_URL} newTabText={newTabText}>
                 npm
-              </a>
+              </ExternalLink>
             </li>
           </ul>
         </div>
