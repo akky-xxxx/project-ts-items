@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 
 import { Packages } from "../../../components/page/Packages/Packages.tsx"
 import { routing } from "../../../i18n/constants/routing/routing.ts"
-import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
+import { buildPackageCardItems } from "../../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
@@ -33,28 +33,7 @@ const Page = async (): Promise<ReactNode> => {
 
   return (
     <Packages
-      packages={[
-        {
-          descriptionNode: packageTranslate.rich("oxlintConfig.description", {
-            br: renderLineBreak,
-          }),
-          headingTag: "h2",
-          innerLinkHref: "/packages/oxlint-config",
-          linkText: packageCardTranslate("linkText"),
-          packageNameText: "@ts-items/oxlint-config",
-          versionText: "v1.0.0", // TODO: api で取得した値に置き換える
-        },
-        {
-          descriptionNode: packageTranslate.rich("oxfmtConfig.description", {
-            br: renderLineBreak,
-          }),
-          headingTag: "h2",
-          innerLinkHref: "/packages/oxfmt-config",
-          linkText: packageCardTranslate("linkText"),
-          packageNameText: "@ts-items/oxfmt-config",
-          versionText: "v1.0.0", // TODO: api で取得した値に置き換える
-        },
-      ]}
+      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitleText={pageTranslate("pageTitle")}
     />

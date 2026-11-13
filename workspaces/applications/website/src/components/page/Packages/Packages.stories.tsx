@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
-import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
+import { buildPackageCardItems } from "../../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
 import { Packages } from "./Packages.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -16,28 +16,7 @@ const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
   return (
     <Packages
       {...props}
-      packages={[
-        {
-          descriptionNode: packageTranslate.rich("oxlintConfig.description", {
-            br: renderLineBreak,
-          }),
-          headingTag: "h2",
-          innerLinkHref: "/packages/oxlint-config",
-          linkText: packageCardTranslate("linkText"),
-          packageNameText: "@ts-items/oxlint-config",
-          versionText: "v1.0.0",
-        },
-        {
-          descriptionNode: packageTranslate.rich("oxfmtConfig.description", {
-            br: renderLineBreak,
-          }),
-          headingTag: "h2",
-          innerLinkHref: "/packages/oxfmt-config",
-          linkText: packageCardTranslate("linkText"),
-          packageNameText: "@ts-items/oxfmt-config",
-          versionText: "v1.0.0",
-        },
-      ]}
+      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitleText={pageTranslate("pageTitle")}
     />
