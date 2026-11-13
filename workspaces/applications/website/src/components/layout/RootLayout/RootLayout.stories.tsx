@@ -43,9 +43,9 @@ export const TestForLandmarks: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const headerElement = within(canvas.getByRole("banner"))
-    const mainElement = within(canvas.getByRole("main"))
     await expect(headerElement.getByText("{headerInnerElement}")).toBeInTheDocument()
-    await expect(mainElement.getByText("{children0}")).toBeInTheDocument()
+    await expect(canvas.getByText("{children0}")).toBeInTheDocument()
+    await expect(canvas.queryByRole("main")).not.toBeInTheDocument()
   },
   tags: ["!autodocs"],
 }
