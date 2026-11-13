@@ -31,7 +31,7 @@ export const TestForLink: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const packagesLinkElement = canvas.getByRole<HTMLLinkElement>("link")
-    await expect(packagesLinkElement).toHaveAttribute("href", "/en")
+    await expect(packagesLinkElement).toHaveAttribute("href", "/en/")
   },
   tags: ["!autodocs"],
 }

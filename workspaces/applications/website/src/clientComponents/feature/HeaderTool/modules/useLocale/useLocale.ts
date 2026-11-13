@@ -11,7 +11,7 @@ export const useLocale = () => {
   const pathname = usePathname()
   const router = useRouter()
   const selectLanguage = (newLocale: string) => {
-    const newPathname = pathname.replace(new RegExp(`^/${locale}`, "u"), `/${newLocale}`)
+    const newPathname = pathname.replace(new RegExp(`^/${locale}/`, "u"), `/${newLocale}/`)
     router.replace(newPathname)
   }
   const currentLanguageName = getCurrentLanguageName(locale)
