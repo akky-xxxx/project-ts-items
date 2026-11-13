@@ -15,7 +15,7 @@ export const HeaderInner: FC<Props> = (props) => {
   return (
     <div className={styles.root}>
       <Link className={styles.siteName} href="/">
-        <span className={styles.projectName}>ts-items</span>
+        <span className={styles.projectName}>@ts-items</span>
         <span aria-hidden="true">/</span>
         <span>docs</span>
       </Link>
