@@ -20,11 +20,11 @@ type Props = {
  */
 export const LongContents: FC<Props> = (props) => {
   const { length = DEFAULT_LENGTH, text = "children" } = props
-  const ARRAY = Array.from({ length }, (_, index) => index)
+  const indexes = Array.from({ length }, (_, index) => index)
 
   return (
     <div style={WRAPPER_STYLE}>
-      {ARRAY.map((id) => (
+      {indexes.map((id) => (
         <DummyForStorybook key={id} label={`${text}${id}`} />
       ))}
     </div>
