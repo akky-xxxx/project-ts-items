@@ -4,13 +4,12 @@ import { notFound } from "next/navigation"
 
 import { Packages } from "../../../components/page/Packages/Packages.tsx"
 import { routing } from "../../../i18n/constants/routing/routing.ts"
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
 type Props = PageProps<"/[locale]/packages">
-
-const renderLineBreak = () => <br />
 
 export const generateMetadata = async (props: Props): Promise<Metadata> => {
   const { locale } = await props.params
