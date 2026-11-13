@@ -74,7 +74,9 @@ export const TestForLanguageSelection: Story = {
       legendText: "{languageLegendText}",
       nextOptionName: "English",
     })
-    await expect(getRouter().replace).toHaveBeenCalledWith("/en/a/ja")
+    // Query string と hash は環境(iframe の URL)の値がそのまま保持される
+    const { hash, search } = globalThis.location
+    await expect(getRouter().replace).toHaveBeenCalledWith(`/en/a/ja${search}${hash}`)
   },
   tags: ["!autodocs"],
 }
