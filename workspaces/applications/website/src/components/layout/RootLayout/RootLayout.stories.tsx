@@ -17,7 +17,7 @@ const meta = {
   args: {
     children: <LongContents />,
     headerInnerElement: <DummyForStorybook label="headerInnerElement" />,
-    thisYear: new Date().getFullYear(),
+    thisYear: 2026,
   },
 } satisfies Meta<typeof RootLayout>
 
