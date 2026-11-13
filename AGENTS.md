@@ -45,7 +45,7 @@ codex はこのリポジトリにおいて**レビュワー専任**として動�
 このファイルはレビュー観点の要約であり、詳細な規約は以下を一次情報として参照する。内容が矛盾する場合はこちらを優先する。
 
 - `CLAUDE.md`: リポジトリ構成、コマンドの正式な定義
-- `.claude/rules/*.md`: 共有パッケージの設計(`publish-packages.md`)、ツールで強制される規約(`coding-guideline.md`)、GitHub Actions(`github-actions.md`)、コミット(`commit.md`)・PR(`pr.md`)・機密情報(`secrets.md`)の取り扱い、AI 間のファイルベース連携(`ai-communication.md`)のルール
+- `.claude/rules/*.md`: 共有パッケージの設計(`publish-packages.md`)、ツールで強制される規約(`coding-guideline.md`)、GitHub Actions(`github-actions.md`)、コミット(`commit.md`)・PR(`pr.md`)・機密情報(`secrets.md`)の取り扱い、テストの書き方(`test.md`)、AI 間のファイルベース連携(`ai-communication.md`)のルール
 - `docs/release.md`: 共有パッケージと `website` のリリース運用
 - `scripts/commitlint/directories/`: 有効な commit scope の算出方法(`package.json` の `workspaces` glob に一致するディレクトリ名)
 
@@ -97,6 +97,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト)が追加されているか
 - ブラックボックス(公開 interface 経由)とホワイトボックス(内部ロジック)の使い分けが適切か
+- 期待値に実装と同じ定数を import して使っていないか(cookie 名・キー名など、値の変更が利用者に影響するものは、リテラルで固定しないと定数の誤変更をテストで検出できない)
 - `describe`/`it` が日本語で書かれているか
 
 ### コミット/PR
