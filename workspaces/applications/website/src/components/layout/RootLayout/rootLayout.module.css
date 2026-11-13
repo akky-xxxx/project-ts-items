@@ -6,13 +6,14 @@
 
 .header {
   background-color: var(--color-background);
+  height: var(--header-height);
   position: sticky;
   top: 0;
   transition: background-color var(--duration-theme-transition);
   z-index: 1;
 }
 
-.main {
+.mainWrapper {
   flex-grow: 1;
   isolation: isolate;
 }

@@ -9,6 +9,7 @@
   --duration-theme-transition: 200ms;
   --font-mono: var(--font-jetbrains-mono), var(--font-noto-sans-jp), monospace;
   --font-sans: var(--font-noto-sans-jp), sans-serif;
+  --header-height: 9.1rem;
 
   color-scheme: light dark;
   font-size: 62.5%;
