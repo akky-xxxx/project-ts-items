@@ -25,6 +25,7 @@
   - 切るタイミングは実装着手前。コミット直前まで待たない
   - 既に `develop` 上でコミットしてしまった場合は、その commit から作業ブランチを作り、`develop` を作業開始時点の commit(ローカル `develop` が `origin/develop` と一致していたなら `origin/develop`)に戻す
   - 新しいタスク(別 issue 等)に着手する際は、既存の作業ブランチを使い回さず、`develop` の最新から新しく作業ブランチを切る。ブランチを切り替えたら `git branch --show-current` 等で対象タスク用のブランチになっていることを確認してから最初の変更に入る
+  - `origin/develop` を起点に作業ブランチを切る場合は `--no-track` を付ける(例: `git switch -c <branch> --no-track origin/develop`)。git の既定(`branch.autoSetupMerge` が `true`)では、リモート追跡ブランチを起点にすると upstream が `origin/develop` に設定され、引数なしの `git push` が名前の不一致で失敗する、引数なしの `git pull` の取り込み元が `origin/develop` になる、`git status` の ahead/behind が `origin/develop` 基準になる、といった食い違いが起きる。upstream が付いてしまった場合は `git branch --unset-upstream` で外す。upstream の設定は push するユーザーに任せる
 - 一時的な確認(整形結果のプレビュー等)の目的で `git stash` を使わない。`git stash pop` は直前に自分が stash したとは限らず、リポジトリに残っている無関係な stash(他ブランチ・他セッションのもの)を誤って適用する恐れがある。一時退避が必要な場合は `git diff` の出力確認や、リポジトリ外(スクラッチディレクトリ等)へのファイル書き出しで代替する。
 
 ## メッセージの形式
