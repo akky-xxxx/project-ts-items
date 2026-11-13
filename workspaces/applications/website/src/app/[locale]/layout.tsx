@@ -38,13 +38,13 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 const Layout = async (props: Props): Promise<ReactNode> => {
   const { children, params } = props
   const { locale } = await params
-  const cookieObject = await cookies()
-  const theme = getThemeFromCookie(cookieObject.get(COOKIE_KEY_THEME))
 
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
 
+  const cookieObject = await cookies()
+  const theme = getThemeFromCookie(cookieObject.get(COOKIE_KEY_THEME))
   const navigationTranslate = await getTranslations("header")
   const headerInnerElement = (
     <HeaderInner
