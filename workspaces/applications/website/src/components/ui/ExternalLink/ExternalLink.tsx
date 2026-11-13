@@ -6,14 +6,16 @@ import styles from "./externalLink.module.css"
 
 type Props = {
   href: `https://${string}`
+  newTabText: string
 }
 
 export const ExternalLink: FcWithChildren<Props> = (props) => {
-  const { children, href } = props
+  const { children, href, newTabText } = props
 
   return (
     <a {...BLANK_LINK_PROPERTIES} className={styles.root} href={href}>
       {children}
+      <span className="visuallyHidden"> ({newTabText})</span>
     </a>
   )
 }

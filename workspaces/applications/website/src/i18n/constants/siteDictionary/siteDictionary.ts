@@ -27,5 +27,11 @@ export const siteDictionary = {
     },
   },
   docsLayout: DOCS_LAYOUT,
+  externalLink: {
+    newTab: {
+      en: "opens in a new tab",
+      ja: "新しいタブで開く",
+    },
+  },
   header: HEADER,
 } as const satisfies Dictionary

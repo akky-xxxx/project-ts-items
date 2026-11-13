@@ -12,11 +12,13 @@ const meta = {
   argTypes: {
     children: { control: false },
     headerInnerElement: { control: false },
+    newTabText: { control: "text" },
     thisYear: { control: "number" },
   },
   args: {
     children: <LongContents />,
     headerInnerElement: <DummyForStorybook label="headerInnerElement" />,
+    newTabText: "{newTabText}",
     thisYear: 2026,
   },
 } satisfies Meta<typeof RootLayout>
@@ -44,12 +46,12 @@ export const TestForFooter: Story = {
     await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
 
     const footer = within(footerElement)
-    await expect(footer.getByRole("link", { name: "GitHub" })).toMatchObject({
+    await expect(footer.getByRole("link", { name: "GitHub ({newTabText})" })).toMatchObject({
       href: "https://github.com/akky-xxxx/project-ts-items",
       rel: "noopener noreferrer",
       target: "_blank",
     })
-    await expect(footer.getByRole("link", { name: "npm" })).toMatchObject({
+    await expect(footer.getByRole("link", { name: "npm ({newTabText})" })).toMatchObject({
       href: "https://www.npmjs.com/org/ts-items",
       rel: "noopener noreferrer",
       target: "_blank",
