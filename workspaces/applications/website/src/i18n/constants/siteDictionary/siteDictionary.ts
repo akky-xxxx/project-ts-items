@@ -1,5 +1,6 @@
 import { DOCS_LAYOUT } from "./constants/DOCS_LAYOUT/DOCS_LAYOUT.ts"
 import { HEADER } from "./constants/HEADER/HEADER.ts"
+import { UI } from "./constants/UI/UI.ts"
 
 import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
 
@@ -25,6 +26,9 @@ export const siteDictionary = {
       en: "Radio",
       ja: "ラジオ",
     },
+  },
+  components: {
+    ui: UI,
   },
   docsLayout: DOCS_LAYOUT,
   externalLink: {
