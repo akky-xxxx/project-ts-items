@@ -3,12 +3,16 @@ import { getTranslations } from "next-intl/server"
 import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 
-import { COOKIE_KEY_THEME } from "../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
-import { FONT_VARIABLES } from "../../constants/FONT_VARIABLES/FONT_VARIABLES.ts"
-import { routing } from "../../i18n/constants/routing/routing.ts"
+import { HeaderTool } from "../../clientComponents/feature/HeaderTool/HeaderTool.tsx"
+import { RootLayout } from "../../components/layout/RootLayout/RootLayout.tsx"
+import { HeaderInner } from "../../components/ui/HeaderInner/HeaderInner.tsx"
 
 import "./reset.css"
 import "./global.css"
+import { HeaderNavigation } from "../../components/ui/HeaderNavigation/HeaderNavigation.tsx"
+import { COOKIE_KEY_THEME } from "../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
+import { FONT_VARIABLES } from "../../constants/FONT_VARIABLES/FONT_VARIABLES.ts"
+import { routing } from "../../i18n/constants/routing/routing.ts"
 import { getThemeFromCookie } from "../../utilities/getThemeFromCookie/getThemeFromCookie.ts"
 
 import type { Metadata } from "next"
@@ -41,10 +45,34 @@ const Layout = async (props: Props): Promise<ReactNode> => {
     notFound()
   }
 
+  const navigationTranslate = await getTranslations("header")
+  const headerInnerElement = (
+    <HeaderInner
+      navigationElement={
+        <HeaderNavigation
+          changeLogText={navigationTranslate("navigation.changeLog")}
+          packageText={navigationTranslate("navigation.package")}
+        />
+      }
+      toolElement={
+        <HeaderTool
+          darkThemeText={navigationTranslate("theme.dark")}
+          languageLegendText={navigationTranslate("language")}
+          lightThemeText={navigationTranslate("theme.light")}
+          systemThemeText={navigationTranslate("theme.system")}
+          theme={theme}
+          themeLegendText={navigationTranslate("theme.legend")}
+        />
+      }
+    />
+  )
+
   return (
     <html className={FONT_VARIABLES.join(" ")} data-theme={theme} lang={locale}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <RootLayout headerInnerElement={headerInnerElement}>{children}</RootLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   )
