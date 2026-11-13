@@ -36,6 +36,7 @@ const meta = {
     tocElement: <LongContents text="tocElement" />,
     tocLabelText: "{tocLabelText}",
   },
+  render: (props) => <WithRootLayout {...props} />,
 } satisfies Meta<typeof DocsLayout>
 
 export default meta
@@ -85,7 +86,6 @@ export const TestForStickyColumnsBelowHeader: Story = {
     await expectWithinVisibleArea(docsSidebarNavigationElement, headerElement)
     await expectWithinVisibleArea(canvas.getByRole("complementary"), headerElement)
   },
-  render: (props) => <WithRootLayout {...props} />,
   tags: ["!autodocs"],
 }
 
