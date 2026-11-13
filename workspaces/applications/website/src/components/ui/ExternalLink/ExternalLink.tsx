@@ -5,7 +5,7 @@ import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildre
 import styles from "./externalLink.module.css"
 
 type Props = {
-  href: string
+  href: `https://${string}`
 }
 
 export const ExternalLink: FcWithChildren<Props> = (props) => {
