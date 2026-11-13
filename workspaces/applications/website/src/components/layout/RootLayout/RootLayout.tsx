@@ -1,4 +1,5 @@
 import { BLANK_LINK_PROPERTIES } from "../../../constants/BLANK_LINK_PROPERTIES/BLANK_LINK_PROPERTIES.ts"
+import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 
 import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
 import type { ReactElement } from "react"
@@ -21,7 +22,9 @@ export const RootLayout: FcWithChildren<Props> = (props) => {
 
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <div>&copy; {thisYear} @ts-items · MIT License</div>
+          <div>
+            &copy; {thisYear} {PROJECT_NAME} · MIT License
+          </div>
 
           <ul className={styles.services}>
             <li>
