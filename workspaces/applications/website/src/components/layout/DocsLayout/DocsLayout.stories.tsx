@@ -72,12 +72,9 @@ export const TestForLandmarks: Story = {
 }
 
 export const TestForStickyColumnsBelowHeader: Story = {
-  args: {
-    children: "children.".repeat(10),
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    window.scrollTo({ top: document.documentElement.scrollHeight })
+    canvas.getByRole("main").scrollIntoView({ block: "end" })
 
     const headerElement = canvas.getByRole("banner")
     const docsSidebarNavigationElement = canvas.getByRole("navigation", {
