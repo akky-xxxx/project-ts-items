@@ -1,6 +1,6 @@
 .root {
   margin-inline: auto;
-  max-width: min(100% - 64px, var(--contents-width));
+  max-width: var(--contents-max-width);
   padding-top: 36px;
 }
 
