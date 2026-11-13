@@ -1,7 +1,7 @@
-import { BLANK_LINK_PROPERTIES } from "../../../constants/BLANK_LINK_PROPERTIES/BLANK_LINK_PROPERTIES.ts"
 import { GITHUB_REPOSITORY_URL } from "../../../constants/GITHUB_REPOSITORY_URL/GITHUB_REPOSITORY_URL.ts"
 import { NPM_ORGANIZATION_URL } from "../../../constants/NPM_ORGANIZATION_URL/NPM_ORGANIZATION_URL.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
+import { ExternalLink } from "../../ui/ExternalLink/ExternalLink.tsx"
 
 import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
 import type { ReactElement } from "react"
@@ -30,23 +30,11 @@ export const RootLayout: FcWithChildren<Props> = (props) => {
 
           <ul className={styles.services}>
             <li>
-              <a
-                {...BLANK_LINK_PROPERTIES}
-                className={styles.serviceLink}
-                href={GITHUB_REPOSITORY_URL}
-              >
-                GitHub
-              </a>
+              <ExternalLink href={GITHUB_REPOSITORY_URL}>GitHub</ExternalLink>
             </li>
 
             <li>
-              <a
-                {...BLANK_LINK_PROPERTIES}
-                className={styles.serviceLink}
-                href={NPM_ORGANIZATION_URL}
-              >
-                npm
-              </a>
+              <ExternalLink href={NPM_ORGANIZATION_URL}>npm</ExternalLink>
             </li>
           </ul>
         </div>
