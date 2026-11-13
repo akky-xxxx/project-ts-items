@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-between;
   margin-inline: auto;
-  max-width: var(--contents-width);
+  max-width: var(--contents-max-width);
 }
 
 .services {
