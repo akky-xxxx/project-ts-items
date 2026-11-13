@@ -1,3 +1,5 @@
+import { HEADER } from "./constants/HEADER/HEADER.ts"
+
 import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
 
 export const siteDictionary = {
@@ -23,16 +25,5 @@ export const siteDictionary = {
       ja: "ラジオ",
     },
   },
-  header: {
-    navigation: {
-      changeLog: {
-        en: "Change log",
-        ja: "更新履歴",
-      },
-      package: {
-        en: "Packages",
-        ja: "パッケージ",
-      },
-    },
-  },
+  header: HEADER,
 } as const satisfies Dictionary

@@ -52,7 +52,7 @@ export const TestForPackagesLink: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const packagesLinkElement = canvas.queryByText<HTMLLinkElement>("Packages")
-    await expect(packagesLinkElement).toHaveAttribute("href", "/en/packages")
+    await expect(packagesLinkElement).toHaveAttribute("href", "/en/packages/")
   },
   tags: ["!autodocs"],
 }

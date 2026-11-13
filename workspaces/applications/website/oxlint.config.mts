@@ -33,6 +33,15 @@ const config = defineConfig({
       },
     },
     {
+      // Root layout は Server Component で再レンダリング・memo 比較が起きないため、
+      // Owner と parent を分けて JSX を props で渡すことを許可する
+      // Glob では [ と ] が文字クラスになるため、[[] と []] で表す
+      files: ["src/app/[[]locale[]]/layout.tsx"],
+      rules: {
+        "react-perf/jsx-no-jsx-as-prop": "off",
+      },
+    },
+    {
       // Src/tests/** は stories からのみ import を許可する
       // Play 関数はアサーションが並ぶため statement 数を緩和する
       files: ["**/*.stories.tsx"],

@@ -21,6 +21,7 @@
   column-gap: 12px;
   display: flex;
   padding: 12px;
+  white-space: nowrap;
 
   &:has(:checked) {
     background-color: var(--color-background-accent);
