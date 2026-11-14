@@ -92,12 +92,16 @@ export const TestForHeadingStructure: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
+    const heading1Texts = canvas
+      .getAllByRole("heading", { level: 1 })
+      .map((element) => element.textContent)
     const heading2Texts = canvas
       .getAllByRole("heading", { level: 2 })
       .map((element) => element.textContent)
     const heading3Texts = canvas
       .getAllByRole("heading", { level: 3 })
       .map((element) => element.textContent)
+    await expect(heading1Texts).toStrictEqual(["Tool for TypeScript projects"])
     await expect(heading2Texts).toStrictEqual(["Packages"])
     await expect(heading3Texts).toStrictEqual(["@ts-items/oxlint-config", "@ts-items/oxfmt-config"])
   },
