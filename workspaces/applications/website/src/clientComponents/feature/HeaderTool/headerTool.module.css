@@ -4,13 +4,10 @@
   gap: 2.5rem;
 }
 
-.languageButton {
-  align-items: center;
-  border: 0;
+.languageButton,
+.themeButton,
+.anchor {
   border-radius: 4px;
-  column-gap: 6px;
-  cursor: pointer;
-  display: flex;
   padding: 11px;
   transition: background-color var(--duration-transition);
 
@@ -33,63 +30,25 @@
       background-color: transparent;
     }
   }
+}
+
+.languageButton {
+  align-items: center;
+  border: 0;
+  column-gap: 6px;
+  cursor: pointer;
+  display: flex;
 }
 
 .themeButton {
   border: 0;
-  border-radius: 4px;
   cursor: pointer;
   display: grid;
-  padding: 11px;
   place-items: center;
-  transition: background-color var(--duration-transition);
-
-  &:focus-visible {
-    background-color: var(--color-background-hover);
-  }
-
-  @media (hover: hover) {
-    &:not(:hover, :focus-visible) {
-      background-color: transparent;
-    }
-
-    &:hover {
-      background-color: var(--color-background-hover);
-    }
-  }
-
-  @media (hover: none) {
-    &:not(:focus-visible) {
-      background-color: transparent;
-    }
-  }
 }
 
 .anchor {
   align-items: center;
-  border-radius: 4px;
   color: var(--color-text);
   display: inline-flex;
-  padding: 11px;
-  transition: background-color var(--duration-transition);
-
-  &:focus-visible {
-    background-color: var(--color-background-hover);
-  }
-
-  @media (hover: hover) {
-    &:not(:hover, :focus-visible) {
-      background-color: transparent;
-    }
-
-    &:hover {
-      background-color: var(--color-background-hover);
-    }
-  }
-
-  @media (hover: none) {
-    &:not(:focus-visible) {
-      background-color: transparent;
-    }
-  }
 }
