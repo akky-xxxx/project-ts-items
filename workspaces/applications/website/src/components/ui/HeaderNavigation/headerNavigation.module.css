@@ -7,7 +7,7 @@
 }
 
 .link {
-  transition: color var(--duration-theme-transition);
+  transition: color var(--duration-transition);
 
   &:not(:hover) {
     color: var(--color-text);

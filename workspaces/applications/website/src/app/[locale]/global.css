@@ -10,7 +10,6 @@
   --color-text-hover: light-dark(#195a49, #b1deca);
   --contents-max-width: min(100% - 64px, var(--contents-width));
   --contents-width: 1080px;
-  --duration-theme-transition: 200ms;
   --duration-transition: 100ms;
   --font-mono: var(--font-jetbrains-mono), var(--font-noto-sans-jp), monospace;
   --font-sans: var(--font-noto-sans-jp), sans-serif;
@@ -40,8 +39,8 @@ body {
   line-height: 1.6;
   margin: 0;
   transition:
-    background-color var(--duration-theme-transition),
-    color var(--duration-theme-transition);
+    background-color var(--duration-transition),
+    color var(--duration-transition);
 }
 
 h1,
