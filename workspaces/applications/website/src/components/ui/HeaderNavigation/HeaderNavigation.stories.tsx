@@ -29,7 +29,7 @@ const meta = {
   },
   args: {
     changeLogText: "{Change Log}",
-    navigationLabelText: "{Site navigation}",
+    navigationLabelText: "{Site navigation menu}",
     packageText: "{Packages}",
   },
   render: (args) => <Localized {...args} />,
@@ -55,7 +55,7 @@ export const TestForNavigationLabel: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const navigationElement = canvas.getByRole("navigation", { name: "Site navigation" })
+    const navigationElement = canvas.getByRole("navigation", { name: "Site navigation menu" })
     await expect(navigationElement).toBeInTheDocument()
   },
   tags: ["!autodocs"],
