@@ -15,7 +15,7 @@
   transition: background-color var(--duration-transition);
 
   &:not(:hover) {
-    background-color: var(--color-background);
+    background-color: transparent;
   }
 
   &:hover {
@@ -33,7 +33,7 @@
   transition: background-color var(--duration-transition);
 
   &:not(:hover) {
-    background-color: var(--color-background);
+    background-color: transparent;
   }
 
   &:hover {
@@ -50,7 +50,7 @@
   transition: background-color var(--duration-transition);
 
   &:not(:hover) {
-    background-color: var(--color-background);
+    background-color: transparent;
   }
 
   &:hover {
