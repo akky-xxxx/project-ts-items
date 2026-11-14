@@ -16,6 +16,7 @@ type Props = {
 }
 
 const LAST_ITEM_INDEX = -1
+const EMPTY_ARRAY_LENGTH = 0
 
 export const Breadcrumb: FC<Props> = (props) => {
   const { items, labelText } = props
@@ -23,7 +24,7 @@ export const Breadcrumb: FC<Props> = (props) => {
   return (
     <nav aria-label={labelText}>
       <ol className={styles.ol}>
-        <BreadcrumbItem href="/" isCurrentPage={false}>
+        <BreadcrumbItem href="/" isCurrentPage={items.length === EMPTY_ARRAY_LENGTH}>
           {PROJECT_NAME}
         </BreadcrumbItem>
         {items.map((item, index) => {
