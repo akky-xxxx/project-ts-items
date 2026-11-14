@@ -33,12 +33,13 @@ const config = defineConfig({
       },
     },
     {
-      // [locale] 配下の layout は Server Component で再レンダリング・memo 比較が起きないため、
-      // Owner と parent を分けて JSX を props で渡すことを許可する
+      // [locale] 配下の layout / page は Server Component で再レンダリング・memo 比較が起きないため、
+      // JSX・配列リテラルを props で渡すことを許可する
       // Glob では [ と ] が文字クラスになるため、[[] と []] で表す
-      files: ["src/app/[[]locale[]]/**/layout.tsx"],
+      files: ["src/app/[[]locale[]]/**/{layout,page}.tsx"],
       rules: {
         "react-perf/jsx-no-jsx-as-prop": "off",
+        "react-perf/jsx-no-new-array-as-prop": "off",
       },
     },
     {

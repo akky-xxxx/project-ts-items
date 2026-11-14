@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl"
+import { useMemo } from "react"
 import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
@@ -12,14 +13,19 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
   const pageTranslate = useTranslations("pages.packages")
   const packageTranslate = useTranslations("packages")
+  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const packageCardTranslate = useTranslations("components.ui.packageCard")
+  const pageTitleText = pageTranslate("pageTitle")
+  const breadcrumbItems = useMemo(() => [{ text: pageTitleText }], [pageTitleText])
 
   return (
     <Packages
       {...props}
+      breadcrumbItems={breadcrumbItems}
+      breadcrumbLabelText={breadcrumbTranslate("labelText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
       pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitleText={pageTranslate("pageTitle")}
+      pageTitleText={pageTitleText}
     />
   )
 }
@@ -28,6 +34,11 @@ const meta = {
   component: Packages,
 
   argTypes: {
+    breadcrumbItems: {
+      control: false,
+      description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
+    },
+    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     packages: {
       control: false,
       description: "表示するパッケージ一覧(各要素は PackageCard の props)",
@@ -36,6 +47,8 @@ const meta = {
     pageTitleText: { control: false, description: "ページタイトル(h1)" },
   },
   args: {
+    breadcrumbItems: [{ text: "{breadcrumbItemText}" }],
+    breadcrumbLabelText: "{breadcrumbLabelText}",
     packages: [
       {
         descriptionNode: "{descriptionNode}",
@@ -65,6 +78,8 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   argTypes: {
+    breadcrumbItems: { control: "object" },
+    breadcrumbLabelText: { control: "text" },
     packages: {
       control: "object",
     },
@@ -106,8 +121,32 @@ export const TestForListItems: Story = {
   ...En,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const listElement = canvas.getByRole("list")
-    await expect(within(listElement).getAllByRole("listitem")).toHaveLength(2)
+    // パンくずの li を除いた、パッケージ一覧の li を対象にする
+    const listItemElements = canvas
+      .getAllByRole("listitem")
+      .filter((listItemElement) => listItemElement.closest("nav") === null)
+    await expect(listItemElements).toHaveLength(2)
+  },
+  tags: ["!autodocs"],
+}
+
+export const TestForBreadcrumbLabel: Story = {
+  ...En,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
+    await expect(navigationElement).toBeInTheDocument()
+  },
+  tags: ["!autodocs"],
+}
+
+export const TestForBreadcrumbCurrentPage: Story = {
+  ...En,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
+    const currentPageElement = within(navigationElement).getByText("Packages")
+    await expect(currentPageElement).toHaveAttribute("aria-current", "page")
   },
   tags: ["!autodocs"],
 }
