@@ -8,11 +8,23 @@
 .link {
   transition: color var(--duration-transition);
 
-  &:not(:hover) {
-    color: var(--color-text);
+  &:focus-visible {
+    color: var(--color-text-hover);
   }
 
-  &:hover {
-    color: var(--color-text-hover);
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      color: var(--color-text);
+    }
+
+    &:hover {
+      color: var(--color-text-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      color: var(--color-text);
+    }
   }
 }

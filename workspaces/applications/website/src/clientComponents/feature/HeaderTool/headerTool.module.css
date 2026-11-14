@@ -14,12 +14,24 @@
   padding: 11px;
   transition: background-color var(--duration-transition);
 
-  &:not(:hover) {
-    background-color: transparent;
+  &:focus-visible {
+    background-color: var(--color-background-hover);
   }
 
-  &:hover {
-    background-color: var(--color-background-hover);
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      background-color: transparent;
+    }
   }
 }
 
@@ -32,12 +44,24 @@
   place-items: center;
   transition: background-color var(--duration-transition);
 
-  &:not(:hover) {
-    background-color: transparent;
+  &:focus-visible {
+    background-color: var(--color-background-hover);
   }
 
-  &:hover {
-    background-color: var(--color-background-hover);
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      background-color: transparent;
+    }
   }
 }
 
@@ -49,11 +73,23 @@
   padding: 11px;
   transition: background-color var(--duration-transition);
 
-  &:not(:hover) {
-    background-color: transparent;
+  &:focus-visible {
+    background-color: var(--color-background-hover);
   }
 
-  &:hover {
-    background-color: var(--color-background-hover);
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      background-color: transparent;
+    }
   }
 }
