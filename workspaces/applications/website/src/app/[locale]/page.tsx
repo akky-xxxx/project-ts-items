@@ -2,9 +2,9 @@ import { getTranslations } from "next-intl/server"
 
 import { Home } from "../../components/page/Home/Home.tsx"
 import { buildPackageCardItems } from "../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
+import { renderLineBreak } from "../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { ReactNode } from "react"
-import {renderLineBreak} from "../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 const Page = async (): Promise<ReactNode> => {
   const [pageTranslate, packageTranslate, breadcrumbTranslate, packageCardTranslate] =

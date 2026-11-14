@@ -2,7 +2,7 @@ import { PackageCardList } from "../../layout/PackageCardList/PackageCardList.ts
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
 
-import type {ComponentProps, FC, ReactNode} from "react"
+import type { ComponentProps, FC, ReactNode } from "react"
 
 import styles from "./home.module.css"
 
