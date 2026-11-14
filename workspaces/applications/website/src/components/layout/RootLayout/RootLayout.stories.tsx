@@ -30,7 +30,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {}
 
 export const TestForLandmarks: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const headerElement = within(canvas.getByRole("banner"))
     await expect(headerElement.getByText("{headerInnerElement}")).toBeInTheDocument()
@@ -41,7 +42,8 @@ export const TestForLandmarks: Story = {
 }
 
 export const TestForFooter: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const footerElement = within(canvasElement).getByRole("contentinfo")
     await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
 

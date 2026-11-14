@@ -52,7 +52,8 @@ const expectWithinVisibleArea = async (element: HTMLElement, headerElement: HTML
 export const Default: Story = {}
 
 export const TestForLandmarks: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const docsSidebarNavigationElement = canvas.getByRole("navigation", {
       name: "{docsSidebarLabelText}",
@@ -72,7 +73,8 @@ export const TestForLandmarks: Story = {
 }
 
 export const TestForStickyColumnsBelowHeader: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     canvas.getByRole("main").scrollIntoView({ block: "end" })
 
@@ -91,7 +93,8 @@ export const TestForStickyColumnsBelowHeader: Story = {
  * ここでは列が footer に重ならないことを検証する
  */
 export const TestForStickyColumnsAboveFooter: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     window.scrollTo({ top: document.documentElement.scrollHeight })
 
@@ -115,7 +118,8 @@ export const TestForLongUnbreakableMain: Story = {
     docsSidebarElement: <LongContents length={10} text="docsSidebarElement" />,
     tocElement: <LongContents length={10} text="tocElement" />,
   },
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const mainElement = within(canvasElement).getByRole("main")
     await expect(mainElement.scrollWidth).toBeLessThanOrEqual(mainElement.clientWidth)
 

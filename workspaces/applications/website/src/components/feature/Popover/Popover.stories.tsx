@@ -45,7 +45,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Shown: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     await userEvent.click(canvas.getByRole("button"))
     await waitFor(async () => {
@@ -55,7 +56,8 @@ export const Shown: Story = {
 }
 
 export const Hidden: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(canvas.getByText("{popover}")).not.toBeVisible()
   },

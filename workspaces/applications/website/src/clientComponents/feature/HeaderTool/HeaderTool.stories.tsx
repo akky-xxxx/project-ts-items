@@ -43,7 +43,8 @@ export const Ja: Story = { ...JA_LOCALE_FOR_STORYBOOK }
 const createButtonNameStory = (base: Story, theme: Theme, buttonName: string): Story => ({
   ...base,
   args: { theme },
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     await expect(within(canvasElement).getByRole("button", { name: buttonName })).toBeVisible()
   },
   tags: ["!autodocs"],
@@ -52,7 +53,8 @@ const createButtonNameStory = (base: Story, theme: Theme, buttonName: string): S
 // TODO: 効果のない globals.locale を見直す
 export const TestForLink: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     await expect(within(canvasElement).getByRole("link", { name: "GitHub" })).toMatchObject({
       href: "https://github.com/akky-xxxx/project-ts-items",
       rel: "noopener noreferrer",
@@ -68,7 +70,8 @@ export const TestForThemeButtonSystem = createButtonNameStory(En, "system", "{sy
 export const TestForLanguageSelection: Story = {
   ...Ja,
   parameters: { nextjs: { navigation: { pathname: "/ja/a/ja", segments: [["locale", "ja"]] } } },
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     await selectOptionInPopoverForStorybook(canvasElement, {
       buttonName: "日本語",
       legendText: "{languageLegendText}",
@@ -84,7 +87,8 @@ export const TestForLanguageSelection: Story = {
 export const TestForThemeSelection: Story = {
   ...En,
   beforeEach: restoreThemeDatasetForStorybook,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     await selectOptionInPopoverForStorybook(canvasElement, {
       buttonName: "{darkThemeText}",
       legendText: "{themeLegendText}",

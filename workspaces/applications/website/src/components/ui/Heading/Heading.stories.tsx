@@ -33,7 +33,8 @@ export const Heading2: Story = {
 
 export const TestForHeading1: Story = {
   ...Heading1,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const headingElement = canvas.getByRole("heading", { level: 1, name: "{h1}" })
     await expect(headingElement).toBeInTheDocument()
@@ -43,7 +44,8 @@ export const TestForHeading1: Story = {
 
 export const TestForHeading2: Story = {
   ...Heading2,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const headingElement = canvas.getByRole("heading", { level: 2, name: "{h2}" })
     await expect(headingElement).toBeInTheDocument()

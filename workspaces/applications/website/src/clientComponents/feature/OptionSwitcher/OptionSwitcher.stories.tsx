@@ -42,7 +42,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {}
 
 export const TestForSelection: Story = {
-  play: async ({ args, canvasElement }) => {
+  play: async (context) => {
+    const { args, canvasElement } = context
     const canvas = within(canvasElement)
     const item3Element = canvas.getByRole("radio", { name: "item3" })
     const item4Element = canvas.getByRole("radio", { name: "item4" })

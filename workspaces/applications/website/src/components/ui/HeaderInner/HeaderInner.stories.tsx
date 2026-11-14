@@ -34,7 +34,8 @@ export const TestForLink: Story = {
   globals: {
     locale: "en",
   },
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const packagesLinkElement = canvas.getByRole<HTMLLinkElement>("link")
     await expect(packagesLinkElement).toHaveAttribute("href", "/en/")

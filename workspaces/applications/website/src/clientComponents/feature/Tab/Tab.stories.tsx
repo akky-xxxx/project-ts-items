@@ -33,7 +33,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {}
 
 export const TestForContentsChange: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const secondButtonElement = canvas.getByRole("button", { name: "Tab 2" })
     await expect(secondButtonElement).toBeInTheDocument()

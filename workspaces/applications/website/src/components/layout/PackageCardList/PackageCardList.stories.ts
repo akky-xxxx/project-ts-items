@@ -53,7 +53,8 @@ export const DoubleLane: Story = {
 
 export const TestForListItems: Story = {
   ...SingleLane,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const listElement = canvas.getByRole("list")
     await expect(within(listElement).getAllByRole("listitem")).toHaveLength(2)
@@ -63,7 +64,8 @@ export const TestForListItems: Story = {
 
 export const TestForSingleLane: Story = {
   ...SingleLane,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(countGridColumns(canvas.getByRole("list"))).toBe(1)
   },
@@ -72,7 +74,8 @@ export const TestForSingleLane: Story = {
 
 export const TestForDoubleLane: Story = {
   ...DoubleLane,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(countGridColumns(canvas.getByRole("list"))).toBe(2)
   },
@@ -81,7 +84,8 @@ export const TestForDoubleLane: Story = {
 
 export const TestForSingleLaneDescriptionNotClamped: Story = {
   ...SingleLane,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const lineClamps = canvas.getAllByText("{descriptionNode}").map(getLineClamp)
     await expect(lineClamps).toEqual(["none", "none"])
@@ -91,7 +95,8 @@ export const TestForSingleLaneDescriptionNotClamped: Story = {
 
 export const TestForDoubleLaneDescriptionClamped: Story = {
   ...DoubleLane,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const lineClamps = canvas.getAllByText("{descriptionNode}").map(getLineClamp)
     await expect(lineClamps).toEqual(["2", "2"])

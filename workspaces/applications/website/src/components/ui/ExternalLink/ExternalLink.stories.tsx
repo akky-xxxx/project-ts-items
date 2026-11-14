@@ -45,7 +45,8 @@ export const Ja: Story = {
 
 export const TestForAttributes: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const linkElement = canvas.getByRole<HTMLAnchorElement>("link", {
       name: "External link (opens in a new tab)",
@@ -59,7 +60,8 @@ export const TestForAttributes: Story = {
 
 export const TestForJaAccessibleName: Story = {
   ...Ja,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const linkElement = canvas.getByRole("link", { name: "External link (新しいタブで開く)" })
     await expect(linkElement).toBeInTheDocument()

@@ -63,7 +63,8 @@ export const TestForNavigationLabel: Story = {
 
 export const TestForPackagesLink: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const packagesLinkElement = canvas.queryByText<HTMLLinkElement>("Packages")
     await expect(packagesLinkElement).toHaveAttribute("href", "/en/packages/")
@@ -73,7 +74,8 @@ export const TestForPackagesLink: Story = {
 
 export const TestForChangeLogLink: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const packagesLinkElement = canvas.queryByText<HTMLLinkElement>("Change log")
     await expect(packagesLinkElement).toHaveAttribute(

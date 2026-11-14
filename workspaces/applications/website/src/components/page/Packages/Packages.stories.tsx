@@ -100,7 +100,8 @@ export const En: Story = {
 
 export const TestForHeading: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const headingElement = canvas.getByRole("heading", { level: 1, name: "Packages" })
     await expect(headingElement).toBeInTheDocument()
@@ -110,7 +111,8 @@ export const TestForHeading: Story = {
 
 export const TestForDescription: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(canvas.getByText("Packages managed by @ts-items.")).toBeInTheDocument()
   },
@@ -119,7 +121,8 @@ export const TestForDescription: Story = {
 
 export const TestForListItems: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     // パンくずの li を除いた、パッケージ一覧の li を対象にする
     const listItemElements = canvas
@@ -132,7 +135,8 @@ export const TestForListItems: Story = {
 
 export const TestForBreadcrumbLabel: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
     await expect(navigationElement).toBeInTheDocument()
@@ -142,7 +146,8 @@ export const TestForBreadcrumbLabel: Story = {
 
 export const TestForBreadcrumbCurrentPage: Story = {
   ...En,
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    const { canvasElement } = context
     const canvas = within(canvasElement)
     const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
     const currentPageElement = within(navigationElement).getByText("Packages")
