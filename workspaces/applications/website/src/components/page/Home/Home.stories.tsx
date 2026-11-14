@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl"
-import { useMemo } from "react"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
@@ -16,12 +15,10 @@ const Localized: FC<ComponentProps<typeof Home>> = (props) => {
   const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const packageCardTranslate = useTranslations("components.ui.packageCard")
   const pageTitleText = pageTranslate("pageTitle")
-  const breadcrumbItems = useMemo(() => [{ text: pageTitleText }], [pageTitleText])
 
   return (
     <Home
       {...props}
-      breadcrumbItems={breadcrumbItems}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
       packageTitleText={pageTranslate("packageTitleText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
