@@ -15,7 +15,6 @@ const Localized: FC<ComponentProps<typeof Home>> = (props) => {
   const packageTranslate = useTranslations("packages")
   const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const packageCardTranslate = useTranslations("components.ui.packageCard")
-  const pageTitleText = pageTranslate("pageTitle")
 
   return (
     <Home
@@ -24,7 +23,7 @@ const Localized: FC<ComponentProps<typeof Home>> = (props) => {
       packageTitleText={pageTranslate("packageTitleText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
-      pageTitleText={pageTitleText}
+      pageTitleText={pageTranslate("pageTitle")}
     />
   )
 }

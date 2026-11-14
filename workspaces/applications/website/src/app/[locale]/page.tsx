@@ -34,7 +34,6 @@ const Page = async (): Promise<ReactNode> => {
       getTranslations("components.ui.breadcrumb"),
       getTranslations("components.ui.packageCard"),
     ])
-  const pageTitleText = pageTranslate("pageTitle")
 
   return (
     <Home
@@ -42,7 +41,7 @@ const Page = async (): Promise<ReactNode> => {
       packageTitleText={pageTranslate("packageTitleText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
-      pageTitleText={pageTitleText}
+      pageTitleText={pageTranslate("pageTitle")}
     />
   )
 }
