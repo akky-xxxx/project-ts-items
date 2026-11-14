@@ -17,12 +17,6 @@ export const siteDictionary = {
       ja: "ts-items",
     },
   },
-  Radio: {
-    label: {
-      en: "Radio",
-      ja: "ラジオ",
-    },
-  },
   components: {
     ui: UI,
   },
