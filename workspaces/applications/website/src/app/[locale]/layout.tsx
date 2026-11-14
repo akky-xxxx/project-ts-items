@@ -9,6 +9,7 @@ import { HeaderInner } from "../../components/ui/HeaderInner/HeaderInner.tsx"
 import { HeaderNavigation } from "../../components/ui/HeaderNavigation/HeaderNavigation.tsx"
 import { COOKIE_KEY_THEME } from "../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
 import { FONT_VARIABLES } from "../../constants/FONT_VARIABLES/FONT_VARIABLES.ts"
+import { PROJECT_NAME } from "../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { routing } from "../../i18n/constants/routing/routing.ts"
 import { getThemeFromCookie } from "../../utilities/getThemeFromCookie/getThemeFromCookie.ts"
 
@@ -27,14 +28,11 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const translate = await getTranslations({ locale, namespace: "Metadata" })
-  const siteTitle = translate("title")
 
   return {
-    description: translate("description"),
     title: {
-      default: siteTitle,
-      template: `%s | ${siteTitle}`,
+      default: PROJECT_NAME,
+      template: `%s | ${PROJECT_NAME}`,
     },
   }
 }
@@ -52,7 +50,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
   // oxlint-disable-next-line react/purity -- Server Component renders once per request (dynamic via cookies()), so computing the year here keeps it current instead of fixing it at module load
   const thisYear = new Date().getFullYear()
   const [externalLinkTranslate, headerTranslate] = await Promise.all([
-    getTranslations("externalLink"),
+    getTranslations("components.ui.externalLink"),
     getTranslations("header"),
   ])
   const headerInnerElement = (
@@ -60,6 +58,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
       navigationElement={
         <HeaderNavigation
           changeLogText={headerTranslate("navigation.changeLog")}
+          navigationLabelText={headerTranslate("navigation.ariaLabel")}
           packageText={headerTranslate("navigation.package")}
         />
       }

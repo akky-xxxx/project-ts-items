@@ -7,26 +7,10 @@ import { UI } from "./constants/UI/UI.ts"
 import type { Dictionary } from "../../types/Dictionary/Dictionary.ts"
 
 export const siteDictionary = {
-  Metadata: {
-    description: {
-      en: "ts-items",
-      ja: "ts-items",
-    },
-    title: {
-      en: "ts-items",
-      ja: "ts-items",
-    },
-  },
   components: {
     ui: UI,
   },
   docsLayout: DOCS_LAYOUT,
-  externalLink: {
-    newTab: {
-      en: "opens in a new tab",
-      ja: "新しいタブで開く",
-    },
-  },
   header: HEADER,
   packages: PACKAGES,
   pages: PAGES,

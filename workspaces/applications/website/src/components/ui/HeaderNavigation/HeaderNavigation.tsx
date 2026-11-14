@@ -8,14 +8,15 @@ import styles from "./headerNavigation.module.css"
 
 type Props = {
   changeLogText: string
+  navigationLabelText: string
   packageText: string
 }
 
 export const HeaderNavigation: FC<Props> = (props) => {
-  const { changeLogText, packageText } = props
+  const { changeLogText, navigationLabelText, packageText } = props
 
   return (
-    <nav>
+    <nav aria-label={navigationLabelText}>
       <ul className={styles.ul}>
         <li>
           <Link className={styles.link} href="/packages">

@@ -7,6 +7,12 @@ export const UI = {
       ja: "パンくずリスト",
     },
   },
+  externalLink: {
+    newTab: {
+      en: "opens in a new tab",
+      ja: "新しいタブで開く",
+    },
+  },
   packageCard: {
     linkText: {
       en: "Documents",

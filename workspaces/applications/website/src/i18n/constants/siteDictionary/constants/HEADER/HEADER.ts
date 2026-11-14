@@ -6,6 +6,10 @@ export const HEADER = {
     ja: "言語",
   },
   navigation: {
+    ariaLabel: {
+      en: "Site navigation menu",
+      ja: "サイトナビゲーションメニュー",
+    },
     changeLog: {
       en: "Change log",
       ja: "更新履歴",
