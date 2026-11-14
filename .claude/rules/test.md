@@ -19,4 +19,3 @@ paths:
   - `X.stories.test.tsx` にはしない。Storybook の既定の CSF インデクサは `stories.tsx` / `story.tsx` などで終わるファイルしか読み込まず、`.storybook/main.ts` の `stories` に追加してもインデックス時にエラーになる(storybook 10.6.5 で確認)
   - meta は `X.stories.tsx` の default export を import して spread し、`tags: ["!dev", "!autodocs"]` を付ける。サイドバーと autodocs には出さず、vitest(`@storybook/addon-vitest`)でだけ実行する
   - 表示用のストーリー(`En` / `Ja` 等)の設定を前提にする場合は、`X.stories.tsx` から import して spread する
-- `play` では、仮引数・本文のどちらでも分割代入しない。`context.canvasElement` のようにプロパティで参照する。`X.stories.tsx` に残る、テスト用以外のストーリーの `play` も対象とする
