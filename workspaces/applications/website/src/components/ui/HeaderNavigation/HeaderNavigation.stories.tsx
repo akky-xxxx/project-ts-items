@@ -13,6 +13,7 @@ const Localized: FC<ComponentProps<typeof HeaderNavigation>> = (props) => {
     <HeaderNavigation
       {...props}
       changeLogText={translate("changeLog")}
+      navigationLabelText={translate("ariaLabel")}
       packageText={translate("package")}
     />
   )
@@ -23,10 +24,12 @@ const meta = {
 
   argTypes: {
     changeLogText: { control: false, description: "リンクテキスト" },
+    navigationLabelText: { control: false, description: "ナビゲーションのラベル(aria-label)" },
     packageText: { control: false, description: "リンクテキスト" },
   },
   args: {
     changeLogText: "{Change Log}",
+    navigationLabelText: "{Site navigation}",
     packageText: "{Packages}",
   },
   render: (args) => <Localized {...args} />,
@@ -45,6 +48,17 @@ export const Ja: Story = {
   globals: {
     locale: "ja",
   },
+}
+
+export const TestForNavigationLabel: Story = {
+  ...En,
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    const navigationElement = canvas.getByRole("navigation", { name: "Site navigation" })
+    await expect(navigationElement).toBeInTheDocument()
+  },
+  tags: ["!autodocs"],
 }
 
 export const TestForPackagesLink: Story = {

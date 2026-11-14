@@ -58,6 +58,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
       navigationElement={
         <HeaderNavigation
           changeLogText={headerTranslate("navigation.changeLog")}
+          navigationLabelText={headerTranslate("navigation.ariaLabel")}
           packageText={headerTranslate("navigation.package")}
         />
       }
