@@ -1,5 +1,7 @@
-import { expect, within } from "storybook/test"
+import { expect, waitFor, within } from "storybook/test"
 
+import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
+import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
 import meta from "./Breadcrumb.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -117,5 +119,41 @@ export const TestForItemOrder: Story = {
     const canvas = within(canvasElement)
     const itemTexts = canvas.getAllByRole("listitem").map((element) => element.textContent)
     await expect(itemTexts).toStrictEqual(["@ts-items", "{packages-text}", "oxlint-config"])
+  },
+}
+
+export const TestForHoverStyle: Story = {
+  beforeEach: fixLightThemeForStorybook,
+  play: async (context) => {
+    const { canvasElement } = context
+    const userEvent = await getUserEventForStorybook()
+    const linkElement = within(canvasElement).getByRole("link", { name: "@ts-items" })
+    await waitFor(async () => {
+      await expect(linkElement).toHaveStyle({ color: "rgb(104, 115, 113)" })
+    })
+
+    await userEvent.hover(linkElement)
+    await waitFor(async () => {
+      await expect(linkElement).toHaveStyle({ color: "rgb(25, 90, 73)" })
+    })
+    await userEvent.unhover(linkElement)
+  },
+}
+
+export const TestForFocusVisibleStyle: Story = {
+  beforeEach: fixLightThemeForStorybook,
+  play: async (context) => {
+    const { canvasElement } = context
+    const userEvent = await getUserEventForStorybook()
+    const linkElement = within(canvasElement).getByRole("link", { name: "@ts-items" })
+    await waitFor(async () => {
+      await expect(linkElement).toHaveStyle({ color: "rgb(104, 115, 113)" })
+    })
+
+    await userEvent.tab()
+    await expect(linkElement).toHaveFocus()
+    await waitFor(async () => {
+      await expect(linkElement).toHaveStyle({ color: "rgb(25, 90, 73)" })
+    })
   },
 }

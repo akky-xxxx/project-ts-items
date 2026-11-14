@@ -9,7 +9,7 @@
   height: var(--header-height);
   position: sticky;
   top: 0;
-  transition: background-color var(--duration-theme-transition);
+  transition: background-color var(--duration-transition);
   z-index: 1;
 }
 

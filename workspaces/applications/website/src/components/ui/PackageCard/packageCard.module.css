@@ -4,9 +4,27 @@
   line-height: 1.9;
   padding: 26px;
   position: relative;
+  transition: background-color var(--duration-transition);
 
   &:has(:focus-visible) {
+    background-color: var(--color-background-hover);
     outline: 2px solid currentcolor;
+  }
+
+  @media (hover: hover) {
+    &:not(:hover, :has(:focus-visible)) {
+      background-color: var(--color-background);
+    }
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:has(:focus-visible)) {
+      background-color: var(--color-background);
+    }
   }
 }
 

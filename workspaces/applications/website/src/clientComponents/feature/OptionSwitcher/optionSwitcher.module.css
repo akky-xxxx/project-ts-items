@@ -21,7 +21,13 @@
   column-gap: 12px;
   display: flex;
   padding: 12px;
+  transition: background-color var(--duration-transition);
   white-space: nowrap;
+
+  &:has(:focus-visible) {
+    outline: 2px solid currentcolor;
+    outline-offset: -2px;
+  }
 
   &:has(:checked) {
     background-color: var(--color-background-accent);
@@ -30,11 +36,26 @@
 
   &:not(:has(:checked)) {
     cursor: pointer;
-  }
 
-  &:has(:focus-visible) {
-    outline: 2px solid currentcolor;
-    outline-offset: -2px;
+    &:has(:focus-visible) {
+      background-color: var(--color-background-hover);
+    }
+
+    @media (hover: hover) {
+      &:not(:hover, :has(:focus-visible)) {
+        background-color: var(--color-background);
+      }
+
+      &:hover {
+        background-color: var(--color-background-hover);
+      }
+    }
+
+    @media (hover: none) {
+      &:not(:has(:focus-visible)) {
+        background-color: var(--color-background);
+      }
+    }
   }
 
   & svg {

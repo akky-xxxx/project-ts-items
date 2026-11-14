@@ -4,3 +4,27 @@
     margin-inline: 1rem;
   }
 }
+
+.link {
+  transition: color var(--duration-transition);
+
+  &:focus-visible {
+    color: var(--color-text-hover);
+  }
+
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      color: var(--color-text);
+    }
+
+    &:hover {
+      color: var(--color-text-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      color: var(--color-text);
+    }
+  }
+}
