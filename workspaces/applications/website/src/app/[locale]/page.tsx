@@ -1,11 +1,31 @@
 import { getTranslations } from "next-intl/server"
 
+import { Home } from "../../components/page/Home/Home.tsx"
+import { buildPackageCardItems } from "../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
+
 import type { ReactNode } from "react"
+import {renderLineBreak} from "../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 const Page = async (): Promise<ReactNode> => {
-  const translate = await getTranslations("HomePage")
+  const [pageTranslate, packageTranslate, breadcrumbTranslate, packageCardTranslate] =
+    await Promise.all([
+      getTranslations("pages.home"),
+      getTranslations("packages"),
+      getTranslations("components.ui.breadcrumb"),
+      getTranslations("components.ui.packageCard"),
+    ])
+  const pageTitleText = pageTranslate("pageTitle")
 
-  return <div>{translate("greeting")}</div>
+  return (
+    <Home
+      breadcrumbItems={[]}
+      breadcrumbLabelText={breadcrumbTranslate("labelText")}
+      packageTitleText={pageTranslate("packageTitleText")}
+      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
+      pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
+      pageTitleText={pageTitleText}
+    />
+  )
 }
 
 export default Page
