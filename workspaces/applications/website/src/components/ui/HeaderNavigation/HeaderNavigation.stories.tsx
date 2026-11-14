@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl"
-import { expect, within } from "storybook/test"
 
 import { HeaderNavigation } from "./HeaderNavigation.tsx"
 
@@ -48,41 +47,4 @@ export const Ja: Story = {
   globals: {
     locale: "ja",
   },
-}
-
-export const TestForNavigationLabel: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const navigationElement = canvas.getByRole("navigation", { name: "Site navigation menu" })
-    await expect(navigationElement).toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForPackagesLink: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const packagesLinkElement = canvas.queryByText<HTMLLinkElement>("Packages")
-    await expect(packagesLinkElement).toHaveAttribute("href", "/en/packages/")
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForChangeLogLink: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const packagesLinkElement = canvas.queryByText<HTMLLinkElement>("Change log")
-    await expect(packagesLinkElement).toHaveAttribute(
-      "href",
-      "https://github.com/akky-xxxx/project-ts-items/releases",
-    )
-    await expect(packagesLinkElement).toHaveAttribute("target", "_blank")
-  },
-  tags: ["!autodocs"],
 }

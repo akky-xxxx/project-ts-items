@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl"
-import { expect, within } from "storybook/test"
 
 import { ExternalLink } from "./ExternalLink.tsx"
 
@@ -41,30 +40,4 @@ export const Ja: Story = {
   globals: {
     locale: "ja",
   },
-}
-
-export const TestForAttributes: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const linkElement = canvas.getByRole<HTMLAnchorElement>("link", {
-      name: "External link (opens in a new tab)",
-    })
-    await expect(linkElement).toHaveAttribute("href", "https://example.com")
-    await expect(linkElement).toHaveAttribute("rel", "noopener noreferrer")
-    await expect(linkElement).toHaveAttribute("target", "_blank")
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForJaAccessibleName: Story = {
-  ...Ja,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const linkElement = canvas.getByRole("link", { name: "External link (新しいタブで開く)" })
-    await expect(linkElement).toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
 }

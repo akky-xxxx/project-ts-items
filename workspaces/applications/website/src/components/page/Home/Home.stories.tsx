@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl"
-import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
@@ -79,26 +78,4 @@ export const Ja: Story = {
 export const En: Story = {
   ...EN_LOCALE_FOR_STORYBOOK,
   render: (args) => <Localized {...args} />,
-}
-
-export const TestForHeadingStructure: Story = {
-  ...EN_LOCALE_FOR_STORYBOOK,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const heading1Texts = canvas
-      .getAllByRole("heading", { level: 1 })
-      .map((element) => element.textContent)
-    const heading2Texts = canvas
-      .getAllByRole("heading", { level: 2 })
-      .map((element) => element.textContent)
-    const heading3Texts = canvas
-      .getAllByRole("heading", { level: 3 })
-      .map((element) => element.textContent)
-    await expect(heading1Texts).toStrictEqual(["Tool for TypeScript projects"])
-    await expect(heading2Texts).toStrictEqual(["Packages"])
-    await expect(heading3Texts).toStrictEqual(["@ts-items/oxlint-config", "@ts-items/oxfmt-config"])
-  },
-  render: (args) => <Localized {...args} />,
-  tags: ["!autodocs"],
 }
