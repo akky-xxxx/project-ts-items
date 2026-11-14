@@ -7,7 +7,6 @@ import type { ComponentProps, FC, ReactNode } from "react"
 import styles from "./home.module.css"
 
 type Props = {
-  breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
   breadcrumbLabelText: ComponentProps<typeof Breadcrumb>["labelText"]
   packageTitleText: string
   packages: ComponentProps<typeof PackageCardList>["packages"]
@@ -15,19 +14,16 @@ type Props = {
   pageTitleText: string
 }
 
+// トップページはパンくずのルートそのものなので、ルートより後ろの階層を持たない
+const BREADCRUMB_ITEMS: ComponentProps<typeof Breadcrumb>["items"] = []
+
 export const Home: FC<Props> = (props) => {
-  const {
-    breadcrumbItems,
-    breadcrumbLabelText,
-    packageTitleText,
-    packages,
-    pageDescriptionText,
-    pageTitleText,
-  } = props
+  const { breadcrumbLabelText, packageTitleText, packages, pageDescriptionText, pageTitleText } =
+    props
 
   return (
     <main className={styles.root}>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={BREADCRUMB_ITEMS} labelText={breadcrumbLabelText} />
 
       <div className={styles.heading1Wrapper}>
         <Heading headingTag="h1">{pageTitleText}</Heading>

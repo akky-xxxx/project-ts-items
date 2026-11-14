@@ -33,10 +33,6 @@ const meta = {
   component: Home,
 
   argTypes: {
-    breadcrumbItems: {
-      control: false,
-      description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
-    },
     breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     packageTitleText: { control: false, description: "パッケージタイトル(h2)" },
     packages: {
@@ -47,7 +43,6 @@ const meta = {
     pageTitleText: { control: false, description: "ページタイトル(h1)" },
   },
   args: {
-    breadcrumbItems: [],
     breadcrumbLabelText: "{breadcrumbLabelText}",
     packageTitleText: "{packageTitleText}",
     packages: [

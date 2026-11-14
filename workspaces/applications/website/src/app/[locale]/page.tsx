@@ -38,7 +38,6 @@ const Page = async (): Promise<ReactNode> => {
 
   return (
     <Home
-      breadcrumbItems={[]}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
       packageTitleText={pageTranslate("packageTitleText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
