@@ -15,6 +15,11 @@ const LANE_CLASS_NAMES = {
   2: styles.rootDouble,
 } as const satisfies Record<LaneNumber, string>
 
+const IS_DESCRIPTION_CLAMPED = {
+  1: false,
+  2: true,
+} as const satisfies Record<LaneNumber, boolean>
+
 export const PackageCardList: FC<Props> = (props) => {
   const { laneNumber, packages } = props
 
@@ -22,7 +27,10 @@ export const PackageCardList: FC<Props> = (props) => {
     <ul className={`${styles.root} ${LANE_CLASS_NAMES[laneNumber]}`}>
       {packages.map((packageProps) => (
         <li key={packageProps.innerLinkHref}>
-          <PackageCard {...packageProps} />
+          <PackageCard
+            {...packageProps}
+            isDescriptionClamped={IS_DESCRIPTION_CLAMPED[laneNumber]}
+          />
         </li>
       ))}
     </ul>

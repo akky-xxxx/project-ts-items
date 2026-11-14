@@ -11,7 +11,8 @@ const meta = {
   ...EN_LOCALE_FOR_STORYBOOK,
   argTypes: {
     items: {
-      description: "ルートより後ろの階層(最後の項目は現在のページとしてテキストで表示)",
+      description:
+        "ルートより後ろの階層(最後の項目は現在のページとしてテキストで表示。空配列の場合はルートを現在のページとしてテキストで表示)",
     },
     labelText: { description: "nav 要素のアクセシブルネーム" },
   },
@@ -61,6 +62,19 @@ export const TestForRootLink: Story = {
     const canvas = within(canvasElement)
     const rootLinkElement = canvas.getByRole("link", { name: "@ts-items" })
     await expect(rootLinkElement).toHaveAttribute("href", "/en/")
+  },
+  tags: ["!autodocs"],
+}
+
+export const TestForEmptyItems: Story = {
+  args: {
+    items: [],
+  },
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    await expect(canvas.getByText("@ts-items")).toHaveAttribute("aria-current", "page")
+    await expect(canvas.queryByRole("link", { name: "@ts-items" })).not.toBeInTheDocument()
   },
   tags: ["!autodocs"],
 }

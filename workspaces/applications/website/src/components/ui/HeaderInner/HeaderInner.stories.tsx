@@ -9,8 +9,14 @@ const meta = {
   component: HeaderInner,
 
   argTypes: {
-    navigationElement: { control: false },
-    toolElement: { control: false },
+    navigationElement: {
+      control: false,
+      description: "ヘッダーのナビゲーション(HeaderNavigation を想定)",
+    },
+    toolElement: {
+      control: false,
+      description: "テーマ・言語の切り替えなどのツール(HeaderTool を想定)",
+    },
   },
   args: {
     navigationElement: <DummyForStorybook label="navigationElement" />,

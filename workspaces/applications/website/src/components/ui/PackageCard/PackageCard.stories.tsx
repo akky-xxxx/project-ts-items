@@ -40,6 +40,7 @@ const meta = {
     },
     headingTag: { description: "パッケージ名の見出し要素(h2〜h6)" },
     innerLinkHref: { description: "カード全体のリンク先(サイト内のパス)" },
+    isDescriptionClamped: { description: "説明を2行で省略するか" },
     linkText: {
       control: false,
       description: "リンクであることを示す装飾用テキスト(読み上げ対象外)",
