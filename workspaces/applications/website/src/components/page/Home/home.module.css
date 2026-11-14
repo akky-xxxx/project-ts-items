@@ -1,0 +1,27 @@
+.root {
+  margin-inline: auto;
+  max-width: var(--contents-max-width);
+  padding-top: 36px;
+}
+
+.heading1Wrapper {
+  margin: 18px auto 30px;
+}
+
+.description {
+  margin-block: 18px 0;
+}
+
+.section {
+  border-top: 1px solid var(--color-border);
+  margin-top: 44px;
+  padding-block: 24px;
+}
+
+.h2 {
+  font-size: 1.8rem;
+}
+
+.packageCardListWrapper {
+  margin-top: 20px;
+}
