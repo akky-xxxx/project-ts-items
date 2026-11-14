@@ -21,7 +21,7 @@ const Localized: FC<ComponentProps<typeof Home>> = (props) => {
       {...props}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
       packageTitleText={pageTranslate("packageTitleText")}
-      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
+      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
       pageTitleText={pageTitleText}
     />

@@ -23,7 +23,7 @@ const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
       {...props}
       breadcrumbItems={breadcrumbItems}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
-      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate })}
+      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h2")}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitleText={pageTitleText}
     />

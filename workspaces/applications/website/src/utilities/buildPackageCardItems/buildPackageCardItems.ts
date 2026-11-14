@@ -1,6 +1,7 @@
 import { renderLineBreak } from "../renderLineBreak/renderLineBreak.tsx"
 
 import type { PackageCardList } from "../../components/layout/PackageCardList/PackageCardList.tsx"
+import type { PackageCard } from "../../components/ui/PackageCard/PackageCard.tsx"
 import type { createTranslator, Messages } from "next-intl"
 import type { ComponentProps } from "react"
 
@@ -9,12 +10,16 @@ type Translators = {
   packageTranslate: ReturnType<typeof createTranslator<Messages, "packages">>
 }
 
+type HeadingTag = ComponentProps<typeof PackageCard>["headingTag"]
+
 /**
  * @description
- * パッケージ一覧ページに表示する PackageCard の props を、translator から組み立てる
+ * パッケージ一覧に表示する PackageCard の props を、translator から組み立てる
+ * @param headingTag - 各カードのパッケージ名に使う見出しの種類(表示するページの見出し構造に合わせる)
  */
 export const buildPackageCardItems = (
   translators: Translators,
+  headingTag: HeadingTag,
 ): ComponentProps<typeof PackageCardList>["packages"] => {
   const { packageCardTranslate, packageTranslate } = translators
   const linkText = packageCardTranslate("linkText")
@@ -22,7 +27,7 @@ export const buildPackageCardItems = (
   return [
     {
       descriptionNode: packageTranslate.rich("oxlintConfig.description", { br: renderLineBreak }),
-      headingTag: "h2",
+      headingTag,
       innerLinkHref: "/packages/oxlint-config",
       linkText,
       packageNameText: "@ts-items/oxlint-config",
@@ -30,7 +35,7 @@ export const buildPackageCardItems = (
     },
     {
       descriptionNode: packageTranslate.rich("oxfmtConfig.description", { br: renderLineBreak }),
-      headingTag: "h2",
+      headingTag,
       innerLinkHref: "/packages/oxfmt-config",
       linkText,
       packageNameText: "@ts-items/oxfmt-config",

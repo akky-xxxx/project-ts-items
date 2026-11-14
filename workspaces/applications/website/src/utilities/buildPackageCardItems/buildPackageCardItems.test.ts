@@ -7,15 +7,18 @@ import { buildPackageCardItems } from "./buildPackageCardItems.ts"
 
 const messages = toLocaleMessages(siteDictionary, "en")
 
-const buildItems = () =>
-  buildPackageCardItems({
-    packageCardTranslate: createTranslator({
-      locale: "en",
-      messages,
-      namespace: "components.ui.packageCard",
-    }),
-    packageTranslate: createTranslator({ locale: "en", messages, namespace: "packages" }),
-  })
+const buildItems = (headingTag: Parameters<typeof buildPackageCardItems>[1] = "h2") =>
+  buildPackageCardItems(
+    {
+      packageCardTranslate: createTranslator({
+        locale: "en",
+        messages,
+        namespace: "components.ui.packageCard",
+      }),
+      packageTranslate: createTranslator({ locale: "en", messages, namespace: "packages" }),
+    },
+    headingTag,
+  )
 
 describe("buildPackageCardItems", () => {
   it("oxlint-config と oxfmt-config の順に2件を返す", () => {
@@ -32,8 +35,12 @@ describe("buildPackageCardItems", () => {
     ])
   })
 
-  it("見出しを h2 にする", () => {
-    expect(buildItems().map((item) => item.headingTag)).toStrictEqual(["h2", "h2"])
+  it("h2 を指定すると各カードの見出しを h2 にする", () => {
+    expect(buildItems("h2").map((item) => item.headingTag)).toStrictEqual(["h2", "h2"])
+  })
+
+  it("h3 を指定すると各カードの見出しを h3 にする", () => {
+    expect(buildItems("h3").map((item) => item.headingTag)).toStrictEqual(["h3", "h3"])
   })
 
   it("linkText に翻訳済みの文言を渡す", () => {
