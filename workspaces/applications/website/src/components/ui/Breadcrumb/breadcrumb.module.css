@@ -1,0 +1,8 @@
+.ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-block: 0;
+  overflow-wrap: anywhere;
+  padding-left: 0;
+}

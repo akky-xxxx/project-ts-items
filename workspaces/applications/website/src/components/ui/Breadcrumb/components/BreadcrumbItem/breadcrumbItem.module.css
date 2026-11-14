@@ -1,0 +1,6 @@
+.root + .root {
+  &::before {
+    content: "/" / "";
+    margin-inline: 1rem;
+  }
+}
