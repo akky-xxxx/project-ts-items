@@ -23,6 +23,16 @@
   padding: 12px;
   white-space: nowrap;
 
+  transition: background-color var(--duration-transition);
+
+  &:not(:hover) {
+    background-color: var(--color-background);
+  }
+
+  &:hover {
+    background-color: var(--color-background-hover);
+  }
+
   &:has(:checked) {
     background-color: var(--color-background-accent);
     color: currentcolor;

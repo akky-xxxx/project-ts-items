@@ -4,3 +4,15 @@
     margin-inline: 1rem;
   }
 }
+
+.link {
+  transition: color var(--duration-theme-transition);
+
+  &:not(:hover) {
+    color: var(--color-text);
+  }
+
+  &:hover {
+    color: var(--color-text-hover);
+  }
+}

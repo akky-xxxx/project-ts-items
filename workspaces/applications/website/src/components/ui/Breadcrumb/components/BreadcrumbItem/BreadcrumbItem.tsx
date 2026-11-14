@@ -21,7 +21,11 @@ const buildInnerNode = (props: ComponentProps<typeof BreadcrumbItem>): ReactNode
     return <span>{children}</span>
   }
 
-  return <Link href={href}>{children}</Link>
+  return (
+    <Link href={href} className={styles.link}>
+      {children}
+    </Link>
+  )
 }
 
 export const BreadcrumbItem: FcWithChildren<Props> = (props) => (

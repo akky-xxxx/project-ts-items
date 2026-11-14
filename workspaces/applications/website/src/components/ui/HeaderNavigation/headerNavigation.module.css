@@ -7,5 +7,13 @@
 }
 
 .link {
-  color: var(--color-text);
+  transition: color var(--duration-theme-transition);
+
+  &:not(:hover) {
+    color: var(--color-text);
+  }
+
+  &:hover {
+    color: var(--color-text-hover);
+  }
 }

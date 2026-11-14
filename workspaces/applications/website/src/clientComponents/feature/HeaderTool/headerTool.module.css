@@ -6,25 +6,54 @@
 
 .languageButton {
   align-items: center;
-  background-color: transparent;
   border: 0;
+  border-radius: 4px;
   column-gap: 6px;
   cursor: pointer;
   display: flex;
-  padding: 0;
+  padding: 11px;
+  transition: background-color var(--duration-transition);
+
+  &:not(:hover) {
+    background-color: var(--color-background);
+  }
+
+  &:hover {
+    background-color: var(--color-background-hover);
+  }
 }
 
 .themeButton {
-  background-color: transparent;
   border: 0;
+  border-radius: 4px;
   cursor: pointer;
   display: grid;
-  padding: 0;
+  padding: 11px;
   place-items: center;
+  transition: background-color var(--duration-transition);
+
+  &:not(:hover) {
+    background-color: var(--color-background);
+  }
+
+  &:hover {
+    background-color: var(--color-background-hover);
+  }
 }
 
 .anchor {
   align-items: center;
+  border-radius: 4px;
   color: var(--color-text);
   display: inline-flex;
+  padding: 11px;
+  transition: background-color var(--duration-transition);
+
+  &:not(:hover) {
+    background-color: var(--color-background);
+  }
+
+  &:hover {
+    background-color: var(--color-background-hover);
+  }
 }
