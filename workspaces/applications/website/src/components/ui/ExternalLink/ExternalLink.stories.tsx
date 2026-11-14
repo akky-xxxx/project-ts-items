@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof ExternalLink>> = (props) => {
-  const translate = useTranslations("externalLink")
+  const translate = useTranslations("components.ui.externalLink")
 
   return <ExternalLink {...props} newTabText={translate("newTab")} />
 }

@@ -21,12 +21,6 @@ export const siteDictionary = {
     ui: UI,
   },
   docsLayout: DOCS_LAYOUT,
-  externalLink: {
-    newTab: {
-      en: "opens in a new tab",
-      ja: "新しいタブで開く",
-    },
-  },
   header: HEADER,
   packages: PACKAGES,
   pages: PAGES,
