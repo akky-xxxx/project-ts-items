@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
-import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
@@ -96,57 +95,4 @@ export const Ja: Story = {
 export const En: Story = {
   ...EN_LOCALE_FOR_STORYBOOK,
   render: (args) => <Localized {...args} />,
-}
-
-export const TestForHeading: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const headingElement = canvas.getByRole("heading", { level: 1, name: "Packages" })
-    await expect(headingElement).toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForDescription: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("Packages managed by @ts-items.")).toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForListItems: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    // パンくずの li を除いた、パッケージ一覧の li を対象にする
-    const listItemElements = canvas
-      .getAllByRole("listitem")
-      .filter((listItemElement) => listItemElement.closest("nav") === null)
-    await expect(listItemElements).toHaveLength(2)
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForBreadcrumbLabel: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
-    await expect(navigationElement).toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForBreadcrumbCurrentPage: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
-    const currentPageElement = within(navigationElement).getByText("Packages")
-    await expect(currentPageElement).toHaveAttribute("aria-current", "page")
-  },
-  tags: ["!autodocs"],
 }

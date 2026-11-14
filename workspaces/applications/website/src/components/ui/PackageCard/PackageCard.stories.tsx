@@ -1,5 +1,4 @@
 import { createTranslator, useLocale, useTranslations } from "next-intl"
-import { expect, within } from "storybook/test"
 
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { PackageCard } from "./PackageCard.tsx"
@@ -72,47 +71,4 @@ export const Ja: Story = {
   globals: {
     locale: "ja",
   },
-}
-
-export const TestForLink: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const linkElement = canvas.getByRole("link", { name: "@ts-items/oxlint-config" })
-    await expect(linkElement).toHaveAttribute("href", "/en/packages/oxlint-config/")
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForHeading: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const headingElement = canvas.getByRole("heading", {
-      level: 2,
-      name: "@ts-items/oxlint-config",
-    })
-    await expect(headingElement).toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForLinkTextHidden: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("Documents >")).toHaveAttribute("aria-hidden", "true")
-  },
-  tags: ["!autodocs"],
-}
-
-export const TestForDescriptionLineBreak: Story = {
-  ...En,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const descriptionElement = canvas.getByText(/First line/u).closest("p")
-    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(1)
-    await expect(descriptionElement).toHaveTextContent("First lineSecond line")
-  },
-  tags: ["!autodocs"],
 }

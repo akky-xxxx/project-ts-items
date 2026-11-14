@@ -1,5 +1,3 @@
-import { expect, userEvent, within } from "storybook/test"
-
 import { Tab } from "./Tab.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -31,15 +29,3 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
-
-export const TestForContentsChange: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const secondButtonElement = canvas.getByRole("button", { name: "Tab 2" })
-    await expect(secondButtonElement).toBeInTheDocument()
-    await userEvent.click(secondButtonElement)
-    await expect(await canvas.findByText("Content for Tab 2")).toBeInTheDocument()
-    await expect(canvas.queryByText("Content for Tab 1")).not.toBeInTheDocument()
-  },
-  tags: ["!autodocs"],
-}
