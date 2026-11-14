@@ -1,7 +1,11 @@
 .root {
   margin-inline: auto;
   max-width: var(--contents-max-width);
-  padding-top: 36px;
+  padding-block: 36px;
+}
+
+.heading1Wrapper {
+  margin-top: 30px;
 }
 
 .description {
