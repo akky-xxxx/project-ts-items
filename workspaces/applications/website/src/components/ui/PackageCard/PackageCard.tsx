@@ -8,15 +8,26 @@ type Props = {
   descriptionNode: ReactNode
   headingTag: "h2" | "h3" | "h4" | "h5" | "h6"
   innerLinkHref: `/${string}`
+  isDescriptionClamped?: boolean
   linkText: string
   packageNameText: string
   versionText: string
 }
 
 export const PackageCard: FC<Props> = (props) => {
-  const { descriptionNode, headingTag, innerLinkHref, linkText, packageNameText, versionText } =
-    props
+  const {
+    descriptionNode,
+    headingTag,
+    innerLinkHref,
+    isDescriptionClamped = false,
+    linkText,
+    packageNameText,
+    versionText,
+  } = props
   const HeadingTag = headingTag
+  const descriptionClassName = isDescriptionClamped
+    ? `${styles.description} ${styles.descriptionClamped}`
+    : styles.description
 
   return (
     <div className={styles.root}>
@@ -31,7 +42,7 @@ export const PackageCard: FC<Props> = (props) => {
       </header>
 
       <div className={styles.body}>
-        <p className={styles.description}>{descriptionNode}</p>
+        <p className={descriptionClassName}>{descriptionNode}</p>
 
         <span aria-hidden="true" className={styles.linkText}>
           {linkText} &gt;

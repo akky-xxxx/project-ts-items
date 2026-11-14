@@ -58,6 +58,14 @@
   margin-block: 0;
 }
 
+.descriptionClamped {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .linkText {
   color: var(--color-text);
+  flex-shrink: 0;
 }
