@@ -14,7 +14,7 @@ export const PAGES = {
     },
     pageTitle: {
       en: "Tool for TypeScript projects",
-      ja: "TypeScript プロジェクトのためのツール ",
+      ja: "TypeScript プロジェクトのためのツール",
     },
   },
   packages: {
