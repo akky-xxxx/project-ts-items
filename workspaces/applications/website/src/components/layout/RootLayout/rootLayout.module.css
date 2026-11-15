@@ -18,6 +18,15 @@
   isolation: isolate;
 }
 
+/* DocsLayout はビューポートに収め、各カラムを内部でスクロールさせる(DocsLayout 側の data-fits-viewport と対) */
+.root:has([data-fits-viewport]) {
+  height: 100dvh;
+
+  & .mainWrapper {
+    min-height: 0;
+  }
+}
+
 .footer {
   border-top: 1px solid var(--color-border);
   font-size: 1.2rem;

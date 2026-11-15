@@ -16,7 +16,6 @@ const meta = {
     newTabText: { description: "外部リンクが新しいタブで開くことを伝える、視覚的には隠した文字列" },
     npmHref: { description: "npm のパッケージページの URL" },
     packagesSelectorElement: { control: false, description: "パッケージの切り替え UI" },
-    serviceNameText: { description: "npm リンクの文字列" },
     versionText: { description: "表示するパッケージのバージョン" },
   },
   args: {
@@ -26,7 +25,6 @@ const meta = {
     newTabText: "{newTabText}",
     npmHref: "https://example.com",
     packagesSelectorElement: <DummyForStorybook label="packagesSelectorElement" />,
-    serviceNameText: "{serviceNameText}",
     versionText: "v1.0.0",
   },
 } satisfies Meta<typeof DocsSidebar>

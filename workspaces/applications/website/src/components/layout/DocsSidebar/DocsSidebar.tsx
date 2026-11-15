@@ -12,7 +12,6 @@ type Props = {
   newTabText: string
   npmHref: ComponentProps<typeof ExternalLink>["href"]
   packagesSelectorElement: ReactElement
-  serviceNameText: string
   versionText: string
 }
 
@@ -24,13 +23,12 @@ export const DocsSidebar: FC<Props> = (props) => {
     newTabText,
     npmHref,
     packagesSelectorElement,
-    serviceNameText,
     versionText,
   } = props
 
   return (
     <div className={styles.root}>
-      {packagesSelectorElement}
+      <div className={styles.packagesSelectorWrapper}>{packagesSelectorElement}</div>
 
       <div className={styles.version}>
         <span>{versionText}</span>
@@ -38,6 +36,8 @@ export const DocsSidebar: FC<Props> = (props) => {
       </div>
 
       <nav aria-label={navigationLabelText}>{docsNavigationUlElement}</nav>
+
+      <hr className={styles.hr} />
 
       <ul className={styles.ul}>
         <li>
@@ -48,7 +48,7 @@ export const DocsSidebar: FC<Props> = (props) => {
 
         <li>
           <ExternalLink href={npmHref} newTabText={newTabText}>
-            {serviceNameText}
+            npm
           </ExternalLink>
         </li>
       </ul>
