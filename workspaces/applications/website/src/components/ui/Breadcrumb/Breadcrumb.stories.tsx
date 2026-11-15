@@ -1,3 +1,4 @@
+import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { Breadcrumb } from "./Breadcrumb.tsx"
 
@@ -21,7 +22,7 @@ const meta = {
         text: "{packages-text}",
       },
       {
-        text: "oxlint-config",
+        text: PACKAGE_NAMES.oxlintConfig,
       },
     ],
     labelText: "{labelText}",

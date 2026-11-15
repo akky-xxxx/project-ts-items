@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 
+import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import { buildPackageCardItems } from "../../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
@@ -52,17 +54,17 @@ const meta = {
       {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
-        innerLinkHref: "/packages/oxfmt-config",
+        innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}`,
         linkText: "{linkText}",
-        packageNameText: "@ts-items/oxfmt-config",
+        packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
         versionText: "v1.0.0",
       },
       {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
-        innerLinkHref: "/packages/oxlint-config",
+        innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}`,
         linkText: "{linkText}",
-        packageNameText: "@ts-items/oxlint-config",
+        packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
         versionText: "v1.0.0",
       },
     ],
