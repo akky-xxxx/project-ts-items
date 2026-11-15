@@ -28,7 +28,7 @@ export const DocsSidebar: FC<Props> = (props) => {
 
   return (
     <div className={styles.root}>
-      {packagesSelectorElement}
+      <div className={styles.packagesSelectorWrapper}>{packagesSelectorElement}</div>
 
       <div className={styles.version}>
         <span>{versionText}</span>

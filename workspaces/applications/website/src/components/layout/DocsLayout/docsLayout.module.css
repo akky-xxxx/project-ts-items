@@ -9,9 +9,10 @@
 }
 
 .docsSidebar {
+  border-right: 1px solid var(--color-border);
   max-height: calc(100dvh - var(--header-height) - var(--footer-height));
   overflow-y: auto;
-  padding: 24px;
+  padding-block: 24px;
   position: sticky;
   top: var(--header-height);
 }

@@ -3,9 +3,15 @@
   row-gap: 28px;
 }
 
+.packagesSelectorWrapper {
+  display: grid;
+  padding-inline: 12px;
+}
+
 .version {
   display: flex;
   justify-content: space-between;
+  padding-inline: 12px;
 }
 
 .ul {
@@ -14,6 +20,6 @@
 
   /* root の row-gap と合わせて、リンク一覧の上だけ 56px 空ける */
   margin-block: 28px 0;
-  padding-left: 0;
+  padding-inline: 12px;
   row-gap: 14px;
 }
