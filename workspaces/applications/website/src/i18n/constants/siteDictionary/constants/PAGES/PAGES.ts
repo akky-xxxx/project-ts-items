@@ -1,3 +1,4 @@
+import { PACKAGE_NAMES } from "../../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 
 import type { Dictionary } from "../../../../types/Dictionary/Dictionary.ts"
@@ -33,6 +34,24 @@ export const PAGES = {
     pageTitle: {
       en: "Introduction",
       ja: "はじめに",
+    },
+  },
+  oxlintConfigQuickstart: {
+    installTitle: {
+      en: "Installation",
+      ja: "インストール",
+    },
+    pageDescription: {
+      en: `This page explains how to install and set up ${PACKAGE_NAMES.oxlintConfig}.`,
+      ja: `このページでは ${PACKAGE_NAMES.oxlintConfig} の導入・設定方法を紹介します`,
+    },
+    pageTitle: {
+      en: "Quickstart",
+      ja: "クイックスタート",
+    },
+    setupTitle: {
+      en: "Setup",
+      ja: "設定方法",
     },
   },
   packages: {
