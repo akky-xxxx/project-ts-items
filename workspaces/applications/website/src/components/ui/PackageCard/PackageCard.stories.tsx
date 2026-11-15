@@ -1,5 +1,7 @@
 import { createTranslator, useLocale, useTranslations } from "next-intl"
 
+import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { PackageCard } from "./PackageCard.tsx"
 
@@ -50,9 +52,9 @@ const meta = {
   args: {
     descriptionNode: "{descriptionNode}",
     headingTag: "h2",
-    innerLinkHref: "/packages/oxlint-config",
+    innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
     linkText: "{linkText}",
-    packageNameText: "@ts-items/oxlint-config",
+    packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
     versionText: "v1.0.0",
   },
   render: (args) => <Localized {...args} />,

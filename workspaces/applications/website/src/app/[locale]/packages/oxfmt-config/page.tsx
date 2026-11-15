@@ -1,5 +1,7 @@
+import { PACKAGE_NAMES } from "../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+
 import type { FC } from "react"
 
-const page: FC = () => "oxfmt-config"
+const page: FC = () => PACKAGE_NAMES.oxfmtConfig
 
 export default page

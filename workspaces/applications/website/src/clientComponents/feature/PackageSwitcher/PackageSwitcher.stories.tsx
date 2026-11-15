@@ -1,3 +1,4 @@
+import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import { PackageSwitcher } from "./PackageSwitcher.tsx"
@@ -11,7 +12,7 @@ const meta = {
     nextjs: {
       navigation: {
         // 表示中のパッケージ名は pathname から求める
-        pathname: "/packages/oxlint-config/",
+        pathname: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
       },
     },
   },

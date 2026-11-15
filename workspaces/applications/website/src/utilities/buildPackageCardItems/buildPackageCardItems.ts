@@ -1,3 +1,5 @@
+import { PACKAGE_NAMES } from "../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PROJECT_NAME } from "../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../renderLineBreak/renderLineBreak.tsx"
 
 import type { PackageCardList } from "../../components/layout/PackageCardList/PackageCardList.tsx"
@@ -28,17 +30,17 @@ export const buildPackageCardItems = (
     {
       descriptionNode: packageTranslate.rich("oxlintConfig.description", { br: renderLineBreak }),
       headingTag,
-      innerLinkHref: "/packages/oxlint-config",
+      innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
       linkText,
-      packageNameText: "@ts-items/oxlint-config",
+      packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
       versionText: "v1.0.0", // TODO: api で取得した値に置き換える
     },
     {
       descriptionNode: packageTranslate.rich("oxfmtConfig.description", { br: renderLineBreak }),
       headingTag,
-      innerLinkHref: "/packages/oxfmt-config",
+      innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
       linkText,
-      packageNameText: "@ts-items/oxfmt-config",
+      packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
       versionText: "v1.0.0", // TODO: api で取得した値に置き換える
     },
   ]
