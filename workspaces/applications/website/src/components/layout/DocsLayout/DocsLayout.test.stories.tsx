@@ -14,14 +14,19 @@ export default testMeta
 
 type Story = StoryObj<typeof testMeta>
 
-const expectWithinVisibleArea = async (element: HTMLElement, headerElement: HTMLElement) => {
+const expectBetweenHeaderAndFooter = async (element: HTMLElement, canvasElement: HTMLElement) => {
+  const canvas = within(canvasElement)
   const { bottom, top } = element.getBoundingClientRect()
-  await expect(top).toBeGreaterThanOrEqual(headerElement.getBoundingClientRect().bottom)
-  await expect(bottom).toBeLessThanOrEqual(window.innerHeight)
+  await expect(top).toBeGreaterThanOrEqual(
+    canvas.getByRole("banner").getBoundingClientRect().bottom,
+  )
+  await expect(bottom).toBeLessThanOrEqual(
+    canvas.getByRole("contentinfo").getBoundingClientRect().top,
+  )
 }
 
 /**
- * 列ごと sticky でスクロールするのは docsSidebarElement を囲む要素のため、その要素を返す
+ * 列ごとスクロールするのは docsSidebarElement を囲む要素のため、その要素を返す
  */
 const getDocsSidebarColumnElement = (canvasElement: HTMLElement) => {
   const docsSidebarNavigationElement = within(canvasElement).getByRole("navigation", {
@@ -75,35 +80,20 @@ export const TestForLandmarksWithoutToc: Story = {
   },
 }
 
-export const TestForStickyColumnsBelowHeader: Story = {
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    canvas.getByRole("main").scrollIntoView({ block: "end" })
-
-    const headerElement = canvas.getByRole("banner")
-    await expectWithinVisibleArea(getDocsSidebarColumnElement(canvasElement), headerElement)
-    await expectWithinVisibleArea(canvas.getByRole("complementary"), headerElement)
-  },
-}
-
 /**
- * ページ最下部では sticky の列が grid の末尾に押し上げられ、上端がヘッダーの下に潜る(sticky の仕様として許容する)。
- * ここでは列が footer に重ならないことを検証する
+ * 各列は内部でスクロールし、ページ(window)自体はスクロールしないことを検証する
  */
-export const TestForStickyColumnsAboveFooter: Story = {
+export const TestForColumnsFitBetweenHeaderAndFooter: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    window.scrollTo({ top: document.documentElement.scrollHeight })
 
-    const footerTop = canvas.getByRole("contentinfo").getBoundingClientRect().top
-    await expect(
-      getDocsSidebarColumnElement(canvasElement).getBoundingClientRect().bottom,
-    ).toBeLessThanOrEqual(footerTop)
-    await expect(
-      canvas.getByRole("complementary").getBoundingClientRect().bottom,
-    ).toBeLessThanOrEqual(footerTop)
+    await expectBetweenHeaderAndFooter(getDocsSidebarColumnElement(canvasElement), canvasElement)
+    await expectBetweenHeaderAndFooter(canvas.getByRole("main"), canvasElement)
+    await expectBetweenHeaderAndFooter(canvas.getByRole("complementary"), canvasElement)
+
+    const { clientHeight, scrollHeight } = document.documentElement
+    await expect(scrollHeight).toBeLessThanOrEqual(clientHeight)
   },
 }
 
