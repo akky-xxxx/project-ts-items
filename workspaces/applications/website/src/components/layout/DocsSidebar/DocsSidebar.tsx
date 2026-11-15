@@ -37,6 +37,8 @@ export const DocsSidebar: FC<Props> = (props) => {
 
       <nav aria-label={navigationLabelText}>{docsNavigationUlElement}</nav>
 
+      <hr className={styles.hr} />
+
       <ul className={styles.ul}>
         <li>
           <ExternalLink href={GITHUB_REPOSITORY_URL} newTabText={newTabText}>
