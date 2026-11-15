@@ -50,8 +50,11 @@ export const TestForLandmarks: Story = {
     })
     await expect(docsSidebarNavigationElement).toHaveTextContent("{docsSidebarElement0}")
 
-    const mainElement = within(canvas.getByRole("main"))
-    await expect(mainElement.getByText("{children0}")).toBeInTheDocument()
+    const mainElement = canvas.getByRole("main")
+    await expect(within(mainElement).getByText("{children0}")).toBeInTheDocument()
+    // 内部でスクロールする main は、キーボードでスクロールできるようフォーカスを受け取れる
+    mainElement.focus()
+    await expect(mainElement).toHaveFocus()
 
     const complementaryElement = within(canvas.getByRole("complementary"))
     const tocNavigationElement = within(
