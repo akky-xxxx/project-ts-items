@@ -89,26 +89,23 @@ export const TestForFocusVisibleStyle: Story = {
 
 /**
  * タッチ端末(hover: none)では、hover しても文字色が変わらない(タップ後に hover の見た目が残らない)。
- * CDP のタッチエミュレーションで hover: none を再現する(Emulation.setEmulatedMedia の hover は反映されない)
+ * タグ touch により、hasTouch で作った browser context(vitest の storybook-touch project)で実行して hover: none を再現する
+ * (CDP のタッチエミュレーションは Linux の Chromium で無効化しても hover: none が戻らず、後続のテストに残るため使わない)
  */
 export const TestForTouchDeviceHoverStyle: Story = {
   ...En,
   beforeEach: fixLightThemeForStorybook,
   play: async (context) => {
     const { canvasElement } = context
-    const { cdp, userEvent } = await import("vitest/browser")
-    await cdp().send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 1 })
-    try {
-      await expect(globalThis.matchMedia("(hover: none)").matches).toBe(true)
-      const linkElement = within(canvasElement).getByRole("link", { name: "Packages" })
-      await userEvent.hover(linkElement)
-      await expect(linkElement.matches(":hover")).toBe(true)
-      // 色が変わる場合は transition が始まるため、実行中の transition が無いことで変化が無いことを確かめる
-      await expect(linkElement.getAnimations()).toHaveLength(0)
-      await expect(linkElement).toHaveStyle({ color: "rgb(104, 115, 113)" })
-      await userEvent.unhover(linkElement)
-    } finally {
-      await cdp().send("Emulation.setTouchEmulationEnabled", { enabled: false })
-    }
+    const { userEvent } = await import("vitest/browser")
+    await expect(globalThis.matchMedia("(hover: none)").matches).toBe(true)
+    const linkElement = within(canvasElement).getByRole("link", { name: "Packages" })
+    await userEvent.hover(linkElement)
+    await expect(linkElement.matches(":hover")).toBe(true)
+    // 色が変わる場合は transition が始まるため、実行中の transition が無いことで変化が無いことを確かめる
+    await expect(linkElement.getAnimations()).toHaveLength(0)
+    await expect(linkElement).toHaveStyle({ color: "rgb(104, 115, 113)" })
+    await userEvent.unhover(linkElement)
   },
+  tags: ["touch"],
 }
