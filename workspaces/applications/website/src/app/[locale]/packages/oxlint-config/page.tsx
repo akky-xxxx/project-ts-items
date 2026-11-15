@@ -8,7 +8,7 @@ import { routing } from "../../../../i18n/constants/routing/routing.ts"
 import { renderLineBreak } from "../../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { Metadata } from "next"
-import type { FC } from "react"
+import type { ReactNode } from "react"
 
 type Props = PageProps<"/[locale]/packages/oxlint-config">
 
@@ -20,12 +20,13 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   const translate = await getTranslations({ locale, namespace: "pages.oxlintConfig" })
 
   return {
+    // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
     description: translate.markup("pageDescription", { br: () => " " }),
     title: translate("pageTitle"),
   }
 }
 
-const Page: FC = async () => {
+const Page = async (): Promise<ReactNode> => {
   const [pageTranslate, packagesPageTranslate, breadcrumbTranslate] = await Promise.all([
     getTranslations("pages.oxlintConfig"),
     getTranslations("pages.packages"),
