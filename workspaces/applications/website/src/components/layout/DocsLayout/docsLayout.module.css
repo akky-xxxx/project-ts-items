@@ -9,7 +9,7 @@
 }
 
 .docsSidebar {
-  max-height: calc(100dvh - var(--header-height));
+  max-height: calc(100dvh - var(--header-height) - var(--footer-height));
   overflow-y: auto;
   padding: 24px;
   position: sticky;
@@ -17,12 +17,14 @@
 }
 
 .main {
+  max-height: calc(100dvh - var(--header-height) - var(--footer-height));
+  min-height: calc(100dvh - var(--header-height) - var(--footer-height));
   overflow-wrap: anywhere;
   padding: 24px 64px 48px;
 }
 
 .toc {
-  max-height: calc(100dvh - var(--header-height));
+  max-height: calc(100dvh - var(--header-height) - var(--footer-height));
   overflow-y: auto;
   padding-left: 16px;
   padding-right: 32px;
