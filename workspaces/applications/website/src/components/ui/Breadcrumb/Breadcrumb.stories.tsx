@@ -18,7 +18,7 @@ const meta = {
   args: {
     items: [
       {
-        href: "/packages",
+        href: "/packages/",
         text: "{packages-text}",
       },
       {

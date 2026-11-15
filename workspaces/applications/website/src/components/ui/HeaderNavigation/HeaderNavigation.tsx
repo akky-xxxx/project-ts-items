@@ -19,7 +19,7 @@ export const HeaderNavigation: FC<Props> = (props) => {
     <nav aria-label={navigationLabelText}>
       <ul className={styles.ul}>
         <li>
-          <Link className={styles.link} href="/packages">
+          <Link className={styles.link} href="/packages/">
             {packageText}
           </Link>
         </li>

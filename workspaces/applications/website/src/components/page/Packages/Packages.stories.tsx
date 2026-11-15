@@ -54,7 +54,7 @@ const meta = {
       {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
-        innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}`,
+        innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
         linkText: "{linkText}",
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
         versionText: "v1.0.0",
@@ -62,7 +62,7 @@ const meta = {
       {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
-        innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}`,
+        innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
         linkText: "{linkText}",
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
         versionText: "v1.0.0",

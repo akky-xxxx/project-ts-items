@@ -30,7 +30,7 @@ export const buildPackageCardItems = (
     {
       descriptionNode: packageTranslate.rich("oxlintConfig.description", { br: renderLineBreak }),
       headingTag,
-      innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}`,
+      innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
       linkText,
       packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
       versionText: "v1.0.0", // TODO: api で取得した値に置き換える
@@ -38,7 +38,7 @@ export const buildPackageCardItems = (
     {
       descriptionNode: packageTranslate.rich("oxfmtConfig.description", { br: renderLineBreak }),
       headingTag,
-      innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}`,
+      innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
       linkText,
       packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
       versionText: "v1.0.0", // TODO: api で取得した値に置き換える

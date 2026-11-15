@@ -30,8 +30,8 @@ describe("buildPackageCardItems", () => {
 
   it("各パッケージの詳細ページへのリンク先を返す", () => {
     expect(buildItems().map((item) => item.innerLinkHref)).toStrictEqual([
-      "/packages/oxlint-config",
-      "/packages/oxfmt-config",
+      "/packages/oxlint-config/",
+      "/packages/oxfmt-config/",
     ])
   })
 
