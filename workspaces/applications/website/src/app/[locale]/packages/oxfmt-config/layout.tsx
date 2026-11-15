@@ -34,7 +34,6 @@ const Layout = async (props: Props): Promise<ReactNode> => {
           npmHref="https://example.com"
           packagesSelectorElement={<PackageSwitcher />}
           docsNavigationUlElement={<DocsNavigationUl currentPathname="" items={[]} />}
-          serviceNameText=""
           versionText="v1.0.0"
         />
       }
