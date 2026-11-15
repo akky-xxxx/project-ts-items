@@ -14,6 +14,8 @@ export default testMeta
 
 type Story = StoryObj<typeof testMeta>
 
+const NARROW_WRAPPER_STYLE = { overflowX: "hidden", width: "320px" } as const
+
 const expectBetweenHeaderAndFooter = async (element: HTMLElement, canvasElement: HTMLElement) => {
   const canvas = within(canvasElement)
   const { bottom, top } = element.getBoundingClientRect()
@@ -83,17 +85,42 @@ export const TestForLandmarksWithoutToc: Story = {
 /**
  * 各列は内部でスクロールし、ページ(window)自体はスクロールしないことを検証する
  */
+const expectColumnsFitBetweenHeaderAndFooter = async (canvasElement: HTMLElement) => {
+  const canvas = within(canvasElement)
+
+  await expectBetweenHeaderAndFooter(getDocsSidebarColumnElement(canvasElement), canvasElement)
+  await expectBetweenHeaderAndFooter(canvas.getByRole("main"), canvasElement)
+  await expectBetweenHeaderAndFooter(canvas.getByRole("complementary"), canvasElement)
+
+  const { clientHeight, scrollHeight } = document.documentElement
+  await expect(scrollHeight).toBeLessThanOrEqual(clientHeight)
+}
+
 export const TestForColumnsFitBetweenHeaderAndFooter: Story = {
   play: async (context) => {
+    await expectColumnsFitBetweenHeaderAndFooter(context.canvasElement)
+  },
+}
+
+/**
+ * 幅が狭くフッターが折り返して高くなっても、各列がヘッダーとフッターの間に収まることを検証する
+ */
+export const TestForColumnsFitWithWrappedFooter: Story = {
+  decorators: [
+    (Story) => (
+      <div style={NARROW_WRAPPER_STYLE}>
+        <Story />
+      </div>
+    ),
+  ],
+  play: async (context) => {
     const { canvasElement } = context
-    const canvas = within(canvasElement)
+    // 折り返しの前提: 1行のときのフッターの高さ(72.2px)より高い
+    await expect(
+      within(canvasElement).getByRole("contentinfo").getBoundingClientRect().height,
+    ).toBeGreaterThan(72.2)
 
-    await expectBetweenHeaderAndFooter(getDocsSidebarColumnElement(canvasElement), canvasElement)
-    await expectBetweenHeaderAndFooter(canvas.getByRole("main"), canvasElement)
-    await expectBetweenHeaderAndFooter(canvas.getByRole("complementary"), canvasElement)
-
-    const { clientHeight, scrollHeight } = document.documentElement
-    await expect(scrollHeight).toBeLessThanOrEqual(clientHeight)
+    await expectColumnsFitBetweenHeaderAndFooter(canvasElement)
   },
 }
 

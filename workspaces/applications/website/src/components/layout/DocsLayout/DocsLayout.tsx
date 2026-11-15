@@ -23,7 +23,7 @@ export const DocsLayout: FcWithChildren<Props> = (props) => {
   const rootClasses = [styles.root, isHidingToc && styles.rootWithoutToc].filter(Boolean).join(" ")
 
   return (
-    <div className={rootClasses}>
+    <div className={rootClasses} data-fits-viewport>
       <div className={styles.docsSidebar}>{docsSidebarElement}</div>
 
       <main className={styles.main}>{children}</main>
