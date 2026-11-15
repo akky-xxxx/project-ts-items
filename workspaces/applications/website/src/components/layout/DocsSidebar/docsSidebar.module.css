@@ -1,0 +1,19 @@
+.root {
+  display: grid;
+  row-gap: 28px;
+}
+
+.version {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ul {
+  display: grid;
+  list-style: none;
+
+  /* root の row-gap と合わせて、リンク一覧の上だけ 56px 空ける */
+  margin-block: 28px 0;
+  padding-left: 0;
+  row-gap: 14px;
+}
