@@ -9,6 +9,7 @@ type Props = {
   newTabText: string
 }
 
+// TODO: newTabText は i18n だけど特定の値のみなので server component 化して props drilling しない作りにする
 export const ExternalLink: FcWithChildren<Props> = (props) => {
   const { children, href, newTabText } = props
 

@@ -5,6 +5,14 @@ export const DOCS_LAYOUT = {
     en: "Docs sidebar",
     ja: "ドキュメントのサイドバー",
   },
+  latest: {
+    en: "Latest",
+    ja: "最新版",
+  },
+  packageLegend: {
+    en: "Packages",
+    ja: "パッケージ",
+  },
   toc: {
     en: "Table of contents",
     ja: "目次",
