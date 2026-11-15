@@ -41,7 +41,7 @@ const Page = async (): Promise<ReactNode> => {
       backgroundTitleText={pageTranslate("backgroundTitle")}
       breadcrumbItems={[
         {
-          href: `/packages/`,
+          href: "/packages/",
           text: packagesPageTranslate("pageTitle"),
         },
         {

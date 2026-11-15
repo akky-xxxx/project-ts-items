@@ -17,7 +17,7 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHome>> = (props) => {
   const breadcrumbItems = useMemo(
     () => [
       {
-        href: `/packages/`,
+        href: "/packages/",
         text: packagesPageTranslate("pageTitle"),
       },
       {
