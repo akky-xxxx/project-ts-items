@@ -29,8 +29,12 @@ const meta = {
   },
   args: {
     children: <LongContents text="children" />,
-    docsSidebarElement: <LongContents text="docsSidebarElement" />,
-    docsSidebarLabelText: "{docsSidebarLabelText}",
+    // DocsSidebar と同じく、ナビゲーションのランドマークは docsSidebarElement 側が持つ
+    docsSidebarElement: (
+      <nav aria-label="{docsSidebarLabelText}">
+        <LongContents text="docsSidebarElement" />
+      </nav>
+    ),
     tocElement: <LongContents text="tocElement" />,
     tocLabelText: "{tocLabelText}",
   },
@@ -42,3 +46,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const WithoutToc: Story = {
+  args: {
+    tocElement: undefined,
+    tocLabelText: undefined,
+  },
+}

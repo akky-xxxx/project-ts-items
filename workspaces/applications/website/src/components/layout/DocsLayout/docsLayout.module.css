@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.rootWithoutToc {
+  grid-template-columns: 252px minmax(0, 1fr);
+}
+
 .docsSidebar {
   max-height: calc(100dvh - var(--header-height));
   overflow-y: auto;

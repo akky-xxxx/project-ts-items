@@ -20,6 +20,20 @@ const expectWithinVisibleArea = async (element: HTMLElement, headerElement: HTML
   await expect(bottom).toBeLessThanOrEqual(window.innerHeight)
 }
 
+/**
+ * 列ごと sticky でスクロールするのは docsSidebarElement を囲む要素のため、その要素を返す
+ */
+const getDocsSidebarColumnElement = (canvasElement: HTMLElement) => {
+  const docsSidebarNavigationElement = within(canvasElement).getByRole("navigation", {
+    name: "{docsSidebarLabelText}",
+  })
+  const { parentElement } = docsSidebarNavigationElement
+  if (parentElement === null) {
+    throw new Error("docsSidebarElement の親要素が見つからない")
+  }
+  return parentElement
+}
+
 export const TestForLandmarks: Story = {
   play: async (context) => {
     const { canvasElement } = context
@@ -40,6 +54,27 @@ export const TestForLandmarks: Story = {
   },
 }
 
+export const TestForLandmarksWithoutToc: Story = {
+  args: {
+    tocElement: undefined,
+    tocLabelText: undefined,
+  },
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    await expect(canvas.queryByRole("complementary")).toBeNull()
+
+    const mainElement = canvas.getByRole("main")
+    const { parentElement } = mainElement
+    if (parentElement === null) {
+      throw new Error("main の親要素が見つからない")
+    }
+    await expect(mainElement.getBoundingClientRect().right).toBe(
+      parentElement.getBoundingClientRect().right,
+    )
+  },
+}
+
 export const TestForStickyColumnsBelowHeader: Story = {
   play: async (context) => {
     const { canvasElement } = context
@@ -47,10 +82,7 @@ export const TestForStickyColumnsBelowHeader: Story = {
     canvas.getByRole("main").scrollIntoView({ block: "end" })
 
     const headerElement = canvas.getByRole("banner")
-    const docsSidebarNavigationElement = canvas.getByRole("navigation", {
-      name: "{docsSidebarLabelText}",
-    })
-    await expectWithinVisibleArea(docsSidebarNavigationElement, headerElement)
+    await expectWithinVisibleArea(getDocsSidebarColumnElement(canvasElement), headerElement)
     await expectWithinVisibleArea(canvas.getByRole("complementary"), headerElement)
   },
 }
@@ -66,12 +98,9 @@ export const TestForStickyColumnsAboveFooter: Story = {
     window.scrollTo({ top: document.documentElement.scrollHeight })
 
     const footerTop = canvas.getByRole("contentinfo").getBoundingClientRect().top
-    const docsSidebarNavigationElement = canvas.getByRole("navigation", {
-      name: "{docsSidebarLabelText}",
-    })
-    await expect(docsSidebarNavigationElement.getBoundingClientRect().bottom).toBeLessThanOrEqual(
-      footerTop,
-    )
+    await expect(
+      getDocsSidebarColumnElement(canvasElement).getBoundingClientRect().bottom,
+    ).toBeLessThanOrEqual(footerTop)
     await expect(
       canvas.getByRole("complementary").getBoundingClientRect().bottom,
     ).toBeLessThanOrEqual(footerTop)
@@ -81,7 +110,11 @@ export const TestForStickyColumnsAboveFooter: Story = {
 export const TestForLongUnbreakableMain: Story = {
   args: {
     children: "children.".repeat(100),
-    docsSidebarElement: <LongContents length={10} text="docsSidebarElement" />,
+    docsSidebarElement: (
+      <nav aria-label="{docsSidebarLabelText}">
+        <LongContents length={10} text="docsSidebarElement" />
+      </nav>
+    ),
     tocElement: <LongContents length={10} text="tocElement" />,
   },
   play: async (context) => {
