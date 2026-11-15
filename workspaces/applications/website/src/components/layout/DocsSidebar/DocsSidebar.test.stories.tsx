@@ -44,5 +44,10 @@ export const TestForExternalLinks: Story = {
       rel: "noopener noreferrer",
       target: "_blank",
     })
+    await expect(canvas.getByRole("link", { name: "npm ({newTabText})" })).toMatchObject({
+      href: "https://example.com/",
+      rel: "noopener noreferrer",
+      target: "_blank",
+    })
   },
 }
