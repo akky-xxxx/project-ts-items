@@ -25,7 +25,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   }
 }
 
-const page: FC = async () => {
+const Page: FC = async () => {
   const [pageTranslate, packagesPageTranslate, breadcrumbTranslate] = await Promise.all([
     getTranslations("pages.oxlintConfig"),
     getTranslations("pages.packages"),
@@ -54,4 +54,4 @@ const page: FC = async () => {
   )
 }
 
-export default page
+export default Page
