@@ -15,7 +15,7 @@ const pageTranslate = createTranslator({
 })
 
 const createInput = (enabledSwitches: Input["enabledSwitches"]) => {
-  const toggleHandlers = { storybook: vi.fn(), typeAwareLinting: vi.fn() }
+  const toggleHandlers = { storybook: vi.fn<() => void>(), typeAwareLinting: vi.fn<() => void>() }
 
   return {
     input: {

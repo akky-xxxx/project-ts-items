@@ -1,19 +1,21 @@
 // @vitest-environment happy-dom
 import { renderHook } from "@testing-library/react"
+import { useParams } from "next/navigation"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
+import { usePathname, useRouter } from "../../../../../utilities/navigation/navigation.ts"
 import { useLocale } from "./useLocale.ts"
 
-const { replace, usePathname } = vi.hoisted(() => ({ replace: vi.fn(), usePathname: vi.fn() }))
-
-vi.mock("next/navigation", () => ({
-  useParams: () => ({ locale: "ja" }),
+vi.mock(import("next/navigation"))
+vi.mock(import("../../../../../utilities/navigation/navigation.ts"), () => ({
+  usePathname: vi.fn<typeof usePathname>(),
+  useRouter: vi.fn<typeof useRouter>(),
 }))
 
-vi.mock("../../../../../utilities/navigation/navigation.ts", () => ({
-  usePathname,
-  useRouter: () => ({ replace }),
-}))
+const replace = vi.fn<ReturnType<typeof useRouter>["replace"]>()
+
+vi.mocked(useParams).mockReturnValue({ locale: "ja" })
+vi.mocked(useRouter, { partial: true }).mockReturnValue({ replace })
 
 type SelectLanguageArgs = {
   newLocale: string
@@ -23,7 +25,7 @@ type SelectLanguageArgs = {
 
 const selectLanguage = (args: SelectLanguageArgs) => {
   globalThis.history.replaceState(null, "", args.url)
-  usePathname.mockReturnValue(args.pathname)
+  vi.mocked(usePathname).mockReturnValue(args.pathname)
   const { result } = renderHook(() => useLocale())
   result.current.selectLanguage(args.newLocale)
 }

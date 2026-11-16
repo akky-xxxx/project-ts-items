@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest"
 import { getCodeBlockMap } from "./getCodeBlockMap.tsx"
 
 /** Server-only は react-server 条件なしで import すると throw するため、unit テストでは空のモジュールにする */
-vi.mock("server-only", () => ({}))
+vi.mock(import("server-only"), () => ({}))
 
 const EXPECTED_NEXT_WITH_TYPE_AWARE_AND_STORYBOOK = `import { nextConfig, storybookConfig } from "@ts-items/oxlint-config"
 import { defineConfig } from "oxlint"

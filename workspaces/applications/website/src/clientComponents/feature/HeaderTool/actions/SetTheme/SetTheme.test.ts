@@ -3,9 +3,11 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 
 import { setTheme } from "./SetTheme.ts"
 
-const { set } = vi.hoisted(() => ({ set: vi.fn() }))
+vi.mock(import("next/headers"))
 
-vi.mock("next/headers", () => ({ cookies: vi.fn().mockResolvedValue({ set }) }))
+const set = vi.fn<Awaited<ReturnType<typeof cookies>>["set"]>()
+
+vi.mocked(cookies, { partial: true }).mockResolvedValue({ set })
 
 const A_YEAR = 31_536_000
 const ORIGINAL_NODE_ENV = process.env.NODE_ENV
