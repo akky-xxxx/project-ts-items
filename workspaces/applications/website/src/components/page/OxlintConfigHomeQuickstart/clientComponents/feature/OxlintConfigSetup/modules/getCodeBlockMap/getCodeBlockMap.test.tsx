@@ -17,7 +17,7 @@ export default defineConfig({
   },
 })`
 
-describe("getCodeBlockMap", () => {
+describe(getCodeBlockMap, () => {
   it("ベース・Storybook・type-aware linting の全組み合わせのキーを持つ", () => {
     expect(Object.keys(getCodeBlockMap()).toSorted()).toStrictEqual([
       "next&typeAwareLinting=false&storybook=false",

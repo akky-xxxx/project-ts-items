@@ -14,7 +14,7 @@ const BASE_CASES = [
   { expected: EXPECTED_NEXT, selectedBase: "next" },
 ] as const
 
-describe("getSource", () => {
+describe(getSource, () => {
   it.each(BASE_CASES)(
     "ベースに $selectedBase を選ぶと対応する設定だけを extends する",
     (testCase) => {

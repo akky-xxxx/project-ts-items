@@ -10,7 +10,7 @@ vi.mock("next/headers", () => ({ cookies: vi.fn().mockResolvedValue({ set }) }))
 const A_YEAR = 31_536_000
 const ORIGINAL_NODE_ENV = process.env.NODE_ENV
 
-describe("setTheme", () => {
+describe(setTheme, () => {
   afterEach(() => {
     vi.clearAllMocks()
     vi.stubEnv("NODE_ENV", ORIGINAL_NODE_ENV)

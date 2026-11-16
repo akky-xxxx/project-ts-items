@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import { getSourceKey } from "./getSourceKey.ts"
 
-describe("getSourceKey", () => {
+describe(getSourceKey, () => {
   it.each([
     {
       enabledSwitches: { storybook: false, typeAwareLinting: false },

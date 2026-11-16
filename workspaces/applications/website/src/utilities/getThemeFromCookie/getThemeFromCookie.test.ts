@@ -4,7 +4,7 @@ import { getThemeFromCookie } from "./getThemeFromCookie.ts"
 
 import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies"
 
-describe("getThemeFromCookie", () => {
+describe(getThemeFromCookie, () => {
   describe("success pattern", () => {
     it.each([
       ["dark", "dark"],

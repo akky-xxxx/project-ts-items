@@ -20,7 +20,7 @@ const buildItems = (headingTag: Parameters<typeof buildPackageCardItems>[1] = "h
     headingTag,
   )
 
-describe("buildPackageCardItems", () => {
+describe(buildPackageCardItems, () => {
   it("oxlint-config と oxfmt-config の順に2件を返す", () => {
     expect(buildItems().map((item) => item.packageNameText)).toStrictEqual([
       "@ts-items/oxlint-config",
