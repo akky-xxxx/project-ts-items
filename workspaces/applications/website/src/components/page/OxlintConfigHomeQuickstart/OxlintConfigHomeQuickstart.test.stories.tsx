@@ -77,6 +77,7 @@ export const TestForCopyButtonLabel: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByRole("button", { name: "Copy" })).toBeInTheDocument()
+    // Install の Tab と Setup の CodeArea にそれぞれ1つずつある
+    await expect(canvas.getAllByRole("button", { name: "Copy" })).toHaveLength(2)
   },
 }

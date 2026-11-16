@@ -1,0 +1,63 @@
+.root {
+  align-items: center;
+  color: var(--color-text);
+  column-gap: 1.6rem;
+  cursor: pointer;
+  display: inline-flex;
+
+  &:has(.input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.input {
+  appearance: none;
+  background-color: var(--color-border);
+  border-radius: 9999px;
+  cursor: inherit;
+  flex-shrink: 0;
+  height: 2.4rem;
+  margin: 0;
+  outline-offset: 2px;
+  position: relative;
+  transition:
+    background-color 200ms ease-in-out,
+    box-shadow var(--duration-transition);
+  width: 4.4rem;
+
+  &::before {
+    background-color: var(--color-background);
+    border-radius: 50%;
+    box-shadow: var(--color-box-shadow) 0 1px 3px;
+    content: "";
+    height: 2rem;
+    inset-block-start: 0.2rem;
+    inset-inline-start: 0.2rem;
+    position: absolute;
+    transition: translate 200ms ease-in-out;
+    width: 2rem;
+  }
+
+  &:checked {
+    background-color: var(--color-text-accent);
+
+    &::before {
+      translate: 2rem 0;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text-accent);
+  }
+
+  @media (hover: hover) {
+    &:not(:disabled, :checked):hover {
+      background-color: color-mix(in srgb, var(--color-border), var(--color-text) 30%);
+    }
+
+    &:not(:disabled):checked:hover {
+      box-shadow: 0 0 0 0.6rem var(--color-background-accent);
+    }
+  }
+}

@@ -49,9 +49,27 @@ export const PAGES = {
       en: "Quickstart",
       ja: "クイックスタート",
     },
+    selectConfiguration: {
+      en: "Select base configuration",
+      ja: "ベースとなる設定を選択",
+    },
     setupTitle: {
       en: "Setup",
       ja: "設定方法",
+    },
+    switching: {
+      storybookDescription: {
+        en: "Relaxes some rules for Storybook.",
+        ja: "Storybook 向けに一部ルールを緩和します",
+      },
+      typeAwareLintingDescription: {
+        en: 'Enables linting that uses type information (disabled by default in oxlint).<br></br>We recommend enabling it.<br></br>If you enable it, you need to install "oxlint-tsgolint".',
+        ja: "型情報を使ったリンティングを有効にします（oxlint のデフォルトでは無効）<br></br>有効にすることをおすすめします<br></br>有効にした場合、「oxlint-tsgolint」をインストールする必要があります",
+      },
+      typeAwareLintingTitle: {
+        en: "Type-aware linting",
+        ja: "型情報を使ったリンティング",
+      },
     },
   },
   packages: {
