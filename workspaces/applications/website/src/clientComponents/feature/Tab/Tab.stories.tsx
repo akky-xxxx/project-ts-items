@@ -1,3 +1,4 @@
+import { CodeBlock } from "../../../components/ui/CodeBlock/CodeBlock.tsx"
 import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { Tab } from "./Tab.tsx"
 
@@ -51,3 +52,21 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const WithCodeBlock: Story = {
+  args: {
+    items: [
+      {
+        tabContent: <CodeBlock code="bun add -D @ts-items/oxlint-config oxlint" lang="bash" />,
+        tabLabelText: "bun",
+        tabValue: "bun",
+      },
+      {
+        tabContent: <CodeBlock code="npm install -D @ts-items/oxlint-config oxlint" lang="bash" />,
+        tabLabelText: "npm",
+        tabValue: "npm",
+      },
+    ],
+    title: "Terminal",
+  },
+}
