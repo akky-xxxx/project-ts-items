@@ -1,4 +1,5 @@
 autodocs
 Noto
+shiki
 uaplus
 unhover
