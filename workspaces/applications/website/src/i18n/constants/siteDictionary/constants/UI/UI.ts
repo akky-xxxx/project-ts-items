@@ -19,4 +19,10 @@ export const UI = {
       ja: "ドキュメント",
     },
   },
+  tab: {
+    copyButtonLabelText: {
+      en: "Copy",
+      ja: "コピー",
+    },
+  },
 } as const satisfies Dictionary

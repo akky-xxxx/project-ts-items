@@ -14,6 +14,7 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
   const pageTranslate = useTranslations("pages.oxlintConfigQuickstart")
   const packagesPageTranslate = useTranslations("pages.packages")
   const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
+  const tabTranslate = useTranslations("components.ui.tab")
   const breadcrumbItems = useMemo(
     () => [
       {
@@ -36,6 +37,7 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
       {...props}
       breadcrumbItems={breadcrumbItems}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
+      copyButtonLabelText={tabTranslate("copyButtonLabelText")}
       installTitleText={pageTranslate("installTitle")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
       pageTitle={pageTranslate("pageTitle")}
@@ -53,6 +55,10 @@ const meta = {
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
     breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
+    copyButtonLabelText: {
+      control: false,
+      description: "インストールコマンドのコピーボタンのラベル(aria-label)",
+    },
     installTitleText: { control: false, description: "インストールセクションの見出し(h2)" },
     pageDescriptionText: {
       control: false,
@@ -68,6 +74,7 @@ const meta = {
       { text: "{pageTitle}" },
     ],
     breadcrumbLabelText: "{breadcrumbLabelText}",
+    copyButtonLabelText: "{copyButtonLabelText}",
     installTitleText: "{installTitleText}",
     pageDescriptionText: "{pageDescriptionText}",
     pageTitle: "{pageTitle}",
