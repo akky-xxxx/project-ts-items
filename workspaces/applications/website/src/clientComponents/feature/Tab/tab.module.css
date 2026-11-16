@@ -24,30 +24,3 @@
   border-bottom-color: currentcolor;
   color: var(--color-text-accent);
 }
-
-.copyButton {
-  background-color: transparent;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  padding: 0;
-}
-
-.contentsWrapper {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  margin-top: 14px;
-}
-
-.contentsHeader {
-  align-items: center;
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 12px;
-}
-
-.contentsMain {
-  padding: 20px;
-}

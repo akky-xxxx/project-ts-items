@@ -35,16 +35,7 @@ export const TestForContentsChange: Story = {
   },
 }
 
-export const TestForContentsHeader: Story = {
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("{title}")).toBeInTheDocument()
-    await expect(canvas.getByText("{C}")).toBeInTheDocument()
-  },
-}
-
-export const TestForCopy: Story = {
+export const TestForCopyTextOfActiveTab: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
@@ -52,7 +43,6 @@ export const TestForCopy: Story = {
     try {
       await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText1")
-      await expect(await canvas.findByText("{copiedText}")).toBeInTheDocument()
 
       await userEvent.click(canvas.getByRole("button", { name: "tabLabelText2" }))
       await expect(await canvas.findByText("{tabContent2}")).toBeInTheDocument()
