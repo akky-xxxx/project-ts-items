@@ -6,6 +6,16 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 const meta = {
   component: Tab,
 
+  argTypes: {
+    currentActiveTabValue: {
+      description: "初期表示で選択するタブの tabValue(省略時は items の先頭)",
+    },
+    items: {
+      control: false,
+      description:
+        "タブの一覧(tabLabelText: タブのボタンのテキスト / tabValue: タブの識別子 / tabContent: 選択時に表示する内容)。1件以上",
+    },
+  },
   args: {
     items: [
       {
