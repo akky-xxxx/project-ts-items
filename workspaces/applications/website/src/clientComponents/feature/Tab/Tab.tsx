@@ -13,6 +13,7 @@ type Item = {
   tabContent: ReactElement
 }
 type Props = {
+  copyIconElement: ReactElement
   currentActiveTabValue?: Item["tabValue"]
   items: [Item, ...Item[]]
 }
@@ -20,7 +21,7 @@ type Props = {
 const ARRAY_FIRST_INDEX = 0
 
 export const Tab: FC<Props> = (props) => {
-  const { currentActiveTabValue, items } = props
+  const { copyIconElement, currentActiveTabValue, items } = props
   const [activeTabValue, setActiveTabValue] = useState<TabValue>(
     currentActiveTabValue ?? items[ARRAY_FIRST_INDEX].tabValue,
   )
@@ -52,17 +53,27 @@ export const Tab: FC<Props> = (props) => {
         })}
       </ul>
 
-      <ViewTransition>
-        {items.map((item) => {
-          const { tabContent, tabValue } = item
+      <div className={styles.contentsWrapper}>
+        <header className={styles.contentsHeader}>
+          <span>Terminal</span>
 
-          if (tabValue !== activeTabValue) {
-            return null
-          }
+          <span>{copyIconElement}</span>
+        </header>
 
-          return <div key={tabValue}>{tabContent}</div>
-        })}
-      </ViewTransition>
+        <div className={styles.contentsMain}>
+          <ViewTransition>
+            {items.map((item) => {
+              const { tabContent, tabValue } = item
+
+              if (tabValue !== activeTabValue) {
+                return null
+              }
+
+              return <div key={tabValue}>{tabContent}</div>
+            })}
+          </ViewTransition>
+        </div>
+      </div>
     </div>
   )
 }

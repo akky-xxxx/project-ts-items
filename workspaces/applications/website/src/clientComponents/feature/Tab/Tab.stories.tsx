@@ -7,6 +7,10 @@ const meta = {
   component: Tab,
 
   argTypes: {
+    copyIconElement: {
+      control: false,
+      description: "コンテンツ領域のヘッダー右側に表示するコピー用アイコン",
+    },
     currentActiveTabValue: {
       description: "初期表示で選択するタブの tabValue(省略時は items の先頭)",
     },
@@ -17,6 +21,7 @@ const meta = {
     },
   },
   args: {
+    copyIconElement: <DummyForStorybook label="C" />,
     items: [
       {
         tabContent: <DummyForStorybook label="tabContent1" />,
