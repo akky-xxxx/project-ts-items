@@ -1,3 +1,6 @@
+import { Fragment } from "react"
+import { Toaster } from "react-hot-toast"
+
 import { CodeBlock } from "../../../components/ui/CodeBlock/CodeBlock.tsx"
 import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { Tab } from "./Tab.tsx"
@@ -8,6 +11,9 @@ const meta = {
   component: Tab,
 
   argTypes: {
+    copiedText: {
+      description: "コピー完了時にトーストで表示するテキスト",
+    },
     copyButtonLabelText: {
       description: "コピーボタンのラベル(aria-label)",
     },
@@ -28,6 +34,7 @@ const meta = {
     },
   },
   args: {
+    copiedText: "{copiedText}",
     copyButtonLabelText: "{copyButtonLabelText}",
     copyIconElement: <DummyForStorybook label="C" />,
     items: [
@@ -52,6 +59,14 @@ const meta = {
     ],
     title: "{title}",
   },
+  decorators: [
+    (Story) => (
+      <Fragment>
+        <Story />
+        <Toaster />
+      </Fragment>
+    ),
+  ],
 } satisfies Meta<typeof Tab>
 
 export default meta

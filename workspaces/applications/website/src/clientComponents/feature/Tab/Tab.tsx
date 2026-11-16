@@ -16,6 +16,7 @@ type Item = {
   tabContent: ReactElement
 }
 type Props = {
+  copiedText: string
   copyButtonLabelText: string
   copyIconElement: ReactElement
   currentActiveTabValue?: Item["tabValue"]

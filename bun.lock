@@ -33,6 +33,7 @@
         "next-intl": "4.14.9",
         "react": "19.3.1",
         "react-dom": "19.3.1",
+        "react-hot-toast": "2.6.1",
         "shiki": "4.6.0",
         "zod": "4.6.7",
       },
@@ -1213,6 +1214,8 @@
 
     "globrex": ["globrex@0.1.2", "", {}, "sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg=="],
 
+    "goober": ["goober@2.1.19", "", { "peerDependencies": { "csstype": "^3.0.10" } }, "sha512-U7veizMqxyKlM58+Z5j2ngJBH/r9siDmxpvNxSw0PylF6WQvrASJEZrxh1hidRBJc2jqoBVSyOban5u8m+6Rxg=="],
+
     "graceful-fs": ["graceful-fs@4.2.11", "", {}, "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="],
 
     "happy-css-modules": ["happy-css-modules@5.0.2", "", { "dependencies": { "@file-cache/core": "^2.0.0", "@file-cache/npm": "^2.0.0", "camelcase": "^9.0.0", "chokidar": "^5.0.0", "enhanced-resolve": "^5.22.2", "import-meta-resolve": "^4.2.0", "postcss": "^8.5.16", "postcss-load-config": "^6.0.1", "postcss-modules": "^6.0.1", "postcss-selector-parser": "^7.1.1", "postcss-value-parser": "^4.2.0", "source-map": "^0.7.6" }, "peerDependencies": { "less": "^3.0.0 || ^4.0.0", "sass": "^1.68.0" }, "optionalPeers": ["less", "sass"], "bin": { "hcm": "bin/hcm.js" } }, "sha512-Q/tI30R+4O58f3LX/xQZogAk7AQ7UWop/lwwizCfGuLGpbXkjezYdXEKNW78zv9rI8rrZLa6ByH/ElrC4b9OlA=="],
@@ -1510,6 +1513,8 @@
     "react-docgen-typescript": ["react-docgen-typescript@2.4.0", "", { "peerDependencies": { "typescript": ">= 4.3.x" } }, "sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg=="],
 
     "react-dom": ["react-dom@19.3.1", "", { "dependencies": { "scheduler": "^0.28.0" }, "peerDependencies": { "react": "^19.3.1" } }, "sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ=="],
+
+    "react-hot-toast": ["react-hot-toast@2.6.1", "", { "dependencies": { "csstype": "^3.1.3", "goober": "^2.1.16" }, "peerDependencies": { "@types/react": "*", "@types/react-dom": "*", "react": ">=16", "react-dom": ">=16" }, "optionalPeers": ["@types/react", "@types/react-dom"] }, "sha512-gjFsf05dxcku0FkyMtFH+XmYFdA2odXfBVknEr/IZ+XpUjwsgvtY2616sOpUynK+l9ykQDRNpaJ1hYfuximUiA=="],
 
     "react-is": ["react-is@17.0.2", "", {}, "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="],
 
