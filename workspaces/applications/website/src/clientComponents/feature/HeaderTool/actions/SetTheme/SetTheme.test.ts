@@ -19,6 +19,7 @@ describe(setTheme, () => {
   })
 
   it.each(["dark", "light", "system"])("setTheme(%s) // cookie に保存する", async (theme) => {
+    expect.hasAssertions()
     vi.stubEnv("NODE_ENV", "development")
     await setTheme(theme)
 
@@ -31,6 +32,7 @@ describe(setTheme, () => {
   })
 
   it("production では secure を付ける", async () => {
+    expect.hasAssertions()
     vi.stubEnv("NODE_ENV", "production")
     await setTheme("dark")
 
@@ -38,6 +40,7 @@ describe(setTheme, () => {
   })
 
   it.each(["", "Dark", "unknown"])("setTheme(%j) // 不正な値は無視する", async (theme) => {
+    expect.hasAssertions()
     await setTheme(theme)
 
     expect(cookies).not.toHaveBeenCalled()
