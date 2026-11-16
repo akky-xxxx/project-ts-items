@@ -1,6 +1,9 @@
 import { Fragment } from "react"
 
+import { Tab } from "../../../clientComponents/feature/Tab/Tab.tsx"
+import { CopyIcon } from "../../icons/CopyIcon/CopyIcon.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
+import { CodeBlock } from "../../ui/CodeBlock/CodeBlock.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
 
 import type { ReactNode, ComponentProps, FC } from "react"
@@ -10,16 +13,47 @@ import styles from "./oxlintConfigHomeQuickstart.module.css"
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
   breadcrumbLabelText: string
+  copyButtonLabelText: string
   installTitleText: string
   pageDescriptionText: ReactNode
   pageTitle: string
   setupTitleText: string
 }
 
+const COPY_ICON_ELEMENT = <CopyIcon height={14} width={14} />
+
+const INSTALL_TAB_ITEMS: ComponentProps<typeof Tab>["items"] = [
+  {
+    copyText: "npm i -D oxlint oxlint-config",
+    tabContent: <CodeBlock code="npm i -D oxlint oxlint-config" lang="bash" />,
+    tabLabelText: "npm",
+    tabValue: "npm",
+  },
+  {
+    copyText: "yarn add -D oxlint oxlint-config",
+    tabContent: <CodeBlock code="yarn add -D oxlint oxlint-config" lang="bash" />,
+    tabLabelText: "yarn",
+    tabValue: "yarn",
+  },
+  {
+    copyText: "pnpm add -D oxlint oxlint-config",
+    tabContent: <CodeBlock code="pnpm add -D oxlint oxlint-config" lang="bash" />,
+    tabLabelText: "pnpm",
+    tabValue: "pnpm",
+  },
+  {
+    copyText: "bun add -D oxlint oxlint-config",
+    tabContent: <CodeBlock code="bun add -D oxlint oxlint-config" lang="bash" />,
+    tabLabelText: "bun",
+    tabValue: "bun",
+  },
+]
+
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
   const {
     breadcrumbItems,
     breadcrumbLabelText,
+    copyButtonLabelText,
     installTitleText,
     pageDescriptionText,
     pageTitle,
@@ -39,7 +73,12 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
       <section className={styles.section}>
         <Heading headingTag="h2">{installTitleText}</Heading>
 
-        <pre>{/* TODO: タブコードハイライトを入れる */}</pre>
+        <Tab
+          copyButtonLabelText={copyButtonLabelText}
+          copyIconElement={COPY_ICON_ELEMENT}
+          items={INSTALL_TAB_ITEMS}
+          title="Terminal"
+        />
       </section>
 
       <section className={styles.section}>

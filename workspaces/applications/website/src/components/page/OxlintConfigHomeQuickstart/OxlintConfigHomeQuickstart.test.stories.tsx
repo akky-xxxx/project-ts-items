@@ -71,3 +71,12 @@ export const TestForBreadcrumbCurrentPage: Story = {
     await expect(currentPageElement).toHaveAttribute("aria-current", "page")
   },
 }
+
+export const TestForCopyButtonLabel: Story = {
+  ...En,
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("button", { name: "Copy" })).toBeInTheDocument()
+  },
+}
