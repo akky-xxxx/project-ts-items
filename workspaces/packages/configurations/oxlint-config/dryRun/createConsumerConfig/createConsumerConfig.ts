@@ -1,14 +1,15 @@
-export type Target = "base" | "next" | "react" | "storybook"
+export type Target = "base" | "next" | "react" | "storybook" | "vitest"
 
 /**
  * @description
- * 各 target で利用者が extends する設定。storybookConfig は override のみを持つため、利用時と同じく baseConfig と組み合わせる
+ * 各 target で利用者が extends する設定。storybookConfig・vitestConfig は追加分の設定のみを持つため、利用時と同じく baseConfig と組み合わせる
  */
 const CONSUMER_CONFIG_NAMES = {
   base: ["baseConfig"],
   next: ["nextConfig"],
   react: ["reactConfig"],
   storybook: ["baseConfig", "storybookConfig"],
+  vitest: ["baseConfig", "vitestConfig"],
 } as const satisfies Record<Target, readonly string[]>
 
 /**
