@@ -20,6 +20,10 @@ export const UI = {
     },
   },
   tab: {
+    copiedText: {
+      en: "Copied",
+      ja: "コピーしました",
+    },
     copyButtonLabelText: {
       en: "Copy",
       ja: "コピー",
