@@ -52,8 +52,10 @@ export const TestForCopy: Story = {
     try {
       await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText1")
+      await expect(await canvas.findByText("{copiedText}")).toBeInTheDocument()
 
       await userEvent.click(canvas.getByRole("button", { name: "tabLabelText2" }))
+      await expect(await canvas.findByText("{tabContent2}")).toBeInTheDocument()
       await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText2")
     } finally {

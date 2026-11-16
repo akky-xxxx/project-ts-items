@@ -13,6 +13,7 @@ import styles from "./oxlintConfigHomeQuickstart.module.css"
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
   breadcrumbLabelText: string
+  copiedText: string
   copyButtonLabelText: string
   installTitleText: string
   pageDescriptionText: ReactNode
@@ -53,6 +54,7 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
   const {
     breadcrumbItems,
     breadcrumbLabelText,
+    copiedText,
     copyButtonLabelText,
     installTitleText,
     pageDescriptionText,
@@ -74,6 +76,7 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
         <Heading headingTag="h2">{installTitleText}</Heading>
 
         <Tab
+          copiedText={copiedText}
           copyButtonLabelText={copyButtonLabelText}
           copyIconElement={COPY_ICON_ELEMENT}
           items={INSTALL_TAB_ITEMS}

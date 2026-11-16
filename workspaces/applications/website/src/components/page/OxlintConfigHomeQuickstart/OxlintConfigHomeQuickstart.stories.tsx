@@ -37,6 +37,7 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
       {...props}
       breadcrumbItems={breadcrumbItems}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
+      copiedText={tabTranslate("copiedText")}
       copyButtonLabelText={tabTranslate("copyButtonLabelText")}
       installTitleText={pageTranslate("installTitle")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
@@ -55,6 +56,10 @@ const meta = {
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
     breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
+    copiedText: {
+      control: false,
+      description: "インストールコマンドのコピー完了時にトーストで表示するテキスト",
+    },
     copyButtonLabelText: {
       control: false,
       description: "インストールコマンドのコピーボタンのラベル(aria-label)",
@@ -74,6 +79,7 @@ const meta = {
       { text: "{pageTitle}" },
     ],
     breadcrumbLabelText: "{breadcrumbLabelText}",
+    copiedText: "{copiedText}",
     copyButtonLabelText: "{copyButtonLabelText}",
     installTitleText: "{installTitleText}",
     pageDescriptionText: "{pageDescriptionText}",

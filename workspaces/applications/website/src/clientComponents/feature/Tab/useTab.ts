@@ -1,4 +1,5 @@
 import { startTransition, useCallback, useState } from "react"
+import { toast } from "react-hot-toast"
 
 import styles from "./tab.module.css"
 
@@ -8,6 +9,7 @@ type Item = {
   tabValue: TabValue
 }
 type Input = {
+  copiedText: string
   currentActiveTabValue?: TabValue
   items: [Item, ...Item[]]
 }
@@ -15,7 +17,7 @@ type Input = {
 const ARRAY_FIRST_INDEX = 0
 
 export const useTab = (input: Input) => {
-  const { currentActiveTabValue, items } = input
+  const { copiedText, currentActiveTabValue, items } = input
   const [activeTabValue, setActiveTabValue] = useState<TabValue>(
     currentActiveTabValue ?? items[ARRAY_FIRST_INDEX].tabValue,
   )
@@ -35,9 +37,11 @@ export const useTab = (input: Input) => {
     }
 
     startTransition(async () => {
-      await navigator.clipboard.writeText(activeItem.copyText)
+      await navigator.clipboard.writeText(activeItem.copyText).then(() => {
+        toast(copiedText)
+      })
     })
-  }, [activeTabValue, items])
+  }, [activeTabValue, copiedText, items])
 
   return {
     activeTabValue,
