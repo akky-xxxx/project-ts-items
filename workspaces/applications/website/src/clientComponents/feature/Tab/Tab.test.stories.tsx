@@ -39,7 +39,7 @@ export const TestForContentsHeader: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("Terminal")).toBeInTheDocument()
+    await expect(canvas.getByText("{title}")).toBeInTheDocument()
     await expect(canvas.getByText("{C}")).toBeInTheDocument()
   },
 }
