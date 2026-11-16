@@ -1,9 +1,7 @@
+import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { Tab } from "./Tab.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import type { ReactNode } from "react"
-
-const Dummy = ({ children }: { children: ReactNode }) => <div>{children}</div>
 
 const meta = {
   component: Tab,
@@ -11,14 +9,19 @@ const meta = {
   args: {
     items: [
       {
-        contents: <Dummy>Content for Tab 1</Dummy>,
-        id: "tab-1",
-        tab: <Dummy>Tab 1</Dummy>,
+        tabContent: <DummyForStorybook label="tabContent1" />,
+        tabLabelText: "tabLabelText1",
+        tabValue: "tabValue1",
       },
       {
-        contents: <Dummy>Content for Tab 2</Dummy>,
-        id: "tab-2",
-        tab: <Dummy>Tab 2</Dummy>,
+        tabContent: <DummyForStorybook label="tabContent2" />,
+        tabLabelText: "tabLabelText2",
+        tabValue: "tabValue2",
+      },
+      {
+        tabContent: <DummyForStorybook label="tabContent3" />,
+        tabLabelText: "tabLabelText3",
+        tabValue: "tabValue3",
       },
     ],
   },

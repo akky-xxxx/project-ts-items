@@ -2,60 +2,67 @@
 
 import { startTransition, useState, ViewTransition } from "react"
 
-import type { FC, ReactNode } from "react"
+import type { ReactElement, FC } from "react"
 
+import styles from "./tab.module.css"
+
+type TabValue = string
 type Item = {
-  contents: ReactNode
-  id: string
-  tab: ReactNode
+  tabLabelText: string
+  tabValue: TabValue
+  tabContent: ReactElement
 }
-
 type Props = {
-  items: Item[]
+  currentActiveTabValue?: Item["tabValue"]
+  items: [Item, ...Item[]]
 }
 
-const FIRST_ITEM_INDEX = 0
+const ARRAY_FIRST_INDEX = 0
 
 export const Tab: FC<Props> = (props) => {
-  const { items } = props
-  const [visibleIndex, setVisibleIndex] = useState(FIRST_ITEM_INDEX)
-  const createHandleClickTab = (index: number) => () => {
+  const { currentActiveTabValue, items } = props
+  const [activeTabValue, setActiveTabValue] = useState<TabValue>(
+    currentActiveTabValue ?? items[ARRAY_FIRST_INDEX].tabValue,
+  )
+  const handleChange = (nextTabValue: TabValue) => () => {
     startTransition(() => {
-      setVisibleIndex(index)
+      setActiveTabValue(nextTabValue)
     })
   }
 
   return (
     <div>
-      <ul>
-        {items.map(({ id, tab }, index) => {
-          const isEnabled = index !== visibleIndex
+      <ul className={styles.ul}>
+        {items.map((item) => {
+          const { tabLabelText, tabValue } = item
+          const buttonClasses = [
+            styles.button,
+            tabValue === activeTabValue ? styles.activeButton : "",
+          ]
+            .filter(Boolean)
+            .join(" ")
 
           return (
-            <li key={id}>
-              <button onClick={createHandleClickTab(index)} disabled={!isEnabled} type="button">
-                {tab}
+            <li key={tabValue}>
+              <button className={buttonClasses} type="button" onClick={handleChange(tabValue)}>
+                {tabLabelText}
               </button>
             </li>
           )
         })}
       </ul>
 
-      <ul>
-        {items.map(({ id, contents }, index) => {
-          const isVisible = index === visibleIndex
+      <ViewTransition>
+        {items.map((item) => {
+          const { tabContent, tabValue } = item
 
-          if (!isVisible) {
+          if (tabValue !== activeTabValue) {
             return null
           }
 
-          return (
-            <ViewTransition key={id}>
-              <li>{contents}</li>
-            </ViewTransition>
-          )
+          return <div key={tabValue}>{tabContent}</div>
         })}
-      </ul>
+      </ViewTransition>
     </div>
   )
 }
