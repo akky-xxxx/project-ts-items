@@ -71,3 +71,18 @@ export default defineConfig({
   // some config for react
 })
 ```
+
+### For Vitest with some TypeScript Project
+
+Enable the vitest plugin and adjust some of its rules for Vitest.
+`vitest/prefer-importing-vitest-globals` is enabled only for test files (`*.spec.*`, `*.test.*`, `spec/**`), so `expect` imported from `storybook/test` in stories is not reported.
+
+```ts
+import { vitestConfig } from "@ts-items/oxlint-config"
+import { defineConfig } from "oxlint"
+
+export default defineConfig({
+  extends: [vitestConfig],
+  // some config for typescript
+})
+```
