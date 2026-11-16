@@ -1,5 +1,5 @@
 import { forConfigurationFiles } from "@ts-items/configurations/oxlint"
-import { nextConfig, storybookConfig } from "@ts-items/oxlint-config"
+import { nextConfig, storybookConfig, vitestConfig } from "@ts-items/oxlint-config"
 import { defineConfig } from "oxlint"
 
 // Routing は next-intl に寄せる
@@ -13,7 +13,7 @@ const restrictedPaths = [
 ]
 
 const config = defineConfig({
-  extends: [nextConfig, forConfigurationFiles, storybookConfig],
+  extends: [nextConfig, forConfigurationFiles, storybookConfig, vitestConfig],
   options: {
     typeAware: true,
   },
