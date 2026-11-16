@@ -35,6 +35,15 @@ export const TestForContentsChange: Story = {
   },
 }
 
+export const TestForContentsHeader: Story = {
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    await expect(canvas.getByText("Terminal")).toBeInTheDocument()
+    await expect(canvas.getByText("{C}")).toBeInTheDocument()
+  },
+}
+
 export const TestForCurrentActiveTabValue: Story = {
   args: {
     currentActiveTabValue: "tabValue3",
