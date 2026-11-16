@@ -2,6 +2,7 @@
 
 import { ViewTransition } from "react"
 
+import { CodeArea } from "../CodeArea/CodeArea.tsx"
 import { useTab } from "./useTab.ts"
 
 import type { ReactElement, FC } from "react"
@@ -25,8 +26,8 @@ type Props = {
 }
 
 export const Tab: FC<Props> = (props) => {
-  const { copyButtonLabelText, copyIconElement, items, title } = props
-  const { activeTabValue, getTabButtonClassName, handleChange, handleCopy } = useTab(props)
+  const { copiedText, copyButtonLabelText, copyIconElement, items, title } = props
+  const { activeTabValue, getTabButtonClassName, copyTargetText, handleChange } = useTab(props)
 
   return (
     <div>
@@ -48,34 +49,25 @@ export const Tab: FC<Props> = (props) => {
         })}
       </ul>
 
-      <div className={styles.contentsWrapper}>
-        <header className={styles.contentsHeader}>
-          <span>{title}</span>
+      <CodeArea
+        copiedText={copiedText}
+        copyButtonLabelText={copyButtonLabelText}
+        copyIconElement={copyIconElement}
+        copyTargetText={copyTargetText}
+        title={title}
+      >
+        <ViewTransition>
+          {items.map((item) => {
+            const { tabContent, tabValue } = item
 
-          <button
-            aria-label={copyButtonLabelText}
-            className={styles.copyButton}
-            type="button"
-            onClick={handleCopy}
-          >
-            {copyIconElement}
-          </button>
-        </header>
+            if (tabValue !== activeTabValue) {
+              return null
+            }
 
-        <div className={styles.contentsMain}>
-          <ViewTransition>
-            {items.map((item) => {
-              const { tabContent, tabValue } = item
-
-              if (tabValue !== activeTabValue) {
-                return null
-              }
-
-              return <div key={tabValue}>{tabContent}</div>
-            })}
-          </ViewTransition>
-        </div>
-      </div>
+            return <div key={tabValue}>{tabContent}</div>
+          })}
+        </ViewTransition>
+      </CodeArea>
     </div>
   )
 }
