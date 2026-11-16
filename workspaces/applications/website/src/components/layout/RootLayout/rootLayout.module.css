@@ -6,6 +6,7 @@
 
 .header {
   background-color: var(--color-background);
+  flex-shrink: 0;
   height: var(--header-height);
   position: sticky;
   top: 0;
