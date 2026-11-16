@@ -15,7 +15,7 @@ const pageTranslate = createTranslator({
 })
 
 const createInput = (enabledSwitches: Input["enabledSwitches"]) => {
-  const toggleHandlers = { storybook: vi.fn(), typeAwareLinting: vi.fn() }
+  const toggleHandlers = { storybook: vi.fn<() => void>(), typeAwareLinting: vi.fn<() => void>() }
 
   return {
     input: {
@@ -36,7 +36,7 @@ const expectedTypeAwareDescription = [
   'If you enable it, you need to install "oxlint-tsgolint".',
 ]
 
-describe("getSwitchItems", () => {
+describe(getSwitchItems, () => {
   it("type-aware linting、Storybook の順に Toggle の props を返す", () => {
     const { input } = createInput({ storybook: false, typeAwareLinting: false })
     const items = getSwitchItems(input)

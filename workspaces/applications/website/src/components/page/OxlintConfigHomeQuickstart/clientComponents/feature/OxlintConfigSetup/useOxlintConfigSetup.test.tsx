@@ -32,7 +32,7 @@ const toggleSwitch = (result: { current: Result }, name: string) => {
   })
 }
 
-describe("useOxlintConfigSetup", () => {
+describe(useOxlintConfigSetup, () => {
   it("初期状態はベースが ts、type-aware linting が有効、Storybook が無効", () => {
     const { result } = renderUseOxlintConfigSetup()
 

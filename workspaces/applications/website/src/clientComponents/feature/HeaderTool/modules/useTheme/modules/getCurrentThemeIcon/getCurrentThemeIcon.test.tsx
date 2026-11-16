@@ -15,7 +15,7 @@ const TEXTS = {
   systemThemeText: "{systemThemeText}",
 } as const
 
-describe("getCurrentThemeIcon", () => {
+describe(getCurrentThemeIcon, () => {
   it.each([
     ["dark", TEXTS.darkThemeText, MoonIcon],
     ["light", TEXTS.lightThemeText, SunIcon],

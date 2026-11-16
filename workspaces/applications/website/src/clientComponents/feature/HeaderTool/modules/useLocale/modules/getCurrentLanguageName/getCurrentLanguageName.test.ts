@@ -4,7 +4,7 @@ import { getCurrentLanguageName } from "./getCurrentLanguageName.ts"
 
 type TestCase = [Parameters<typeof getCurrentLanguageName>[0], string]
 
-describe("getCurrentLanguageName", () => {
+describe(getCurrentLanguageName, () => {
   it.each([
     ["en", "English"],
     ["ja", "日本語"],

@@ -3,20 +3,23 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 
 import { setTheme } from "./SetTheme.ts"
 
-const { set } = vi.hoisted(() => ({ set: vi.fn() }))
+vi.mock(import("next/headers"))
 
-vi.mock("next/headers", () => ({ cookies: vi.fn().mockResolvedValue({ set }) }))
+const set = vi.fn<Awaited<ReturnType<typeof cookies>>["set"]>()
+
+vi.mocked(cookies, { partial: true }).mockResolvedValue({ set })
 
 const A_YEAR = 31_536_000
 const ORIGINAL_NODE_ENV = process.env.NODE_ENV
 
-describe("setTheme", () => {
+describe(setTheme, () => {
   afterEach(() => {
     vi.clearAllMocks()
     vi.stubEnv("NODE_ENV", ORIGINAL_NODE_ENV)
   })
 
   it.each(["dark", "light", "system"])("setTheme(%s) // cookie に保存する", async (theme) => {
+    expect.hasAssertions()
     vi.stubEnv("NODE_ENV", "development")
     await setTheme(theme)
 
@@ -29,6 +32,7 @@ describe("setTheme", () => {
   })
 
   it("production では secure を付ける", async () => {
+    expect.hasAssertions()
     vi.stubEnv("NODE_ENV", "production")
     await setTheme("dark")
 
@@ -36,6 +40,7 @@ describe("setTheme", () => {
   })
 
   it.each(["", "Dark", "unknown"])("setTheme(%j) // 不正な値は無視する", async (theme) => {
+    expect.hasAssertions()
     await setTheme(theme)
 
     expect(cookies).not.toHaveBeenCalled()

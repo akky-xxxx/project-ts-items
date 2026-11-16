@@ -14,7 +14,7 @@ const BASE_CASES = [
   { expected: EXPECTED_NEXT, selectedBase: "next" },
 ] as const
 
-describe("getSource", () => {
+describe(getSource, () => {
   it.each(BASE_CASES)(
     "ベースに $selectedBase を選ぶと対応する設定だけを extends する",
     (testCase) => {
@@ -29,7 +29,7 @@ describe("getSource", () => {
     },
   )
 
-  it("Storybook を有効にするとベースの設定に続けて storybookConfig を extends する", () => {
+  it("enabledSwitches.storybook を有効にするとベースの設定に続けて storybookConfig を extends する", () => {
     expect(
       getSource({
         enabledSwitches: { storybook: true, typeAwareLinting: false },
@@ -47,7 +47,7 @@ describe("getSource", () => {
     ).toBe(EXPECTED_TS_WITH_TYPE_AWARE)
   })
 
-  it("Storybook と type-aware linting を両方有効にすると両方の設定を出力する", () => {
+  it("enabledSwitches の storybook と typeAwareLinting を両方有効にすると両方の設定を出力する", () => {
     expect(
       getSource({
         enabledSwitches: { storybook: true, typeAwareLinting: true },
