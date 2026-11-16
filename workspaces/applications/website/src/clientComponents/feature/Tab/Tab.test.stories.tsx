@@ -1,4 +1,4 @@
-import { expect, userEvent, waitFor, within } from "storybook/test"
+import { expect, spyOn, userEvent, waitFor, within } from "storybook/test"
 
 import meta from "./Tab.stories.tsx"
 
@@ -41,6 +41,24 @@ export const TestForContentsHeader: Story = {
     const canvas = within(canvasElement)
     await expect(canvas.getByText("{title}")).toBeInTheDocument()
     await expect(canvas.getByText("{C}")).toBeInTheDocument()
+  },
+}
+
+export const TestForCopy: Story = {
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    const writeTextSpy = spyOn(navigator.clipboard, "writeText").mockResolvedValue()
+    try {
+      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText1")
+
+      await userEvent.click(canvas.getByRole("button", { name: "tabLabelText2" }))
+      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText2")
+    } finally {
+      writeTextSpy.mockRestore()
+    }
   },
 }
 

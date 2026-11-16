@@ -25,6 +25,15 @@
   color: var(--color-text-accent);
 }
 
+.copyButton {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
 .contentsWrapper {
   border: 1px solid var(--color-border);
   border-radius: 8px;

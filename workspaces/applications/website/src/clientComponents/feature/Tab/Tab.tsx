@@ -1,6 +1,8 @@
 "use client"
 
-import { startTransition, useState, ViewTransition } from "react"
+import { ViewTransition } from "react"
+
+import { useTab } from "./useTab.ts"
 
 import type { ReactElement, FC } from "react"
 
@@ -8,45 +10,36 @@ import styles from "./tab.module.css"
 
 type TabValue = string
 type Item = {
+  copyText: string
   tabLabelText: string
   tabValue: TabValue
   tabContent: ReactElement
 }
 type Props = {
+  copyButtonLabelText: string
   copyIconElement: ReactElement
   currentActiveTabValue?: Item["tabValue"]
   items: [Item, ...Item[]]
   title: string
 }
 
-const ARRAY_FIRST_INDEX = 0
-
 export const Tab: FC<Props> = (props) => {
-  const { copyIconElement, currentActiveTabValue, items, title } = props
-  const [activeTabValue, setActiveTabValue] = useState<TabValue>(
-    currentActiveTabValue ?? items[ARRAY_FIRST_INDEX].tabValue,
-  )
-  const handleChange = (nextTabValue: TabValue) => () => {
-    startTransition(() => {
-      setActiveTabValue(nextTabValue)
-    })
-  }
+  const { copyButtonLabelText, copyIconElement, items, title } = props
+  const { activeTabValue, getTabButtonClassName, handleChange, handleCopy } = useTab(props)
 
   return (
     <div>
       <ul className={styles.ul}>
         {items.map((item) => {
           const { tabLabelText, tabValue } = item
-          const buttonClasses = [
-            styles.button,
-            tabValue === activeTabValue ? styles.activeButton : "",
-          ]
-            .filter(Boolean)
-            .join(" ")
 
           return (
             <li key={tabValue}>
-              <button className={buttonClasses} type="button" onClick={handleChange(tabValue)}>
+              <button
+                className={getTabButtonClassName(tabValue)}
+                type="button"
+                onClick={handleChange(tabValue)}
+              >
                 {tabLabelText}
               </button>
             </li>
@@ -58,7 +51,14 @@ export const Tab: FC<Props> = (props) => {
         <header className={styles.contentsHeader}>
           <span>{title}</span>
 
-          <span>{copyIconElement}</span>
+          <button
+            aria-label={copyButtonLabelText}
+            className={styles.copyButton}
+            type="button"
+            onClick={handleCopy}
+          >
+            {copyIconElement}
+          </button>
         </header>
 
         <div className={styles.contentsMain}>
