@@ -1,10 +1,12 @@
 import { Fragment } from "react"
 
 import { Tab } from "../../../clientComponents/feature/Tab/Tab.tsx"
-import { CopyIcon } from "../../icons/CopyIcon/CopyIcon.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { CodeBlock } from "../../ui/CodeBlock/CodeBlock.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
+import { getCodeBlockMap } from "./clientComponents/feature/OxlintConfigSetup/modules/getCodeBlockMap/getCodeBlockMap.tsx"
+import { OxlintConfigSetup } from "./clientComponents/feature/OxlintConfigSetup/OxlintConfigSetup.tsx"
+import { COPY_ICON_ELEMENT } from "./constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 
 import type { ReactNode, ComponentProps, FC } from "react"
 
@@ -20,8 +22,6 @@ type Props = {
   pageTitle: string
   setupTitleText: string
 }
-
-const COPY_ICON_ELEMENT = <CopyIcon height={14} width={14} />
 
 const INSTALL_TAB_ITEMS: ComponentProps<typeof Tab>["items"] = [
   {
@@ -50,6 +50,8 @@ const INSTALL_TAB_ITEMS: ComponentProps<typeof Tab>["items"] = [
   },
 ]
 
+const CODE_BLOCK_MAP = getCodeBlockMap()
+
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
   const {
     breadcrumbItems,
@@ -75,19 +77,23 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
       <section className={styles.section}>
         <Heading headingTag="h2">{installTitleText}</Heading>
 
-        <Tab
-          copiedText={copiedText}
-          copyButtonLabelText={copyButtonLabelText}
-          copyIconElement={COPY_ICON_ELEMENT}
-          items={INSTALL_TAB_ITEMS}
-          title="Terminal"
-        />
+        <div className={styles.tabWrapper}>
+          <Tab
+            copiedText={copiedText}
+            copyButtonLabelText={copyButtonLabelText}
+            copyIconElement={COPY_ICON_ELEMENT}
+            items={INSTALL_TAB_ITEMS}
+            title="Terminal"
+          />
+        </div>
       </section>
 
       <section className={styles.section}>
         <Heading headingTag="h2">{setupTitleText}</Heading>
 
-        <pre>{/* TODO: コードハイライトを入れる */}</pre>
+        <div className={styles.oxlintConfigSetupWrapper}>
+          <OxlintConfigSetup codeBlockMap={CODE_BLOCK_MAP} />
+        </div>
       </section>
     </Fragment>
   )
