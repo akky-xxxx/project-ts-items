@@ -19,6 +19,9 @@ const meta = {
       description:
         "タブの一覧(tabLabelText: タブのボタンのテキスト / tabValue: タブの識別子 / tabContent: 選択時に表示する内容)。1件以上",
     },
+    title: {
+      description: "コンテンツ領域のヘッダー左側に表示するタイトル",
+    },
   },
   args: {
     copyIconElement: <DummyForStorybook label="C" />,
@@ -39,6 +42,7 @@ const meta = {
         tabValue: "tabValue3",
       },
     ],
+    title: "{title}",
   },
 } satisfies Meta<typeof Tab>
 

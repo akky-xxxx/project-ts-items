@@ -16,12 +16,13 @@ type Props = {
   copyIconElement: ReactElement
   currentActiveTabValue?: Item["tabValue"]
   items: [Item, ...Item[]]
+  title: string
 }
 
 const ARRAY_FIRST_INDEX = 0
 
 export const Tab: FC<Props> = (props) => {
-  const { copyIconElement, currentActiveTabValue, items } = props
+  const { copyIconElement, currentActiveTabValue, items, title } = props
   const [activeTabValue, setActiveTabValue] = useState<TabValue>(
     currentActiveTabValue ?? items[ARRAY_FIRST_INDEX].tabValue,
   )
@@ -55,7 +56,7 @@ export const Tab: FC<Props> = (props) => {
 
       <div className={styles.contentsWrapper}>
         <header className={styles.contentsHeader}>
-          <span>Terminal</span>
+          <span>{title}</span>
 
           <span>{copyIconElement}</span>
         </header>
