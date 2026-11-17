@@ -17,8 +17,6 @@ import styles from "./oxfmtConfigHomeQuickstart.module.css"
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
   breadcrumbLabelText: string
-  copiedText: string
-  copyButtonLabelText: string
   installTitleText: string
   pageDescriptionText: ReactNode
   pageTitle: string
@@ -29,8 +27,6 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
   const {
     breadcrumbItems,
     breadcrumbLabelText,
-    copiedText,
-    copyButtonLabelText,
     installTitleText,
     pageDescriptionText,
     pageTitle,
@@ -51,13 +47,7 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
         <Heading headingTag="h2">{installTitleText}</Heading>
 
         <div className={styles.tabWrapper}>
-          <Tab
-            copiedText={copiedText}
-            copyButtonLabelText={copyButtonLabelText}
-            copyIconElement={COPY_ICON_ELEMENT}
-            items={INSTALL_TAB_ITEMS}
-            title="Terminal"
-          />
+          <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
         </div>
       </Section>
 
@@ -66,8 +56,6 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
 
         <div className={styles.oxfmtConfigSetupWrapper}>
           <CodeArea
-            copiedText={copiedText}
-            copyButtonLabelText={copyButtonLabelText}
             copyIconElement={COPY_ICON_ELEMENT}
             copyTargetText={SETTING_CODE}
             title="oxfmt.config.mts"

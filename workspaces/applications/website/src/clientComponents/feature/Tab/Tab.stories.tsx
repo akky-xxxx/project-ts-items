@@ -11,12 +11,6 @@ const meta = {
   component: Tab,
 
   argTypes: {
-    copiedText: {
-      description: "コピー完了時にトーストで表示するテキスト",
-    },
-    copyButtonLabelText: {
-      description: "コピーボタンのラベル(aria-label)",
-    },
     copyIconElement: {
       control: false,
       description: "コンテンツ領域のヘッダー右側に表示するコピー用アイコン",
@@ -34,8 +28,6 @@ const meta = {
     },
   },
   args: {
-    copiedText: "{copiedText}",
-    copyButtonLabelText: "{copyButtonLabelText}",
     copyIconElement: <DummyForStorybook label="C" />,
     items: [
       {

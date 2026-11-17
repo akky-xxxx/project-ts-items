@@ -17,8 +17,6 @@ type Item = {
   tabContent: ReactElement
 }
 type Props = {
-  copiedText: string
-  copyButtonLabelText: string
   copyIconElement: ReactElement
   currentActiveTabValue?: Item["tabValue"]
   items: [Item, ...Item[]]
@@ -26,7 +24,7 @@ type Props = {
 }
 
 export const Tab: FC<Props> = (props) => {
-  const { copiedText, copyButtonLabelText, copyIconElement, items, title } = props
+  const { copyIconElement, items, title } = props
   const { activeTabValue, getTabButtonClassName, copyTargetText, handleChange } = useTab(props)
 
   return (
@@ -49,13 +47,7 @@ export const Tab: FC<Props> = (props) => {
         })}
       </ul>
 
-      <CodeArea
-        copiedText={copiedText}
-        copyButtonLabelText={copyButtonLabelText}
-        copyIconElement={copyIconElement}
-        copyTargetText={copyTargetText}
-        title={title}
-      >
+      <CodeArea copyIconElement={copyIconElement} copyTargetText={copyTargetText} title={title}>
         <ViewTransition>
           {items.map((item) => {
             const { tabContent, tabValue } = item

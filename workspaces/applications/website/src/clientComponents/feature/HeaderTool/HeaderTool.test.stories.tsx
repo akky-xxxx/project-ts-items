@@ -43,8 +43,8 @@ export const TestForLink: Story = {
   },
 }
 
-export const TestForThemeButtonLight = createButtonNameStory(En, "light", "{lightThemeText}")
-export const TestForThemeButtonSystem = createButtonNameStory(En, "system", "{systemThemeText}")
+export const TestForThemeButtonLight = createButtonNameStory(En, "light", "Light")
+export const TestForThemeButtonSystem = createButtonNameStory(En, "system", "System")
 
 export const TestForLanguageSelection: Story = {
   ...Ja,
@@ -53,7 +53,7 @@ export const TestForLanguageSelection: Story = {
     const { canvasElement } = context
     await selectOptionInPopoverForStorybook(canvasElement, {
       buttonName: "日本語",
-      legendText: "{languageLegendText}",
+      legendText: "言語",
       nextOptionName: "English",
     })
     // Query string と hash は環境(iframe の URL)の値がそのまま保持される
@@ -68,18 +68,16 @@ export const TestForThemeSelection: Story = {
   play: async (context) => {
     const { canvasElement } = context
     await selectOptionInPopoverForStorybook(canvasElement, {
-      buttonName: "{darkThemeText}",
-      legendText: "{themeLegendText}",
-      nextOptionName: "{lightThemeText}",
+      buttonName: "Dark",
+      legendText: "Theme",
+      nextOptionName: "Light",
     })
     await expect(
-      within(canvasElement).getByRole("radio", { hidden: true, name: "{lightThemeText}" }),
+      within(canvasElement).getByRole("radio", { hidden: true, name: "Light" }),
     ).toBeChecked()
     await expect(document.documentElement.dataset.theme).toBe("light")
     // ボタンのアイコンも選択したテーマに即時に切り替わる
-    await expect(
-      within(canvasElement).getByRole("button", { name: "{lightThemeText}" }),
-    ).toBeInTheDocument()
+    await expect(within(canvasElement).getByRole("button", { name: "Light" })).toBeInTheDocument()
     await waitFor(async () => {
       await expect(cookies().set).toHaveBeenCalledWith("THEME", "light", expect.anything())
     })
@@ -116,7 +114,7 @@ export const TestForLanguageButtonHoverStyle = createHoverStyleStory({
   role: "button",
 })
 export const TestForThemeButtonHoverStyle = createHoverStyleStory({
-  name: "{darkThemeText}",
+  name: "Dark",
   role: "button",
 })
 export const TestForLinkHoverStyle = createHoverStyleStory({ name: "GitHub", role: "link" })

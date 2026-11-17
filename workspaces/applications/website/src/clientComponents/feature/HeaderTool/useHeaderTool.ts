@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import { useLocale } from "./modules/useLocale/useLocale.ts"
 import { useTheme } from "./modules/useTheme/useTheme.tsx"
 
@@ -5,23 +7,29 @@ import type { themeSchema } from "../../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
 
 type Input = {
-  darkThemeText: string
-  lightThemeText: string
-  systemThemeText: string
   theme: z.output<typeof themeSchema>
 }
 
 export const useHeaderTool = (input: Input) => {
-  const { currentThemeIcon, localTheme, selectTheme, themeItems } = useTheme(input)
+  const { theme } = input
+  const headerTranslate = useTranslations("header")
+  const { currentThemeIcon, localTheme, selectTheme, themeItems } = useTheme({
+    darkThemeText: headerTranslate("theme.dark"),
+    lightThemeText: headerTranslate("theme.light"),
+    systemThemeText: headerTranslate("theme.system"),
+    theme,
+  })
   const { currentLanguageName, locale, selectLanguage } = useLocale()
 
   return {
     currentLanguageName,
     currentThemeIcon,
+    languageLegendText: headerTranslate("language"),
     localTheme,
     locale,
     selectLanguage,
     selectTheme,
     themeItems,
+    themeLegendText: headerTranslate("theme.legend"),
   }
 }

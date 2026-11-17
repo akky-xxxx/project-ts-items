@@ -1,11 +1,13 @@
 import { expect, spyOn, userEvent, waitFor, within } from "storybook/test"
 
+import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./Tab.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 const testMeta = {
   ...meta,
+  ...EN_LOCALE_FOR_STORYBOOK,
   tags: ["!dev", "!autodocs"],
 } satisfies Meta<typeof meta.component>
 
@@ -41,12 +43,12 @@ export const TestForCopyTextOfActiveTab: Story = {
     const canvas = within(canvasElement)
     const writeTextSpy = spyOn(navigator.clipboard, "writeText").mockResolvedValue()
     try {
-      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await userEvent.click(canvas.getByRole("button", { name: "Copy" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText1")
 
       await userEvent.click(canvas.getByRole("button", { name: "tabLabelText2" }))
       await expect(await canvas.findByText("{tabContent2}")).toBeInTheDocument()
-      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await userEvent.click(canvas.getByRole("button", { name: "Copy" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText2")
     } finally {
       writeTextSpy.mockRestore()

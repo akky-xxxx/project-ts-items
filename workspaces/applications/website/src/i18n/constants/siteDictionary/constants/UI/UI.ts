@@ -7,6 +7,16 @@ export const UI = {
       ja: "パンくずリスト",
     },
   },
+  codeArea: {
+    copiedText: {
+      en: "Copied",
+      ja: "コピーしました",
+    },
+    copyButtonLabelText: {
+      en: "Copy",
+      ja: "コピー",
+    },
+  },
   externalLink: {
     newTab: {
       en: "opens in a new tab",
@@ -17,16 +27,6 @@ export const UI = {
     linkText: {
       en: "Documents",
       ja: "ドキュメント",
-    },
-  },
-  tab: {
-    copiedText: {
-      en: "Copied",
-      ja: "コピーしました",
-    },
-    copyButtonLabelText: {
-      en: "Copy",
-      ja: "コピー",
     },
   },
 } as const satisfies Dictionary

@@ -26,14 +26,8 @@ const BASE_SKILL_LABEL_MAP = {
 
 export const OxlintConfigSetup: FC<Props> = (props) => {
   const { codeBlockMap } = props
-  const {
-    handleChangeBase,
-    selectConfiguration,
-    selectedBase,
-    sourceKey,
-    switchItems,
-    uiTranslate,
-  } = useOxlintConfigSetup()
+  const { handleChangeBase, selectConfiguration, selectedBase, sourceKey, switchItems } =
+    useOxlintConfigSetup()
   const { code, codeBlock } = codeBlockMap[sourceKey]
 
   return (
@@ -66,10 +60,8 @@ export const OxlintConfigSetup: FC<Props> = (props) => {
 
       <div className={styles.codeArea}>
         <CodeArea
-          copyButtonLabelText={uiTranslate("tab.copyButtonLabelText")}
           copyTargetText={code}
           copyIconElement={COPY_ICON_ELEMENT}
-          copiedText={uiTranslate("tab.copiedText")}
           title="oxlint.config.mts"
         >
           {codeBlock}

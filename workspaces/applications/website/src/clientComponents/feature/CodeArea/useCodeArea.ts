@@ -1,13 +1,16 @@
+import { useTranslations } from "next-intl"
 import { startTransition, useCallback } from "react"
 import { toast } from "react-hot-toast"
 
 type Input = {
-  copiedText: string
   copyTargetText: string | undefined
 }
 
 export const useCodeArea = (input: Input) => {
-  const { copyTargetText, copiedText } = input
+  const { copyTargetText } = input
+  const codeAreaTranslate = useTranslations("components.ui.codeArea")
+  const copiedText = codeAreaTranslate("copiedText")
+  const copyButtonLabelText = codeAreaTranslate("copyButtonLabelText")
 
   const handleCopy = useCallback(() => {
     if (copyTargetText === undefined) {
@@ -21,5 +24,5 @@ export const useCodeArea = (input: Input) => {
     })
   }, [copiedText, copyTargetText])
 
-  return { handleCopy }
+  return { copyButtonLabelText, handleCopy }
 }
