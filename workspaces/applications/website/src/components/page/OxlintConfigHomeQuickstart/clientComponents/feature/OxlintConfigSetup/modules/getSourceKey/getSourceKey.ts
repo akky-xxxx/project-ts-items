@@ -3,7 +3,7 @@ import { SWITCH_NAMES } from "../../constants/SWITCH_NAMES/SWITCH_NAMES.ts"
 import type { FormValues } from "../../types/FormValues/FormValues.ts"
 import type { SourceKey } from "../../types/SourceKey/SourceKey.ts"
 
-/** ベースとスイッチの状態を表すキーを返す(例: `ts&typeAwareLinting=true&storybook=false`) */
+/** ベースとスイッチの状態を表すキーを返す(例: `ts&typeAwareLinting=true&vitest=false&storybook=false`) */
 export const getSourceKey = (formValues: FormValues) => {
   const { enabledSwitches, selectedBase } = formValues
   const sourceKey = [

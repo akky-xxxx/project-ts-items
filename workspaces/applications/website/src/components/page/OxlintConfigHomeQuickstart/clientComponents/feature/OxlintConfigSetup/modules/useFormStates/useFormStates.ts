@@ -7,6 +7,7 @@ import type { SwitchName } from "../../types/SwitchName/SwitchName.ts"
 const INITIAL_ENABLED_SWITCHES: FormValues["enabledSwitches"] = {
   storybook: false,
   typeAwareLinting: true,
+  vitest: false,
 }
 
 export const useFormStates = () => {

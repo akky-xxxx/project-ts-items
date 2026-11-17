@@ -6,5 +6,5 @@ type SwitchPart<Names> = Names extends readonly [infer Head extends string, ...i
   ? `&${Head}=${boolean}${SwitchPart<Rest>}`
   : ""
 
-/** ベースとスイッチの状態を表すキー(例: `ts&typeAwareLinting=true&storybook=false`) */
+/** ベースとスイッチの状態を表すキー(例: `ts&typeAwareLinting=true&vitest=false&storybook=false`) */
 export type SourceKey = `${Base}${SwitchPart<typeof SWITCH_NAMES>}`

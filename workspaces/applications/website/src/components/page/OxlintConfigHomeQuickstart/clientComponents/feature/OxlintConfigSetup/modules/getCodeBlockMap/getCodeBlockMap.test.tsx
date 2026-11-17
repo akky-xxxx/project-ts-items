@@ -18,31 +18,44 @@ export default defineConfig({
 })`
 
 describe(getCodeBlockMap, () => {
-  it("ベース・Storybook・type-aware linting の全組み合わせのキーを持つ", () => {
+  it("ベース・type-aware linting・Vitest・Storybook の全組み合わせのキーを持つ", () => {
     expect(Object.keys(getCodeBlockMap()).toSorted()).toStrictEqual([
-      "next&typeAwareLinting=false&storybook=false",
-      "next&typeAwareLinting=false&storybook=true",
-      "next&typeAwareLinting=true&storybook=false",
-      "next&typeAwareLinting=true&storybook=true",
-      "react&typeAwareLinting=false&storybook=false",
-      "react&typeAwareLinting=false&storybook=true",
-      "react&typeAwareLinting=true&storybook=false",
-      "react&typeAwareLinting=true&storybook=true",
-      "ts&typeAwareLinting=false&storybook=false",
-      "ts&typeAwareLinting=false&storybook=true",
-      "ts&typeAwareLinting=true&storybook=false",
-      "ts&typeAwareLinting=true&storybook=true",
+      "next&typeAwareLinting=false&vitest=false&storybook=false",
+      "next&typeAwareLinting=false&vitest=false&storybook=true",
+      "next&typeAwareLinting=false&vitest=true&storybook=false",
+      "next&typeAwareLinting=false&vitest=true&storybook=true",
+      "next&typeAwareLinting=true&vitest=false&storybook=false",
+      "next&typeAwareLinting=true&vitest=false&storybook=true",
+      "next&typeAwareLinting=true&vitest=true&storybook=false",
+      "next&typeAwareLinting=true&vitest=true&storybook=true",
+      "react&typeAwareLinting=false&vitest=false&storybook=false",
+      "react&typeAwareLinting=false&vitest=false&storybook=true",
+      "react&typeAwareLinting=false&vitest=true&storybook=false",
+      "react&typeAwareLinting=false&vitest=true&storybook=true",
+      "react&typeAwareLinting=true&vitest=false&storybook=false",
+      "react&typeAwareLinting=true&vitest=false&storybook=true",
+      "react&typeAwareLinting=true&vitest=true&storybook=false",
+      "react&typeAwareLinting=true&vitest=true&storybook=true",
+      "ts&typeAwareLinting=false&vitest=false&storybook=false",
+      "ts&typeAwareLinting=false&vitest=false&storybook=true",
+      "ts&typeAwareLinting=false&vitest=true&storybook=false",
+      "ts&typeAwareLinting=false&vitest=true&storybook=true",
+      "ts&typeAwareLinting=true&vitest=false&storybook=false",
+      "ts&typeAwareLinting=true&vitest=false&storybook=true",
+      "ts&typeAwareLinting=true&vitest=true&storybook=false",
+      "ts&typeAwareLinting=true&vitest=true&storybook=true",
     ])
   })
 
   it("code はキーの組み合わせに対応する設定ファイルのコードを持つ", () => {
-    const { code } = getCodeBlockMap()["next&typeAwareLinting=true&storybook=true"]
+    const { code } = getCodeBlockMap()["next&typeAwareLinting=true&vitest=false&storybook=true"]
 
     expect(code).toBe(EXPECTED_NEXT_WITH_TYPE_AWARE_AND_STORYBOOK)
   })
 
   it("codeBlock はキーの組み合わせに対応する設定ファイルのコードを描画する", () => {
-    const { codeBlock } = getCodeBlockMap()["next&typeAwareLinting=true&storybook=true"]
+    const { codeBlock } =
+      getCodeBlockMap()["next&typeAwareLinting=true&vitest=false&storybook=true"]
     const { container } = render(codeBlock)
 
     expect(container.querySelector("pre > code")?.textContent).toBe(

@@ -23,6 +23,7 @@ const CONFIGURATION_NAMES = {
 const SWITCH_SOURCES = {
   storybook: { configurationNames: ["storybookConfig"], optionLines: [] },
   typeAwareLinting: { configurationNames: [], optionLines: ["typeAware: true,"] },
+  vitest: { configurationNames: ["vitestConfig"], optionLines: [] },
 } as const satisfies Record<SwitchName, Readonly<Record<keyof SwitchSource, readonly string[]>>>
 
 export const getSource = (formValues: FormValues) => {
