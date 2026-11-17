@@ -12,12 +12,12 @@ type Props = {
 
 export const ExternalLink: FcWithChildren<Props> = (props) => {
   const { children, href } = props
-  const navigationTranslate = useTranslations("components.ui.externalLink")
+  const externalLinkTranslate = useTranslations("components.ui.externalLink")
 
   return (
     <a {...BLANK_LINK_PROPERTIES} className={styles.root} href={href}>
       {children}
-      <span className="visuallyHidden"> ({navigationTranslate("newTab")})</span>
+      <span className="visuallyHidden"> ({externalLinkTranslate("newTab")})</span>
     </a>
   )
 }
