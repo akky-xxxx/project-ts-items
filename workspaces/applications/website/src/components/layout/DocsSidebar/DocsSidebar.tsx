@@ -16,7 +16,7 @@ type Props = {
 
 export const DocsSidebar: FC<Props> = (props) => {
   const { docsNavigationUlElement, npmHref, packagesSelectorElement, versionText } = props
-  const navigationTranslate = useTranslations("docsLayout")
+  const docsLayoutTranslate = useTranslations("docsLayout")
 
   return (
     <div className={styles.root}>
@@ -24,10 +24,10 @@ export const DocsSidebar: FC<Props> = (props) => {
 
       <div className={styles.version}>
         <span>{versionText}</span>
-        <span>{navigationTranslate("latest")}</span>
+        <span>{docsLayoutTranslate("latest")}</span>
       </div>
 
-      <nav aria-label={navigationTranslate("docsNavigationLabel")}>{docsNavigationUlElement}</nav>
+      <nav aria-label={docsLayoutTranslate("docsNavigationLabel")}>{docsNavigationUlElement}</nav>
 
       <hr className={styles.hr} />
 
