@@ -11,8 +11,6 @@ const meta = {
       control: false,
       description: "ナビゲーション内に表示する、ドキュメントのリンク一覧",
     },
-    latestText: { description: "バージョンが最新であることを示すラベル" },
-    navigationLabelText: { description: "ナビゲーションのアクセシブルネーム" },
     newTabText: { description: "外部リンクが新しいタブで開くことを伝える、視覚的には隠した文字列" },
     npmHref: { description: "npm のパッケージページの URL" },
     packagesSelectorElement: { control: false, description: "パッケージの切り替え UI" },
@@ -20,8 +18,6 @@ const meta = {
   },
   args: {
     docsNavigationUlElement: <DummyForStorybook label="docsNavigationUlElement" />,
-    latestText: "{latestText}",
-    navigationLabelText: "{navigationLabelText}",
     newTabText: "{newTabText}",
     npmHref: "https://example.com",
     packagesSelectorElement: <DummyForStorybook label="packagesSelectorElement" />,

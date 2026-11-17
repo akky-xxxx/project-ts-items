@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import { GITHUB_REPOSITORY_URL } from "../../../constants/GITHUB_REPOSITORY_URL/GITHUB_REPOSITORY_URL.ts"
 import { ExternalLink } from "../../ui/ExternalLink/ExternalLink.tsx"
 
@@ -7,8 +9,6 @@ import styles from "./docsSidebar.module.css"
 
 type Props = {
   docsNavigationUlElement: ReactElement
-  latestText: string
-  navigationLabelText: string
   newTabText: string
   npmHref: ComponentProps<typeof ExternalLink>["href"]
   packagesSelectorElement: ReactElement
@@ -18,13 +18,12 @@ type Props = {
 export const DocsSidebar: FC<Props> = (props) => {
   const {
     docsNavigationUlElement,
-    latestText,
-    navigationLabelText,
     newTabText,
     npmHref,
     packagesSelectorElement,
     versionText,
   } = props
+  const navigationTranslate = useTranslations("docsLayout")
 
   return (
     <div className={styles.root}>
@@ -32,10 +31,10 @@ export const DocsSidebar: FC<Props> = (props) => {
 
       <div className={styles.version}>
         <span>{versionText}</span>
-        <span>{latestText}</span>
+        <span>{navigationTranslate("latest")}</span>
       </div>
 
-      <nav aria-label={navigationLabelText}>{docsNavigationUlElement}</nav>
+      <nav aria-label={navigationTranslate("docsNavigationLabel")}>{docsNavigationUlElement}</nav>
 
       <hr className={styles.hr} />
 

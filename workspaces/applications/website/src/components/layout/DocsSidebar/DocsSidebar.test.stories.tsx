@@ -19,7 +19,7 @@ export const TestForElements: Story = {
     const canvas = within(canvasElement)
     await expect(canvas.getByText("{packagesSelectorElement}")).toBeVisible()
     await expect(canvas.getByText("v1.0.0")).toBeVisible()
-    await expect(canvas.getByText("{latestText}")).toBeVisible()
+    await expect(canvas.getByText("Latest")).toBeVisible()
   },
 }
 
@@ -27,7 +27,7 @@ export const TestForNavigation: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const navigationElement = within(canvasElement).getByRole("navigation", {
-      name: "{navigationLabelText}",
+      name: "Documentation",
     })
     await expect(
       within(navigationElement).getByText("{docsNavigationUlElement}"),
