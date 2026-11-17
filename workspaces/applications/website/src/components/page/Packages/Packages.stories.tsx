@@ -22,8 +22,6 @@ const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
       {...props}
       breadcrumbItems={breadcrumbItems}
       packages={buildPackageCardItems(packageTranslate, "h2")}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitleText={pageTitleText}
     />
   )
 }
@@ -40,8 +38,6 @@ const meta = {
       control: false,
       description: "表示するパッケージ一覧(各要素は PackageCard の props)",
     },
-    pageDescriptionText: { control: false, description: "ページの説明文" },
-    pageTitleText: { control: false, description: "ページタイトル(h1)" },
   },
   args: {
     breadcrumbItems: [{ text: "{breadcrumbItemText}" }],
@@ -62,8 +58,6 @@ const meta = {
         versionText: "v1.0.0",
       },
     ],
-    pageDescriptionText: "{pageDescriptionText}",
-    pageTitleText: "{pageTitleText}",
   },
 } satisfies Meta<typeof Packages>
 
@@ -77,8 +71,6 @@ export const Default: Story = {
     packages: {
       control: "object",
     },
-    pageDescriptionText: { control: "text" },
-    pageTitleText: { control: "text" },
   },
 }
 

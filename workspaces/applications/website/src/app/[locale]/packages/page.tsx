@@ -40,8 +40,6 @@ const Page = async (): Promise<ReactNode> => {
         },
       ]}
       packages={buildPackageCardItems(packageTranslate, "h2")}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitleText={pageTitleText}
     />
   )
 }

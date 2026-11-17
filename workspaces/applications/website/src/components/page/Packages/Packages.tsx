@@ -5,27 +5,27 @@ import { Heading } from "../../ui/Heading/Heading.tsx"
 import type { ComponentProps, FC } from "react"
 
 import styles from "./packages.module.css"
+import {useTranslations} from "next-intl"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
   packages: ComponentProps<typeof PackageCardList>["packages"]
-  pageDescriptionText: string
-  pageTitleText: string
 }
 
 export const Packages: FC<Props> = (props) => {
-  const { breadcrumbItems, packages, pageDescriptionText, pageTitleText } =
+  const { breadcrumbItems, packages } =
     props
+  const packagesTranslate = useTranslations("pages.packages")
 
   return (
     <main className={styles.root}>
       <Breadcrumb items={breadcrumbItems} />
 
       <div className={styles.heading1Wrapper}>
-        <Heading headingTag="h1">{pageTitleText}</Heading>
+        <Heading headingTag="h1">{packagesTranslate("pageTitle")}</Heading>
       </div>
 
-      <p className={styles.description}>{pageDescriptionText}</p>
+      <p className={styles.description}>{packagesTranslate("pageDescription")}</p>
 
       <div className={styles.packageCardListWrapper}>
         <PackageCardList laneNumber={1} packages={packages} />
