@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 import { OxlintConfigHome } from "../../../../components/page/OxlintConfigHome/OxlintConfigHome.tsx"
 import { PACKAGE_NAMES } from "../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
-import { renderLineBreak } from "../../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
@@ -27,17 +26,10 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [pageTranslate, packagesPageTranslate] = await Promise.all([
-    getTranslations("pages.oxlintConfigHome"),
-    getTranslations("pages.packages"),
-  ])
+  const packagesPageTranslate = await getTranslations("pages.packages")
 
   return (
     <OxlintConfigHome
-      backgroundDescriptionText={pageTranslate.rich("backgroundDescription", {
-        br: renderLineBreak,
-      })}
-      backgroundTitleText={pageTranslate("backgroundTitle")}
       breadcrumbItems={[
         {
           href: "/packages/",
@@ -47,8 +39,6 @@ const Page = async (): Promise<ReactNode> => {
           text: PACKAGE_NAMES.oxlintConfig,
         },
       ]}
-      pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
-      pageTitle={pageTranslate("pageTitle")}
     />
   )
 }

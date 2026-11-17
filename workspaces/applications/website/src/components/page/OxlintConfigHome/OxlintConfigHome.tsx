@@ -5,38 +5,33 @@ import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx
 import { Heading } from "../../ui/Heading/Heading.tsx"
 
 import type { ReactNode, ComponentProps, FC } from "react"
+import {useTranslations} from "next-intl"
+import {renderLineBreak} from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 type Props = {
-  backgroundDescriptionText: ReactNode
-  backgroundTitleText: string
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  pageDescriptionText: ReactNode
-  pageTitle: string
 }
 
 export const OxlintConfigHome: FC<Props> = (props) => {
   const {
-    backgroundDescriptionText,
-    backgroundTitleText,
     breadcrumbItems,
-    pageDescriptionText,
-    pageTitle,
   } = props
+  const oxlintConfigHomeTranslate = useTranslations("pages.oxlintConfigHome")
 
   return (
     <Fragment>
       <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitle}</Heading>
+        <Heading headingTag="h1">{oxlintConfigHomeTranslate("pageTitle")}</Heading>
       </Heading1Wrapper>
 
-      <p>{pageDescriptionText}</p>
+      <p>{oxlintConfigHomeTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
 
       <Section>
-        <Heading headingTag="h2">{backgroundTitleText}</Heading>
+        <Heading headingTag="h2">{oxlintConfigHomeTranslate("backgroundTitle")}</Heading>
 
-        <p>{backgroundDescriptionText}</p>
+        <p>{oxlintConfigHomeTranslate.rich("backgroundDescription", { br: renderLineBreak })}</p>
       </Section>
     </Fragment>
   )
