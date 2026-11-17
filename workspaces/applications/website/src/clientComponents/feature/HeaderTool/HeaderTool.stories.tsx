@@ -8,20 +8,10 @@ const meta = {
   component: HeaderTool,
 
   argTypes: {
-    darkThemeText: { description: "ダークテーマ選択肢用文字列" },
-    languageLegendText: { description: "言語選択ポップアップの見出し文字列" },
-    lightThemeText: { description: "ライトテーマ選択肢用文字列" },
-    systemThemeText: { description: "システムテーマ選択肢用文字列" },
     theme: { description: "server component で取得した cookie の値" },
-    themeLegendText: { description: "テーマ選択ポップアップの見出し文字列" },
   },
   args: {
-    darkThemeText: "{darkThemeText}",
-    languageLegendText: "{languageLegendText}",
-    lightThemeText: "{lightThemeText}",
-    systemThemeText: "{systemThemeText}",
     theme: "dark",
-    themeLegendText: "{themeLegendText}",
   },
 } satisfies Meta<typeof HeaderTool>
 

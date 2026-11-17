@@ -64,12 +64,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
       }
       toolElement={
         <HeaderTool
-          darkThemeText={headerTranslate("theme.dark")}
-          languageLegendText={headerTranslate("language")}
-          lightThemeText={headerTranslate("theme.light")}
-          systemThemeText={headerTranslate("theme.system")}
           theme={theme}
-          themeLegendText={headerTranslate("theme.legend")}
         />
       }
     />

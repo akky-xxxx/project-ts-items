@@ -15,27 +15,23 @@ import type * as z from "zod/mini"
 import styles from "./headerTool.module.css"
 
 type Props = {
-  darkThemeText: string
-  languageLegendText: string
-  lightThemeText: string
-  systemThemeText: string
   theme: z.output<typeof themeSchema>
-  themeLegendText: string
 }
 
 const LANGUAGE_POPOVER_TARGET_ID = "language"
 const THEME_POPOVER_TARGET_ID = "theme"
 
 export const HeaderTool: FC<Props> = (props) => {
-  const { languageLegendText, themeLegendText } = props
   const {
     currentLanguageName,
     currentThemeIcon,
+    languageLegendText,
     localTheme,
     locale,
     selectLanguage,
     selectTheme,
     themeItems,
+    themeLegendText,
   } = useHeaderTool(props)
 
   return (
