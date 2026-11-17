@@ -1,11 +1,14 @@
 import { Fragment } from "react"
 
+import { CodeArea } from "../../../clientComponents/feature/CodeArea/CodeArea.tsx"
 import { Tab } from "../../../clientComponents/feature/Tab/Tab.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
+import { CodeBlock } from "../../ui/CodeBlock/CodeBlock.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
 import { COPY_ICON_ELEMENT } from "./constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 import { INSTALL_TAB_ITEMS } from "./constants/INSTALL_TAB_ITEMS/INSTALL_TAB_ITEMS.tsx"
+import { SETTING_CODE } from "./constants/SETTING_CODE/SETTING_CODE.ts"
 
 import type { ReactNode, ComponentProps, FC } from "react"
 
@@ -61,7 +64,17 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
       <Section>
         <Heading headingTag="h2">{setupTitleText}</Heading>
 
-        {/* TODO: 設定方法を書く */}
+        <div className={styles.oxfmtConfigSetupWrapper}>
+          <CodeArea
+            copiedText={copiedText}
+            copyButtonLabelText={copyButtonLabelText}
+            copyIconElement={COPY_ICON_ELEMENT}
+            copyTargetText={SETTING_CODE}
+            title="oxfmt.config.mts"
+          >
+            <CodeBlock code={SETTING_CODE} lang="typescript" />
+          </CodeArea>
+        </div>
       </Section>
     </Fragment>
   )
