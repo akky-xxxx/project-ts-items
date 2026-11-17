@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import { OxlintConfigHome } from "../../../../components/page/OxlintConfigHome/OxlintConfigHome.tsx"
-import { PACKAGE_NAMES } from "../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
@@ -34,9 +33,6 @@ const Page = async (): Promise<ReactNode> => {
         {
           href: "/packages/",
           text: packagesPageTranslate("pageTitle"),
-        },
-        {
-          text: PACKAGE_NAMES.oxlintConfig,
         },
       ]}
     />

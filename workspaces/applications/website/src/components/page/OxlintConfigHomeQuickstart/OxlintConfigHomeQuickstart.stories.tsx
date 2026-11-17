@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props) => {
-  const pageTranslate = useTranslations("pages.oxlintConfigQuickstart")
   const packagesPageTranslate = useTranslations("pages.packages")
   const breadcrumbItems = useMemo(
     () => [
@@ -22,11 +21,8 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
         href: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
         text: PACKAGE_NAMES.oxlintConfig,
       },
-      {
-        text: pageTranslate("pageTitle"),
-      },
     ],
-    [packagesPageTranslate, pageTranslate],
+    [packagesPageTranslate],
   )
 
   return <OxlintConfigHomeQuickstart {...props} breadcrumbItems={breadcrumbItems} />
@@ -38,14 +34,13 @@ const meta = {
   argTypes: {
     breadcrumbItems: {
       control: false,
-      description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
+      description: "パンくずのルートと現在のページの間の階層(各要素は Breadcrumb の items の要素)",
     },
   },
   args: {
     breadcrumbItems: [
       { href: "/packages/", text: "{breadcrumbItemText}" },
       { href: `/packages/${PACKAGE_NAMES.oxlintConfig}/`, text: PACKAGE_NAMES.oxlintConfig },
-      { text: "{pageTitle}" },
     ],
   },
   render: (args) => <Localized {...args} />,

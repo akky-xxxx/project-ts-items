@@ -9,19 +9,20 @@ const meta = {
 
   ...EN_LOCALE_FOR_STORYBOOK,
   argTypes: {
-    items: {
+    currentPageText: {
       description:
-        "ルートより後ろの階層(最後の項目は現在のページとしてテキストで表示。空配列の場合はルートを現在のページとしてテキストで表示)",
+        "現在のページ名(最後の項目としてテキストで表示。省略した場合はルートを現在のページとしてテキストで表示)",
+    },
+    items: {
+      description: "ルートと現在のページの間の階層(現在のページとしては扱わない)",
     },
   },
   args: {
+    currentPageText: PACKAGE_NAMES.oxlintConfig,
     items: [
       {
         href: "/packages/",
         text: "{packages-text}",
-      },
-      {
-        text: PACKAGE_NAMES.oxlintConfig,
       },
     ],
   },

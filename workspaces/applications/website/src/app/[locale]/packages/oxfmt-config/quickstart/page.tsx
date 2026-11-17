@@ -25,10 +25,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [pageTranslate, packagesPageTranslate] = await Promise.all([
-    getTranslations("pages.oxfmtConfigQuickstart"),
-    getTranslations("pages.packages"),
-  ])
+  const packagesPageTranslate = await getTranslations("pages.packages")
 
   return (
     <OxfmtConfigHomeQuickstart
@@ -40,9 +37,6 @@ const Page = async (): Promise<ReactNode> => {
         {
           href: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
           text: PACKAGE_NAMES.oxfmtConfig,
-        },
-        {
-          text: pageTranslate("pageTitle"),
         },
       ]}
     />

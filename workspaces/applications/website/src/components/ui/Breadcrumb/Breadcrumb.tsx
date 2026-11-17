@@ -13,32 +13,34 @@ type Item = {
 }
 
 type Props = {
-  items: Item[]
+  // 省略時はルート(PROJECT_NAME)が現在のページになる
+  currentPageText?: string
+  // ルートと現在のページの間の階層。現在のページとしては扱わない
+  items?: Item[]
 }
 
-const LAST_ITEM_INDEX = -1
-const EMPTY_ARRAY_LENGTH = 0
-
 export const Breadcrumb: FC<Props> = (props) => {
-  const { items } = props
+  const { currentPageText, items } = props
   const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
 
   return (
     <nav aria-label={breadcrumbTranslate("labelText")}>
       <ol className={styles.ol}>
-        <BreadcrumbItem href="/" isCurrentPage={items.length === EMPTY_ARRAY_LENGTH}>
+        <BreadcrumbItem href="/" isCurrentPage={currentPageText === undefined}>
           {PROJECT_NAME}
         </BreadcrumbItem>
-        {items.map((item, index) => {
+        {items?.map((item) => {
           const { href, text } = item
-          const isCurrentPage = index === items.length + LAST_ITEM_INDEX
 
           return (
-            <BreadcrumbItem key={`${href ?? ""}:${text}`} href={href} isCurrentPage={isCurrentPage}>
+            <BreadcrumbItem key={`${href ?? ""}:${text}`} href={href} isCurrentPage={false}>
               {text}
             </BreadcrumbItem>
           )
         })}
+        {currentPageText !== undefined && (
+          <BreadcrumbItem isCurrentPage>{currentPageText}</BreadcrumbItem>
+        )}
       </ol>
     </nav>
   )

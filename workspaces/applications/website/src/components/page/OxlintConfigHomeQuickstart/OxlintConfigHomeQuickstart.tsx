@@ -16,7 +16,7 @@ import type { ComponentProps, FC } from "react"
 import styles from "./oxlintConfigHomeQuickstart.module.css"
 
 type Props = {
-  breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
+  breadcrumbItems: NonNullable<ComponentProps<typeof Breadcrumb>["items"]>
 }
 
 const CODE_BLOCK_MAP = getCodeBlockMap()
@@ -24,13 +24,14 @@ const CODE_BLOCK_MAP = getCodeBlockMap()
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
   const { breadcrumbItems } = props
   const oxlintConfigQuickstartTranslate = useTranslations("pages.oxlintConfigQuickstart")
+  const pageTitleText = oxlintConfigQuickstartTranslate("pageTitle")
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} />
+      <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{oxlintConfigQuickstartTranslate("pageTitle")}</Heading>
+        <Heading headingTag="h1">{pageTitleText}</Heading>
       </Heading1Wrapper>
 
       <p>{oxlintConfigQuickstartTranslate.rich("pageDescription", { br: renderLineBreak })}</p>

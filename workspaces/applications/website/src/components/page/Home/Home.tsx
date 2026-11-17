@@ -13,16 +13,14 @@ type Props = {
   packages: ComponentProps<typeof PackageCardList>["packages"]
 }
 
-// トップページはパンくずのルートそのものなので、ルートより後ろの階層を持たない
-const BREADCRUMB_ITEMS: ComponentProps<typeof Breadcrumb>["items"] = []
-
 export const Home: FC<Props> = (props) => {
   const { packages } = props
   const homeTranslate = useTranslations("pages.home")
 
   return (
     <main className={styles.root}>
-      <Breadcrumb items={BREADCRUMB_ITEMS} />
+      {/* トップページはパンくずのルートそのものなので、現在のページ名を渡さない */}
+      <Breadcrumb />
 
       <div className={styles.heading1Wrapper}>
         <Heading headingTag="h1">{homeTranslate("pageTitle")}</Heading>

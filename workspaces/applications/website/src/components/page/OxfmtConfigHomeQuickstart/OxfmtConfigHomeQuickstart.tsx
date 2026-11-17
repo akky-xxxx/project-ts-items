@@ -17,19 +17,20 @@ import type { ComponentProps, FC } from "react"
 import styles from "./oxfmtConfigHomeQuickstart.module.css"
 
 type Props = {
-  breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
+  breadcrumbItems: NonNullable<ComponentProps<typeof Breadcrumb>["items"]>
 }
 
 export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
   const { breadcrumbItems } = props
   const oxfmtConfigQuickstartTranslate = useTranslations("pages.oxfmtConfigQuickstart")
+  const pageTitleText = oxfmtConfigQuickstartTranslate("pageTitle")
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} />
+      <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{oxfmtConfigQuickstartTranslate("pageTitle")}</Heading>
+        <Heading headingTag="h1">{pageTitleText}</Heading>
       </Heading1Wrapper>
 
       <p>{oxfmtConfigQuickstartTranslate.rich("pageDescription", { br: renderLineBreak })}</p>

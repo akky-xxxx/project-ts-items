@@ -9,20 +9,20 @@ import type { ComponentProps, FC } from "react"
 import styles from "./packages.module.css"
 
 type Props = {
-  breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
   packages: ComponentProps<typeof PackageCardList>["packages"]
 }
 
 export const Packages: FC<Props> = (props) => {
-  const { breadcrumbItems, packages } = props
+  const { packages } = props
   const packagesTranslate = useTranslations("pages.packages")
+  const pageTitleText = packagesTranslate("pageTitle")
 
   return (
     <main className={styles.root}>
-      <Breadcrumb items={breadcrumbItems} />
+      <Breadcrumb currentPageText={pageTitleText} />
 
       <div className={styles.heading1Wrapper}>
-        <Heading headingTag="h1">{packagesTranslate("pageTitle")}</Heading>
+        <Heading headingTag="h1">{pageTitleText}</Heading>
       </div>
 
       <p className={styles.description}>{packagesTranslate("pageDescription")}</p>

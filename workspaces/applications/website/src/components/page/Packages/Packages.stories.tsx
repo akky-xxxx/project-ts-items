@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl"
-import { useMemo } from "react"
 
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
@@ -12,35 +11,21 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
-  const pageTranslate = useTranslations("pages.packages")
   const packageTranslate = useTranslations("packages")
-  const pageTitleText = pageTranslate("pageTitle")
-  const breadcrumbItems = useMemo(() => [{ text: pageTitleText }], [pageTitleText])
 
-  return (
-    <Packages
-      {...props}
-      breadcrumbItems={breadcrumbItems}
-      packages={buildPackageCardItems(packageTranslate, "h2")}
-    />
-  )
+  return <Packages {...props} packages={buildPackageCardItems(packageTranslate, "h2")} />
 }
 
 const meta = {
   component: Packages,
 
   argTypes: {
-    breadcrumbItems: {
-      control: false,
-      description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
-    },
     packages: {
       control: false,
       description: "表示するパッケージ一覧(各要素は PackageCard の props)",
     },
   },
   args: {
-    breadcrumbItems: [{ text: "{breadcrumbItemText}" }],
     packages: [
       {
         descriptionNode: "{descriptionNode}",
@@ -66,7 +51,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   argTypes: {
-    breadcrumbItems: { control: "object" },
     packages: {
       control: "object",
     },

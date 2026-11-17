@@ -5,6 +5,7 @@ import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStoryb
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./Breadcrumb.stories.tsx"
+import { Breadcrumb } from "./Breadcrumb.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -55,16 +56,15 @@ export const TestForRootLink: Story = {
   },
 }
 
-export const TestForEmptyItems: Story = {
-  args: {
-    items: [],
-  },
+export const TestForWithoutCurrentPageText: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(canvas.getByText("@ts-items")).toHaveAttribute("aria-current", "page")
     await expect(canvas.queryByRole("link", { name: "@ts-items" })).not.toBeInTheDocument()
   },
+  // 各 props を省略した状態を検証するため、meta の args を使わずに描画する
+  render: () => <Breadcrumb />,
 }
 
 export const TestForItemLink: Story = {
@@ -76,7 +76,7 @@ export const TestForItemLink: Story = {
   },
 }
 
-export const TestForItemWithoutHref: Story = {
+export const TestForCurrentPageWithoutLink: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
@@ -85,9 +85,9 @@ export const TestForItemWithoutHref: Story = {
   },
 }
 
-export const TestForNotLastItemWithoutHref: Story = {
+export const TestForItemWithoutHref: Story = {
   args: {
-    items: [{ text: "Category" }, { text: "oxlint-config" }],
+    items: [{ text: "Category" }],
   },
   play: async (context) => {
     const { canvasElement } = context
@@ -99,22 +99,18 @@ export const TestForNotLastItemWithoutHref: Story = {
 }
 
 export const TestForLastItemWithHref: Story = {
-  args: {
-    items: [{ href: "/packages", text: "{packages-text}" }],
-  },
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("{packages-text}")).toHaveAttribute("aria-current", "page")
-    await expect(canvas.queryByRole("link", { name: "{packages-text}" })).not.toBeInTheDocument()
+    const itemLinkElement = canvas.getByRole("link", { name: "{packages-text}" })
+    await expect(itemLinkElement).not.toHaveAttribute("aria-current")
   },
 }
 
-const sharedItem = { text: "Shared" }
-
-export const TestForSharedItemReference: Story = {
+export const TestForItemSameAsCurrentPageText: Story = {
   args: {
-    items: [sharedItem, sharedItem],
+    currentPageText: "Shared",
+    items: [{ text: "Shared" }],
   },
   play: async (context) => {
     const { canvasElement } = context
