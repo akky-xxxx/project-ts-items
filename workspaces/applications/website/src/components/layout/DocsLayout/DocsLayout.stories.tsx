@@ -36,7 +36,6 @@ const meta = {
       </nav>
     ),
     tocElement: <LongContents text="tocElement" />,
-    tocLabelText: "{tocLabelText}",
   },
   render: (props) => <WithRootLayout {...props} />,
 } satisfies Meta<typeof DocsLayout>
@@ -50,6 +49,5 @@ export const Default: Story = {}
 export const WithoutToc: Story = {
   args: {
     tocElement: undefined,
-    tocLabelText: undefined,
   },
 }

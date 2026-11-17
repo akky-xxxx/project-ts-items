@@ -1,5 +1,6 @@
 import { expect, within } from "storybook/test"
 
+import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { LongContents } from "../../../tests/LongContents/LongContents.tsx"
 import meta from "./DocsLayout.stories.tsx"
 
@@ -7,6 +8,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 const testMeta = {
   ...meta,
+  ...EN_LOCALE_FOR_STORYBOOK,
   tags: ["!dev", "!autodocs"],
 } satisfies Meta<typeof meta.component>
 
@@ -58,7 +60,7 @@ export const TestForLandmarks: Story = {
 
     const complementaryElement = within(canvas.getByRole("complementary"))
     const tocNavigationElement = within(
-      complementaryElement.getByRole("navigation", { name: "{tocLabelText}" }),
+      complementaryElement.getByRole("navigation", { name: "Table of contents" }),
     )
     await expect(tocNavigationElement.getByText("{tocElement0}")).toBeInTheDocument()
   },
@@ -67,7 +69,6 @@ export const TestForLandmarks: Story = {
 export const TestForLandmarksWithoutToc: Story = {
   args: {
     tocElement: undefined,
-    tocLabelText: undefined,
   },
   play: async (context) => {
     const { canvasElement } = context

@@ -1,24 +1,18 @@
+import { useTranslations } from "next-intl"
+
 import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
 import type { ReactElement } from "react"
 
 import styles from "./docsLayout.module.css"
 
-type TocProps =
-  | {
-      tocElement: ReactElement
-      tocLabelText: string
-    }
-  | {
-      tocElement?: undefined
-      tocLabelText?: undefined
-    }
-
 type Props = {
   docsSidebarElement: ReactElement
-} & TocProps
+  tocElement?: ReactElement
+}
 
 export const DocsLayout: FcWithChildren<Props> = (props) => {
-  const { children, docsSidebarElement, tocElement, tocLabelText } = props
+  const { children, docsSidebarElement, tocElement } = props
+  const docsLayoutTranslate = useTranslations("docsLayout")
   const isHidingToc = tocElement === undefined
   const rootClasses = [styles.root, isHidingToc && styles.rootWithoutToc].filter(Boolean).join(" ")
 
@@ -33,7 +27,7 @@ export const DocsLayout: FcWithChildren<Props> = (props) => {
 
       {isHidingToc ? null : (
         <aside className={styles.toc}>
-          <nav aria-label={tocLabelText}>{tocElement}</nav>
+          <nav aria-label={docsLayoutTranslate("toc")}>{tocElement}</nav>
         </aside>
       )}
     </div>
