@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof OxlintConfigHome>> = (props) => {
-  const pageTranslate = useTranslations("pages.oxlintConfig")
+  const pageTranslate = useTranslations("pages.oxlintConfigHome")
   const packagesPageTranslate = useTranslations("pages.packages")
   const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const breadcrumbItems = useMemo(

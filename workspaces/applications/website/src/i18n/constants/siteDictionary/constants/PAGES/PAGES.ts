@@ -7,7 +7,7 @@ import type { Dictionary } from "../../../../types/Dictionary/Dictionary.ts"
 
 export const PAGES = {
   home: HOME,
-  oxlintConfig: OXLINT_CONFIG,
+  oxlintConfigHome: OXLINT_CONFIG,
   oxlintConfigQuickstart: OXLINT_CONFIG_QUICK,
   packages: PACKAGES,
 } as const satisfies Dictionary
