@@ -14,8 +14,8 @@ export const DOCS_LAYOUT = {
     ja: "最新版",
   },
   packageSelectorLegend: {
-    en: "Packages select",
-    ja: "パッケージ選択",
+    en: "Select a package",
+    ja: "パッケージを選択",
   },
   toc: {
     en: "Table of contents",

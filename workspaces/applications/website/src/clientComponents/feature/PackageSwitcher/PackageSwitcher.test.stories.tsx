@@ -39,7 +39,7 @@ export const TestForButtonNameOnNestedPathname: Story = {
     await expect(canvas.getByRole("button", { name: "oxlint-config" })).toBeVisible()
 
     await userEvent.click(canvas.getByRole("button", { name: "oxlint-config" }))
-    const groupElement = canvas.getByRole("group", { hidden: true, name: "Packages select" })
+    const groupElement = canvas.getByRole("group", { hidden: true, name: "Select a package" })
     await waitFor(async () => expect(groupElement).toBeVisible())
     await expect(
       within(groupElement).getByRole("radio", { name: "@ts-items/oxlint-config" }),
@@ -52,7 +52,7 @@ export const TestForPackageSelection: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const groupElement = canvas.getByRole("group", { hidden: true, name: "Packages select" })
+    const groupElement = canvas.getByRole("group", { hidden: true, name: "Select a package" })
     await expect(groupElement).not.toBeVisible()
 
     await userEvent.click(canvas.getByRole("button", { name: "oxlint-config" }))
@@ -71,7 +71,7 @@ export const TestForJaLegend: Story = {
   play: async (context) => {
     const { canvasElement } = context
     await expect(
-      within(canvasElement).getByRole("group", { hidden: true, name: "パッケージ選択" }),
+      within(canvasElement).getByRole("group", { hidden: true, name: "パッケージを選択" }),
     ).toBeInTheDocument()
   },
 }
