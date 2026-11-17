@@ -46,7 +46,6 @@ const meta = {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
         innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
-
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
         versionText: "v1.0.0",
       },
