@@ -17,7 +17,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const translate = await getTranslations({ locale, namespace: "pages.oxlintConfig" })
+  const translate = await getTranslations({ locale, namespace: "pages.oxlintConfigHome" })
 
   return {
     // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
@@ -28,7 +28,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 
 const Page = async (): Promise<ReactNode> => {
   const [pageTranslate, packagesPageTranslate, breadcrumbTranslate] = await Promise.all([
-    getTranslations("pages.oxlintConfig"),
+    getTranslations("pages.oxlintConfigHome"),
     getTranslations("pages.packages"),
     getTranslations("components.ui.breadcrumb"),
   ])
