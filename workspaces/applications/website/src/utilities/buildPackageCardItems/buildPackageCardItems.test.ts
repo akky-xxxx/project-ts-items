@@ -9,14 +9,7 @@ const messages = toLocaleMessages(siteDictionary, "en")
 
 const buildItems = (headingTag: Parameters<typeof buildPackageCardItems>[1] = "h2") =>
   buildPackageCardItems(
-    {
-      packageCardTranslate: createTranslator({
-        locale: "en",
-        messages,
-        namespace: "components.ui.packageCard",
-      }),
-      packageTranslate: createTranslator({ locale: "en", messages, namespace: "packages" }),
-    },
+    createTranslator({ locale: "en", messages, namespace: "packages" }),
     headingTag,
   )
 
@@ -41,9 +34,5 @@ describe(buildPackageCardItems, () => {
 
   it("h3 を指定すると各カードの見出しを h3 にする", () => {
     expect(buildItems("h3").map((item) => item.headingTag)).toStrictEqual(["h3", "h3"])
-  })
-
-  it("linkText に翻訳済みの文言を渡す", () => {
-    expect(buildItems().map((item) => item.linkText)).toStrictEqual(["Documents", "Documents"])
   })
 })

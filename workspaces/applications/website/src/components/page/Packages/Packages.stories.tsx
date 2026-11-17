@@ -14,7 +14,6 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
   const pageTranslate = useTranslations("pages.packages")
   const packageTranslate = useTranslations("packages")
-  const packageCardTranslate = useTranslations("components.ui.packageCard")
   const pageTitleText = pageTranslate("pageTitle")
   const breadcrumbItems = useMemo(() => [{ text: pageTitleText }], [pageTitleText])
 
@@ -22,7 +21,7 @@ const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
     <Packages
       {...props}
       breadcrumbItems={breadcrumbItems}
-      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h2")}
+      packages={buildPackageCardItems(packageTranslate, "h2")}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitleText={pageTitleText}
     />
@@ -51,7 +50,7 @@ const meta = {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
         innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
-        linkText: "{linkText}",
+
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
         versionText: "v1.0.0",
       },
@@ -59,7 +58,6 @@ const meta = {
         descriptionNode: "{descriptionNode}",
         headingTag: "h2",
         innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
-        linkText: "{linkText}",
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
         versionText: "v1.0.0",
       },

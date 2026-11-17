@@ -14,13 +14,12 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof Home>> = (props) => {
   const pageTranslate = useTranslations("pages.home")
   const packageTranslate = useTranslations("packages")
-  const packageCardTranslate = useTranslations("components.ui.packageCard")
 
   return (
     <Home
       {...props}
       packageTitleText={pageTranslate("packageTitleText")}
-      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
+      packages={buildPackageCardItems(packageTranslate, "h3")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
       pageTitleText={pageTranslate("pageTitle")}
     />
@@ -46,7 +45,6 @@ const meta = {
         descriptionNode: "{descriptionNode}",
         headingTag: "h3",
         innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
-        linkText: "{linkText}",
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
         versionText: "v1.0.0",
       },
@@ -54,7 +52,6 @@ const meta = {
         descriptionNode: "{descriptionNode}",
         headingTag: "h3",
         innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
-        linkText: "{linkText}",
         packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
         versionText: "v1.0.0",
       },
