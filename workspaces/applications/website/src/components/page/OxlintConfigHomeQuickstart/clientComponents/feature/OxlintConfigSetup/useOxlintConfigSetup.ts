@@ -1,10 +1,10 @@
+import { useTranslations } from "next-intl"
 import { getSourceKey } from "./modules/getSourceKey/getSourceKey.ts"
 import { getSwitchItems } from "./modules/getSwitchItems/getSwitchItems.tsx"
 import { useFormStates } from "./modules/useFormStates/useFormStates.ts"
-import { useThisTranslations } from "./modules/useThisTranslations/useThisTranslations.ts"
 
 export const useOxlintConfigSetup = () => {
-  const { pageTranslate, uiTranslate } = useThisTranslations()
+  const pageTranslate = useTranslations("pages.oxlintConfigQuickstart")
   const { enabledSwitches, handleChangeBase, handleToggleSwitch, selectedBase } = useFormStates()
   const formValues = { enabledSwitches, selectedBase }
   const sourceKey = getSourceKey(formValues)
@@ -16,6 +16,5 @@ export const useOxlintConfigSetup = () => {
     selectedBase,
     sourceKey,
     switchItems,
-    uiTranslate,
   }
 }

@@ -10,16 +10,14 @@ import type { ReactElement } from "react"
 import styles from "./codeArea.module.css"
 
 type Props = {
-  copiedText: string
-  copyButtonLabelText: string
   copyIconElement: ReactElement
   copyTargetText: string | undefined
   title: string
 }
 
 export const CodeArea: FcWithChildren<Props> = (props) => {
-  const { children, copyButtonLabelText, copyIconElement, title } = props
-  const { handleCopy } = useCodeArea(props)
+  const { children, copyIconElement, title } = props
+  const { copyButtonLabelText, handleCopy } = useCodeArea(props)
 
   return (
     <div className={styles.root}>

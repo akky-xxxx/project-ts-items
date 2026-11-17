@@ -32,7 +32,6 @@ export const OxlintConfigSetup: FC<Props> = (props) => {
     selectedBase,
     sourceKey,
     switchItems,
-    uiTranslate,
   } = useOxlintConfigSetup()
   const { code, codeBlock } = codeBlockMap[sourceKey]
 
@@ -66,10 +65,8 @@ export const OxlintConfigSetup: FC<Props> = (props) => {
 
       <div className={styles.codeArea}>
         <CodeArea
-          copyButtonLabelText={uiTranslate("tab.copyButtonLabelText")}
           copyTargetText={code}
           copyIconElement={COPY_ICON_ELEMENT}
-          copiedText={uiTranslate("tab.copiedText")}
           title="oxlint.config.mts"
         >
           {codeBlock}

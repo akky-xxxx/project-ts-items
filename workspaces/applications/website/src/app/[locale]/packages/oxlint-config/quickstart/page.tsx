@@ -49,8 +49,6 @@ const Page = async (): Promise<ReactNode> => {
         },
       ]}
       breadcrumbLabelText={uiTranslate("breadcrumb.labelText")}
-      copiedText={uiTranslate("tab.copiedText")}
-      copyButtonLabelText={uiTranslate("tab.copyButtonLabelText")}
       installTitleText={pageTranslate("installTitle")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
       pageTitle={pageTranslate("pageTitle")}

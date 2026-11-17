@@ -19,7 +19,7 @@ export const TestForContentsHeader: Story = {
     const canvas = within(canvasElement)
     await expect(canvas.getByText("{title}")).toBeInTheDocument()
     await expect(canvas.getByText("{copyIconElement}")).toBeInTheDocument()
-    await expect(canvas.getByRole("button", { name: "{copyButtonLabelText}" })).toBeInTheDocument()
+    await expect(canvas.getByRole("button", { name: "Copy" })).toBeInTheDocument()
   },
 }
 
@@ -37,9 +37,9 @@ export const TestForCopy: Story = {
     const canvas = within(canvasElement)
     const writeTextSpy = spyOn(navigator.clipboard, "writeText").mockResolvedValue()
     try {
-      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await userEvent.click(canvas.getByRole("button", { name: "Copy" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("{copyTargetText}")
-      await expect(await canvas.findByText("{copiedText}")).toBeInTheDocument()
+      await expect(await canvas.findByText("Copied")).toBeInTheDocument()
     } finally {
       writeTextSpy.mockRestore()
     }
@@ -55,7 +55,7 @@ export const TestForCopyTargetTextUndefined: Story = {
     const canvas = within(canvasElement)
     const writeTextSpy = spyOn(navigator.clipboard, "writeText").mockResolvedValue()
     try {
-      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await userEvent.click(canvas.getByRole("button", { name: "Copy" }))
       await expect(writeTextSpy).not.toHaveBeenCalled()
     } finally {
       writeTextSpy.mockRestore()

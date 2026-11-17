@@ -13,7 +13,6 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) 
   const pageTranslate = useTranslations("pages.oxfmtConfigQuickstart")
   const packagesPageTranslate = useTranslations("pages.packages")
   const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
-  const tabTranslate = useTranslations("components.ui.tab")
   const breadcrumbItems = useMemo(
     () => [
       {
@@ -36,8 +35,6 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) 
       {...props}
       breadcrumbItems={breadcrumbItems}
       breadcrumbLabelText={breadcrumbTranslate("labelText")}
-      copiedText={tabTranslate("copiedText")}
-      copyButtonLabelText={tabTranslate("copyButtonLabelText")}
       installTitleText={pageTranslate("installTitle")}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitle={pageTranslate("pageTitle")}
@@ -55,15 +52,6 @@ const meta = {
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
     breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
-    copiedText: {
-      control: false,
-      description:
-        "インストールコマンド・設定ファイルのコードのコピー完了時にトーストで表示するテキスト",
-    },
-    copyButtonLabelText: {
-      control: false,
-      description: "インストールコマンド・設定ファイルのコードのコピーボタンのラベル(aria-label)",
-    },
     installTitleText: { control: false, description: "インストールセクションの見出し(h2)" },
     pageDescriptionText: {
       control: false,
@@ -79,8 +67,6 @@ const meta = {
       { text: "{pageTitle}" },
     ],
     breadcrumbLabelText: "{breadcrumbLabelText}",
-    copiedText: "{copiedText}",
-    copyButtonLabelText: "{copyButtonLabelText}",
     installTitleText: "{installTitleText}",
     pageDescriptionText: "{pageDescriptionText}",
     pageTitle: "{pageTitle}",

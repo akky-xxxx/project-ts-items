@@ -41,12 +41,12 @@ export const TestForCopyTextOfActiveTab: Story = {
     const canvas = within(canvasElement)
     const writeTextSpy = spyOn(navigator.clipboard, "writeText").mockResolvedValue()
     try {
-      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await userEvent.click(canvas.getByRole("button", { name: "Copy" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText1")
 
       await userEvent.click(canvas.getByRole("button", { name: "tabLabelText2" }))
       await expect(await canvas.findByText("{tabContent2}")).toBeInTheDocument()
-      await userEvent.click(canvas.getByRole("button", { name: "{copyButtonLabelText}" }))
+      await userEvent.click(canvas.getByRole("button", { name: "Copy" }))
       await expect(writeTextSpy).toHaveBeenLastCalledWith("copyText2")
     } finally {
       writeTextSpy.mockRestore()

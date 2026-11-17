@@ -1,13 +1,15 @@
+import { useTranslations } from "next-intl"
 import { startTransition, useCallback } from "react"
 import { toast } from "react-hot-toast"
 
 type Input = {
-  copiedText: string
   copyTargetText: string | undefined
 }
 
 export const useCodeArea = (input: Input) => {
-  const { copyTargetText, copiedText } = input
+  const { copyTargetText } = input
+  const codeAreaTranslation = useTranslations("components.ui.codeArea")
+  const copyButtonLabelText = codeAreaTranslation("copyButtonLabelText")
 
   const handleCopy = useCallback(() => {
     if (copyTargetText === undefined) {
@@ -16,10 +18,10 @@ export const useCodeArea = (input: Input) => {
 
     startTransition(async () => {
       await navigator.clipboard.writeText(copyTargetText).then(() => {
-        toast(copiedText)
+        toast(codeAreaTranslation("copiedText"))
       })
     })
-  }, [copiedText, copyTargetText])
+  }, [codeAreaTranslation, copyTargetText])
 
-  return { handleCopy }
+  return { copyButtonLabelText, handleCopy }
 }
