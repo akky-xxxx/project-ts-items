@@ -6,7 +6,7 @@ import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
 
-import type { ReactNode, ComponentProps, FC } from "react"
+import type { ComponentProps, FC } from "react"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]

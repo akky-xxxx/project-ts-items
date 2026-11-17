@@ -26,10 +26,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [pageTranslate, packageTranslate] = await Promise.all([
-    getTranslations("pages.home"),
-    getTranslations("packages"),
-  ])
+  const packageTranslate = await getTranslations("packages")
 
   return <Home packages={buildPackageCardItems(packageTranslate, "h3")} />
 }
