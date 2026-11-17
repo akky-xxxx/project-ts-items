@@ -33,26 +33,27 @@ const toggleSwitch = (result: { current: Result }, name: string) => {
 }
 
 describe(useOxlintConfigSetup, () => {
-  it("初期状態はベースが ts、type-aware linting が有効、Storybook が無効", () => {
+  it("初期状態はベースが ts、type-aware linting が有効、Vitest と Storybook が無効", () => {
     const { result } = renderUseOxlintConfigSetup()
 
     expect(result.current.selectedBase).toBe("ts")
     expect(getCheckedMap(result.current)).toStrictEqual({
       "storybook": false,
       "type-aware-linting": true,
+      "vitest": false,
     })
   })
 
   it("sourceKey は選択中のベースとスイッチの状態を表す", () => {
     const { result } = renderUseOxlintConfigSetup()
-    expect(result.current.sourceKey).toBe("ts&typeAwareLinting=true&storybook=false")
+    expect(result.current.sourceKey).toBe("ts&typeAwareLinting=true&vitest=false&storybook=false")
 
     act(() => {
       result.current.handleChangeBase("next")()
     })
     toggleSwitch(result, "storybook")
 
-    expect(result.current.sourceKey).toBe("next&typeAwareLinting=true&storybook=true")
+    expect(result.current.sourceKey).toBe("next&typeAwareLinting=true&vitest=false&storybook=true")
   })
 
   it("handleChangeBase で選択したベースに切り替わる", () => {
@@ -68,6 +69,7 @@ describe(useOxlintConfigSetup, () => {
   it.each([
     { name: "storybook", toggled: true },
     { name: "type-aware-linting", toggled: false },
+    { name: "vitest", toggled: true },
   ])("$name の onChange を呼ぶたびに checked が反転する", (testCase) => {
     const { name, toggled } = testCase
     const { result } = renderUseOxlintConfigSetup()

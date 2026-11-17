@@ -44,6 +44,7 @@ export const TestForInitialSwitches: Story = {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(canvas.getByRole("switch", { name: /Type-aware linting/u })).toBeChecked()
+    await expect(canvas.getByRole("switch", { name: /Vitest/u })).not.toBeChecked()
     await expect(canvas.getByRole("switch", { name: /Storybook/u })).not.toBeChecked()
   },
 }
@@ -78,6 +79,18 @@ export const TestForToggleStorybook: Story = {
 
     await userEvent.click(within(canvasElement).getByRole("switch", { name: /Storybook/u }))
     await waitFor(async () => expect(getCodeText(canvasElement)).toContain("storybookConfig"))
+  },
+}
+
+export const TestForToggleVitest: Story = {
+  ...En,
+  play: async (context) => {
+    const { canvasElement } = context
+    const userEvent = await getUserEventForStorybook()
+    await expect(getCodeText(canvasElement)).not.toContain("vitestConfig")
+
+    await userEvent.click(within(canvasElement).getByRole("switch", { name: /Vitest/u }))
+    await waitFor(async () => expect(getCodeText(canvasElement)).toContain("vitestConfig"))
   },
 }
 

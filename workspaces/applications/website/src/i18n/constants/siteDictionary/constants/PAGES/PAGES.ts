@@ -70,6 +70,10 @@ export const PAGES = {
         en: "Type-aware linting",
         ja: "型情報を使ったリンティングです",
       },
+      vitestDescription: {
+        en: "Enables the Vitest plugin and adjusts its settings.",
+        ja: "Vitest プラグインを有効にし、関連する設定を調整します",
+      },
     },
   },
   packages: {

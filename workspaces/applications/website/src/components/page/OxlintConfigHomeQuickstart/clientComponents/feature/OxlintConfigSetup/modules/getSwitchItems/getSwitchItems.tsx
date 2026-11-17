@@ -46,6 +46,17 @@ const SWITCH_ITEM_SETTINGS = {
     ),
     value: "type-aware-linting",
   },
+  vitest: {
+    getLabelNode: (pageTranslate) => (
+      <SwitchDescription
+        titleText="Vitest"
+        descriptionText={pageTranslate.rich("switching.vitestDescription", {
+          br: renderLineBreak,
+        })}
+      />
+    ),
+    value: "vitest",
+  },
 } as const satisfies Record<SwitchName, SwitchItemSetting>
 
 export const getSwitchItems = (input: Input) => {
