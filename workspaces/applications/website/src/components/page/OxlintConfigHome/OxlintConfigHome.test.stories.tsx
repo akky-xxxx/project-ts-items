@@ -45,7 +45,7 @@ export const TestForBackgroundDescriptionLineBreak: Story = {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const descriptionElement = canvas.getByText(/It helps keep code maintainable/u).closest("p")
-    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(2)
+    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(1)
   },
 }
 
