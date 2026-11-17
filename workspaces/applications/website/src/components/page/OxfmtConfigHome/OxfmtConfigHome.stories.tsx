@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
-  const pageTranslate = useTranslations("pages.oxfmtConfigHome")
   const packagesPageTranslate = useTranslations("pages.packages")
   const breadcrumbItems = useMemo(
     () => [
@@ -28,11 +27,7 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
   return (
     <OxfmtConfigHome
       {...props}
-      backgroundDescriptionText={pageTranslate("backgroundDescription")}
-      backgroundTitleText={pageTranslate("backgroundTitle")}
       breadcrumbItems={breadcrumbItems}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitle={pageTranslate("pageTitle")}
     />
   )
 }
@@ -41,30 +36,16 @@ const meta = {
   component: OxfmtConfigHome,
 
   argTypes: {
-    backgroundDescriptionText: {
-      control: false,
-      description: "概要セクションの説明文",
-    },
-    backgroundTitleText: { control: false, description: "概要セクションの見出し(h2)" },
     breadcrumbItems: {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    pageDescriptionText: {
-      control: false,
-      description: "ページの説明文",
-    },
-    pageTitle: { control: false, description: "ページタイトル(h1)" },
   },
   args: {
-    backgroundDescriptionText: "{backgroundDescriptionText}",
-    backgroundTitleText: "{backgroundTitleText}",
     breadcrumbItems: [
       { href: "/packages/", text: "{breadcrumbItemText}" },
       { text: PACKAGE_NAMES.oxfmtConfig },
     ],
-    pageDescriptionText: "{pageDescriptionText}",
-    pageTitle: "{pageTitle}",
   },
   render: (args) => <Localized {...args} />,
 } satisfies Meta<typeof OxfmtConfigHome>
