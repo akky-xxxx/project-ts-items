@@ -1,11 +1,13 @@
 import { expect, spyOn, userEvent, within } from "storybook/test"
 
+import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./CodeArea.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 const testMeta = {
   ...meta,
+  ...EN_LOCALE_FOR_STORYBOOK,
   tags: ["!dev", "!autodocs"],
 } satisfies Meta<typeof meta.component>
 
