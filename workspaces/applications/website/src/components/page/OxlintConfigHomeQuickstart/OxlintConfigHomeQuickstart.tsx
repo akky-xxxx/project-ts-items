@@ -15,7 +15,6 @@ import styles from "./oxlintConfigHomeQuickstart.module.css"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: string
   installTitleText: string
   pageDescriptionText: ReactNode
   pageTitle: string
@@ -27,7 +26,6 @@ const CODE_BLOCK_MAP = getCodeBlockMap()
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
   const {
     breadcrumbItems,
-    breadcrumbLabelText,
     installTitleText,
     pageDescriptionText,
     pageTitle,
@@ -36,7 +34,7 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
         <Heading headingTag="h1">{pageTitle}</Heading>

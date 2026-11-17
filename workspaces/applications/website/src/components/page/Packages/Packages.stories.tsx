@@ -14,7 +14,6 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
   const pageTranslate = useTranslations("pages.packages")
   const packageTranslate = useTranslations("packages")
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const packageCardTranslate = useTranslations("components.ui.packageCard")
   const pageTitleText = pageTranslate("pageTitle")
   const breadcrumbItems = useMemo(() => [{ text: pageTitleText }], [pageTitleText])
@@ -23,7 +22,6 @@ const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
     <Packages
       {...props}
       breadcrumbItems={breadcrumbItems}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h2")}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitleText={pageTitleText}
@@ -39,7 +37,6 @@ const meta = {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     packages: {
       control: false,
       description: "表示するパッケージ一覧(各要素は PackageCard の props)",
@@ -49,7 +46,6 @@ const meta = {
   },
   args: {
     breadcrumbItems: [{ text: "{breadcrumbItemText}" }],
-    breadcrumbLabelText: "{breadcrumbLabelText}",
     packages: [
       {
         descriptionNode: "{descriptionNode}",
@@ -80,7 +76,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   argTypes: {
     breadcrumbItems: { control: "object" },
-    breadcrumbLabelText: { control: "text" },
     packages: {
       control: "object",
     },

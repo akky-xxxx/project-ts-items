@@ -16,7 +16,6 @@ import styles from "./oxfmtConfigHomeQuickstart.module.css"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: string
   installTitleText: string
   pageDescriptionText: ReactNode
   pageTitle: string
@@ -26,7 +25,6 @@ type Props = {
 export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
   const {
     breadcrumbItems,
-    breadcrumbLabelText,
     installTitleText,
     pageDescriptionText,
     pageTitle,
@@ -35,7 +33,7 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
         <Heading headingTag="h1">{pageTitle}</Heading>

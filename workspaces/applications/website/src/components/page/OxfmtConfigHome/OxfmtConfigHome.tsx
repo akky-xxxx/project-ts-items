@@ -10,7 +10,6 @@ type Props = {
   backgroundDescriptionText: string
   backgroundTitleText: string
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: string
   pageDescriptionText: string
   pageTitle: string
 }
@@ -20,14 +19,13 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
     backgroundDescriptionText,
     backgroundTitleText,
     breadcrumbItems,
-    breadcrumbLabelText,
     pageDescriptionText,
     pageTitle,
   } = props
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
         <Heading headingTag="h1">{pageTitle}</Heading>

@@ -12,7 +12,6 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) => {
   const pageTranslate = useTranslations("pages.oxfmtConfigQuickstart")
   const packagesPageTranslate = useTranslations("pages.packages")
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const breadcrumbItems = useMemo(
     () => [
       {
@@ -34,7 +33,6 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) 
     <OxfmtConfigHomeQuickstart
       {...props}
       breadcrumbItems={breadcrumbItems}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
       installTitleText={pageTranslate("installTitle")}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitle={pageTranslate("pageTitle")}
@@ -51,7 +49,6 @@ const meta = {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     installTitleText: { control: false, description: "インストールセクションの見出し(h2)" },
     pageDescriptionText: {
       control: false,
@@ -66,7 +63,6 @@ const meta = {
       { href: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`, text: PACKAGE_NAMES.oxfmtConfig },
       { text: "{pageTitle}" },
     ],
-    breadcrumbLabelText: "{breadcrumbLabelText}",
     installTitleText: "{installTitleText}",
     pageDescriptionText: "{pageDescriptionText}",
     pageTitle: "{pageTitle}",

@@ -13,7 +13,6 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof OxlintConfigHome>> = (props) => {
   const pageTranslate = useTranslations("pages.oxlintConfigHome")
   const packagesPageTranslate = useTranslations("pages.packages")
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const breadcrumbItems = useMemo(
     () => [
       {
@@ -35,7 +34,6 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHome>> = (props) => {
       })}
       backgroundTitleText={pageTranslate("backgroundTitle")}
       breadcrumbItems={breadcrumbItems}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
       pageTitle={pageTranslate("pageTitle")}
     />
@@ -55,7 +53,6 @@ const meta = {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     pageDescriptionText: {
       control: false,
       description: "ページの説明文。改行は t.rich の `<br></br>` タグで表す",
@@ -69,7 +66,6 @@ const meta = {
       { href: "/packages/", text: "{breadcrumbItemText}" },
       { text: PACKAGE_NAMES.oxlintConfig },
     ],
-    breadcrumbLabelText: "{breadcrumbLabelText}",
     pageDescriptionText: "{pageDescriptionText}",
     pageTitle: "{pageTitle}",
   },

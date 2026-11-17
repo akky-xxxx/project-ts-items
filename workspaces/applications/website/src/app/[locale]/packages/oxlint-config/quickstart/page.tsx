@@ -27,10 +27,9 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [pageTranslate, packagesPageTranslate, uiTranslate] = await Promise.all([
+  const [pageTranslate, packagesPageTranslate] = await Promise.all([
     getTranslations("pages.oxlintConfigQuickstart"),
     getTranslations("pages.packages"),
-    getTranslations("components.ui"),
   ])
 
   return (
@@ -48,7 +47,6 @@ const Page = async (): Promise<ReactNode> => {
           text: pageTranslate("pageTitle"),
         },
       ]}
-      breadcrumbLabelText={uiTranslate("breadcrumb.labelText")}
       installTitleText={pageTranslate("installTitle")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
       pageTitle={pageTranslate("pageTitle")}

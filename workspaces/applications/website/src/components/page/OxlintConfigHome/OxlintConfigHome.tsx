@@ -10,7 +10,6 @@ type Props = {
   backgroundDescriptionText: ReactNode
   backgroundTitleText: string
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: string
   pageDescriptionText: ReactNode
   pageTitle: string
 }
@@ -20,14 +19,13 @@ export const OxlintConfigHome: FC<Props> = (props) => {
     backgroundDescriptionText,
     backgroundTitleText,
     breadcrumbItems,
-    breadcrumbLabelText,
     pageDescriptionText,
     pageTitle,
   } = props
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
         <Heading headingTag="h1">{pageTitle}</Heading>

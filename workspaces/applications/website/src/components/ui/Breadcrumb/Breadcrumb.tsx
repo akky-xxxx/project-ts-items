@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { BreadcrumbItem } from "./components/BreadcrumbItem/BreadcrumbItem.tsx"
 
@@ -12,17 +14,17 @@ type Item = {
 
 type Props = {
   items: Item[]
-  labelText: string
 }
 
 const LAST_ITEM_INDEX = -1
 const EMPTY_ARRAY_LENGTH = 0
 
 export const Breadcrumb: FC<Props> = (props) => {
-  const { items, labelText } = props
+  const { items } = props
+  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
 
   return (
-    <nav aria-label={labelText}>
+    <nav aria-label={breadcrumbTranslate("labelText")}>
       <ol className={styles.ol}>
         <BreadcrumbItem href="/" isCurrentPage={items.length === EMPTY_ARRAY_LENGTH}>
           {PROJECT_NAME}

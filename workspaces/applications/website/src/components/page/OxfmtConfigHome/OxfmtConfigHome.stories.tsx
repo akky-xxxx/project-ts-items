@@ -12,7 +12,6 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
   const pageTranslate = useTranslations("pages.oxfmtConfigHome")
   const packagesPageTranslate = useTranslations("pages.packages")
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const breadcrumbItems = useMemo(
     () => [
       {
@@ -32,7 +31,6 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
       backgroundDescriptionText={pageTranslate("backgroundDescription")}
       backgroundTitleText={pageTranslate("backgroundTitle")}
       breadcrumbItems={breadcrumbItems}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
       pageDescriptionText={pageTranslate("pageDescription")}
       pageTitle={pageTranslate("pageTitle")}
     />
@@ -52,7 +50,6 @@ const meta = {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     pageDescriptionText: {
       control: false,
       description: "ページの説明文",
@@ -66,7 +63,6 @@ const meta = {
       { href: "/packages/", text: "{breadcrumbItemText}" },
       { text: PACKAGE_NAMES.oxfmtConfig },
     ],
-    breadcrumbLabelText: "{breadcrumbLabelText}",
     pageDescriptionText: "{pageDescriptionText}",
     pageTitle: "{pageTitle}",
   },

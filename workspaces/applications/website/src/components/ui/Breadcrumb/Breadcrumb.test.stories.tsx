@@ -19,7 +19,7 @@ export const TestForNavigationLabel: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const navigationElement = canvas.getByRole("navigation", { name: "{labelText}" })
+    const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
     await expect(navigationElement).toBeInTheDocument()
   },
 }

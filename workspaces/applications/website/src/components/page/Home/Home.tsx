@@ -7,7 +7,6 @@ import type { ComponentProps, FC, ReactNode } from "react"
 import styles from "./home.module.css"
 
 type Props = {
-  breadcrumbLabelText: ComponentProps<typeof Breadcrumb>["labelText"]
   packageTitleText: string
   packages: ComponentProps<typeof PackageCardList>["packages"]
   pageDescriptionText: ReactNode
@@ -18,12 +17,12 @@ type Props = {
 const BREADCRUMB_ITEMS: ComponentProps<typeof Breadcrumb>["items"] = []
 
 export const Home: FC<Props> = (props) => {
-  const { breadcrumbLabelText, packageTitleText, packages, pageDescriptionText, pageTitleText } =
+  const { packageTitleText, packages, pageDescriptionText, pageTitleText } =
     props
 
   return (
     <main className={styles.root}>
-      <Breadcrumb items={BREADCRUMB_ITEMS} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={BREADCRUMB_ITEMS} />
 
       <div className={styles.heading1Wrapper}>
         <Heading headingTag="h1">{pageTitleText}</Heading>

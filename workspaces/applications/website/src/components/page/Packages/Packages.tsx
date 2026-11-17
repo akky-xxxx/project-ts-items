@@ -8,19 +8,18 @@ import styles from "./packages.module.css"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: ComponentProps<typeof Breadcrumb>["labelText"]
   packages: ComponentProps<typeof PackageCardList>["packages"]
   pageDescriptionText: string
   pageTitleText: string
 }
 
 export const Packages: FC<Props> = (props) => {
-  const { breadcrumbItems, breadcrumbLabelText, packages, pageDescriptionText, pageTitleText } =
+  const { breadcrumbItems, packages, pageDescriptionText, pageTitleText } =
     props
 
   return (
     <main className={styles.root}>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <div className={styles.heading1Wrapper}>
         <Heading headingTag="h1">{pageTitleText}</Heading>

@@ -14,13 +14,11 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof Home>> = (props) => {
   const pageTranslate = useTranslations("pages.home")
   const packageTranslate = useTranslations("packages")
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const packageCardTranslate = useTranslations("components.ui.packageCard")
 
   return (
     <Home
       {...props}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
       packageTitleText={pageTranslate("packageTitleText")}
       packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
       pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
@@ -33,7 +31,6 @@ const meta = {
   component: Home,
 
   argTypes: {
-    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     packageTitleText: { control: false, description: "パッケージタイトル(h2)" },
     packages: {
       control: false,
@@ -43,7 +40,6 @@ const meta = {
     pageTitleText: { control: false, description: "ページタイトル(h1)" },
   },
   args: {
-    breadcrumbLabelText: "{breadcrumbLabelText}",
     packageTitleText: "{packageTitleText}",
     packages: [
       {
