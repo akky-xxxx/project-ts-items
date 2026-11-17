@@ -1,9 +1,11 @@
+import { createPreviewAnnotations } from "msw-storybook-addon/preview"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 
 import { FONT_VARIABLES } from "../src/constants/FONT_VARIABLES/FONT_VARIABLES.ts"
 import { routing } from "../src/i18n/constants/routing/routing.ts"
 import { siteDictionary } from "../src/i18n/constants/siteDictionary/siteDictionary.ts"
 import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocaleMessages.ts"
+import { setupMswWorkerForStorybook } from "../src/tests/setupMswWorkerForStorybook/setupMswWorkerForStorybook.ts"
 
 import type { Preview } from "@storybook/nextjs-vite"
 
@@ -11,6 +13,7 @@ import "../src/app/[locale]/reset.css"
 import "../src/app/[locale]/global.css"
 
 const preview: Preview = {
+  ...createPreviewAnnotations(setupMswWorkerForStorybook),
   beforeAll: () => {
     document.documentElement.classList.add(...FONT_VARIABLES)
   },
