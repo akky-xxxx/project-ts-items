@@ -68,7 +68,7 @@ export const PAGES = {
       },
       typeAwareLintingTitle: {
         en: "Type-aware linting",
-        ja: "型情報を使ったリンティング",
+        ja: "型情報を使ったリンティングです",
       },
     },
   },
