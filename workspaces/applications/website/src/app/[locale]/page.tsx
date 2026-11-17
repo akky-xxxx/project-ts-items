@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 import { Home } from "../../components/page/Home/Home.tsx"
 import { routing } from "../../i18n/constants/routing/routing.ts"
 import { buildPackageCardItems } from "../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
-import { renderLineBreak } from "../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
@@ -34,12 +33,7 @@ const Page = async (): Promise<ReactNode> => {
     ])
 
   return (
-    <Home
-      packageTitleText={pageTranslate("packageTitleText")}
-      packages={buildPackageCardItems(packageTranslate, "h3")}
-      pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
-      pageTitleText={pageTranslate("pageTitle")}
-    />
+    <Home packages={buildPackageCardItems(packageTranslate, "h3")} />
   )
 }
 
