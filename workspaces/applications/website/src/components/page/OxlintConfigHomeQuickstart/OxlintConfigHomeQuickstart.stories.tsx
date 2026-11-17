@@ -29,12 +29,7 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
     [packagesPageTranslate, pageTranslate],
   )
 
-  return (
-    <OxlintConfigHomeQuickstart
-      {...props}
-      breadcrumbItems={breadcrumbItems}
-    />
-  )
+  return <OxlintConfigHomeQuickstart {...props} breadcrumbItems={breadcrumbItems} />
 }
 
 const meta = {

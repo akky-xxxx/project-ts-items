@@ -59,10 +59,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
     <html className={FONT_VARIABLES.join(" ")} data-theme={theme} lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <RootLayout
-            headerInnerElement={headerInnerElement}
-            thisYear={thisYear}
-          >
+          <RootLayout headerInnerElement={headerInnerElement} thisYear={thisYear}>
             {children}
           </RootLayout>
         </NextIntlClientProvider>

@@ -1,21 +1,19 @@
+import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
 
 import type { ReactNode, ComponentProps, FC } from "react"
-import {useTranslations} from "next-intl"
-import {renderLineBreak} from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
 }
 
 export const OxlintConfigHome: FC<Props> = (props) => {
-  const {
-    breadcrumbItems,
-  } = props
+  const { breadcrumbItems } = props
   const oxlintConfigHomeTranslate = useTranslations("pages.oxlintConfigHome")
 
   return (

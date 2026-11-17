@@ -12,9 +12,7 @@ type Props = {
 }
 
 export const OxfmtConfigHome: FC<Props> = (props) => {
-  const {
-    breadcrumbItems,
-  } = props
+  const { breadcrumbItems } = props
   const oxfmtConfigHomeTranslate = useTranslations("pages.oxfmtConfigHome")
 
   return (

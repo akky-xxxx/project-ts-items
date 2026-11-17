@@ -15,12 +15,7 @@ type Props = {
 }
 
 export const DocsSidebar: FC<Props> = (props) => {
-  const {
-    docsNavigationUlElement,
-    npmHref,
-    packagesSelectorElement,
-    versionText,
-  } = props
+  const { docsNavigationUlElement, npmHref, packagesSelectorElement, versionText } = props
   const navigationTranslate = useTranslations("docsLayout")
 
   return (
@@ -38,15 +33,11 @@ export const DocsSidebar: FC<Props> = (props) => {
 
       <ul className={styles.ul}>
         <li>
-          <ExternalLink href={GITHUB_REPOSITORY_URL}>
-            GitHub
-          </ExternalLink>
+          <ExternalLink href={GITHUB_REPOSITORY_URL}>GitHub</ExternalLink>
         </li>
 
         <li>
-          <ExternalLink href={npmHref}>
-            npm
-          </ExternalLink>
+          <ExternalLink href={npmHref}>npm</ExternalLink>
         </li>
       </ul>
     </div>

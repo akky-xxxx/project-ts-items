@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import { PackageCardList } from "../../layout/PackageCardList/PackageCardList.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
@@ -5,7 +7,6 @@ import { Heading } from "../../ui/Heading/Heading.tsx"
 import type { ComponentProps, FC } from "react"
 
 import styles from "./packages.module.css"
-import {useTranslations} from "next-intl"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
@@ -13,8 +14,7 @@ type Props = {
 }
 
 export const Packages: FC<Props> = (props) => {
-  const { breadcrumbItems, packages } =
-    props
+  const { breadcrumbItems, packages } = props
   const packagesTranslate = useTranslations("pages.packages")
 
   return (

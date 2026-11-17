@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl"
 
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { PackageCardList } from "../../layout/PackageCardList/PackageCardList.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
-import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { ComponentProps, FC, ReactNode } from "react"
 
@@ -17,8 +17,7 @@ type Props = {
 const BREADCRUMB_ITEMS: ComponentProps<typeof Breadcrumb>["items"] = []
 
 export const Home: FC<Props> = (props) => {
-  const { packages } =
-    props
+  const { packages } = props
   const homeTranslate = useTranslations("pages.home")
 
   return (
@@ -29,7 +28,9 @@ export const Home: FC<Props> = (props) => {
         <Heading headingTag="h1">{homeTranslate("pageTitle")}</Heading>
       </div>
 
-      <p className={styles.description}>{homeTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+      <p className={styles.description}>
+        {homeTranslate.rich("pageDescription", { br: renderLineBreak })}
+      </p>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>{homeTranslate("packageTitleText")}</h2>

@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
 import { Tab } from "../../../clientComponents/feature/Tab/Tab.tsx"
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
@@ -13,7 +14,6 @@ import { INSTALL_TAB_ITEMS } from "./constants/INSTALL_TAB_ITEMS/INSTALL_TAB_ITE
 import type { ComponentProps, FC } from "react"
 
 import styles from "./oxlintConfigHomeQuickstart.module.css"
-import {renderLineBreak} from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
@@ -22,9 +22,7 @@ type Props = {
 const CODE_BLOCK_MAP = getCodeBlockMap()
 
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
-  const {
-    breadcrumbItems,
-  } = props
+  const { breadcrumbItems } = props
   const oxlintConfigQuickstartTranslate = useTranslations("pages.oxlintConfigQuickstart")
 
   return (

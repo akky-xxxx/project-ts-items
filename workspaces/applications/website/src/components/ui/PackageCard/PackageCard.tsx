@@ -1,9 +1,10 @@
+import { useTranslations } from "next-intl"
+
 import { Link } from "../../../utilities/navigation/navigation.ts"
 
 import type { FC, ReactNode } from "react"
 
 import styles from "./packageCard.module.css"
-import {useTranslations} from "next-intl"
 
 type Props = {
   descriptionNode: ReactNode

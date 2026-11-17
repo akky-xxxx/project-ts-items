@@ -24,12 +24,7 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
     [packagesPageTranslate],
   )
 
-  return (
-    <OxfmtConfigHome
-      {...props}
-      breadcrumbItems={breadcrumbItems}
-    />
-  )
+  return <OxfmtConfigHome {...props} breadcrumbItems={breadcrumbItems} />
 }
 
 const meta = {

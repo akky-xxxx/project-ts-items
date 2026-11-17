@@ -42,15 +42,11 @@ export const RootLayout: FcWithChildren<Props> = (props) => {
 
           <ul className={styles.services}>
             <li>
-              <ExternalLink href={GITHUB_REPOSITORY_URL}>
-                GitHub
-              </ExternalLink>
+              <ExternalLink href={GITHUB_REPOSITORY_URL}>GitHub</ExternalLink>
             </li>
 
             <li>
-              <ExternalLink href={NPM_ORGANIZATION_URL}>
-                npm
-              </ExternalLink>
+              <ExternalLink href={NPM_ORGANIZATION_URL}>npm</ExternalLink>
             </li>
           </ul>
         </div>
