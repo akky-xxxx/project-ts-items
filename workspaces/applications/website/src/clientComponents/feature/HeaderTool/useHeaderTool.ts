@@ -1,9 +1,10 @@
+import { useTranslations } from "next-intl"
+
 import { useLocale } from "./modules/useLocale/useLocale.ts"
 import { useTheme } from "./modules/useTheme/useTheme.tsx"
 
 import type { themeSchema } from "../../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
-import { useTranslations } from "next-intl"
 
 type Input = {
   theme: z.output<typeof themeSchema>

@@ -26,13 +26,8 @@ const BASE_SKILL_LABEL_MAP = {
 
 export const OxlintConfigSetup: FC<Props> = (props) => {
   const { codeBlockMap } = props
-  const {
-    handleChangeBase,
-    selectConfiguration,
-    selectedBase,
-    sourceKey,
-    switchItems,
-  } = useOxlintConfigSetup()
+  const { handleChangeBase, selectConfiguration, selectedBase, sourceKey, switchItems } =
+    useOxlintConfigSetup()
   const { code, codeBlock } = codeBlockMap[sourceKey]
 
   return (

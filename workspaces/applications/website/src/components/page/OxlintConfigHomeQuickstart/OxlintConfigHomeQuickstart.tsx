@@ -48,11 +48,7 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
         <Heading headingTag="h2">{installTitleText}</Heading>
 
         <div className={styles.tabWrapper}>
-          <Tab
-            copyIconElement={COPY_ICON_ELEMENT}
-            items={INSTALL_TAB_ITEMS}
-            title="Terminal"
-          />
+          <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
         </div>
       </Section>
 

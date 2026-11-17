@@ -62,11 +62,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
           packageText={headerTranslate("navigation.package")}
         />
       }
-      toolElement={
-        <HeaderTool
-          theme={theme}
-        />
-      }
+      toolElement={<HeaderTool theme={theme} />}
     />
   )
 

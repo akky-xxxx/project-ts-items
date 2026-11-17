@@ -47,11 +47,7 @@ export const Tab: FC<Props> = (props) => {
         })}
       </ul>
 
-      <CodeArea
-        copyIconElement={copyIconElement}
-        copyTargetText={copyTargetText}
-        title={title}
-      >
+      <CodeArea copyIconElement={copyIconElement} copyTargetText={copyTargetText} title={title}>
         <ViewTransition>
           {items.map((item) => {
             const { tabContent, tabValue } = item

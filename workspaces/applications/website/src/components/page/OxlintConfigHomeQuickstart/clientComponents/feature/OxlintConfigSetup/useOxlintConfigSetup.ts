@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl"
+
 import { getSourceKey } from "./modules/getSourceKey/getSourceKey.ts"
 import { getSwitchItems } from "./modules/getSwitchItems/getSwitchItems.tsx"
 import { useFormStates } from "./modules/useFormStates/useFormStates.ts"

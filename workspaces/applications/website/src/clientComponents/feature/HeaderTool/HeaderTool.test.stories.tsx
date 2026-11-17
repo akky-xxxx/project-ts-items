@@ -77,9 +77,7 @@ export const TestForThemeSelection: Story = {
     ).toBeChecked()
     await expect(document.documentElement.dataset.theme).toBe("light")
     // ボタンのアイコンも選択したテーマに即時に切り替わる
-    await expect(
-      within(canvasElement).getByRole("button", { name: "Light" }),
-    ).toBeInTheDocument()
+    await expect(within(canvasElement).getByRole("button", { name: "Light" })).toBeInTheDocument()
     await waitFor(async () => {
       await expect(cookies().set).toHaveBeenCalledWith("THEME", "light", expect.anything())
     })
