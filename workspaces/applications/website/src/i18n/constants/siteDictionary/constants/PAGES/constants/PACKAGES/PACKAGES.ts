@@ -5,7 +5,7 @@ import type { Dictionary } from "../../../../../../types/Dictionary/Dictionary.t
 export const PACKAGES = {
   pageDescription: {
     en: `Packages managed by ${PROJECT_NAME}.`,
-    ja: `${PROJECT_NAME} で管理しているパッケージの一覧です`,
+    ja: `${PROJECT_NAME} で管理しているパッケージの一覧です。`,
   },
   pageTitle: {
     en: "Packages",

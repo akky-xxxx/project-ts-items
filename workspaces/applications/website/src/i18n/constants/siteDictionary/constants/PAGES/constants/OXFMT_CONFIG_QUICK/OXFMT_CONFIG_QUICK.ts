@@ -9,7 +9,7 @@ export const OXFMT_CONFIG_QUICK = {
   },
   pageDescription: {
     en: `This page explains how to install and set up ${PACKAGE_NAMES.oxfmtConfig}.`,
-    ja: `このページでは ${PACKAGE_NAMES.oxfmtConfig} の導入・設定方法を紹介します`,
+    ja: `このページでは ${PACKAGE_NAMES.oxfmtConfig} の導入・設定方法を紹介します。`,
   },
   pageTitle: {
     en: "Quickstart",
