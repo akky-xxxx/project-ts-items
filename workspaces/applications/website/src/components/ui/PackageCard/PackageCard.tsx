@@ -24,7 +24,7 @@ export const PackageCard: FC<Props> = (props) => {
     packageNameText,
     versionText,
   } = props
-  const packagesTranslate = useTranslations("components.ui.packageCard")
+  const packageCardTranslate = useTranslations("components.ui.packageCard")
   const HeadingTag = headingTag
   const descriptionClassName = isDescriptionClamped
     ? `${styles.description} ${styles.descriptionClamped}`
@@ -46,7 +46,7 @@ export const PackageCard: FC<Props> = (props) => {
         <p className={descriptionClassName}>{descriptionNode}</p>
 
         <span aria-hidden="true" className={styles.linkText}>
-          {packagesTranslate("linkText")} &gt;
+          {packageCardTranslate("linkText")} &gt;
         </span>
       </div>
     </div>
