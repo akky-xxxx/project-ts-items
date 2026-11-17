@@ -45,6 +45,10 @@ const Layout = async (props: Props): Promise<ReactNode> => {
                   href: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
                   text: pagesTranslate("oxfmtConfigHome.pageTitle"),
                 },
+                {
+                  href: `/packages/${PACKAGE_NAMES.oxfmtConfig}/quickstart/`,
+                  text: pagesTranslate("oxfmtConfigQuickstart.pageTitle"),
+                },
               ]}
             />
           }
