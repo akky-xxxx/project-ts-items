@@ -1,6 +1,7 @@
 import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
+import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import { LongContents } from "../../../tests/LongContents/LongContents.tsx"
 import meta from "./DocsLayout.stories.tsx"
 
@@ -63,6 +64,15 @@ export const TestForLandmarks: Story = {
       complementaryElement.getByRole("navigation", { name: "Table of contents" }),
     )
     await expect(tocNavigationElement.getByText("{tocElement0}")).toBeInTheDocument()
+  },
+}
+
+export const TestForJaTocLabel: Story = {
+  ...JA_LOCALE_FOR_STORYBOOK,
+  play: async (context) => {
+    const { canvasElement } = context
+    const complementaryElement = within(within(canvasElement).getByRole("complementary"))
+    await expect(complementaryElement.getByRole("navigation", { name: "目次" })).toBeInTheDocument()
   },
 }
 

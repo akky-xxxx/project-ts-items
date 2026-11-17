@@ -1,6 +1,7 @@
 import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
+import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./DocsSidebar.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -51,5 +52,19 @@ export const TestForExternalLinks: Story = {
       rel: "noopener noreferrer",
       target: "_blank",
     })
+  },
+}
+
+export const TestForJaTexts: Story = {
+  ...JA_LOCALE_FOR_STORYBOOK,
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    await expect(canvas.getByText("最新版")).toBeVisible()
+    await expect(canvas.getByRole("navigation", { name: "ドキュメント" })).toBeInTheDocument()
+    await expect(
+      canvas.getByRole("link", { name: "GitHub (新しいタブで開く)" }),
+    ).toBeInTheDocument()
+    await expect(canvas.getByRole("link", { name: "npm (新しいタブで開く)" })).toBeInTheDocument()
   },
 }

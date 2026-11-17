@@ -3,6 +3,7 @@ import { expect, waitFor, within } from "storybook/test"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
+import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./Breadcrumb.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -22,6 +23,16 @@ export const TestForNavigationLabel: Story = {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const navigationElement = canvas.getByRole("navigation", { name: "Breadcrumbs" })
+    await expect(navigationElement).toBeInTheDocument()
+  },
+}
+
+export const TestForJaNavigationLabel: Story = {
+  ...JA_LOCALE_FOR_STORYBOOK,
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    const navigationElement = canvas.getByRole("navigation", { name: "パンくずリスト" })
     await expect(navigationElement).toBeInTheDocument()
   },
 }

@@ -1,6 +1,7 @@
 import { expect, within } from "storybook/test"
 
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
+import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./RootLayout.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -43,5 +44,17 @@ export const TestForFooter: Story = {
       rel: "noopener noreferrer",
       target: "_blank",
     })
+  },
+}
+
+export const TestForJaFooterLinks: Story = {
+  ...JA_LOCALE_FOR_STORYBOOK,
+  play: async (context) => {
+    const { canvasElement } = context
+    const footer = within(within(canvasElement).getByRole("contentinfo"))
+    await expect(
+      footer.getByRole("link", { name: "GitHub (新しいタブで開く)" }),
+    ).toBeInTheDocument()
+    await expect(footer.getByRole("link", { name: "npm (新しいタブで開く)" })).toBeInTheDocument()
   },
 }
