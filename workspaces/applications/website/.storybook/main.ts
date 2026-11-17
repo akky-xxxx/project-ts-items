@@ -1,5 +1,7 @@
+import { msw } from "msw/vite"
 import path from "node:path"
 import url from "node:url"
+import { mergeConfig } from "vite"
 
 import type { StorybookConfig } from "@storybook/nextjs-vite"
 
@@ -16,5 +18,7 @@ const config: StorybookConfig = {
   ],
   framework: getAbsolutePath("@storybook/nextjs-vite"),
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  // MSW の Service Worker(mockServiceWorker.js)を dev では配信し、build では出力する
+  viteFinal: (viteConfig) => mergeConfig(viteConfig, { plugins: [msw({ mode: "worker-only" })] }),
 }
 export default config

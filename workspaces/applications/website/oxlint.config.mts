@@ -52,6 +52,13 @@ const config = defineConfig({
         "eslint/no-restricted-imports": ["error", { paths: restrictedPaths }],
       },
     },
+    {
+      // Storybook の設定(preview 等)も非プロダクトコードのため、src/tests/** の import を許可する
+      files: [".storybook/**"],
+      rules: {
+        "eslint/no-restricted-imports": ["error", { paths: restrictedPaths }],
+      },
+    },
   ],
   rules: {
     // Zod 公式の import スタイル(import * as z from "zod")を踏襲する
