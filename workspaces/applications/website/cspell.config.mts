@@ -14,6 +14,8 @@ export default {
     },
   ],
   enableGlobDot: true,
+  // OpenAPI 定義は取得元から無加工で置く
+  ignorePaths: ["openapi/**"],
   language: "en",
   useGitignore: true,
   version: "0.2",

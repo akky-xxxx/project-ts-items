@@ -133,3 +133,6 @@ ai-communication/
 # storybook
 *storybook.log
 storybook-static
+
+# orval
+workspaces/applications/website/src/generated/
