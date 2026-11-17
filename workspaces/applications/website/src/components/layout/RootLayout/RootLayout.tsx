@@ -22,12 +22,11 @@ const TOAST_OPTIONS = {
 
 type Props = {
   headerInnerElement: ReactElement
-  newTabText: string
   thisYear: number
 }
 
 export const RootLayout: FcWithChildren<Props> = (props) => {
-  const { children, headerInnerElement, newTabText, thisYear } = props
+  const { children, headerInnerElement, thisYear } = props
 
   return (
     <div className={styles.root}>
@@ -43,13 +42,13 @@ export const RootLayout: FcWithChildren<Props> = (props) => {
 
           <ul className={styles.services}>
             <li>
-              <ExternalLink href={GITHUB_REPOSITORY_URL} newTabText={newTabText}>
+              <ExternalLink href={GITHUB_REPOSITORY_URL}>
                 GitHub
               </ExternalLink>
             </li>
 
             <li>
-              <ExternalLink href={NPM_ORGANIZATION_URL} newTabText={newTabText}>
+              <ExternalLink href={NPM_ORGANIZATION_URL}>
                 npm
               </ExternalLink>
             </li>

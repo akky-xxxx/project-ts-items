@@ -10,13 +10,11 @@ const meta = {
   argTypes: {
     children: { control: false },
     headerInnerElement: { control: false },
-    newTabText: { control: "text" },
     thisYear: { control: "number" },
   },
   args: {
     children: <LongContents />,
     headerInnerElement: <DummyForStorybook label="headerInnerElement" />,
-    newTabText: "{newTabText}",
     thisYear: 2026,
   },
 } satisfies Meta<typeof RootLayout>

@@ -31,12 +31,12 @@ export const TestForFooter: Story = {
     await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
 
     const footer = within(footerElement)
-    await expect(footer.getByRole("link", { name: "GitHub ({newTabText})" })).toMatchObject({
+    await expect(footer.getByRole("link", { name: "GitHub (opens in a new tab)" })).toMatchObject({
       href: "https://github.com/akky-xxxx/project-ts-items",
       rel: "noopener noreferrer",
       target: "_blank",
     })
-    await expect(footer.getByRole("link", { name: "npm ({newTabText})" })).toMatchObject({
+    await expect(footer.getByRole("link", { name: "npm (opens in a new tab)" })).toMatchObject({
       href: "https://www.npmjs.com/org/ts-items",
       rel: "noopener noreferrer",
       target: "_blank",

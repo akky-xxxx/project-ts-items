@@ -22,16 +22,12 @@ const Layout = async (props: Props): Promise<ReactNode> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const [uiTranslate, pagesTranslate] = await Promise.all([
-    getTranslations({ locale, namespace: "components.ui" }),
-    getTranslations({ locale, namespace: "pages" }),
-  ])
+  const pagesTranslate = await getTranslations({ locale, namespace: "pages" })
 
   return (
     <DocsLayout
       docsSidebarElement={
         <DocsSidebar
-          newTabText={uiTranslate("externalLink.newTab")}
           npmHref="https://www.npmjs.com/package/@ts-items/oxlint-config"
           packagesSelectorElement={<PackageSwitcher />}
           docsNavigationUlElement={

@@ -39,12 +39,12 @@ export const TestForExternalLinks: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByRole("link", { name: "GitHub ({newTabText})" })).toMatchObject({
+    await expect(canvas.getByRole("link", { name: "GitHub (opens in a new tab)" })).toMatchObject({
       href: "https://github.com/akky-xxxx/project-ts-items",
       rel: "noopener noreferrer",
       target: "_blank",
     })
-    await expect(canvas.getByRole("link", { name: "npm ({newTabText})" })).toMatchObject({
+    await expect(canvas.getByRole("link", { name: "npm (opens in a new tab)" })).toMatchObject({
       href: "https://example.com/",
       rel: "noopener noreferrer",
       target: "_blank",

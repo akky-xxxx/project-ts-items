@@ -9,7 +9,6 @@ import styles from "./docsSidebar.module.css"
 
 type Props = {
   docsNavigationUlElement: ReactElement
-  newTabText: string
   npmHref: ComponentProps<typeof ExternalLink>["href"]
   packagesSelectorElement: ReactElement
   versionText: string
@@ -18,7 +17,6 @@ type Props = {
 export const DocsSidebar: FC<Props> = (props) => {
   const {
     docsNavigationUlElement,
-    newTabText,
     npmHref,
     packagesSelectorElement,
     versionText,
@@ -40,13 +38,13 @@ export const DocsSidebar: FC<Props> = (props) => {
 
       <ul className={styles.ul}>
         <li>
-          <ExternalLink href={GITHUB_REPOSITORY_URL} newTabText={newTabText}>
+          <ExternalLink href={GITHUB_REPOSITORY_URL}>
             GitHub
           </ExternalLink>
         </li>
 
         <li>
-          <ExternalLink href={npmHref} newTabText={newTabText}>
+          <ExternalLink href={npmHref}>
             npm
           </ExternalLink>
         </li>
