@@ -8,8 +8,8 @@ type Input = {
 
 export const useCodeArea = (input: Input) => {
   const { copyTargetText } = input
-  const codeAreaTranslation = useTranslations("components.ui.codeArea")
-  const copyButtonLabelText = codeAreaTranslation("copyButtonLabelText")
+  const codeAreaTranslate = useTranslations("components.ui.codeArea")
+  const copyButtonLabelText = codeAreaTranslate("copyButtonLabelText")
 
   const handleCopy = useCallback(() => {
     if (copyTargetText === undefined) {
@@ -18,10 +18,10 @@ export const useCodeArea = (input: Input) => {
 
     startTransition(async () => {
       await navigator.clipboard.writeText(copyTargetText).then(() => {
-        toast(codeAreaTranslation("copiedText"))
+        toast(codeAreaTranslate("copiedText"))
       })
     })
-  }, [codeAreaTranslation, copyTargetText])
+  }, [codeAreaTranslate, copyTargetText])
 
   return { copyButtonLabelText, handleCopy }
 }

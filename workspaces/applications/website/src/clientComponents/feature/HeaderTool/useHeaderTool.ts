@@ -12,11 +12,11 @@ type Input = {
 
 export const useHeaderTool = (input: Input) => {
   const { theme } = input
-  const translation = useTranslations("header")
+  const headerTranslate = useTranslations("header")
   const { currentThemeIcon, localTheme, selectTheme, themeItems } = useTheme({
-    darkThemeText: translation("theme.dark"),
-    lightThemeText: translation("theme.light"),
-    systemThemeText: translation("theme.system"),
+    darkThemeText: headerTranslate("theme.dark"),
+    lightThemeText: headerTranslate("theme.light"),
+    systemThemeText: headerTranslate("theme.system"),
     theme,
   })
   const { currentLanguageName, locale, selectLanguage } = useLocale()
@@ -24,12 +24,12 @@ export const useHeaderTool = (input: Input) => {
   return {
     currentLanguageName,
     currentThemeIcon,
-    languageLegendText: translation("language"),
+    languageLegendText: headerTranslate("language"),
     localTheme,
     locale,
     selectLanguage,
     selectTheme,
     themeItems,
-    themeLegendText: translation("theme.legend"),
+    themeLegendText: headerTranslate("theme.legend"),
   }
 }
