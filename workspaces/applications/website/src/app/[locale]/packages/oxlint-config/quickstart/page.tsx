@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 import { OxlintConfigHomeQuickstart } from "../../../../../components/page/OxlintConfigHomeQuickstart/OxlintConfigHomeQuickstart.tsx"
 import { PACKAGE_NAMES } from "../../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { routing } from "../../../../../i18n/constants/routing/routing.ts"
-import { renderLineBreak } from "../../../../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
@@ -47,10 +46,6 @@ const Page = async (): Promise<ReactNode> => {
           text: pageTranslate("pageTitle"),
         },
       ]}
-      installTitleText={pageTranslate("installTitle")}
-      pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
-      pageTitle={pageTranslate("pageTitle")}
-      setupTitleText={pageTranslate("setupTitle")}
     />
   )
 }
