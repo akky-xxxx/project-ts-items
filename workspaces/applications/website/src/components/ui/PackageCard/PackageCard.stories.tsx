@@ -1,4 +1,4 @@
-import { createTranslator, useLocale, useTranslations } from "next-intl"
+import { createTranslator, useLocale } from "next-intl"
 
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
@@ -16,7 +16,6 @@ const descriptionMessages = {
 
 const Localized: FC<ComponentProps<typeof PackageCard>> = (props) => {
   const locale = useLocale()
-  const translate = useTranslations("components.ui.packageCard")
   const translateDescription = createTranslator({
     locale,
     messages: descriptionMessages[locale],
@@ -26,7 +25,6 @@ const Localized: FC<ComponentProps<typeof PackageCard>> = (props) => {
     <PackageCard
       {...props}
       descriptionNode={translateDescription.rich("description", { br: renderLineBreak })}
-      linkText={translate("linkText")}
     />
   )
 }
@@ -42,10 +40,6 @@ const meta = {
     headingTag: { description: "パッケージ名の見出し要素(h2〜h6)" },
     innerLinkHref: { description: "カード全体のリンク先(サイト内のパス)" },
     isDescriptionClamped: { description: "説明を2行で省略するか" },
-    linkText: {
-      control: false,
-      description: "リンクであることを示す装飾用テキスト(読み上げ対象外)",
-    },
     packageNameText: { description: "パッケージ名(見出し・リンクのアクセシブルネーム)" },
     versionText: { description: "バージョン" },
   },
@@ -53,7 +47,6 @@ const meta = {
     descriptionNode: "{descriptionNode}",
     headingTag: "h2",
     innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
-    linkText: "{linkText}",
     packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
     versionText: "v1.0.0",
   },

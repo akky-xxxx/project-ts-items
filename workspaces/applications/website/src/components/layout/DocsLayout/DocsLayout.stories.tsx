@@ -14,7 +14,7 @@ const HEADER_INNER_ELEMENT = (
 )
 
 const WithRootLayout: FC<ComponentProps<typeof DocsLayout>> = (props) => (
-  <RootLayout headerInnerElement={HEADER_INNER_ELEMENT} newTabText="{newTabText}" thisYear={2026}>
+  <RootLayout headerInnerElement={HEADER_INNER_ELEMENT} thisYear={2026}>
     <DocsLayout {...props} />
   </RootLayout>
 )
@@ -36,7 +36,6 @@ const meta = {
       </nav>
     ),
     tocElement: <LongContents text="tocElement" />,
-    tocLabelText: "{tocLabelText}",
   },
   render: (props) => <WithRootLayout {...props} />,
 } satisfies Meta<typeof DocsLayout>
@@ -50,6 +49,5 @@ export const Default: Story = {}
 export const WithoutToc: Story = {
   args: {
     tocElement: undefined,
-    tocLabelText: undefined,
   },
 }

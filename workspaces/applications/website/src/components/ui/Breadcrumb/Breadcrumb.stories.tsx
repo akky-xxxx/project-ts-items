@@ -13,7 +13,6 @@ const meta = {
       description:
         "ルートより後ろの階層(最後の項目は現在のページとしてテキストで表示。空配列の場合はルートを現在のページとしてテキストで表示)",
     },
-    labelText: { description: "nav 要素のアクセシブルネーム" },
   },
   args: {
     items: [
@@ -25,7 +24,6 @@ const meta = {
         text: PACKAGE_NAMES.oxlintConfig,
       },
     ],
-    labelText: "{labelText}",
   },
 } satisfies Meta<typeof Breadcrumb>
 

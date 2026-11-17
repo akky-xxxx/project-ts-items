@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
@@ -7,38 +8,27 @@ import { Heading } from "../../ui/Heading/Heading.tsx"
 import type { ComponentProps, FC } from "react"
 
 type Props = {
-  backgroundDescriptionText: string
-  backgroundTitleText: string
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: string
-  pageDescriptionText: string
-  pageTitle: string
 }
 
 export const OxfmtConfigHome: FC<Props> = (props) => {
-  const {
-    backgroundDescriptionText,
-    backgroundTitleText,
-    breadcrumbItems,
-    breadcrumbLabelText,
-    pageDescriptionText,
-    pageTitle,
-  } = props
+  const { breadcrumbItems } = props
+  const oxfmtConfigHomeTranslate = useTranslations("pages.oxfmtConfigHome")
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitle}</Heading>
+        <Heading headingTag="h1">{oxfmtConfigHomeTranslate("pageTitle")}</Heading>
       </Heading1Wrapper>
 
-      <p>{pageDescriptionText}</p>
+      <p>{oxfmtConfigHomeTranslate("pageDescription")}</p>
 
       <Section>
-        <Heading headingTag="h2">{backgroundTitleText}</Heading>
+        <Heading headingTag="h2">{oxfmtConfigHomeTranslate("backgroundTitle")}</Heading>
 
-        <p>{backgroundDescriptionText}</p>
+        <p>{oxfmtConfigHomeTranslate("backgroundDescription")}</p>
       </Section>
     </Fragment>
   )

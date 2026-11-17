@@ -10,9 +10,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
-  const pageTranslate = useTranslations("pages.oxfmtConfigHome")
   const packagesPageTranslate = useTranslations("pages.packages")
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
   const breadcrumbItems = useMemo(
     () => [
       {
@@ -26,49 +24,23 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHome>> = (props) => {
     [packagesPageTranslate],
   )
 
-  return (
-    <OxfmtConfigHome
-      {...props}
-      backgroundDescriptionText={pageTranslate("backgroundDescription")}
-      backgroundTitleText={pageTranslate("backgroundTitle")}
-      breadcrumbItems={breadcrumbItems}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitle={pageTranslate("pageTitle")}
-    />
-  )
+  return <OxfmtConfigHome {...props} breadcrumbItems={breadcrumbItems} />
 }
 
 const meta = {
   component: OxfmtConfigHome,
 
   argTypes: {
-    backgroundDescriptionText: {
-      control: false,
-      description: "概要セクションの説明文",
-    },
-    backgroundTitleText: { control: false, description: "概要セクションの見出し(h2)" },
     breadcrumbItems: {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
-    pageDescriptionText: {
-      control: false,
-      description: "ページの説明文",
-    },
-    pageTitle: { control: false, description: "ページタイトル(h1)" },
   },
   args: {
-    backgroundDescriptionText: "{backgroundDescriptionText}",
-    backgroundTitleText: "{backgroundTitleText}",
     breadcrumbItems: [
       { href: "/packages/", text: "{breadcrumbItemText}" },
       { text: PACKAGE_NAMES.oxfmtConfig },
     ],
-    breadcrumbLabelText: "{breadcrumbLabelText}",
-    pageDescriptionText: "{pageDescriptionText}",
-    pageTitle: "{pageTitle}",
   },
   render: (args) => <Localized {...args} />,
 } satisfies Meta<typeof OxfmtConfigHome>

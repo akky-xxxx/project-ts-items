@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 import { Home } from "../../components/page/Home/Home.tsx"
 import { routing } from "../../i18n/constants/routing/routing.ts"
 import { buildPackageCardItems } from "../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
-import { renderLineBreak } from "../../utilities/renderLineBreak/renderLineBreak.tsx"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
@@ -27,23 +26,9 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [pageTranslate, packageTranslate, breadcrumbTranslate, packageCardTranslate] =
-    await Promise.all([
-      getTranslations("pages.home"),
-      getTranslations("packages"),
-      getTranslations("components.ui.breadcrumb"),
-      getTranslations("components.ui.packageCard"),
-    ])
+  const packageTranslate = await getTranslations("packages")
 
-  return (
-    <Home
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
-      packageTitleText={pageTranslate("packageTitleText")}
-      packages={buildPackageCardItems({ packageCardTranslate, packageTranslate }, "h3")}
-      pageDescriptionText={pageTranslate.rich("pageDescription", { br: renderLineBreak })}
-      pageTitleText={pageTranslate("pageTitle")}
-    />
-  )
+  return <Home packages={buildPackageCardItems(packageTranslate, "h3")} />
 }
 
 export default Page

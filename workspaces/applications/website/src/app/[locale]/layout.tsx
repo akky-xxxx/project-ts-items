@@ -1,5 +1,4 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl"
-import { getTranslations } from "next-intl/server"
 import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 
@@ -49,19 +48,9 @@ const Layout = async (props: Props): Promise<ReactNode> => {
   const theme = getThemeFromCookie(cookieObject.get(COOKIE_KEY_THEME))
   // oxlint-disable-next-line react/purity -- Server Component renders once per request (dynamic via cookies()), so computing the year here keeps it current instead of fixing it at module load
   const thisYear = new Date().getFullYear()
-  const [externalLinkTranslate, headerTranslate] = await Promise.all([
-    getTranslations("components.ui.externalLink"),
-    getTranslations("header"),
-  ])
   const headerInnerElement = (
     <HeaderInner
-      navigationElement={
-        <HeaderNavigation
-          changeLogText={headerTranslate("navigation.changeLog")}
-          navigationLabelText={headerTranslate("navigation.ariaLabel")}
-          packageText={headerTranslate("navigation.package")}
-        />
-      }
+      navigationElement={<HeaderNavigation />}
       toolElement={<HeaderTool theme={theme} />}
     />
   )
@@ -70,11 +59,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
     <html className={FONT_VARIABLES.join(" ")} data-theme={theme} lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <RootLayout
-            headerInnerElement={headerInnerElement}
-            newTabText={externalLinkTranslate("newTab")}
-            thisYear={thisYear}
-          >
+          <RootLayout headerInnerElement={headerInnerElement} thisYear={thisYear}>
             {children}
           </RootLayout>
         </NextIntlClientProvider>

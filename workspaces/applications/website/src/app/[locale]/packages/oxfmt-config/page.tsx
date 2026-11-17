@@ -25,16 +25,10 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [pageTranslate, packagesPageTranslate, breadcrumbTranslate] = await Promise.all([
-    getTranslations("pages.oxfmtConfigHome"),
-    getTranslations("pages.packages"),
-    getTranslations("components.ui.breadcrumb"),
-  ])
+  const packagesPageTranslate = await getTranslations("pages.packages")
 
   return (
     <OxfmtConfigHome
-      backgroundDescriptionText={pageTranslate("backgroundDescription")}
-      backgroundTitleText={pageTranslate("backgroundTitle")}
       breadcrumbItems={[
         {
           href: "/packages/",
@@ -44,9 +38,6 @@ const Page = async (): Promise<ReactNode> => {
           text: PACKAGE_NAMES.oxfmtConfig,
         },
       ]}
-      breadcrumbLabelText={breadcrumbTranslate("labelText")}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitle={pageTranslate("pageTitle")}
     />
   )
 }

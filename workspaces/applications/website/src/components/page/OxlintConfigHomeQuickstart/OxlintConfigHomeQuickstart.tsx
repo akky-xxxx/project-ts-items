@@ -1,6 +1,8 @@
+import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
 import { Tab } from "../../../clientComponents/feature/Tab/Tab.tsx"
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
@@ -9,43 +11,32 @@ import { OxlintConfigSetup } from "./clientComponents/feature/OxlintConfigSetup/
 import { COPY_ICON_ELEMENT } from "./constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 import { INSTALL_TAB_ITEMS } from "./constants/INSTALL_TAB_ITEMS/INSTALL_TAB_ITEMS.tsx"
 
-import type { ReactNode, ComponentProps, FC } from "react"
+import type { ComponentProps, FC } from "react"
 
 import styles from "./oxlintConfigHomeQuickstart.module.css"
 
 type Props = {
   breadcrumbItems: ComponentProps<typeof Breadcrumb>["items"]
-  breadcrumbLabelText: string
-  installTitleText: string
-  pageDescriptionText: ReactNode
-  pageTitle: string
-  setupTitleText: string
 }
 
 const CODE_BLOCK_MAP = getCodeBlockMap()
 
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
-  const {
-    breadcrumbItems,
-    breadcrumbLabelText,
-    installTitleText,
-    pageDescriptionText,
-    pageTitle,
-    setupTitleText,
-  } = props
+  const { breadcrumbItems } = props
+  const oxlintConfigQuickstartTranslate = useTranslations("pages.oxlintConfigQuickstart")
 
   return (
     <Fragment>
-      <Breadcrumb items={breadcrumbItems} labelText={breadcrumbLabelText} />
+      <Breadcrumb items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitle}</Heading>
+        <Heading headingTag="h1">{oxlintConfigQuickstartTranslate("pageTitle")}</Heading>
       </Heading1Wrapper>
 
-      <p>{pageDescriptionText}</p>
+      <p>{oxlintConfigQuickstartTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
 
       <Section>
-        <Heading headingTag="h2">{installTitleText}</Heading>
+        <Heading headingTag="h2">{oxlintConfigQuickstartTranslate("installTitle")}</Heading>
 
         <div className={styles.tabWrapper}>
           <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
@@ -53,7 +44,7 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{setupTitleText}</Heading>
+        <Heading headingTag="h2">{oxlintConfigQuickstartTranslate("setupTitle")}</Heading>
 
         <div className={styles.oxlintConfigSetupWrapper}>
           <OxlintConfigSetup codeBlockMap={CODE_BLOCK_MAP} />

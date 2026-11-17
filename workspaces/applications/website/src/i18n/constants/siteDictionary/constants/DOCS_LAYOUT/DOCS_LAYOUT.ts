@@ -1,6 +1,10 @@
 import type { Dictionary } from "../../../../types/Dictionary/Dictionary.ts"
 
 export const DOCS_LAYOUT = {
+  docsNavigationLabel: {
+    en: "Documentation",
+    ja: "ドキュメント",
+  },
   docsSidebar: {
     en: "Docs sidebar",
     ja: "ドキュメントのサイドバー",
@@ -9,9 +13,9 @@ export const DOCS_LAYOUT = {
     en: "Latest",
     ja: "最新版",
   },
-  packageLegend: {
-    en: "Packages",
-    ja: "パッケージ",
+  packageSelectorLegend: {
+    en: "Select a package",
+    ja: "パッケージを選択",
   },
   toc: {
     en: "Table of contents",

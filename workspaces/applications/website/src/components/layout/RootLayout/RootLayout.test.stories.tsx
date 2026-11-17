@@ -1,11 +1,14 @@
 import { expect, within } from "storybook/test"
 
+import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
+import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./RootLayout.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 const testMeta = {
   ...meta,
+  ...EN_LOCALE_FOR_STORYBOOK,
   tags: ["!dev", "!autodocs"],
 } satisfies Meta<typeof meta.component>
 
@@ -31,15 +34,27 @@ export const TestForFooter: Story = {
     await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
 
     const footer = within(footerElement)
-    await expect(footer.getByRole("link", { name: "GitHub ({newTabText})" })).toMatchObject({
+    await expect(footer.getByRole("link", { name: "GitHub (opens in a new tab)" })).toMatchObject({
       href: "https://github.com/akky-xxxx/project-ts-items",
       rel: "noopener noreferrer",
       target: "_blank",
     })
-    await expect(footer.getByRole("link", { name: "npm ({newTabText})" })).toMatchObject({
+    await expect(footer.getByRole("link", { name: "npm (opens in a new tab)" })).toMatchObject({
       href: "https://www.npmjs.com/org/ts-items",
       rel: "noopener noreferrer",
       target: "_blank",
     })
+  },
+}
+
+export const TestForJaFooterLinks: Story = {
+  ...JA_LOCALE_FOR_STORYBOOK,
+  play: async (context) => {
+    const { canvasElement } = context
+    const footer = within(within(canvasElement).getByRole("contentinfo"))
+    await expect(
+      footer.getByRole("link", { name: "GitHub (新しいタブで開く)" }),
+    ).toBeInTheDocument()
+    await expect(footer.getByRole("link", { name: "npm (新しいタブで開く)" })).toBeInTheDocument()
   },
 }
