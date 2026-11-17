@@ -57,11 +57,12 @@ const meta = {
     breadcrumbLabelText: { control: false, description: "パンくずの nav 要素のアクセシブルネーム" },
     copiedText: {
       control: false,
-      description: "インストールコマンドのコピー完了時にトーストで表示するテキスト",
+      description:
+        "インストールコマンド・設定ファイルのコードのコピー完了時にトーストで表示するテキスト",
     },
     copyButtonLabelText: {
       control: false,
-      description: "インストールコマンドのコピーボタンのラベル(aria-label)",
+      description: "インストールコマンド・設定ファイルのコードのコピーボタンのラベル(aria-label)",
     },
     installTitleText: { control: false, description: "インストールセクションの見出し(h2)" },
     pageDescriptionText: {
