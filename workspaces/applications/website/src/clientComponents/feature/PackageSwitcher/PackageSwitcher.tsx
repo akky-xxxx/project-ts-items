@@ -25,7 +25,7 @@ export const PackageSwitcher: FC = () => {
         <OptionSwitcher
           handleChange={handleSelectPackage}
           items={PACKAGE_ITEMS}
-          legendText={translate("packageLegend")}
+          legendText={translate("packageSelectorLegend")}
           selectedValue={currentPackageName}
         />
       </Popover>
