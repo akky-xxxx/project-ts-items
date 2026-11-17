@@ -45,10 +45,6 @@ const Page = async (): Promise<ReactNode> => {
           text: pageTranslate("pageTitle"),
         },
       ]}
-      installTitleText={pageTranslate("installTitle")}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitle={pageTranslate("pageTitle")}
-      setupTitleText={pageTranslate("setupTitle")}
     />
   )
 }

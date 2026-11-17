@@ -33,10 +33,6 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) 
     <OxfmtConfigHomeQuickstart
       {...props}
       breadcrumbItems={breadcrumbItems}
-      installTitleText={pageTranslate("installTitle")}
-      pageDescriptionText={pageTranslate("pageDescription")}
-      pageTitle={pageTranslate("pageTitle")}
-      setupTitleText={pageTranslate("setupTitle")}
     />
   )
 }
@@ -49,13 +45,6 @@ const meta = {
       control: false,
       description: "パンくずのルートより後ろの階層(各要素は Breadcrumb の items の要素)",
     },
-    installTitleText: { control: false, description: "インストールセクションの見出し(h2)" },
-    pageDescriptionText: {
-      control: false,
-      description: "ページの説明文。",
-    },
-    pageTitle: { control: false, description: "ページタイトル(h1)" },
-    setupTitleText: { control: false, description: "設定方法セクションの見出し(h2)" },
   },
   args: {
     breadcrumbItems: [
@@ -63,10 +52,6 @@ const meta = {
       { href: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`, text: PACKAGE_NAMES.oxfmtConfig },
       { text: "{pageTitle}" },
     ],
-    installTitleText: "{installTitleText}",
-    pageDescriptionText: "{pageDescriptionText}",
-    pageTitle: "{pageTitle}",
-    setupTitleText: "{setupTitleText}",
   },
   render: (args) => <Localized {...args} />,
 } satisfies Meta<typeof OxfmtConfigHomeQuickstart>
