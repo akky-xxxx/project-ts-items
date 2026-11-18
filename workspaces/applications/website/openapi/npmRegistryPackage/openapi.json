@@ -1,0 +1,335 @@
+{
+  "components": {
+    "parameters": {
+      "PackageName": {
+        "description": "Package name without the @ts-items scope (e.g. oxfmt-config)",
+        "in": "path",
+        "name": "packageName",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "LatestVersionNotFound": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "A JSON string such as \"Not Found\"",
+              "type": "string"
+            }
+          }
+        },
+        "description": "The package does not exist"
+      },
+      "PackageNotFound": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "description": "The package does not exist"
+      }
+    },
+    "schemas": {
+      "Dist": {
+        "additionalProperties": true,
+        "properties": {
+          "fileCount": {
+            "type": "integer"
+          },
+          "integrity": {
+            "type": "string"
+          },
+          "shasum": {
+            "type": "string"
+          },
+          "tarball": {
+            "type": "string"
+          },
+          "unpackedSize": {
+            "type": "integer"
+          }
+        },
+        "required": ["shasum", "tarball"],
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "additionalProperties": true,
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": ["error"],
+        "type": "object"
+      },
+      "Human": {
+        "additionalProperties": true,
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PackageMetadata": {
+        "additionalProperties": true,
+        "description": "Package metadata document (the full form)",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "_rev": {
+            "type": "string"
+          },
+          "author": {
+            "$ref": "#/components/schemas/Human"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dist-tags": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "properties": {
+              "latest": {
+                "type": "string"
+              }
+            },
+            "required": ["latest"],
+            "type": "object"
+          },
+          "homepage": {
+            "type": "string"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "license": {
+            "type": "string"
+          },
+          "maintainers": {
+            "items": {
+              "$ref": "#/components/schemas/Human"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "readme": {
+            "type": "string"
+          },
+          "readmeFilename": {
+            "type": "string"
+          },
+          "repository": {
+            "$ref": "#/components/schemas/Repository"
+          },
+          "time": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Published time of each version, along with created and modified",
+            "properties": {
+              "created": {
+                "type": "string"
+              },
+              "modified": {
+                "type": "string"
+              }
+            },
+            "required": ["created", "modified"],
+            "type": "object"
+          },
+          "versions": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PackageVersion"
+            },
+            "type": "object"
+          }
+        },
+        "required": ["_id", "dist-tags", "name", "time", "versions"],
+        "type": "object"
+      },
+      "PackageVersion": {
+        "additionalProperties": true,
+        "description": "Version object of a package (the full form)",
+        "properties": {
+          "_id": {
+            "description": "<name>@<version>",
+            "type": "string"
+          },
+          "_nodeVersion": {
+            "type": "string"
+          },
+          "_npmUser": {
+            "$ref": "#/components/schemas/Human"
+          },
+          "_npmVersion": {
+            "type": "string"
+          },
+          "author": {
+            "$ref": "#/components/schemas/Human"
+          },
+          "dependencies": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "deprecated": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "devDependencies": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "dist": {
+            "$ref": "#/components/schemas/Dist"
+          },
+          "homepage": {
+            "type": "string"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "license": {
+            "type": "string"
+          },
+          "main": {
+            "type": "string"
+          },
+          "maintainers": {
+            "items": {
+              "$ref": "#/components/schemas/Human"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "peerDependencies": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "repository": {
+            "$ref": "#/components/schemas/Repository"
+          },
+          "scripts": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": ["dist", "name", "version"],
+        "type": "object"
+      },
+      "Repository": {
+        "additionalProperties": true,
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Package endpoints of the npm registry that the official OpenAPI definition does not include, limited to the @ts-items scope. Based on https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md and https://github.com/npm/registry/blob/main/docs/responses/package-metadata.md",
+    "title": "npm Registry API (@ts-items packages)",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/@ts-items/{packageName}": {
+      "get": {
+        "operationId": "getPackage",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PackageName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackageMetadata"
+                }
+              }
+            },
+            "description": "Package metadata document"
+          },
+          "404": {
+            "$ref": "#/components/responses/PackageNotFound"
+          }
+        },
+        "summary": "Get the metadata of a package"
+      }
+    },
+    "/@ts-items/{packageName}/latest": {
+      "get": {
+        "operationId": "getPackageLatestVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PackageName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackageVersion"
+                }
+              }
+            },
+            "description": "Version object of the latest dist-tag"
+          },
+          "404": {
+            "$ref": "#/components/responses/LatestVersionNotFound"
+          }
+        },
+        "summary": "Get the latest version of a package"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://registry.npmjs.org"
+    }
+  ]
+}
