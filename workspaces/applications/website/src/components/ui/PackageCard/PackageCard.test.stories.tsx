@@ -15,24 +15,31 @@ export default testMeta
 
 type Story = StoryObj<typeof testMeta>
 
+// 実際のロゴは alt="" の装飾画像でアクセシブルネームに含まれないため、同じく名前に含まれないダミーで検証する
+const decorativeLogoArgs = {
+  packageLogoNode: <span aria-hidden="true">{"{P}"}</span>,
+}
+
 export const TestForLink: Story = {
   ...En,
+  args: decorativeLogoArgs,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const linkElement = canvas.getByRole("link", { name: "{P} @ts-items/oxlint-config" })
+    const linkElement = canvas.getByRole("link", { name: "@ts-items/oxlint-config" })
     await expect(linkElement).toHaveAttribute("href", "/en/packages/oxlint-config/")
   },
 }
 
 export const TestForHeading: Story = {
   ...En,
+  args: decorativeLogoArgs,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const headingElement = canvas.getByRole("heading", {
       level: 2,
-      name: "{P} @ts-items/oxlint-config",
+      name: "@ts-items/oxlint-config",
     })
     await expect(headingElement).toBeInTheDocument()
   },
