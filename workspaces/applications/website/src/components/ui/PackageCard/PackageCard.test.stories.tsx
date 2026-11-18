@@ -20,7 +20,7 @@ export const TestForLink: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const linkElement = canvas.getByRole("link", { name: "@ts-items/oxlint-config" })
+    const linkElement = canvas.getByRole("link", { name: "{P} @ts-items/oxlint-config" })
     await expect(linkElement).toHaveAttribute("href", "/en/packages/oxlint-config/")
   },
 }
@@ -32,7 +32,7 @@ export const TestForHeading: Story = {
     const canvas = within(canvasElement)
     const headingElement = canvas.getByRole("heading", {
       level: 2,
-      name: "@ts-items/oxlint-config",
+      name: "{P} @ts-items/oxlint-config",
     })
     await expect(headingElement).toBeInTheDocument()
   },

@@ -45,7 +45,10 @@
 }
 
 .link {
+  align-items: center;
   color: inherit;
+  column-gap: 12px;
+  display: flex;
   text-decoration: none;
 
   &::after {

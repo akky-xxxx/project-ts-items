@@ -2,6 +2,7 @@ import { createTranslator, useLocale } from "next-intl"
 
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
+import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { PackageCard } from "./PackageCard.tsx"
 
@@ -47,6 +48,7 @@ const meta = {
     descriptionNode: "{descriptionNode}",
     headingTag: "h2",
     innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
+    packageLogoNode: <DummyForStorybook label="P" />,
     packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
     versionText: "v1.0.0",
   },

@@ -1,6 +1,8 @@
 import { PACKAGE_NAMES } from "../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../renderLineBreak/renderLineBreak.tsx"
+import { FORMAT_ICON_ELEMENT } from "./constants/FORMAT_ICON_ELEMENT/FORMAT_ICON_ELEMENT.tsx"
+import { LINT_ICON_ELEMENT } from "./constants/LINT_ICON_ELEMENT/LINT_ICON_ELEMENT.tsx"
 
 import type { PackageCardList } from "../../components/layout/PackageCardList/PackageCardList.tsx"
 import type { PackageCard } from "../../components/ui/PackageCard/PackageCard.tsx"
@@ -22,6 +24,7 @@ export const buildPackageCardItems = (
     descriptionNode: packageTranslate.rich("oxlintConfig.description", { br: renderLineBreak }),
     headingTag,
     innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
+    packageLogoNode: LINT_ICON_ELEMENT,
     packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
     versionText: "v1.0.0", // TODO: api で取得した値に置き換える
   },
@@ -29,6 +32,7 @@ export const buildPackageCardItems = (
     descriptionNode: packageTranslate.rich("oxfmtConfig.description", { br: renderLineBreak }),
     headingTag,
     innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
+    packageLogoNode: FORMAT_ICON_ELEMENT,
     packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
     versionText: "v1.0.0", // TODO: api で取得した値に置き換える
   },

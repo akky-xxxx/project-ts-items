@@ -11,6 +11,7 @@ type Props = {
   headingTag: "h2" | "h3" | "h4" | "h5" | "h6"
   innerLinkHref: `/${string}`
   isDescriptionClamped?: boolean
+  packageLogoNode: ReactNode
   packageNameText: string
   versionText: string
 }
@@ -21,6 +22,7 @@ export const PackageCard: FC<Props> = (props) => {
     headingTag,
     innerLinkHref,
     isDescriptionClamped = false,
+    packageLogoNode,
     packageNameText,
     versionText,
   } = props
@@ -35,6 +37,8 @@ export const PackageCard: FC<Props> = (props) => {
       <header className={styles.header}>
         <HeadingTag className={styles.packageName}>
           <Link className={styles.link} href={innerLinkHref}>
+            {packageLogoNode}
+
             {packageNameText}
           </Link>
         </HeadingTag>

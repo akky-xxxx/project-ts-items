@@ -1,6 +1,6 @@
 import { expect, within } from "storybook/test"
 
-import meta, { DoubleLane, SingleLane } from "./PackageCardList.stories.ts"
+import meta, { DoubleLane, SingleLane } from "./PackageCardList.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
