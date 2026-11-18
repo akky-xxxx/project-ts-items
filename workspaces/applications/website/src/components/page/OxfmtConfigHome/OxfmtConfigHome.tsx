@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { Fragment } from "react"
 
+import { LOGO_IMAGE_PATHS } from "../../../constants/LOGO_IMAGE_PATHS/LOGO_IMAGE_PATHS.ts"
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
@@ -23,7 +24,7 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
       <Breadcrumb currentPageText={PACKAGE_NAMES.oxfmtConfig} items={breadcrumbItems} />
 
       <Heading1Wrapper hasIcon>
-        <Image alt="" height="40" src="/images/logo-ts-items-formatter.svg" width="40" />
+        <Image alt="" height="40" src={LOGO_IMAGE_PATHS.formatter} width="40" />
 
         <Heading headingTag="h1">
           {PROJECT_NAME}/{PACKAGE_NAMES.oxfmtConfig}
