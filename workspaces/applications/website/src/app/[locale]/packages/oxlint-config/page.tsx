@@ -7,6 +7,8 @@ import { routing } from "../../../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
+import {getPublishUrl, getsearch} from "../../../../generated/npmRegistry/npmRegistry.ts"
+import {fetch} from "next/dist/compiled/@edge-runtime/primitives"
 
 type Props = PageProps<"/[locale]/packages/oxlint-config">
 
@@ -26,6 +28,8 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 
 const Page = async (): Promise<ReactNode> => {
   const packagesPageTranslate = await getTranslations("pages.packages")
+  const result = await fetch("https://registry.npmjs.org/@ts-items/oxlint-config/latest").then((response) => response.json())
+  console.log(result?.version)
 
   return (
     <OxlintConfigHome
