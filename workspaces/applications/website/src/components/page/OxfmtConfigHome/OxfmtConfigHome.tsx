@@ -2,9 +2,11 @@ import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
+import { FORMAT_ICON_ELEMENT } from "./constants/FORMAT_ICON_ELEMENT/FORMAT_ICON_ELEMENT.tsx"
 
 import type { ComponentProps, FC } from "react"
 
@@ -20,11 +22,17 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
     <Fragment>
       <Breadcrumb currentPageText={PACKAGE_NAMES.oxfmtConfig} items={breadcrumbItems} />
 
-      <Heading1Wrapper>
-        <Heading headingTag="h1">{oxfmtConfigHomeTranslate("pageTitle")}</Heading>
+      <Heading1Wrapper iconNode={FORMAT_ICON_ELEMENT}>
+        <Heading headingTag="h1">
+          {PROJECT_NAME}/{PACKAGE_NAMES.oxfmtConfig}
+        </Heading>
       </Heading1Wrapper>
 
-      <p>{oxfmtConfigHomeTranslate("pageDescription")}</p>
+      <Section>
+        <Heading headingTag="h2">{oxfmtConfigHomeTranslate("pageTitle")}</Heading>
+
+        <p>{oxfmtConfigHomeTranslate("pageDescription")}</p>
+      </Section>
 
       <Section>
         <Heading headingTag="h2">{oxfmtConfigHomeTranslate("backgroundTitle")}</Heading>

@@ -10,8 +10,7 @@ const meta = {
   ...EN_LOCALE_FOR_STORYBOOK,
   argTypes: {
     currentPageText: {
-      description:
-        "現在のページ名(最後の項目としてテキストで表示。省略した場合はルートを現在のページとしてテキストで表示)",
+      description: "現在のページ名(最後の項目としてテキストで表示)",
     },
     items: {
       description: "ルートと現在のページの間の階層(現在のページとしては扱わない)",

@@ -13,8 +13,8 @@ type Item = {
 }
 
 type Props = {
-  // 省略時はルート(PROJECT_NAME)が現在のページになる
-  currentPageText?: string
+  // 現在のページ名。最後の項目としてテキストで表示する
+  currentPageText: string
   // ルートと現在のページの間の階層。現在のページとしては扱わない
   items?: Item[]
 }
@@ -26,7 +26,7 @@ export const Breadcrumb: FC<Props> = (props) => {
   return (
     <nav aria-label={breadcrumbTranslate("labelText")}>
       <ol className={styles.ol}>
-        <BreadcrumbItem href="/" isCurrentPage={currentPageText === undefined}>
+        <BreadcrumbItem href="/" isCurrentPage={false}>
           {PROJECT_NAME}
         </BreadcrumbItem>
         {items?.map((item) => {
@@ -38,9 +38,7 @@ export const Breadcrumb: FC<Props> = (props) => {
             </BreadcrumbItem>
           )
         })}
-        {currentPageText !== undefined && (
-          <BreadcrumbItem isCurrentPage>{currentPageText}</BreadcrumbItem>
-        )}
+        <BreadcrumbItem isCurrentPage>{currentPageText}</BreadcrumbItem>
       </ol>
     </nav>
   )

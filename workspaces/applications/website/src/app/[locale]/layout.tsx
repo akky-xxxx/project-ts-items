@@ -29,6 +29,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   }
 
   return {
+    icons: { icon: "/favicon.png" },
     title: {
       default: PROJECT_NAME,
       template: `%s | ${PROJECT_NAME}`,

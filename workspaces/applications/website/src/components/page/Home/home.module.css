@@ -1,27 +1,25 @@
 .root {
+  display: grid;
   margin-inline: auto;
   max-width: var(--contents-max-width);
-  padding-top: 36px;
+  padding-block: 36px;
+  row-gap: 36px;
 }
 
+/* docsElements の Heading1Wrapper の余白は、grid の row-gap で間隔を取るトップページでは不要 */
 .heading1Wrapper {
-  margin: 18px auto 30px;
+  margin-top: 0;
 }
 
-.description {
-  margin-block: 18px 0;
+.p {
+  margin-block: 0;
 }
 
 .section {
-  border-top: 1px solid var(--color-border);
-  margin-top: 44px;
-  padding-block: 24px;
+  display: grid;
+  row-gap: 20px;
 }
 
 .h2 {
   font-size: 1.8rem;
-}
-
-.packageCardListWrapper {
-  margin-top: 20px;
 }

@@ -15,8 +15,14 @@ export default testMeta
 
 type Story = StoryObj<typeof testMeta>
 
+// 実際のロゴは alt="" の装飾画像でアクセシブルネームに含まれないため、同じく名前に含まれないダミーで検証する
+const decorativeLogoArgs = {
+  packageLogoNode: <span aria-hidden="true">{"{P}"}</span>,
+}
+
 export const TestForLink: Story = {
   ...En,
+  args: decorativeLogoArgs,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
@@ -27,6 +33,7 @@ export const TestForLink: Story = {
 
 export const TestForHeading: Story = {
   ...En,
+  args: decorativeLogoArgs,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)

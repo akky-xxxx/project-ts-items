@@ -21,7 +21,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   return {
     // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
     description: translate.markup("pageDescription", { br: () => " " }),
-    title: translate("pageTitle"),
+    title: `${translate("pageTitle")} | ${PACKAGE_NAMES.oxlintConfig}`,
   }
 }
 
