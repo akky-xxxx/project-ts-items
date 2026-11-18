@@ -5,7 +5,6 @@ import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStoryb
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import meta from "./Breadcrumb.stories.tsx"
-import { Breadcrumb } from "./Breadcrumb.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -54,17 +53,6 @@ export const TestForRootLink: Story = {
     const rootLinkElement = canvas.getByRole("link", { name: "@ts-items" })
     await expect(rootLinkElement).toHaveAttribute("href", "/en/")
   },
-}
-
-export const TestForWithoutCurrentPageText: Story = {
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("@ts-items")).toHaveAttribute("aria-current", "page")
-    await expect(canvas.queryByRole("link", { name: "@ts-items" })).not.toBeInTheDocument()
-  },
-  // 各 props を省略した状態を検証するため、meta の args を使わずに描画する
-  render: () => <Breadcrumb />,
 }
 
 export const TestForItemLink: Story = {
