@@ -24,8 +24,8 @@ export const TestForHeadingStructure: Story = {
     const heading2Texts = canvas
       .getAllByRole("heading", { level: 2 })
       .map((element) => element.textContent)
-    await expect(heading1Texts).toStrictEqual(["Introduction"])
-    await expect(heading2Texts).toStrictEqual(["Overview"])
+    await expect(heading1Texts).toStrictEqual(["@ts-items/oxlint-config"])
+    await expect(heading2Texts).toStrictEqual(["Introduction", "Overview"])
   },
 }
 

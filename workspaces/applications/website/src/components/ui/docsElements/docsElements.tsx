@@ -6,11 +6,17 @@ import styles from "./docsElements.module.css"
 
 type Props = {
   classNames?: string[]
+  hasIcon?: boolean
 }
 
 export const Heading1Wrapper: FcWithChildren<Props> = (props) => {
-  const { children, classNames } = props
+  const { children, classNames, hasIcon } = props
   const classes = [styles.heading1Wrapper]
+
+  if (hasIcon === true) {
+    classes.push(styles.heading1WrapperWithIcon)
+  }
+
   if (Array.isArray(classNames)) {
     classes.push(...classNames)
   }

@@ -1,8 +1,9 @@
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 
+import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { PackageCardList } from "../../layout/PackageCardList/PackageCardList.tsx"
-import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
 
 import type { ComponentProps, FC } from "react"
@@ -19,23 +20,22 @@ export const Home: FC<Props> = (props) => {
 
   return (
     <main className={styles.root}>
-      {/* トップページはパンくずのルートそのものなので、現在のページ名を渡さない */}
-      <Breadcrumb />
-
       <div className={styles.heading1Wrapper}>
-        <Heading headingTag="h1">{homeTranslate("pageTitle")}</Heading>
+        <Image alt="" height="40" src="/images/logo-ts-items.svg" width="40" />
+
+        <Heading headingTag="h1">{PROJECT_NAME}</Heading>
       </div>
 
-      <p className={styles.description}>
-        {homeTranslate.rich("pageDescription", { br: renderLineBreak })}
-      </p>
+      <section className={styles.section}>
+        <Heading headingTag="h2">{homeTranslate("pageTitle")}</Heading>
+
+        <p className={styles.p}>{homeTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+      </section>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>{homeTranslate("packageTitleText")}</h2>
 
-        <div className={styles.packageCardListWrapper}>
-          <PackageCardList laneNumber={2} packages={packages} />
-        </div>
+        <PackageCardList laneNumber={2} packages={packages} />
       </section>
     </main>
   )
