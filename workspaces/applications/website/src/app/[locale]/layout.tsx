@@ -57,6 +57,10 @@ const Layout = async (props: Props): Promise<ReactNode> => {
 
   return (
     <html className={FONT_VARIABLES.join(" ")} data-theme={theme} lang={locale}>
+      <head>
+        <link rel="icon" href="/favicon.png" />
+      </head>
+
       <body>
         <NextIntlClientProvider>
           <RootLayout headerInnerElement={headerInnerElement} thisYear={thisYear}>
