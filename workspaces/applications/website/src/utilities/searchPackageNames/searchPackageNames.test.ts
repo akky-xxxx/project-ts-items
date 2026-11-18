@@ -63,11 +63,11 @@ describe(searchPackageNames, () => {
     await expect(searchWith(resolver)).resolves.toStrictEqual([])
   })
 
-  it("モックのハンドラでは、このリポジトリのパッケージ名を返す", async () => {
+  it("モックのハンドラでは、このリポジトリのパッケージ名に -mock を付けて返す", async () => {
     expect.hasAssertions()
     await expect(searchPackageNames()).resolves.toStrictEqual([
-      "@ts-items/oxfmt-config",
-      "@ts-items/oxlint-config",
+      "@ts-items/oxfmt-config-mock",
+      "@ts-items/oxlint-config-mock",
     ])
   })
 })
