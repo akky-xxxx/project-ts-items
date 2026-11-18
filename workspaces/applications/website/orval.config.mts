@@ -6,7 +6,16 @@ export default defineConfig({
       target: "./openapi/npmRegistry/openapi.json",
     },
     output: {
-      baseUrl: { getBaseUrlFromSpecification: true },
+      // リクエストのたびに呼び、起動時の環境変数でリクエスト先を切り替える
+      baseUrl: {
+        imports: [
+          {
+            importPath: "../../utilities/getNpmRegistryBaseUrl/getNpmRegistryBaseUrl.ts",
+            name: "getNpmRegistryBaseUrl",
+          },
+        ],
+        runtime: "getNpmRegistryBaseUrl()",
+      },
       clean: true,
       client: "fetch",
       mode: "single",

@@ -27,7 +27,8 @@
     "prepare:orval": "orval --config ./orval.config.mts",
     "prepare:typegen": "next typegen",
     "storybook": "storybook dev -p 3100",
-    "test": "vitest run"
+    "test": "run-s prepare:orval test:vitest",
+    "test:vitest": "vitest run"
   },
   "dependencies": {
     "next": "16.4.6",

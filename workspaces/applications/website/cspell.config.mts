@@ -5,9 +5,14 @@ import type { CSpellUserSettings } from "cspell"
 const dictionarySetting = getDictionarySetting(["web"])
 
 export default {
-  dictionaries: ["packages", ...(dictionarySetting.dictionaries ?? [])],
+  dictionaries: ["openapi", "packages", ...(dictionarySetting.dictionaries ?? [])],
   dictionaryDefinitions: [
     ...(dictionarySetting.dictionaryDefinitions ?? []),
+    {
+      // OpenAPI 定義(取得元から無加工)に由来し、生成した client から import する識別子(operationId 等)
+      name: "openapi",
+      path: "./configurations/cspell/openapi.txt",
+    },
     {
       name: "packages",
       path: "./configurations/cspell/packages.txt",
