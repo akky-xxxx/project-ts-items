@@ -1,13 +1,12 @@
 import { useTranslations } from "next-intl"
-import Image from "next/image"
 import { Fragment } from "react"
 
-import { LOGO_IMAGE_PATHS } from "../../../constants/LOGO_IMAGE_PATHS/LOGO_IMAGE_PATHS.ts"
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
+import { FORMAT_ICON_ELEMENT } from "./constants/FORMAT_ICON_ELEMENT/FORMAT_ICON_ELEMENT.tsx"
 
 import type { ComponentProps, FC } from "react"
 
@@ -23,9 +22,7 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
     <Fragment>
       <Breadcrumb currentPageText={PACKAGE_NAMES.oxfmtConfig} items={breadcrumbItems} />
 
-      <Heading1Wrapper hasIcon>
-        <Image alt="" height="40" src={LOGO_IMAGE_PATHS.formatter} width="40" />
-
+      <Heading1Wrapper iconNode={FORMAT_ICON_ELEMENT}>
         <Heading headingTag="h1">
           {PROJECT_NAME}/{PACKAGE_NAMES.oxfmtConfig}
         </Heading>

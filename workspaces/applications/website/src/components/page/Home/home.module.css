@@ -6,10 +6,9 @@
   row-gap: 36px;
 }
 
+/* docsElements の Heading1Wrapper の余白は、grid の row-gap で間隔を取るトップページでは不要 */
 .heading1Wrapper {
-  align-items: center;
-  column-gap: 12px;
-  display: flex;
+  margin-top: 0;
 }
 
 .p {

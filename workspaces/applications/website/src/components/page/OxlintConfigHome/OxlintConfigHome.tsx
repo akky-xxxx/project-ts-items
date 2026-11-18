@@ -1,14 +1,13 @@
 import { useTranslations } from "next-intl"
-import Image from "next/image"
 import { Fragment } from "react"
 
-import { LOGO_IMAGE_PATHS } from "../../../constants/LOGO_IMAGE_PATHS/LOGO_IMAGE_PATHS.ts"
 import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
+import { LINT_ICON_ELEMENT } from "./constants/LINT_ICON_ELEMENT/LINT_ICON_ELEMENT.tsx"
 
 import type { ComponentProps, FC } from "react"
 
@@ -24,9 +23,7 @@ export const OxlintConfigHome: FC<Props> = (props) => {
     <Fragment>
       <Breadcrumb currentPageText={PACKAGE_NAMES.oxlintConfig} items={breadcrumbItems} />
 
-      <Heading1Wrapper hasIcon>
-        <Image alt="" height="40" src={LOGO_IMAGE_PATHS.linter} width="40" />
-
+      <Heading1Wrapper iconNode={LINT_ICON_ELEMENT}>
         <Heading headingTag="h1">
           {PROJECT_NAME}/{PACKAGE_NAMES.oxlintConfig}
         </Heading>
