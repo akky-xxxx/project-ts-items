@@ -8,7 +8,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - ランタイム / パッケージマネージャ: Bun(Node のバージョンは `.node-version` で固定。oxfmt / oxlint / cspell は `.mts` 設定を Node で読むため Node 22.18 以上が必要)
 - TypeScript は `devDependencies` で指定。ルートの `tsconfig.json` は `@tsconfig/strictest` を継承し、`noEmit` + `moduleResolution: bundler` + `allowImportingTsExtensions`
-- テストランナーは `bun test`。共有パッケージの dry run と、dry run の helper 自体のテストがある(いずれも `.claude/rules/publish-packages.md` を参照)
+- テストランナーは `bun test`。共有パッケージの dry run と、dry run の helper 自体のテストがある(いずれも `.claude/rules/publish-packages.md` を参照)。`@ts-items/feature-flags` には、公開しているスキーマのテストがある
 
 ## コマンド
 
@@ -20,14 +20,14 @@ bun lint             # lint:* を並列実行(cspell / knip / oxfmt --check / ox
 bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package-json)
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
-bun w:test           # 全 `@ts-items/*` と `website` のうち `test` スクリプトを持つものの test(共有パッケージは build してから dry run、website は Storybook の vitest を実行)
+bun w:test           # 全 `@ts-items/*` と `website` のうち `test` スクリプトを持つものの test(共有パッケージは build してから dry run、feature-flags はスキーマのテスト、website は Storybook の vitest を実行)
 bun check-code       # w:test → a:lint の順に直列実行(push 前に通す品質ゲート)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
 
 - oxlint は `--deny-warnings --report-unused-disable-directives` 付きで実行されるため、warning や不要な disable コメントも失敗扱いになる
-- `@ts-items/*` パッケージと `website` にはルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)。`a:lint` / `w:*` の対象は `@ts-items/*` と `website`、`prepare:build` の対象は `@ts-items/*` のみ(`website` には `build` スクリプトが無い)。`bun --filter` は、フィルターに一致した workspace のうち、そのスクリプトを持つものだけで実行し、持たないものは出力なしで飛ばす。現時点の `@ts-items/feature-flags` は `test` / `build` を持たないため、ルートの `check-code` では lint(`a:lint`)だけが実行されてテスト(`w:test`)は実行されず、`prepare:build` でも build されない。なお、そのスクリプトを持たない workspace だけを `--filter` で指定すると `Script "<script>" not found` で失敗(exit 1)する(例: feature-flags は workspace 単位の `check-code` を持たないため、`bun --filter @ts-items/feature-flags check-code` は失敗する)
+- `@ts-items/*` パッケージと `website` にはルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)。`a:lint` / `w:*` の対象は `@ts-items/*` と `website`、`prepare:build` の対象は `@ts-items/*` のみ(`website` には `build` スクリプトが無い)。`bun --filter` は、フィルターに一致した workspace のうち、そのスクリプトを持つものだけで実行し、持たないものは出力なしで飛ばす。現時点の `@ts-items/feature-flags` は `build` を持たないため、`prepare:build` では build されない。なお、そのスクリプトを持たない workspace だけを `--filter` で指定すると `Script "<script>" not found` で失敗(exit 1)する(例: feature-flags は `build` を持たないため、`bun --filter @ts-items/feature-flags build` は失敗する)
 - 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)の `dist/` は git 管理外で、`src/` が変わっても自動では再ビルドされない。ルート・各 workspace の `oxfmt.config.mts` / `oxlint.config.mts` はこの `dist/` を読み込むため、ルートの `bun check-code` 以外で lint / fix を実行する場合(ルートの `bun lint` / `bun fix` / `bun a:lint`、`bun --filter <name> lint`、workspace 単位の `check-code` 等)は、develop の取り込みやブランチの切り替えで共有パッケージの `src/` が変わった後に、先に `bun prepare:build` を実行する。実行しないと古い `dist/` の設定で lint され、変更していないファイルにエラーが出る。ルートの `bun check-code` は `w:test` で全共有パッケージを再ビルドしてから lint し、`bun install` も `prepare:build` を実行するため、いずれの直後も不要
 - ルートの `prepare` はスクリプト名の羅列のみにし(`run-s prepare:husky prepare:build`)、実処理は `prepare:<name>` に定義する
 - `check-code` は `w:test` → `a:lint` の順に直列で実行する。共有パッケージの `test` は `dist/` を再ビルドし、lint は設定ファイル経由でその `dist/` を読み込むため、並列にすると書き換え中の `dist/` を読んで失敗しうる。test を先にすることで、lint は最新の `src/` から build した `dist/` を読む。共有パッケージ単位の `check-code` も同じ理由で `test` → `lint` の順に直列で実行する(`lint:type-check` の対象に自パッケージの `dist/` が含まれるため)

@@ -1,4 +1,4 @@
-import { forConfigurationFiles } from "@ts-items/configurations/oxlint"
+import { forConfigurationFiles, forZod } from "@ts-items/configurations/oxlint"
 import { nextConfig, storybookConfig, vitestConfig } from "@ts-items/oxlint-config"
 import { defineConfig } from "oxlint"
 
@@ -13,7 +13,7 @@ const restrictedPaths = [
 ]
 
 const config = defineConfig({
-  extends: [nextConfig, forConfigurationFiles, storybookConfig, vitestConfig],
+  extends: [nextConfig, forConfigurationFiles, forZod, storybookConfig, vitestConfig],
   options: {
     typeAware: true,
   },
@@ -61,10 +61,6 @@ const config = defineConfig({
     },
   ],
   rules: {
-    // Zod 公式の import スタイル(import * as z from "zod")を踏襲する
-    "eslint/id-length": ["error", { exceptions: ["_", "z"], min: 2 }],
-    "import/no-namespace": ["error", { ignore: ["zod", "zod/mini"] }],
-
     // Src/tests/** は非プロダクトコード向け
     "eslint/no-restricted-imports": [
       "error",

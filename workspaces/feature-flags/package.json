@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./website": "./src/website/schemas/featureFlagSchema/featureFlagSchema.ts"
+  },
   "scripts": {
+    "check-code": "run-p lint test -c --aggregate-output",
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
@@ -14,7 +18,8 @@
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "lint:type-check": "bun check"
+    "lint:type-check": "bun check",
+    "test": "bun test"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
@@ -29,6 +34,10 @@
     "oxlint": "1.90.0",
     "oxlint-tsgolint": "7.0.2005",
     "sort-package-json": "4.1.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "zod": "4.6.7"
+  },
+  "peerDependencies": {
+    "zod": "^4.6.7"
   }
 }

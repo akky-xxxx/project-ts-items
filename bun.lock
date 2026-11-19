@@ -115,6 +115,10 @@
         "oxlint-tsgolint": "7.0.2005",
         "sort-package-json": "4.1.0",
         "typescript": "6.0.3",
+        "zod": "4.6.7",
+      },
+      "peerDependencies": {
+        "zod": "^4.6.7",
       },
     },
     "workspaces/packages/configurations/oxfmt-config": {
