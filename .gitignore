@@ -136,3 +136,6 @@ storybook-static
 
 # orval
 workspaces/applications/website/src/generated/
+
+# feature flags
+workspaces/feature-flags/featureFlag.json
