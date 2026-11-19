@@ -98,6 +98,25 @@
         "oxlint": ">=1.89.0",
       },
     },
+    "workspaces/feature-flags": {
+      "name": "@ts-items/feature-flags",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@ts-items/configurations": "workspace:*",
+        "@ts-items/oxfmt-config": "workspace:*",
+        "@ts-items/oxlint-config": "workspace:*",
+        "@tsconfig/strictest": "2.0.8",
+        "@types/bun": "1.4.4",
+        "cspell": "10.4.0",
+        "knip": "6.43.0",
+        "npm-run-all2": "9.0.4",
+        "oxfmt": "0.75.0",
+        "oxlint": "1.90.0",
+        "oxlint-tsgolint": "7.0.2005",
+        "sort-package-json": "4.1.0",
+        "typescript": "6.0.3",
+      },
+    },
     "workspaces/packages/configurations/oxfmt-config": {
       "name": "@ts-items/oxfmt-config",
       "version": "0.0.1-alpha.0",
@@ -949,6 +968,8 @@
     "@tmcp/transport-http": ["@tmcp/transport-http@0.8.6", "", { "dependencies": { "@tmcp/session-manager": "^0.2.2", "esm-env": "^1.2.2" }, "peerDependencies": { "@tmcp/auth": "^0.3.3 || ^0.4.0", "tmcp": "^1.18.0" }, "optionalPeers": ["@tmcp/auth"] }, "sha512-iLcxu+tEMbkVHbhFfyXQhxfPDDTfm+F0kEw8Xg/a1rm29s4cBg1vwcpbtk02XTxsdDh8RJ1AZkQwF9WDGeb/IA=="],
 
     "@ts-items/configurations": ["@ts-items/configurations@workspace:workspaces/configurations"],
+
+    "@ts-items/feature-flags": ["@ts-items/feature-flags@workspace:workspaces/feature-flags"],
 
     "@ts-items/oxfmt-config": ["@ts-items/oxfmt-config@workspace:workspaces/packages/configurations/oxfmt-config"],
 

@@ -5,6 +5,7 @@
   "workspaces": [
     "workspaces/applications/*",
     "workspaces/configurations",
+    "workspaces/feature-flags",
     "workspaces/packages/*/*"
   ],
   "scripts": {
