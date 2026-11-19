@@ -20,14 +20,14 @@ bun lint             # lint:* を並列実行(cspell / knip / oxfmt --check / ox
 bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package-json)
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
-bun w:test           # 全 `@ts-items/*` と `website` の test(共有パッケージは build してから dry run、website は Storybook の vitest を実行)
+bun w:test           # 全 `@ts-items/*` と `website` のうち `test` スクリプトを持つものの test(共有パッケージは build してから dry run、website は Storybook の vitest を実行)
 bun check-code       # w:test → a:lint の順に直列実行(push 前に通す品質ゲート)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ```
 
 - oxlint は `--deny-warnings --report-unused-disable-directives` 付きで実行されるため、warning や不要な disable コメントも失敗扱いになる
-- `@ts-items/*` パッケージと `website` にはルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)。`a:lint` / `w:*` の対象は `@ts-items/*` と `website`、`prepare:build` の対象は `@ts-items/*` のみ(`website` には `build` スクリプトが無い)
+- `@ts-items/*` パッケージと `website` にはルートと同じ `lint` / `fix` 系スクリプトがある(`bun --filter <name> <script>` で実行)。`a:lint` / `w:*` の対象は `@ts-items/*` と `website`、`prepare:build` の対象は `@ts-items/*` のみ(`website` には `build` スクリプトが無い)。`bun --filter` は、フィルターに一致した workspace のうち、そのスクリプトを持つものだけで実行し、持たないものは出力なしで飛ばす。現時点の `@ts-items/feature-flags` は `test` / `build` を持たないため、ルートの `check-code` では lint(`a:lint`)だけが実行されてテスト(`w:test`)は実行されず、`prepare:build` でも build されない。なお、そのスクリプトを持たない workspace だけを `--filter` で指定すると `Script "<script>" not found` で失敗(exit 1)する(例: feature-flags は workspace 単位の `check-code` を持たないため、`bun --filter @ts-items/feature-flags check-code` は失敗する)
 - 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)の `dist/` は git 管理外で、`src/` が変わっても自動では再ビルドされない。ルート・各 workspace の `oxfmt.config.mts` / `oxlint.config.mts` はこの `dist/` を読み込むため、ルートの `bun check-code` 以外で lint / fix を実行する場合(ルートの `bun lint` / `bun fix` / `bun a:lint`、`bun --filter <name> lint`、workspace 単位の `check-code` 等)は、develop の取り込みやブランチの切り替えで共有パッケージの `src/` が変わった後に、先に `bun prepare:build` を実行する。実行しないと古い `dist/` の設定で lint され、変更していないファイルにエラーが出る。ルートの `bun check-code` は `w:test` で全共有パッケージを再ビルドしてから lint し、`bun install` も `prepare:build` を実行するため、いずれの直後も不要
 - ルートの `prepare` はスクリプト名の羅列のみにし(`run-s prepare:husky prepare:build`)、実処理は `prepare:<name>` に定義する
 - `check-code` は `w:test` → `a:lint` の順に直列で実行する。共有パッケージの `test` は `dist/` を再ビルドし、lint は設定ファイル経由でその `dist/` を読み込むため、並列にすると書き換え中の `dist/` を読んで失敗しうる。test を先にすることで、lint は最新の `src/` から build した `dist/` を読む。共有パッケージ単位の `check-code` も同じ理由で `test` → `lint` の順に直列で実行する(`lint:type-check` の対象に自パッケージの `dist/` が含まれるため)
@@ -40,6 +40,7 @@ bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 scripts/<tool>/<name>/      # ルートの設定からのみ使うスクリプト(例: commitlint の directories)
 workspaces/applications/*   # アプリケーション(例: website)
 workspaces/configurations   # リポジトリ固有の設定(1ディレクトリ1エクスポート)。@ts-items/configurations として workspace 化
+workspaces/feature-flags    # feature flag の定義(website から利用する前提)。@ts-items/feature-flags として workspace 化
 workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケージ名 の2階層(例: configurations/oxfmt-config)
 ```
 
