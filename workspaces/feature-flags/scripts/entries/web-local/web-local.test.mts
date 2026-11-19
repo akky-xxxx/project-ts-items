@@ -9,7 +9,7 @@ const PACKAGE_ROOT_DIRECTORY = path.resolve(import.meta.dirname, "../../../")
 const SUCCESS_EXIT_CODE = 0
 const sandboxDirectories: string[] = []
 
-const prepareSandbox = (originSource?: string) => {
+const prepareSandbox = (originSource: string) => {
   const sandboxDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "feature-flags-"))
   sandboxDirectories.push(sandboxDirectory)
 
@@ -30,12 +30,10 @@ const prepareSandbox = (originSource?: string) => {
     path.join(PACKAGE_ROOT_DIRECTORY, "node_modules"),
     path.join(sandboxDirectory, "node_modules"),
   )
-  if (originSource !== undefined) {
-    fs.writeFileSync(
-      path.join(sandboxDirectory, "src/website/jsonOrigins/local/featureFlag.ts"),
-      originSource,
-    )
-  }
+  fs.writeFileSync(
+    path.join(sandboxDirectory, "src/website/jsonOrigins/local/featureFlag.ts"),
+    originSource,
+  )
   return sandboxDirectory
 }
 
@@ -49,13 +47,15 @@ afterAll(() => {
 })
 
 describe("web-local", () => {
-  it("パッケージ直下に、検証済みの feature flag を JSON として書き出して正常終了する", async () => {
-    const sandboxDirectory = prepareSandbox()
+  it("パッケージ直下に、origin の feature flag を検証済みの JSON として書き出して正常終了する", async () => {
+    const sandboxDirectory = prepareSandbox(
+      'export const localFeatureFlag = { sampleFeature: "disabled" }\n',
+    )
     const { exitCode } = await runGenerateCommand(sandboxDirectory)
 
     expect(exitCode).toBe(SUCCESS_EXIT_CODE)
     expect(await Bun.file(path.join(sandboxDirectory, "featureFlag.json")).text()).toBe(
-      '{\n  "sampleFeature": "enabled"\n}',
+      '{\n  "sampleFeature": "disabled"\n}',
     )
   })
 
