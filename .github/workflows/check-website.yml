@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - workspaces/applications/website/**
+      - workspaces/feature-flags/**
       - workspaces/packages/configurations/oxfmt-config/package.json
       - workspaces/packages/configurations/oxfmt-config/src/**
       - workspaces/packages/configurations/oxfmt-config/tsconfig.build.json
