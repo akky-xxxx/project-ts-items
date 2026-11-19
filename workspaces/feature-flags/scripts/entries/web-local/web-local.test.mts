@@ -39,8 +39,8 @@ const prepareSandbox = (originSource?: string) => {
   return sandboxDirectory
 }
 
-const runEntry = async (sandboxDirectory: string) =>
-  runCommand(["bun", "scripts/entries/web-local/web-local.mts"], sandboxDirectory)
+const runGenerateCommand = async (sandboxDirectory: string) =>
+  runCommand(["bun", "run", "gen:website-local"], sandboxDirectory)
 
 afterAll(() => {
   for (const sandboxDirectory of sandboxDirectories) {
@@ -51,7 +51,7 @@ afterAll(() => {
 describe("web-local", () => {
   it("パッケージ直下に、検証済みの feature flag を JSON として書き出して正常終了する", async () => {
     const sandboxDirectory = prepareSandbox()
-    const { exitCode } = await runEntry(sandboxDirectory)
+    const { exitCode } = await runGenerateCommand(sandboxDirectory)
 
     expect(exitCode).toBe(SUCCESS_EXIT_CODE)
     expect(await Bun.file(path.join(sandboxDirectory, "featureFlag.json")).text()).toBe(
@@ -63,7 +63,7 @@ describe("web-local", () => {
     const sandboxDirectory = prepareSandbox(
       'export const localFeatureFlag = { sampleFeature: "on" }\n',
     )
-    const { exitCode, stderr } = await runEntry(sandboxDirectory)
+    const { exitCode, stderr } = await runGenerateCommand(sandboxDirectory)
 
     expect(exitCode).toBe(FAILURE_EXIT_CODE)
     expect(stderr).toContain("→ at sampleFeature")
