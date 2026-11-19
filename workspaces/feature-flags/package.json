@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./website": "./src/website/schemas/featureFlagSchema/featureFlagSchema.ts"
+  },
   "scripts": {
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
@@ -29,6 +32,10 @@
     "oxlint": "1.90.0",
     "oxlint-tsgolint": "7.0.2005",
     "sort-package-json": "4.1.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "zod": "4.6.7"
+  },
+  "peerDependencies": {
+    "zod": "^4.6.7"
   }
 }
