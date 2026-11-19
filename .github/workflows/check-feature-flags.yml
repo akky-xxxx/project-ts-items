@@ -28,7 +28,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  check-code:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -37,5 +37,5 @@ jobs:
         with:
           persist-credentials: false
       - uses: $/.github/actions/setup
-      - run: bun run lint
+      - run: bun run check-code
         working-directory: workspaces/feature-flags
