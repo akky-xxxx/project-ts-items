@@ -1,8 +1,9 @@
 import fs from "node:fs"
 import path from "node:path"
 
+import { INDENT_SIZE } from "../../constants/INDENT_SIZE/INDENT_SIZE.mts"
+
 const FILE_NAME = "featureFlag.json"
-const INDENT_SIZE = 2
 
 export const generateJson = async (jsonPath: string) => {
   const module: unknown = await import(jsonPath)
