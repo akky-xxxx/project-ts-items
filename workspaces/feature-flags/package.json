@@ -7,6 +7,7 @@
     "./website": "./src/website/schemas/featureFlagSchema/featureFlagSchema.ts"
   },
   "scripts": {
+    "check-code": "run-p lint test -c --aggregate-output",
     "fix": "run-p fix:* -c --aggregate-output",
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
@@ -17,7 +18,8 @@
     "lint:oxfmt": "bun fix:oxfmt --check",
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
-    "lint:type-check": "bun check"
+    "lint:type-check": "bun check",
+    "test": "bun test"
   },
   "devDependencies": {
     "@ts-items/configurations": "workspace:*",
