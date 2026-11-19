@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+}
+
+.variableContentsWrapper {
+  padding-bottom: 46px;
+  z-index: 10;
+}
+
+.isCollapsed {
+  max-height: var(--max-height);
+  overflow-y: auto;
+}
+
+.buttonArea {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 20;
+}
+
+.button {
+  cursor: pointer;
+  padding: 12px 24px;
+  width: 100%;
+}

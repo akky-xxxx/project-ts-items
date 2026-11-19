@@ -31,6 +31,7 @@
     "test:vitest": "vitest run"
   },
   "dependencies": {
+    "flat": "6.0.1",
     "next": "16.4.6",
     "next-intl": "4.14.9",
     "react": "19.3.1",
@@ -49,6 +50,7 @@
     "@storybook/nextjs-vite": "10.6.5",
     "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",
+    "@ts-items/configurations": "workspace:*",
     "@tsconfig/next": "2.0.6",
     "@types/bun": "1.4.4",
     "@types/node": "26.6.6",

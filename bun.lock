@@ -29,6 +29,7 @@
     "workspaces/applications/website": {
       "name": "website",
       "dependencies": {
+        "flat": "6.0.1",
         "next": "16.4.6",
         "next-intl": "4.14.9",
         "react": "19.3.1",
@@ -47,6 +48,7 @@
         "@storybook/nextjs-vite": "10.6.5",
         "@testing-library/dom": "10.4.2",
         "@testing-library/react": "16.3.3",
+        "@ts-items/configurations": "workspace:*",
         "@tsconfig/next": "2.0.6",
         "@types/bun": "1.4.4",
         "@types/node": "26.6.6",
@@ -1267,6 +1269,8 @@
     "find-cache-dir": ["find-cache-dir@5.0.0", "", { "dependencies": { "common-path-prefix": "^3.0.0", "pkg-dir": "^7.0.0" } }, "sha512-OuWNfjfP05JcpAP3JPgAKUhWefjMRfI5iAoSsvE24ANYWJaepAtlSgWECSVEuRgSXpyNEc9DJwG/TZpgcOqyig=="],
 
     "find-up": ["find-up@6.3.0", "", { "dependencies": { "locate-path": "^7.1.0", "path-exists": "^5.0.0" } }, "sha512-v2ZsoEuVHYy8ZIlYqwPe/39Cy+cFDzp4dXPaxNvkEuouymu+2Jbz0PxpKarJHYJTmv2HWT3O382qY8l4jMWthw=="],
+
+    "flat": ["flat@6.0.1", "", { "bin": { "flat": "cli.js" } }, "sha512-/3FfIa8mbrg3xE7+wAhWeV+bd7L2Mof+xtZb5dRDKZ+wDvYJK4WDYeIOuOhre5Yv5aQObZrlbRmk3RTSiuQBtw=="],
 
     "flat-cache": ["flat-cache@6.1.23", "", { "dependencies": { "cacheable": "^2.5.0", "flatted": "^3.4.2", "hookified": "^1.15.0" } }, "sha512-f++BY9pTk+983xK1FLzlLpmM0i0z+jHmx3QESGkURMXujQZz1k5wzwX6hjnQ8goaD0B+sYnDK1yZ6MTyZfUaqA=="],
 
