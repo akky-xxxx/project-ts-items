@@ -1,9 +1,14 @@
 import { featureFlagSchema } from "@ts-items/feature-flags/website"
+import * as z from "zod/mini"
 
 import { INDENT_SIZE } from "../../constants/INDENT_SIZE/INDENT_SIZE.mts"
 
 export const createFeatureFlagJson = (featureFlag: unknown) => {
-  const parsedFeatureFlag = featureFlagSchema.parse(featureFlag)
+  const result = featureFlagSchema.safeParse(featureFlag)
 
-  return JSON.stringify(parsedFeatureFlag, null, INDENT_SIZE)
+  if (!result.success) {
+    throw new Error(z.prettifyError(result.error))
+  }
+
+  return JSON.stringify(result.data, null, INDENT_SIZE)
 }

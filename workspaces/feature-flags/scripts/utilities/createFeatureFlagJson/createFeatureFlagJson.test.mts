@@ -15,7 +15,9 @@ describe("createFeatureFlagJson", () => {
     )
   })
 
-  it("スキーマに一致しない値の場合は例外を投げる", () => {
-    expect(() => createFeatureFlagJson({ sampleFeature: "on" })).toThrow()
+  it("スキーマに一致しない値の場合は、不正なキーを示すメッセージの例外を投げる", () => {
+    expect(() => createFeatureFlagJson({ sampleFeature: "on" })).toThrow(
+      "✖ Invalid input\n  → at sampleFeature",
+    )
   })
 })
