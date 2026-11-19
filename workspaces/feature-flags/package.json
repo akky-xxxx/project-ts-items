@@ -12,6 +12,7 @@
     "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
     "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
+    "gen:website-local": "bun scripts/entries/web-local/web-local.mts",
     "lint": "run-p lint:* -c --aggregate-output",
     "lint:cspell": "cspell lint \"**\" --no-progress",
     "lint:knip": "knip -c knip.config.mts",
