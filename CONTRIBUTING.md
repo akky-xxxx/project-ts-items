@@ -2,6 +2,8 @@
 
 ## 開発の流れ
 
+初回は [開発環境のセットアップ](docs/development-setup.md) の手順で環境を用意する。
+
 1. `develop` から作業ブランチ(`<commit type>/<kebab-case の要約>`)を切る
 2. 変更後、ルートで `bun check-code` を実行して通ることを確認する
 3. `develop` を base に PR を作成する
