@@ -22,14 +22,17 @@
     "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check",
-    "test": "bun test"
+    "test": "bun test",
+    "upload:website": "bun scripts/entries/website-upload/website-upload.mts"
   },
   "devDependencies": {
+    "@inquirer/prompts": "8.8.0",
     "@ts-items/configurations": "workspace:*",
     "@ts-items/oxfmt-config": "workspace:*",
     "@ts-items/oxlint-config": "workspace:*",
     "@tsconfig/strictest": "2.0.8",
     "@types/bun": "1.4.4",
+    "@vercel/blob": "2.9.0",
     "cspell": "10.4.0",
     "knip": "6.43.0",
     "npm-run-all2": "9.0.4",
