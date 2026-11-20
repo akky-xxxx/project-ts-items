@@ -13,7 +13,7 @@ See each package's README for installation and usage.
 
 ## Development
 
-Requires [Bun](https://bun.com) and Node.js (version pinned in `.node-version`).
+Requires [Bun](https://bun.com) and Node.js (version pinned in `.node-version`). Environment variables are managed with [Infisical](https://infisical.com); see [Development setup](docs/development-setup.md) for the first-time setup.
 
 ```bash
 bun install      # Install dependencies (also sets up husky and builds packages)

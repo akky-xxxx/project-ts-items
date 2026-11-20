@@ -20,6 +20,7 @@ bun lint             # lint:* を並列実行(cspell / knip / oxfmt --check / ox
 bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package-json)
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
+bun setup:env        # Infisical から website の .env.local を生成(要 infisical login。手順は docs/development-setup.md)
 bun w:test           # 全 `@ts-items/*` と `website` のうち `test` スクリプトを持つものの test(共有パッケージは build してから dry run、feature-flags はスキーマのテスト、website は Storybook の vitest を実行)
 bun check-code       # w:test → a:lint の順に直列実行(push 前に通す品質ゲート)
 
