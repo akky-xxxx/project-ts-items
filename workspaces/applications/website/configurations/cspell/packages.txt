@@ -4,3 +4,4 @@ shiki
 tsgolint
 uaplus
 unhover
+Vercel
