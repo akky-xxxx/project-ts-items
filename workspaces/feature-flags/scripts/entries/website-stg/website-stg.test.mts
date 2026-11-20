@@ -47,16 +47,16 @@ afterAll(() => {
 })
 
 describe("website-stg", () => {
-  it("パッケージ直下に、origin の feature flag を検証済みの JSON として書き出して正常終了する", async () => {
+  it("dist/website/stg に、origin の feature flag を検証済みの JSON として書き出して正常終了する", async () => {
     const sandboxDirectory = prepareSandbox(
       'export const stgFeatureFlag = { sampleFeature: "disabled" }\n',
     )
     const { exitCode } = await runGenerateCommand(sandboxDirectory)
 
     expect(exitCode).toBe(SUCCESS_EXIT_CODE)
-    expect(await Bun.file(path.join(sandboxDirectory, "featureFlag.json")).text()).toBe(
-      '{\n  "sampleFeature": "disabled"\n}',
-    )
+    expect(
+      await Bun.file(path.join(sandboxDirectory, "dist/website/stg/featureFlag.json")).text(),
+    ).toBe('{\n  "sampleFeature": "disabled"\n}')
   })
 
   it("スキーマに一致しない値の場合は、原因を標準エラーに出力して終了コード 1 で終了し、JSON を書き出さない", async () => {
@@ -67,6 +67,8 @@ describe("website-stg", () => {
 
     expect(exitCode).toBe(FAILURE_EXIT_CODE)
     expect(stderr).toContain("→ at sampleFeature")
-    expect(await Bun.file(path.join(sandboxDirectory, "featureFlag.json")).exists()).toBe(false)
+    expect(
+      await Bun.file(path.join(sandboxDirectory, "dist/website/stg/featureFlag.json")).exists(),
+    ).toBe(false)
   })
 })
