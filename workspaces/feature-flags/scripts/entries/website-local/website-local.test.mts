@@ -46,7 +46,7 @@ afterAll(() => {
   }
 })
 
-describe("web-local", () => {
+describe("website-local", () => {
   it("パッケージ直下に、origin の feature flag を検証済みの JSON として書き出して正常終了する", async () => {
     const sandboxDirectory = prepareSandbox(
       'export const localFeatureFlag = { sampleFeature: "disabled" }\n',

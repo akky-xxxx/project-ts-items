@@ -6,9 +6,8 @@ import { createFeatureFlagJson } from "../../utilities/createFeatureFlagJson/cre
 
 import type { FeatureFlag } from "../../../src/website/types/FeatureFlag/FeatureFlag.ts"
 
-export const generateJson = (featureFlag: FeatureFlag) => {
+export const generateJson = (featureFlag: FeatureFlag, outputDirectory: string) => {
   const jsonData = createFeatureFlagJson(featureFlag)
-  const packageRootDirectory = path.resolve(import.meta.dirname, "../../../")
 
-  fs.writeFileSync(path.resolve(packageRootDirectory, OUTPUT_FILE_NAME), jsonData)
+  fs.writeFileSync(path.resolve(outputDirectory, OUTPUT_FILE_NAME), jsonData)
 }
