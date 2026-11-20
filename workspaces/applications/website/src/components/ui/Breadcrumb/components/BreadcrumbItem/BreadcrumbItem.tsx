@@ -1,6 +1,6 @@
 import { Link } from "../../../../../utilities/navigation/navigation.ts"
 
-import type { FcWithChildren } from "../../../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 import type { ComponentProps, ReactNode } from "react"
 
 import styles from "./breadcrumbItem.module.css"

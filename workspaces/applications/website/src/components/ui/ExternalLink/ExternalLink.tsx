@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl"
 
 import { BLANK_LINK_PROPERTIES } from "../../../constants/BLANK_LINK_PROPERTIES/BLANK_LINK_PROPERTIES.ts"
 
-import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 
 import styles from "./externalLink.module.css"
 

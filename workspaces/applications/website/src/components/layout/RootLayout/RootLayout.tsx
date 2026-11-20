@@ -5,7 +5,7 @@ import { NPM_ORGANIZATION_URL } from "../../../constants/NPM_ORGANIZATION_URL/NP
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { ExternalLink } from "../../ui/ExternalLink/ExternalLink.tsx"
 
-import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 import type { ReactElement } from "react"
 import type { ToasterProps } from "react-hot-toast"
 

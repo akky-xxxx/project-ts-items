@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
 
-import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 import type { ReactElement } from "react"
 
 import styles from "./docsLayout.module.css"

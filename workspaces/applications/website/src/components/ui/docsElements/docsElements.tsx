@@ -1,6 +1,6 @@
 // Doc page で wrapper 系で特例で multiple export する
 /* oxlint-disable react/no-multi-comp */
-import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 import type { ReactNode } from "react"
 
 import styles from "./docsElements.module.css"
