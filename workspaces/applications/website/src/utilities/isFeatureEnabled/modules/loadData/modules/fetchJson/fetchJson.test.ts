@@ -5,7 +5,8 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest"
 import { fetchJson } from "./fetchJson.ts"
 
 const JSON_URL = "https://example.com/featureFlag.json"
-const server = setupServer()
+// 期待する URL 以外への GET は、実際に通信せずにネットワークエラーにする
+const server = setupServer(http.get("*", () => HttpResponse.error()))
 
 describe(fetchJson, () => {
   beforeAll(() => {
