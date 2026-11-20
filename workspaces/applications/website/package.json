@@ -31,6 +31,7 @@
     "test:vitest": "vitest run"
   },
   "dependencies": {
+    "@ts-items/feature-flags": "workspace:*",
     "next": "16.4.6",
     "next-intl": "4.14.9",
     "react": "19.3.1",

@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl"
 
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
+import { FetchedFeatureEnabled } from "../../feature/FetchedFeatureEnabled/FetchedFeatureEnabled.tsx"
 import { PackageCardList } from "../../layout/PackageCardList/PackageCardList.tsx"
 import { Heading1Wrapper } from "../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../ui/Heading/Heading.tsx"
@@ -23,6 +24,8 @@ export const Home: FC<Props> = (props) => {
 
   return (
     <main className={styles.root}>
+      <FetchedFeatureEnabled newFeatureElement="sample" featureName="sampleFeature" />
+
       <Heading1Wrapper classNames={HEADING1_WRAPPER_CLASS_NAMES} iconNode={PROJECT_ICON_ELEMENT}>
         <Heading headingTag="h1">{PROJECT_NAME}</Heading>
       </Heading1Wrapper>
