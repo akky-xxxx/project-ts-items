@@ -23,7 +23,7 @@
     "lint:sort-package-json": "bun fix:sort-package-json --check",
     "lint:type-check": "bun check",
     "test": "bun test",
-    "upload:website": "bun scripts/entries/website-upload/website-upload.mts"
+    "upload:website": "infisical run --env=local --path=/workspaces/feature-flags -- bun scripts/entries/website-upload/website-upload.mts"
   },
   "devDependencies": {
     "@inquirer/prompts": "8.8.0",
