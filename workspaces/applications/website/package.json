@@ -50,6 +50,7 @@
     "@storybook/nextjs-vite": "10.6.5",
     "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",
+    "@ts-items/react-types": "workspace:*",
     "@tsconfig/next": "2.0.6",
     "@types/bun": "1.4.4",
     "@types/node": "26.6.6",
