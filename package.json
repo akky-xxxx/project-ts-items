@@ -26,6 +26,8 @@
     "prepare": "run-s prepare:husky prepare:build",
     "prepare:build": "bun --filter \"@ts-items/*\" build",
     "prepare:husky": "husky",
+    "setup:env": "run-p \"setup:env:*\"",
+    "setup:env:website": "infisical export --env=local --path=/workspaces/applications/website --format=dotenv --output-file=./workspaces/applications/website/.env.local",
     "w:fix": "bun --filter \"@ts-items/*\" --filter website fix",
     "w:lint": "bun --filter \"@ts-items/*\" --filter website lint",
     "w:test": "bun --filter \"@ts-items/*\" --filter website test"
