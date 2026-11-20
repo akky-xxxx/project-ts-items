@@ -7,10 +7,10 @@ vi.mock(import("./modules/loadData/loadData.ts"), () => ({ loadData: vi.fn<typeo
 
 describe(isFeatureEnabled, () => {
   it.each([
-    ["enabled のとき", { sampleFeature: "enabled" }, true],
-    ["disabled のとき", { sampleFeature: "disabled" }, false],
-    ["無いとき", {}, false],
-  ] as const)("対象の feature flag が%s、%s を返す", async (_, featureFlag, expected) => {
+    ["enabled のとき", true, { sampleFeature: "enabled" }],
+    ["disabled のとき", false, { sampleFeature: "disabled" }],
+    ["無いとき", false, {}],
+  ] as const)("対象の feature flag が%s、%s を返す", async (_, expected, featureFlag) => {
     expect.hasAssertions()
     vi.mocked(loadData).mockResolvedValueOnce(featureFlag)
     await expect(isFeatureEnabled("sampleFeature")).resolves.toBe(expected)
