@@ -44,13 +44,20 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    name: test (${{ matrix.shard }}/10)
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: $/.github/actions/setup
+      - uses: ./.github/actions/setup
       # Storybook のテストは Playwright の Chromium(headless)で実行する
       - run: bunx playwright install --with-deps chromium
         working-directory: workspaces/applications/website
-      - run: bun run test
+      - run: bun run prepare:orval
+        working-directory: workspaces/applications/website
+      - run: bun run test:vitest --shard=${{ matrix.shard }}/10
         working-directory: workspaces/applications/website
