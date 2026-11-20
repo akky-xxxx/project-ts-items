@@ -55,7 +55,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - `workspaces/applications/*`: アプリケーション(例: `website`)
 - `workspaces/configurations`: リポジトリ固有の設定(`@ts-items/configurations`。build せず `.mts` を直接公開)
-- `workspaces/packages/*/*`: 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`。`src/` を `dist/` に build して公開)
+- `workspaces/packages/*/*`: 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config` / `@ts-items/react-types`。`src/` を `dist/` に build して公開。`react-types` は型定義(`.d.ts`)だけを出力する)
 
 詳細は `CLAUDE.md` の「構成」と `.claude/rules/publish-packages.md` を参照。
 
@@ -95,7 +95,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 ### テスト
 
-- 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト)が追加されているか
+- 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト / 型パッケージの型テスト)が追加されているか
 - ブラックボックス(公開 interface 経由)とホワイトボックス(内部ロジック)の使い分けが適切か
 - 期待値に実装と同じ定数を import して使っていないか(cookie 名・キー名など、値の変更が利用者に影響するものは、リテラルで固定しないと定数の誤変更をテストで検出できない)
 - `describe`/`it` が日本語で書かれているか
@@ -119,7 +119,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 ```bash
 bun lint                                 # ルートの lint(cspell / knip / oxfmt --check / oxlint / sort-package-json --check / type-check)
 bun a:lint                               # ルート + 全 @ts-items/* と website の lint
-bun w:test                               # 全 @ts-items/* と website の test(dry run / Storybook の vitest)
+bun w:test                               # 全 @ts-items/* と website の test(dry run / 型テスト / Storybook の vitest)
 bun check-code                           # w:test → a:lint(直列)
 bun --filter <package name> lint         # パッケージ単位の lint
 bun --filter <package name> test         # パッケージ単位の test

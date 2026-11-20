@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 概要
 
-Bun workspaces による TypeScript モノレポ。ルートの開発ツール設定(lint / format / commitlint 等)と、それを切り出した共有設定パッケージ(`oxfmt-config` / `oxlint-config`)が中心。
+Bun workspaces による TypeScript モノレポ。ルートの開発ツール設定(lint / format / commitlint 等)と、それを切り出した共有設定パッケージ(`oxfmt-config` / `oxlint-config`)が中心。React 向けの汎用的な型を公開する共有型パッケージ(`react-types`)もある。
 
 - ランタイム / パッケージマネージャ: Bun(Node のバージョンは `.node-version` で固定。oxfmt / oxlint / cspell は `.mts` 設定を Node で読むため Node 22.18 以上が必要)
 - TypeScript は `devDependencies` で指定。ルートの `tsconfig.json` は `@tsconfig/strictest` を継承し、`noEmit` + `moduleResolution: bundler` + `allowImportingTsExtensions`
-- テストランナーは `bun test`。共有パッケージの dry run と、dry run の helper 自体のテストがある(いずれも `.claude/rules/publish-packages.md` を参照)。`@ts-items/feature-flags` には、公開しているスキーマのテストがある
+- テストランナーは `bun test`。共有設定パッケージの dry run と、dry run の helper 自体のテスト、共有型パッケージの型テストがある(いずれも `.claude/rules/publish-packages.md` を参照)。`@ts-items/feature-flags` には、公開しているスキーマのテストがある
 
 ## コマンド
 
@@ -21,7 +21,7 @@ bun fix              # fix:* を並列実行(oxfmt / oxlint --fix / sort-package
 bun a:lint           # ルート + 全 workspace の lint(a:fix も同様)
 bun prepare:build    # 全パッケージの build(bun --filter "@ts-items/*" build)
 bun setup:env        # Infisical から website の .env.local を生成(要 infisical login。手順は docs/development-setup.md)
-bun w:test           # 全 `@ts-items/*` と `website` のうち `test` スクリプトを持つものの test(共有パッケージは build してから dry run、feature-flags はスキーマのテスト、website は Storybook の vitest を実行)
+bun w:test           # 全 `@ts-items/*` と `website` のうち `test` スクリプトを持つものの test(共有設定パッケージは build してから dry run、react-types は build してから `@types/react` の版ごとの型チェックと TS 5.0 での読み込み確認、feature-flags はスキーマのテスト、website は Storybook の vitest を実行)
 bun check-code       # w:test → a:lint の順に直列実行(push 前に通す品質ゲート)
 
 bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
