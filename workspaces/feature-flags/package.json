@@ -13,6 +13,7 @@
     "fix:oxlint": "bun lint:oxlint --fix",
     "fix:sort-package-json": "sort-package-json",
     "gen:website-local": "bun scripts/entries/website-local/website-local.mts",
+    "gen:website-prd": "bun scripts/entries/website-prd/website-prd.mts",
     "gen:website-stg": "bun scripts/entries/website-stg/website-stg.mts",
     "lint": "run-p lint:* -c --aggregate-output",
     "lint:cspell": "cspell lint \"**\" --no-progress",
