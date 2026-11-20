@@ -4,7 +4,7 @@ import { ViewTransition } from "react"
 
 import { useCodeArea } from "./useCodeArea.ts"
 
-import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 import type { ReactElement } from "react"
 
 import styles from "./codeArea.module.css"

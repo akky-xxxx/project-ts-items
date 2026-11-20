@@ -1,4 +1,4 @@
-import type { FcWithChildren } from "../../../types/FcWithChildren/FcWithChildren.ts"
+import type { FcWithChildren } from "@ts-items/react-types"
 
 import styles from "./heading.module.css"
 
