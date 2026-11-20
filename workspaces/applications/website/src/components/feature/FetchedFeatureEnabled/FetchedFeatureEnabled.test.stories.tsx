@@ -1,7 +1,10 @@
-import { expect, mocked, waitFor, within } from "storybook/test"
+import { Fragment } from "react"
+import { expect, within } from "storybook/test"
 
+import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { isFeatureEnabled } from "../../../utilities/isFeatureEnabled/isFeatureEnabled.ts"
 import meta, { Disabled, Enabled } from "./FetchedFeatureEnabled.stories.tsx"
+import { FetchedFeatureEnabled } from "./FetchedFeatureEnabled.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -37,12 +40,18 @@ export const TestForDisabledWithoutCurrentFeature: Story = {
   ...Disabled,
   args: { currentFeatureElement: undefined },
   play: async (context) => {
-    const { canvasElement } = context
-    await waitFor(async () => {
-      await expect(isFeatureEnabled).toHaveBeenCalledWith("sampleFeature")
-    })
-    // 判定結果が確定してから、何も描画されていないことを確認する
-    await mocked(isFeatureEnabled).mock.results.at(-1)?.value
-    await expect(canvasElement).toBeEmptyDOMElement()
+    const canvas = within(context.canvasElement)
+    await expect(await canvas.findByText("{rendered}")).toBeInTheDocument()
+    await expect(canvas.getByTestId("target")).toBeEmptyDOMElement()
+    await expect(isFeatureEnabled).toHaveBeenCalledWith("sampleFeature")
   },
+  // 同じ Suspense 境界に置いた目印は、判定後の描画が反映されるまで表示されない
+  render: (args) => (
+    <Fragment>
+      <div data-testid="target">
+        <FetchedFeatureEnabled {...args} />
+      </div>
+      <DummyForStorybook label="rendered" />
+    </Fragment>
+  ),
 }
