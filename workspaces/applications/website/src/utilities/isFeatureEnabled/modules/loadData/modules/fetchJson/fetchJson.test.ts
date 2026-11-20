@@ -20,13 +20,14 @@ describe(fetchJson, () => {
     server.close()
   })
 
-  it("base URL の直下の featureFlag.json を取得し、パース前の値を返す", async () => {
-    expect.hasAssertions()
-    server.use(http.get(JSON_URL, () => HttpResponse.json({ unknownFeature: "on" })))
-    await expect(fetchJson("https://example.com")).resolves.toStrictEqual({
-      unknownFeature: "on",
-    })
-  })
+  it.each([["https://example.com"], ["https://example.com/"]] as const)(
+    "base URL が %s のとき、ルート直下の featureFlag.json を取得し、パース前の値を返す",
+    async (baseUrl) => {
+      expect.hasAssertions()
+      server.use(http.get(JSON_URL, () => HttpResponse.json({ unknownFeature: "on" })))
+      await expect(fetchJson(baseUrl)).resolves.toStrictEqual({ unknownFeature: "on" })
+    },
+  )
 
   it("レスポンスが 2xx 以外のとき、reject する", async () => {
     expect.hasAssertions()
