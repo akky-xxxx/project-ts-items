@@ -2,6 +2,7 @@ import { defineConfig } from "oxlint"
 
 import { withRulePrefix } from "../../utilities/withRulePrefix/withRulePrefix.ts"
 import { baseConfig } from "../baseConfig/baseConfig.ts"
+import { reactPerformanceRules } from "./rules/reactPerformanceRules/reactPerformanceRules.ts"
 
 export const reactConfig = defineConfig({
   extends: [baseConfig],
@@ -27,5 +28,6 @@ export const reactConfig = defineConfig({
       "jsx-props-no-spreading": "off",
       "react-in-jsx-scope": "off",
     }),
+    ...reactPerformanceRules,
   },
 })
