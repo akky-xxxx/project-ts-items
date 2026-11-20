@@ -2,3 +2,4 @@ autodocs
 bunfig
 commitlint
 tsgolint
+vitest
