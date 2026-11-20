@@ -3,8 +3,7 @@ import { playwright } from "@vitest/browser-playwright"
 import path from "node:path"
 import { defineConfig } from "vitest/config"
 
-const dirname = typeof __dirname === "undefined" ? import.meta.dirname : __dirname
-const storybookConfigDir = path.join(dirname, ".storybook")
+const storybookConfigDir = path.join(import.meta.dirname, ".storybook")
 /** Vitest は instances の要素に project 名を書き込むため、project ごとに新しい object を作る */
 const createStorybookBrowser = (provider: ReturnType<typeof playwright>) => ({
   enabled: true,
