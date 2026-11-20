@@ -40,7 +40,7 @@
 - 破壊的変更を含むコミットは、type/scope の直後に `!` を付ける(例: `feat(oxlint-config)!: enable no-console rule`)。既存の履歴もこの形式で書かれている
 - あわせて body に `BREAKING CHANGE: <何が壊れるか・利用者側の移行方法>` のフッターを英語で書く。`!` だけでは影響範囲と移行方法が履歴に残らないため
 - 破壊的変更とみなすもの
-  - 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)や `@ts-items/configurations` の公開 API(`exports` のパス、export 名、関数シグネチャ、型)の削除・改名・互換性の無い変更
+  - 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config` / `@ts-items/react-types`)や `@ts-items/configurations` の公開 API(`exports` のパス、export 名、関数シグネチャ、型)の削除・改名・互換性の無い変更
   - 共有設定の変更で、利用者の既存コードが新たに lint エラーになる、または整形結果が変わるもの(ルールの追加・有効化、severity の引き上げ、閾値を厳しくする変更、整形オプションの変更)
   - 動作要件の引き上げ(Node / TypeScript / `peerDependencies` の必須バージョン等)
 - 該当しないもの: 利用者に影響しない内部リファクタ、ルールの無効化や閾値の緩和(新たなエラーを生まない変更)、他の workspace から参照されない workspace(`website` 等)だけで閉じる変更。`@ts-items/configurations` は `private` だが他の workspace から参照されるため、公開 API の変更は破壊的変更に含める
