@@ -11,6 +11,8 @@ describe("vitestConfig", () => {
   it.each([
     ["noHooks/disabled.ts", "vitest(no-hooks)", "none"],
     ["noImportingVitestGlobals/disabled.ts", "vitest(no-importing-vitest-globals)", "none"],
+    ["noMagicNumbers/invalid.ts", "eslint(no-magic-numbers)", "warning"],
+    ["noMagicNumbers/spec/disabled.ts", "eslint(no-magic-numbers)", "none"],
     ["plugins/vitest.ts", "vitest(no-identical-title)", "error"],
     [
       "preferExpectAssertions/asyncFunction/invalid.ts",
