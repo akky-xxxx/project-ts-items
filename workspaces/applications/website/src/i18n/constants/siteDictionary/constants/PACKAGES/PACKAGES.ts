@@ -14,4 +14,10 @@ export const PACKAGES = {
       ja: "oxlint の配布用設定です。<br></br>厳し目の設定となっています。",
     },
   },
+  "react-types": {
+    description: {
+      en: "General-purpose React types not provided by @types/react.",
+      ja: "@types/react で提供されていない汎用的な React の型です。",
+    },
+  },
 } as const satisfies Record<PackageName, Dictionary>
