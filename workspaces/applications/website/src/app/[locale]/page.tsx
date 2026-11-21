@@ -28,7 +28,14 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 const Page = async (): Promise<ReactNode> => {
   const packageTranslate = await getTranslations("packages")
 
-  return <Home packages={buildPackageCardItems(packageTranslate, "h3")} />
+  return (
+    <Home
+      packages={buildPackageCardItems({
+        headingTag: "h3",
+        packageTranslate,
+      })}
+    />
+  )
 }
 
 export default Page

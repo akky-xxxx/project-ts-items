@@ -9,18 +9,21 @@ import type { PackageCard } from "../../components/ui/PackageCard/PackageCard.ts
 import type { createTranslator, Messages } from "next-intl"
 import type { ComponentProps } from "react"
 
-type HeadingTag = ComponentProps<typeof PackageCard>["headingTag"]
+type Input = {
+  headingTag: ComponentProps<typeof PackageCard>["headingTag"]
+  packageTranslate: ReturnType<typeof createTranslator<Messages, "packages">>
+}
+type Output = ComponentProps<typeof PackageCardList>["packages"]
+type BuildPackageCardItems = (input: Input) => Output
 
 /**
  * @description
  * パッケージ一覧に表示する PackageCard の props を、translator から組み立てる
- * @param headingTag - 各カードのパッケージ名に使う見出しの種類(表示するページの見出し構造に合わせる)
  */
-export const buildPackageCardItems = (
-  packageTranslate: ReturnType<typeof createTranslator<Messages, "packages">>,
-  headingTag: HeadingTag,
-): ComponentProps<typeof PackageCardList>["packages"] =>
-  SORTED_PACKAGES_AS_DISPLAY_ORDER.map((packageData) => {
+export const buildPackageCardItems: BuildPackageCardItems = (input) => {
+  const { headingTag, packageTranslate } = input
+
+  return SORTED_PACKAGES_AS_DISPLAY_ORDER.map((packageData) => {
     const { description, logoImagePath, name, versionText } = packageData
 
     return {
@@ -32,3 +35,4 @@ export const buildPackageCardItems = (
       versionText,
     }
   })
+}

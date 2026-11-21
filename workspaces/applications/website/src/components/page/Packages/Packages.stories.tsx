@@ -14,7 +14,15 @@ import type { ComponentProps, FC } from "react"
 const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
   const packageTranslate = useTranslations("packages")
 
-  return <Packages {...props} packages={buildPackageCardItems(packageTranslate, "h2")} />
+  return (
+    <Packages
+      {...props}
+      packages={buildPackageCardItems({
+        headingTag: "h2",
+        packageTranslate,
+      })}
+    />
+  )
 }
 
 const meta = {
