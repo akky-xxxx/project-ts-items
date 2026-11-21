@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 
 import { Home } from "../../components/page/Home/Home.tsx"
 import { routing } from "../../i18n/constants/routing/routing.ts"
-import { buildPackageCardItems } from "../../utilities/buildPackageCardItems/buildPackageCardItems.ts"
+import { buildPackageCardItems } from "../../utilities/buildPackageCardItems/buildPackageCardItems.tsx"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
