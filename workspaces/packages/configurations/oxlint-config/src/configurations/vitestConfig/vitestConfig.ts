@@ -8,7 +8,7 @@ export const vitestConfig = defineConfig({
       files: ["**/*.{spec,test}.{cjs,cts,js,jsx,mjs,mts,ts,tsx}", "**/spec/**"],
       rules: {
         ...withRulePrefix("eslint", {
-          // test は期待値をハードコーディングするため
+          // テストは期待値をハードコーディングするため
           "no-magic-numbers": "off",
         }),
         ...withRulePrefix("vitest", {
