@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
-import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
@@ -21,11 +21,11 @@ export const OxlintConfigHome: FC<Props> = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb currentPageText={PACKAGE_NAMES.oxlintConfig} items={breadcrumbItems} />
+      <Breadcrumb currentPageText={PACKAGE_MASTER.oxlintConfig.name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={LINT_ICON_ELEMENT}>
         <Heading headingTag="h1">
-          {PROJECT_NAME}/{PACKAGE_NAMES.oxlintConfig}
+          {PROJECT_NAME}/{PACKAGE_MASTER.oxlintConfig.name}
         </Heading>
       </Heading1Wrapper>
 

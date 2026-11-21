@@ -1,4 +1,4 @@
-import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { Breadcrumb } from "./Breadcrumb.tsx"
 
@@ -17,7 +17,7 @@ const meta = {
     },
   },
   args: {
-    currentPageText: PACKAGE_NAMES.oxlintConfig,
+    currentPageText: PACKAGE_MASTER.oxlintConfig.name,
     items: [
       {
         href: "/packages/",

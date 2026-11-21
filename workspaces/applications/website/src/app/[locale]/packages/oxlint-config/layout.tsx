@@ -6,7 +6,7 @@ import { PackageSwitcher } from "../../../../clientComponents/feature/PackageSwi
 import { DocsLayout } from "../../../../components/layout/DocsLayout/DocsLayout.tsx"
 import { DocsSidebar } from "../../../../components/layout/DocsSidebar/DocsSidebar.tsx"
 import { DocsNavigationUl } from "../../../../components/ui/DocsNavigationUl/DocsNavigationUl.tsx"
-import { PACKAGE_NAMES } from "../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
 
 import type { ReactNode } from "react"
@@ -35,11 +35,11 @@ const Layout = async (props: Props): Promise<ReactNode> => {
               currentPathname="" // TODO: layout.tsx, server component から取得できないので代替策を検討する
               items={[
                 {
-                  href: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
+                  href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
                   text: pagesTranslate("oxlintConfigHome.pageTitle"),
                 },
                 {
-                  href: `/packages/${PACKAGE_NAMES.oxlintConfig}/quickstart/`,
+                  href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/quickstart/`,
                   text: pagesTranslate("oxlintConfigQuickstart.pageTitle"),
                 },
               ]}

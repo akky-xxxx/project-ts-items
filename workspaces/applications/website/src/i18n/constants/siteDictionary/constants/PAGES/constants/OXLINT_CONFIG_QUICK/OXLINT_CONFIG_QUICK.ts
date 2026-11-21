@@ -1,6 +1,7 @@
-import { PACKAGE_NAMES } from "../../../../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
-
+import type { PackageName } from "../../../../../../../types/PackageName/PackageName.ts"
 import type { Dictionary } from "../../../../../../types/Dictionary/Dictionary.ts"
+
+const PACKAGE_NAME = "oxlint-config" satisfies PackageName
 
 export const OXLINT_CONFIG_QUICK = {
   installTitle: {
@@ -8,8 +9,8 @@ export const OXLINT_CONFIG_QUICK = {
     ja: "インストール",
   },
   pageDescription: {
-    en: `This page explains how to install and set up ${PACKAGE_NAMES.oxlintConfig}.`,
-    ja: `このページでは ${PACKAGE_NAMES.oxlintConfig} の導入・設定方法を紹介します。`,
+    en: `This page explains how to install and set up ${PACKAGE_NAME}.`,
+    ja: `このページでは ${PACKAGE_NAME} の導入・設定方法を紹介します。`,
   },
   pageTitle: {
     en: "Quickstart",

@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import { OxfmtConfigHome } from "../../../../components/page/OxfmtConfigHome/OxfmtConfigHome.tsx"
-import { PACKAGE_NAMES } from "../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
@@ -20,7 +20,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 
   return {
     description: translate("pageDescription"),
-    title: `${translate("pageTitle")} | ${PACKAGE_NAMES.oxfmtConfig}`,
+    title: `${translate("pageTitle")} | ${PACKAGE_MASTER.oxfmtConfig.name}`,
   }
 }
 

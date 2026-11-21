@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 
-import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import { OxlintConfigHomeQuickstart } from "./OxlintConfigHomeQuickstart.tsx"
@@ -18,8 +18,8 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
         text: packagesPageTranslate("pageTitle"),
       },
       {
-        href: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
-        text: PACKAGE_NAMES.oxlintConfig,
+        href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
+        text: PACKAGE_MASTER.oxlintConfig.name,
       },
     ],
     [packagesPageTranslate],
@@ -40,7 +40,10 @@ const meta = {
   args: {
     breadcrumbItems: [
       { href: "/packages/", text: "{breadcrumbItemText}" },
-      { href: `/packages/${PACKAGE_NAMES.oxlintConfig}/`, text: PACKAGE_NAMES.oxlintConfig },
+      {
+        href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
+        text: PACKAGE_MASTER.oxlintConfig.name,
+      },
     ],
   },
   render: (args) => <Localized {...args} />,
