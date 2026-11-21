@@ -50,7 +50,7 @@ const meta = {
     innerLinkHref: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
     packageLogoNode: <DummyForStorybook label="P" />,
     packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
-    versionText: "v1.0.0",
+    versionText: "1.0.0",
   },
   render: (args) => <Localized {...args} />,
 } satisfies Meta<typeof PackageCard>

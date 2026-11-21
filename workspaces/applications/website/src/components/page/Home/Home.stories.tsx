@@ -21,6 +21,10 @@ const Localized: FC<ComponentProps<typeof Home>> = (props) => {
       packages={buildPackageCardItems({
         headingTag: "h3",
         packageTranslate,
+        versionTexts: {
+          "oxfmt-config": "1.0.0",
+          "oxlint-config": "2.0.0",
+        },
       })}
     />
   )
@@ -44,7 +48,7 @@ const meta = {
         innerLinkHref: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
         packageLogoNode: <DummyForStorybook label="P1" />,
         packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxfmtConfig.name}`,
-        versionText: "v1.0.0",
+        versionText: "1.0.0",
       },
       {
         descriptionNode: "{descriptionNode}",
@@ -52,7 +56,7 @@ const meta = {
         innerLinkHref: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
         packageLogoNode: <DummyForStorybook label="P2" />,
         packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
-        versionText: "v1.0.0",
+        versionText: "1.0.0",
       },
     ],
   },
