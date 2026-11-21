@@ -21,7 +21,7 @@ export const TestForElements: Story = {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     await expect(canvas.getByText("{packagesSelectorElement}")).toBeVisible()
-    await expect(canvas.getByText("v1.0.0")).toBeVisible()
+    await expect(canvas.getByText("1.0.0")).toBeVisible()
     await expect(canvas.getByText("Latest")).toBeVisible()
   },
 }

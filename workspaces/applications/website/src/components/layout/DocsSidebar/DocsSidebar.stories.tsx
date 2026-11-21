@@ -19,7 +19,7 @@ const meta = {
     docsNavigationUlElement: <DummyForStorybook label="docsNavigationUlElement" />,
     npmHref: "https://example.com",
     packagesSelectorElement: <DummyForStorybook label="packagesSelectorElement" />,
-    versionText: "v1.0.0",
+    versionText: "1.0.0",
   },
 } satisfies Meta<typeof DocsSidebar>
 
