@@ -1,10 +1,10 @@
 .root {
   align-items: center;
-  border-bottom: 1px solid var(--color-border);
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   height: 100%;
-  padding: 0 5rem;
+  margin-inline: auto;
+  max-width: var(--contents-max-width);
 }
 
 .siteName {
