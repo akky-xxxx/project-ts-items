@@ -3,6 +3,8 @@
   grid-template-columns: 252px minmax(0, 1fr) 224px;
   grid-template-rows: minmax(0, 1fr);
   height: 100%;
+  margin-inline: auto;
+  max-width: var(--contents-width);
   position: relative;
 }
 

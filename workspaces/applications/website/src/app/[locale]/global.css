@@ -9,7 +9,7 @@
   --color-text-accent: light-dark(#287664, #8bc7ab);
   --color-text-hover: light-dark(#195a49, #b1deca);
   --contents-max-width: min(100% - 64px, var(--contents-width));
-  --contents-width: 1080px;
+  --contents-width: 1200px;
   --duration-transition: 100ms;
   --font-mono: var(--font-jetbrains-mono), var(--font-noto-sans-jp), monospace;
   --font-sans: var(--font-noto-sans-jp), sans-serif;
