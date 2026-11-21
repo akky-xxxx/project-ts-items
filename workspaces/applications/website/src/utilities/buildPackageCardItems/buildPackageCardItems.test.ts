@@ -28,10 +28,7 @@ describe(buildPackageCardItems, () => {
   })
 
   it("各パッケージのバージョンを返す", () => {
-    expect(buildItems().map((item) => item.versionText)).toStrictEqual([
-      "2.0.0",
-      "1.0.0",
-    ])
+    expect(buildItems().map((item) => item.versionText)).toStrictEqual(["2.0.0", "1.0.0"])
   })
 
   it("各パッケージの詳細ページへのリンク先を返す", () => {
