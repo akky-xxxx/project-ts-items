@@ -14,8 +14,8 @@ const buildItems = (
     headingTag,
     packageTranslate: createTranslator({ locale: "en", messages, namespace: "packages" }),
     versionTexts: {
-      "oxfmt-config": "v1.0.0",
-      "oxlint-config": "v1.0.0",
+      "oxfmt-config": "1.0.0",
+      "oxlint-config": "2.0.0",
     },
   })
 
@@ -24,6 +24,13 @@ describe(buildPackageCardItems, () => {
     expect(buildItems().map((item) => item.packageNameText)).toStrictEqual([
       "@ts-items/oxlint-config",
       "@ts-items/oxfmt-config",
+    ])
+  })
+
+  it("各パッケージのバージョンを返す", () => {
+    expect(buildItems().map((item) => item.versionText)).toStrictEqual([
+      "2.0.0",
+      "1.0.0",
     ])
   })
 
