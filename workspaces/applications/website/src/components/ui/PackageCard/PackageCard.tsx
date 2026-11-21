@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl"
 
 import { Link } from "../../../utilities/navigation/navigation.ts"
+import { Heading } from "../Heading/Heading.tsx"
 
 import type { FC, ReactNode } from "react"
 
@@ -8,7 +9,7 @@ import styles from "./packageCard.module.css"
 
 type Props = {
   descriptionNode: ReactNode
-  headingTag: "h2" | "h3" | "h4" | "h5" | "h6"
+  headingTag: "h2" | "h3"
   innerLinkHref: `/${string}`
   isDescriptionClamped?: boolean
   packageLogoNode: ReactNode
@@ -27,7 +28,6 @@ export const PackageCard: FC<Props> = (props) => {
     versionText,
   } = props
   const packageCardTranslate = useTranslations("components.ui.packageCard")
-  const HeadingTag = headingTag
   const descriptionClassName = isDescriptionClamped
     ? `${styles.description} ${styles.descriptionClamped}`
     : styles.description
@@ -35,13 +35,13 @@ export const PackageCard: FC<Props> = (props) => {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        <HeadingTag className={styles.packageName}>
+        <Heading headingTag={headingTag}>
           <Link className={styles.link} href={innerLinkHref}>
             {packageLogoNode}
 
             {packageNameText}
           </Link>
-        </HeadingTag>
+        </Heading>
 
         <div className={styles.version}>{versionText}</div>
       </header>

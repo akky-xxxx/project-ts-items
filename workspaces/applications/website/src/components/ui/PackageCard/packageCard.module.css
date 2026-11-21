@@ -36,14 +36,6 @@
   justify-content: space-between;
 }
 
-.packageName {
-  color: var(--color-heading-text);
-  font-size: 2.4rem;
-  margin-block: 0;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 .link {
   align-items: center;
   color: inherit;
