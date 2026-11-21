@@ -7,11 +7,13 @@ import { buildPackageCardItems } from "./buildPackageCardItems.tsx"
 
 const messages = toLocaleMessages(siteDictionary, "en")
 
-const buildItems = (headingTag: Parameters<typeof buildPackageCardItems>[1] = "h2") =>
-  buildPackageCardItems(
-    createTranslator({ locale: "en", messages, namespace: "packages" }),
+const buildItems = (
+  headingTag: Parameters<typeof buildPackageCardItems>[number]["headingTag"] = "h2",
+) =>
+  buildPackageCardItems({
     headingTag,
-  )
+    packageTranslate: createTranslator({ locale: "en", messages, namespace: "packages" }),
+  })
 
 describe(buildPackageCardItems, () => {
   it("oxlint-config と oxfmt-config の順に2件を返す", () => {
