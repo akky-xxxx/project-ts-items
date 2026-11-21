@@ -36,7 +36,6 @@ const Layout = async (props: Props): Promise<ReactNode> => {
           packagesSelectorElement={<PackageSwitcher />}
           docsNavigationUlElement={
             <DocsNavigationUl
-              currentPathname="" // TODO: layout.tsx, server component から取得できないので代替策を検討する
               items={[
                 {
                   href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,

@@ -66,43 +66,6 @@ export const TestForUndefinedItems: Story = {
   },
 }
 
-export const TestForActiveItemStyle: Story = {
-  beforeEach: fixLightThemeForStorybook,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const activeLinkElement = canvas.getByRole("link", { name: "a1-1" })
-    const inactiveLinkElement = canvas.getByRole("link", { name: "a2" })
-    await waitFor(async () => {
-      await expect(activeLinkElement).toHaveStyle({
-        backgroundColor: "rgb(240, 245, 242)",
-        fontWeight: "700",
-      })
-      await expect(inactiveLinkElement).toHaveStyle({
-        backgroundColor: "rgb(255, 255, 255)",
-        fontWeight: "400",
-      })
-    })
-  },
-}
-
-export const TestForActiveItemWithTrailingSlash: Story = {
-  args: {
-    currentPathname: "/docs/a1-1/",
-  },
-  beforeEach: fixLightThemeForStorybook,
-  play: async (context) => {
-    const { canvasElement } = context
-    const activeLinkElement = within(canvasElement).getByRole("link", { name: "a1-1" })
-    await waitFor(async () => {
-      await expect(activeLinkElement).toHaveStyle({
-        backgroundColor: "rgb(240, 245, 242)",
-        fontWeight: "700",
-      })
-    })
-  },
-}
-
 export const TestForHoverStyle: Story = {
   beforeEach: fixLightThemeForStorybook,
   play: async (context) => {

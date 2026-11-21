@@ -57,16 +57,12 @@ const meta = {
   component: DocsNavigationUl,
 
   argTypes: {
-    currentPathname: {
-      description: "現在のページのパス(href が一致する項目を選択中の見た目で表示)",
-    },
     items: {
       description:
         "表示する項目(childProps.items を指定すると入れ子のリストを表示。undefined の場合は何も表示しない)",
     },
   },
   args: {
-    currentPathname: "/docs/a1-1",
     items,
   },
 } satisfies Meta<typeof DocsNavigationUl>

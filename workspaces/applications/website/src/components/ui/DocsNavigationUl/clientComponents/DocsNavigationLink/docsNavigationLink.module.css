@@ -1,0 +1,32 @@
+.root {
+  display: block;
+  padding: 10px 12px;
+  transition: background-color var(--duration-transition);
+
+  &:focus-visible {
+    background-color: var(--color-background-hover);
+    font-weight: bold;
+  }
+
+  &[aria-current="page"] {
+    background-color: var(--color-background-hover) !important;
+    font-weight: bold !important;
+  }
+
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      background-color: var(--color-background);
+    }
+
+    &:hover {
+      background-color: var(--color-background-hover);
+      font-weight: bold;
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      background-color: var(--color-background);
+    }
+  }
+}
