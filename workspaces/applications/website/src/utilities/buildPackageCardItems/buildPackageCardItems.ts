@@ -21,7 +21,7 @@ export const buildPackageCardItems = (
   headingTag: HeadingTag,
 ): ComponentProps<typeof PackageCardList>["packages"] => [
   {
-    descriptionNode: packageTranslate.rich("oxlintConfig.description", { br: renderLineBreak }),
+    descriptionNode: packageTranslate.rich("oxlint-config.description", { br: renderLineBreak }),
     headingTag,
     innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
     packageLogoNode: LINT_ICON_ELEMENT,
@@ -29,7 +29,7 @@ export const buildPackageCardItems = (
     versionText: "v1.0.0", // TODO: api で取得した値に置き換える
   },
   {
-    descriptionNode: packageTranslate.rich("oxfmtConfig.description", { br: renderLineBreak }),
+    descriptionNode: packageTranslate.rich("oxfmt-config.description", { br: renderLineBreak }),
     headingTag,
     innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
     packageLogoNode: FORMAT_ICON_ELEMENT,
