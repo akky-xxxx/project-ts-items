@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest"
 
 import { siteDictionary } from "../../i18n/constants/siteDictionary/siteDictionary.ts"
 import { toLocaleMessages } from "../../i18n/utilities/toLocaleMessages/toLocaleMessages.ts"
-import { buildPackageCardItems } from "./buildPackageCardItems.ts"
+import { buildPackageCardItems } from "./buildPackageCardItems.tsx"
 
 const messages = toLocaleMessages(siteDictionary, "en")
 
