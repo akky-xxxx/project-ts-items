@@ -21,6 +21,10 @@ const Localized: FC<ComponentProps<typeof Home>> = (props) => {
       packages={buildPackageCardItems({
         headingTag: "h3",
         packageTranslate,
+        versionTexts: {
+          "oxfmt-config": "v1.0.0",
+          "oxlint-config": "v1.0.0",
+        },
       })}
     />
   )

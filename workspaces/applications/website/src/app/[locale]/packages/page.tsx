@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { Packages } from "../../../components/page/Packages/Packages.tsx"
 import { routing } from "../../../i18n/constants/routing/routing.ts"
 import { buildPackageCardItems } from "../../../utilities/buildPackageCardItems/buildPackageCardItems.tsx"
+import { getPackageVersion } from "../../../utilities/getPackageVersion/getPackageVersion.ts"
 
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
@@ -25,13 +26,21 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const packageTranslate = await getTranslations("packages")
+  const [packageTranslate, oxfmtConfigVersion, oxlintConfigVersion] = await Promise.all([
+    getTranslations("packages"),
+    getPackageVersion("oxfmt-config"),
+    getPackageVersion("oxlint-config"),
+  ])
 
   return (
     <Packages
       packages={buildPackageCardItems({
         headingTag: "h2",
         packageTranslate,
+        versionTexts: {
+          "oxfmt-config": oxfmtConfigVersion,
+          "oxlint-config": oxlintConfigVersion,
+        },
       })}
     />
   )

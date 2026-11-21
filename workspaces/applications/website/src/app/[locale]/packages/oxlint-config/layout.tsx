@@ -8,6 +8,7 @@ import { DocsSidebar } from "../../../../components/layout/DocsSidebar/DocsSideb
 import { DocsNavigationUl } from "../../../../components/ui/DocsNavigationUl/DocsNavigationUl.tsx"
 import { PACKAGE_MASTER } from "../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
+import { getPackageVersion } from "../../../../utilities/getPackageVersion/getPackageVersion.ts"
 
 import type { ReactNode } from "react"
 
@@ -22,7 +23,10 @@ const Layout = async (props: Props): Promise<ReactNode> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const pagesTranslate = await getTranslations({ locale, namespace: "pages" })
+  const [pagesTranslate, versionText] = await Promise.all([
+    getTranslations({ locale, namespace: "pages" }),
+    getPackageVersion("oxlint-config"),
+  ])
 
   return (
     <DocsLayout
@@ -45,7 +49,7 @@ const Layout = async (props: Props): Promise<ReactNode> => {
               ]}
             />
           }
-          versionText="v1.0.0"
+          versionText={versionText}
         />
       }
     >

@@ -12,6 +12,7 @@ import type { ComponentProps } from "react"
 type Input = {
   headingTag: ComponentProps<typeof PackageCard>["headingTag"]
   packageTranslate: ReturnType<typeof createTranslator<Messages, "packages">>
+  versionTexts: Record<(typeof SORTED_PACKAGES_AS_DISPLAY_ORDER)[number]["name"], string>
 }
 type Output = ComponentProps<typeof PackageCardList>["packages"]
 type BuildPackageCardItems = (input: Input) => Output
@@ -21,10 +22,10 @@ type BuildPackageCardItems = (input: Input) => Output
  * パッケージ一覧に表示する PackageCard の props を、translator から組み立てる
  */
 export const buildPackageCardItems: BuildPackageCardItems = (input) => {
-  const { headingTag, packageTranslate } = input
+  const { headingTag, packageTranslate, versionTexts } = input
 
   return SORTED_PACKAGES_AS_DISPLAY_ORDER.map((packageData) => {
-    const { description, logoImagePath, name, versionText } = packageData
+    const { description, logoImagePath, name } = packageData
 
     return {
       descriptionNode: packageTranslate.rich(description, { br: renderLineBreak }),
@@ -32,7 +33,7 @@ export const buildPackageCardItems: BuildPackageCardItems = (input) => {
       innerLinkHref: `/packages/${name}/`,
       packageLogoNode: <Image alt="" height="30" src={logoImagePath} width="30" />,
       packageNameText: `${PROJECT_NAME}/${name}`,
-      versionText,
+      versionText: versionTexts[name],
     }
   })
 }

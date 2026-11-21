@@ -13,6 +13,10 @@ const buildItems = (
   buildPackageCardItems({
     headingTag,
     packageTranslate: createTranslator({ locale: "en", messages, namespace: "packages" }),
+    versionTexts: {
+      "oxfmt-config": "v1.0.0",
+      "oxlint-config": "v1.0.0",
+    },
   })
 
 describe(buildPackageCardItems, () => {
