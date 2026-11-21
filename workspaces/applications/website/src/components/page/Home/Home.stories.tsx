@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
 
-import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
@@ -33,17 +33,17 @@ const meta = {
       {
         descriptionNode: "{descriptionNode}",
         headingTag: "h3",
-        innerLinkHref: `/packages/${PACKAGE_NAMES.oxfmtConfig}/`,
+        innerLinkHref: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
         packageLogoNode: <DummyForStorybook label="P1" />,
-        packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
+        packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxfmtConfig.name}`,
         versionText: "v1.0.0",
       },
       {
         descriptionNode: "{descriptionNode}",
         headingTag: "h3",
-        innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
+        innerLinkHref: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
         packageLogoNode: <DummyForStorybook label="P2" />,
-        packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
+        packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
         versionText: "v1.0.0",
       },
     ],

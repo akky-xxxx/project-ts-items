@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 
-import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
 import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
@@ -20,11 +20,11 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb currentPageText={PACKAGE_NAMES.oxfmtConfig} items={breadcrumbItems} />
+      <Breadcrumb currentPageText={PACKAGE_MASTER.oxfmtConfig.name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={FORMAT_ICON_ELEMENT}>
         <Heading headingTag="h1">
-          {PROJECT_NAME}/{PACKAGE_NAMES.oxfmtConfig}
+          {PROJECT_NAME}/{PACKAGE_MASTER.oxfmtConfig.name}
         </Heading>
       </Heading1Wrapper>
 

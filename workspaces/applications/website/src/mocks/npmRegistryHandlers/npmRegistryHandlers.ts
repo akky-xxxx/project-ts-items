@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw"
 
-import { PACKAGE_NAMES } from "../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { getNpmRegistryBaseUrl } from "../../utilities/getNpmRegistryBaseUrl/getNpmRegistryBaseUrl.ts"
 
@@ -14,8 +14,8 @@ import type { SearchResultsResponse } from "../../generated/npmRegistry/npmRegis
 export const npmRegistryHandlers = [
   http.get(`${getNpmRegistryBaseUrl()}/-/v1/search`, () =>
     HttpResponse.json({
-      objects: Object.values(PACKAGE_NAMES).map((packageName) => ({
-        package: { name: `${PROJECT_NAME}/${packageName}-mock` },
+      objects: Object.values(PACKAGE_MASTER).map((packageData) => ({
+        package: { name: `${PROJECT_NAME}/${packageData.name}-mock` },
       })),
     } satisfies SearchResultsResponse),
   ),

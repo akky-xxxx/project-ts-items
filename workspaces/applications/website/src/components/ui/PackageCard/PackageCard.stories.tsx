@@ -1,6 +1,6 @@
 import { createTranslator, useLocale } from "next-intl"
 
-import { PACKAGE_NAMES } from "../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
@@ -47,9 +47,9 @@ const meta = {
   args: {
     descriptionNode: "{descriptionNode}",
     headingTag: "h2",
-    innerLinkHref: `/packages/${PACKAGE_NAMES.oxlintConfig}/`,
+    innerLinkHref: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
     packageLogoNode: <DummyForStorybook label="P" />,
-    packageNameText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
+    packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
     versionText: "v1.0.0",
   },
   render: (args) => <Localized {...args} />,

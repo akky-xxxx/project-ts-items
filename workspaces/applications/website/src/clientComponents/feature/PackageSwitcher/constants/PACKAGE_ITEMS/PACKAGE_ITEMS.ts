@@ -1,4 +1,4 @@
-import { PACKAGE_NAMES } from "../../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 
 import type { OptionSwitcher } from "../../../OptionSwitcher/OptionSwitcher.tsx"
@@ -6,11 +6,11 @@ import type { ComponentProps } from "react"
 
 export const PACKAGE_ITEMS = [
   {
-    labelText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}`,
-    value: PACKAGE_NAMES.oxlintConfig,
+    labelText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
+    value: PACKAGE_MASTER.oxlintConfig.name,
   },
   {
-    labelText: `${PROJECT_NAME}/${PACKAGE_NAMES.oxfmtConfig}`,
-    value: PACKAGE_NAMES.oxfmtConfig,
+    labelText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxfmtConfig.name}`,
+    value: PACKAGE_MASTER.oxfmtConfig.name,
   },
 ] satisfies ComponentProps<typeof OptionSwitcher>["items"]

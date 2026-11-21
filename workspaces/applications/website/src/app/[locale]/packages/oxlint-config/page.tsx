@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import { OxlintConfigHome } from "../../../../components/page/OxlintConfigHome/OxlintConfigHome.tsx"
-import { PACKAGE_NAMES } from "../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
@@ -21,7 +21,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   return {
     // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
     description: translate.markup("pageDescription", { br: () => " " }),
-    title: `${translate("pageTitle")} | ${PACKAGE_NAMES.oxlintConfig}`,
+    title: `${translate("pageTitle")} | ${PACKAGE_MASTER.oxlintConfig.name}`,
   }
 }
 

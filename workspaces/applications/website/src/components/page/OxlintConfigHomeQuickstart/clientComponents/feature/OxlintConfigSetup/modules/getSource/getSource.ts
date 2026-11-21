@@ -1,4 +1,4 @@
-import { PACKAGE_NAMES } from "../../../../../../../../constants/PACKAGE_NAMES/PACKAGE_NAMES.ts"
+import { PACKAGE_MASTER } from "../../../../../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { PROJECT_NAME } from "../../../../../../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { SWITCH_NAMES } from "../../constants/SWITCH_NAMES/SWITCH_NAMES.ts"
 
@@ -39,7 +39,7 @@ export const getSource = (formValues: FormValues) => {
   const [firstOptionLine] = optionLines
 
   const source = [
-    `import { ${configurationNames} } from "${PROJECT_NAME}/${PACKAGE_NAMES.oxlintConfig}"
+    `import { ${configurationNames} } from "${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}"
 import { defineConfig } from "oxlint"
 
 export default defineConfig({
