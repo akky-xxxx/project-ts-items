@@ -17,6 +17,20 @@ export const UI = {
       ja: "コピー",
     },
   },
+  expandableContents: {
+    collapseButtonLabelText: {
+      en: "Collapse",
+      ja: "折りたたむ",
+    },
+    contentsLabelText: {
+      en: "Collapsed contents",
+      ja: "折りたたまれたコンテンツ",
+    },
+    expandButtonLabelText: {
+      en: "Expand",
+      ja: "展開する",
+    },
+  },
   externalLink: {
     newTab: {
       en: "opens in a new tab",
