@@ -2,7 +2,7 @@ import { getDictionarySetting } from "@ts-items/configurations/cspell"
 
 import type { CSpellUserSettings } from "cspell"
 
-const dictionarySetting = getDictionarySetting(["web"])
+const dictionarySetting = getDictionarySetting(["domain", "web"])
 
 export default {
   dictionaries: ["openapi", "packages", ...(dictionarySetting.dictionaries ?? [])],

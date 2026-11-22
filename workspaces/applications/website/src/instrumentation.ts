@@ -10,9 +10,12 @@ export const register = async (): Promise<void> => {
   if (process.env.NEXT_RUNTIME !== "nodejs" || getApiMode() !== "mock") {
     return
   }
-  const [{ setupServer }, { npmRegistryHandlers }] = await Promise.all([
+  const [{ setupServer }, { gitHubRestHandlers }, { npmRegistryHandlers }] = await Promise.all([
     import("msw/node"),
+    import("./mocks/gitHubRestHandlers/gitHubRestHandlers.ts"),
     import("./mocks/npmRegistryHandlers/npmRegistryHandlers.ts"),
   ])
-  setupServer(...npmRegistryHandlers).listen({ onUnhandledFrame: "bypass" })
+  setupServer(...gitHubRestHandlers, ...npmRegistryHandlers).listen({
+    onUnhandledFrame: "bypass",
+  })
 }
