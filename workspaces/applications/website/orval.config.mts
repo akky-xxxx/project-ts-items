@@ -55,6 +55,11 @@ export default defineConfig({
             prefix: "GitHub",
           },
         },
+        // 推奨ヘッダーと認証ヘッダーを付ける
+        mutator: {
+          name: "gitHubRestFetch",
+          path: "./src/utilities/gitHubRestFetch/gitHubRestFetch.ts",
+        },
       },
       target: "./src/generated/gitHubRest/gitHubRest.ts",
     },
