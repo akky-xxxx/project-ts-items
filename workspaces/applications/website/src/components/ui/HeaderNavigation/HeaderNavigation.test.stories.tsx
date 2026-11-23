@@ -2,7 +2,7 @@ import { expect, waitFor, within } from "storybook/test"
 
 import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
-import meta, { En } from "./HeaderNavigation.stories.tsx"
+import meta, { ChangeLogDisabled, En } from "./HeaderNavigation.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -40,12 +40,19 @@ export const TestForChangeLogLink: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const packagesLinkElement = canvas.queryByText<HTMLLinkElement>("Change log")
-    await expect(packagesLinkElement).toHaveAttribute(
-      "href",
-      "https://github.com/akky-xxxx/project-ts-items/releases",
-    )
-    await expect(packagesLinkElement).toHaveAttribute("target", "_blank")
+    const changeLogLinkElement = await canvas.findByText<HTMLLinkElement>("Change log")
+    await expect(changeLogLinkElement).toHaveAttribute("href", "/en/change-log/")
+    await expect(changeLogLinkElement).not.toHaveAttribute("target")
+  },
+}
+
+export const TestForChangeLogLinkHidden: Story = {
+  ...ChangeLogDisabled,
+  play: async (context) => {
+    const { canvasElement } = context
+    const canvas = within(canvasElement)
+    await canvas.findByText("Packages")
+    await expect(canvas.queryByText("Change log")).not.toBeInTheDocument()
   },
 }
 
