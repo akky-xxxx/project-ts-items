@@ -1,7 +1,7 @@
 "use client"
 
 import { LANGUAGE_ITEMS } from "../../../constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
-import { useHeaderTool } from "../HeaderTool/useHeaderTool.ts"
+import { useTool } from "../../../utilities/useTool/useTool.ts"
 import { OptionSwitcher } from "../OptionSwitcher/OptionSwitcher.tsx"
 
 import type { themeSchema } from "../../../schemas/themeSchema/themeSchema.ts"
@@ -23,7 +23,7 @@ export const MenuModalTool: FC<Props> = (props) => {
     selectTheme,
     themeItems,
     themeLegendText,
-  } = useHeaderTool(props)
+  } = useTool(props)
 
   return (
     <ul className={styles.root}>
