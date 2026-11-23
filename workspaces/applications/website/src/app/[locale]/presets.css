@@ -1,0 +1,4 @@
+/* ブレークポイント */
+@custom-media --small (768px >= width);
+@custom-media --medium (768px < width < 1024px);
+@custom-media --large (width >= 1024px);
