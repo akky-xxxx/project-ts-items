@@ -2,6 +2,7 @@ import { expect, waitFor, within } from "storybook/test"
 
 import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
+import { isFeatureEnabled } from "../../../utilities/isFeatureEnabled/isFeatureEnabled.ts"
 import meta, { ChangeLogDisabled, En } from "./HeaderNavigation.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
@@ -41,6 +42,7 @@ export const TestForChangeLogLink: Story = {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const changeLogLinkElement = await canvas.findByText<HTMLLinkElement>("Change log")
+    await expect(isFeatureEnabled).toHaveBeenCalledWith("changeLogPagesFeature")
     await expect(changeLogLinkElement).toHaveAttribute("href", "/en/change-log/")
     await expect(changeLogLinkElement).not.toHaveAttribute("target")
   },
