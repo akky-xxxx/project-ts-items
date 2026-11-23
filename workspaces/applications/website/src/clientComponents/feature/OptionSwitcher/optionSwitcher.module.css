@@ -12,58 +12,95 @@
 
 .ul {
   list-style: none;
-  margin-block: 4px 0;
-  padding-left: 0;
+
+  @media (--medium) or (--large) {
+    margin-block: 4px 0;
+    padding-left: 0;
+  }
+
+  @media (--small) {
+    align-items: center;
+    background-color: var(--color-background-secondary);
+    border-radius: 6px;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    list-style: none;
+    margin-block: 0;
+    margin-top: 1rem;
+    padding: 0.4rem;
+  }
 }
 
 .label {
-  align-items: center;
-  column-gap: 12px;
-  display: flex;
-  padding: 12px;
-  transition: background-color var(--duration-transition);
-  white-space: nowrap;
-
-  &:has(:focus-visible) {
-    outline: 2px solid currentcolor;
-    outline-offset: -2px;
-  }
-
-  &:has(:checked) {
-    background-color: var(--color-background-accent);
-    color: currentcolor;
-  }
-
-  &:not(:has(:checked)) {
-    cursor: pointer;
+  @media (--medium) or (--large) {
+    align-items: center;
+    column-gap: 12px;
+    display: flex;
+    padding: 12px;
+    transition: background-color var(--duration-transition);
+    white-space: nowrap;
 
     &:has(:focus-visible) {
-      background-color: var(--color-background-hover);
+      outline: 2px solid currentcolor;
+      outline-offset: -2px;
     }
 
-    @media (hover: hover) {
-      &:not(:hover, :has(:focus-visible)) {
-        background-color: var(--color-background);
-      }
+    &:has(:checked) {
+      background-color: var(--color-background-accent);
+      color: currentcolor;
+    }
 
-      &:hover {
+    &:not(:has(:checked)) {
+      cursor: pointer;
+
+      &:has(:focus-visible) {
         background-color: var(--color-background-hover);
       }
+
+      @media (hover: hover) {
+        &:not(:hover, :has(:focus-visible)) {
+          background-color: var(--color-background);
+        }
+
+        &:hover {
+          background-color: var(--color-background-hover);
+        }
+      }
+
+      @media (hover: none) {
+        &:not(:has(:focus-visible)) {
+          background-color: var(--color-background);
+        }
+      }
     }
 
-    @media (hover: none) {
-      &:not(:has(:focus-visible)) {
-        background-color: var(--color-background);
-      }
+    & svg {
+      flex-shrink: 0;
     }
   }
 
-  & svg {
-    flex-shrink: 0;
+  @media (--small) {
+    align-items: center;
+    border-radius: 4px;
+    column-gap: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 1.1rem;
+    text-align: center;
+    width: 100%;
+
+    &:has(:checked) {
+      background-color: var(--color-background-secondary-accent);
+    }
   }
 }
 
 .checkedIconWrapper {
-  margin-left: auto;
-  width: 11px;
+  @media (--medium) or (--large) {
+    margin-left: auto;
+    width: 11px;
+  }
 }

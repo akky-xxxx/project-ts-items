@@ -1,5 +1,7 @@
 :root {
   --color-background: light-dark(#fff, #141a19);
+  --color-background-secondary: light-dark(#f7f8f8, #1b2321);
+  --color-background-secondary-accent: light-dark(#ecf5f1, #21392f);
   --color-background-accent: light-dark(#edf5f1, #21392f);
   --color-background-hover: light-dark(#f0f5f2, #25332d);
   --color-border: light-dark(#e3e8e6, #303c36);
