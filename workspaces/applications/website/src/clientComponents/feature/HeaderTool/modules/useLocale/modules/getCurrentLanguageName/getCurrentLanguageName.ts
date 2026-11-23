@@ -1,4 +1,4 @@
-import { LANGUAGE_ITEMS } from "../../../../constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
+import { LANGUAGE_ITEMS } from "../../../../../../../constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
 
 import type { Locale } from "../../../../../../../i18n/types/Locale/Locale.ts"
 

@@ -1,8 +1,8 @@
 "use client"
 import { Popover } from "../../../components/feature/Popover/Popover.tsx"
 import { LanguageIcon } from "../../../components/icons/LanguageIcon/LanguageIcon.tsx"
+import { LANGUAGE_ITEMS } from "../../../constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
 import { OptionSwitcher } from "../OptionSwitcher/OptionSwitcher.tsx"
-import { LANGUAGE_ITEMS } from "./constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
 import { useHeaderTool } from "./useHeaderTool.ts"
 
 import type { themeSchema } from "../../../schemas/themeSchema/themeSchema.ts"

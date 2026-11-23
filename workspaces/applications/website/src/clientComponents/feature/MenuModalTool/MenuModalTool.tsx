@@ -1,6 +1,6 @@
 "use client"
 
-import { LANGUAGE_ITEMS } from "../HeaderTool/constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
+import { LANGUAGE_ITEMS } from "../../../constants/LANGUAGE_ITEMS/LANGUAGE_ITEMS.ts"
 import { useHeaderTool } from "../HeaderTool/useHeaderTool.ts"
 import { OptionSwitcher } from "../OptionSwitcher/OptionSwitcher.tsx"
 
