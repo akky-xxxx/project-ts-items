@@ -34,6 +34,7 @@ bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 - ルートの `prepare` はスクリプト名の羅列のみにし(`run-s prepare:husky prepare:build`)、実処理は `prepare:<name>` に定義する
 - `check-code` は `w:test` → `a:lint` の順に直列で実行する。共有パッケージの `test` は `dist/` を再ビルドし、lint は設定ファイル経由でその `dist/` を読み込むため、並列にすると書き換え中の `dist/` を読んで失敗しうる。test を先にすることで、lint は最新の `src/` から build した `dist/` を読む。共有パッケージ単位の `check-code` も同じ理由で `test` → `lint` の順に直列で実行する(`lint:type-check` の対象に自パッケージの `dist/` が含まれるため)
 - `website` の `test` は Storybook のテストを vitest のブラウザモード(Playwright の Chromium、headless)で実行するため、ルートの `w:test` / `check-code` の実行前にブラウザを用意しておく。初回や `playwright` の更新後は `workspaces/applications/website` で `bunx playwright install chromium` を実行する
+- `website` の `check-code`・ルートの `check-code`・CI(`check-website.yml`)は、いずれも `next build` を実行しない(`website` には `build` スクリプトが無い)。サーバー側で動くコード(Node 組み込みモジュールによるファイル読み込み、実行時に決まるパス、環境変数の参照、ページの描画方式に依存する処理)を変更した場合は、`workspaces/applications/website` で `bunx next build` を実行し、exit code だけでなく、警告の有無とルートごとの描画方式(Static / Dynamic)も確認する。警告が出てもビルドは exit 0 で終わるため、出力を読まないと気付けない
 - workspace 内で build を個別実行する場合は `bun run build`(`bun build` は Bun 組み込みのバンドラーが起動する)
 
 ## 構成
