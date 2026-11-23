@@ -22,6 +22,7 @@ paths:
 - 公開資材の dry run(`dryRun/`、`test` スクリプト): `bun pm pack` した tarball を `<package>/.dry-run/node_modules/` に展開し、利用者と同じ経路(`files` / `exports`)で設定を読み込んで fixture に oxlint / oxfmt を実行する。共通処理は `@ts-items/configurations/dryRun`
   - fixture は `dryRun/<config>/fixtures/` に置く。oxlint-config は `<rule>/{invalid,valid,disabled}.ts` で診断の有無と severity を、oxfmt-config は `<option>/{input,output}/<file>` で整形結果を検証する
   - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更したら、対応する fixture とテストケースも追加・更新する
+    - 1つのルールに複数のオプションを明示した場合は、オプションごとに、その値によって結果が変わる入力の fixture を用意する(`<rule>/<条件>/{invalid,valid}.ts` のように条件ごとに分ける。例: oxlint-config の `dryRun/vitestConfig/fixtures/preferExpectAssertions/`)。そのオプションを省略すると結果が変わる場合は、省略時との差が出る fixture にする。既定値と同じ値を明示した場合(省略しても結果が変わらない場合)は、そのオプションだけを、挙動が変わる別の有効な値にしたときに結果が変わる入力の fixture にする(例: `id-length` の `min: 2` なら2文字の識別子。`min` を 3 にすると診断される。真偽値は反対の値にしたときの差で検証する)。ルール単位で invalid / valid が揃っていても、各オプションを検証したことにはならない
   - dry run の helper(`runCommand` / `preparePackedPackage` / `lintFixtures` / `formatFixtures`)自体にも co-location でテストがある。`@ts-items/configurations` のテストは `test` スクリプト(build 不要)で実行する
   - fixture は意図的に違反・未整形なので、各ツールの設定で `DRY_RUN_IGNORE_PATTERNS` を対象外にしている(`tsconfig.json` は `exclude` に直書き)。knip は `.gitignore` 済みの `.dry-run/` を自動で対象外にするため、fixture のパターンだけを持つ `DRY_RUN_FIXTURE_PATTERNS` を使う
 
