@@ -1,5 +1,5 @@
-import type { Locale } from "../../../../../i18n/types/Locale/Locale.ts"
-import type { OptionSwitcher } from "../../../OptionSwitcher/OptionSwitcher.tsx"
+import type { OptionSwitcher } from "../../clientComponents/feature/OptionSwitcher/OptionSwitcher.tsx"
+import type { Locale } from "../../i18n/types/Locale/Locale.ts"
 import type { ComponentProps } from "react"
 
 export const LANGUAGE_ITEMS = [

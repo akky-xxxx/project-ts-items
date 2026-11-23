@@ -3,11 +3,11 @@ import { renderHook } from "@testing-library/react"
 import { useParams } from "next/navigation"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
-import { usePathname, useRouter } from "../../../../../utilities/navigation/navigation.ts"
+import { usePathname, useRouter } from "../../../navigation/navigation.ts"
 import { useLocale } from "./useLocale.ts"
 
 vi.mock(import("next/navigation"))
-vi.mock(import("../../../../../utilities/navigation/navigation.ts"), () => ({
+vi.mock(import("../../../navigation/navigation.ts"), () => ({
   usePathname: vi.fn<typeof usePathname>(),
   useRouter: vi.fn<typeof useRouter>(),
 }))

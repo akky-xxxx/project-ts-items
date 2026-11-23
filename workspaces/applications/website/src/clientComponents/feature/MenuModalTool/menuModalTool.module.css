@@ -1,0 +1,7 @@
+.root {
+  display: grid;
+  list-style: none;
+  margin-block: 0;
+  padding-left: 0;
+  row-gap: 1.6rem;
+}

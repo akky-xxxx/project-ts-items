@@ -30,19 +30,6 @@ const createButtonNameStory = (base: Story, theme: Theme, buttonName: string): S
   },
 })
 
-// TODO: 効果のない globals.locale を見直す
-export const TestForLink: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByRole("link", { name: "GitHub" })).toMatchObject({
-      href: "https://github.com/akky-xxxx/project-ts-items",
-      rel: "noopener noreferrer",
-      target: "_blank",
-    })
-  },
-}
-
 export const TestForThemeButtonLight = createButtonNameStory(En, "light", "Light")
 export const TestForThemeButtonSystem = createButtonNameStory(En, "system", "System")
 
@@ -84,19 +71,14 @@ export const TestForThemeSelection: Story = {
   },
 }
 
-type HoverTarget = {
-  name: string
-  role: "button" | "link"
-}
-
 /** 通常時は背景が透明で、hover すると hover 用の背景色になる */
-const createHoverStyleStory = (target: HoverTarget): Story => ({
+const createHoverStyleStory = (buttonName: string): Story => ({
   ...En,
   beforeEach: fixLightThemeForStorybook,
   play: async (context) => {
     const { canvasElement } = context
     const userEvent = await getUserEventForStorybook()
-    const element = within(canvasElement).getByRole(target.role, { name: target.name })
+    const element = within(canvasElement).getByRole("button", { name: buttonName })
     await waitFor(async () => {
       await expect(element).toHaveStyle({ backgroundColor: "rgba(0, 0, 0, 0)" })
     })
@@ -109,15 +91,8 @@ const createHoverStyleStory = (target: HoverTarget): Story => ({
   },
 })
 
-export const TestForLanguageButtonHoverStyle = createHoverStyleStory({
-  name: "English",
-  role: "button",
-})
-export const TestForThemeButtonHoverStyle = createHoverStyleStory({
-  name: "Dark",
-  role: "button",
-})
-export const TestForLinkHoverStyle = createHoverStyleStory({ name: "GitHub", role: "link" })
+export const TestForLanguageButtonHoverStyle = createHoverStyleStory("English")
+export const TestForThemeButtonHoverStyle = createHoverStyleStory("Dark")
 
 export const TestForFocusVisibleStyle: Story = {
   ...En,

@@ -1,11 +1,11 @@
 import { hasLocale } from "next-intl"
 import { useParams } from "next/navigation"
 
-import { routing } from "../../../../../i18n/constants/routing/routing.ts"
-import { usePathname, useRouter } from "../../../../../utilities/navigation/navigation.ts"
+import { routing } from "../../../../i18n/constants/routing/routing.ts"
+import { usePathname, useRouter } from "../../../navigation/navigation.ts"
 import { getCurrentLanguageName } from "./modules/getCurrentLanguageName/getCurrentLanguageName.ts"
 
-import type { Locale } from "../../../../../i18n/types/Locale/Locale.ts"
+import type { Locale } from "../../../../i18n/types/Locale/Locale.ts"
 
 export const useLocale = () => {
   const { locale } = useParams<{ locale: Locale }>()

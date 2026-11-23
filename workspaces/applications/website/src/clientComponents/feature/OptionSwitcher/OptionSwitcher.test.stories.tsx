@@ -2,7 +2,7 @@ import { expect, userEvent, waitFor, within } from "storybook/test"
 
 import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
-import meta from "./OptionSwitcher.stories.tsx"
+import meta, { Sp } from "./OptionSwitcher.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -103,6 +103,49 @@ export const TestForCheckedItemFocusVisibleStyle: Story = {
       backgroundColor: "rgb(237, 245, 241)",
       outlineStyle: "solid",
       outlineWidth: "2px",
+    })
+  },
+}
+
+/** SP 幅でも、キーボードで focus した項目には選択中の背景とは別にフォーカス枠が付く */
+export const TestForSpFocusVisibleStyle: Story = {
+  ...Sp,
+  beforeEach: fixLightThemeForStorybook,
+  play: async (context) => {
+    const { canvasElement } = context
+    const browserUserEvent = await getUserEventForStorybook()
+    const radioElement = within(canvasElement).getByRole("radio", { name: "item3" })
+    const labelElement = getLabelElement(canvasElement, "item3")
+    // 選択中の項目は autoFocus されるため、見出しをクリックして focus を外し、Tab の起点を項目の前に置く
+    await browserUserEvent.click(within(canvasElement).getByText("{OptionSwitcher}"))
+    await expect(radioElement).not.toHaveFocus()
+    await waitFor(async () => {
+      await expect(labelElement).toHaveStyle({ outlineStyle: "none" })
+    })
+
+    await browserUserEvent.tab()
+    await expect(radioElement).toHaveFocus()
+    await expect(labelElement).toHaveStyle({
+      backgroundColor: "rgb(236, 245, 241)",
+      outlineStyle: "solid",
+      outlineWidth: "2px",
+    })
+  },
+}
+
+/** SP 幅では、選択中の項目だけ背景色が付き、未選択の項目は背景が透明になる */
+export const TestForSpCheckedItemStyle: Story = {
+  ...Sp,
+  beforeEach: fixLightThemeForStorybook,
+  play: async (context) => {
+    const { canvasElement } = context
+    await waitFor(async () => {
+      await expect(getLabelElement(canvasElement, "item3")).toHaveStyle({
+        backgroundColor: "rgb(236, 245, 241)",
+      })
+    })
+    await expect(getLabelElement(canvasElement, "item1")).toHaveStyle({
+      backgroundColor: "rgba(0, 0, 0, 0)",
     })
   },
 }
