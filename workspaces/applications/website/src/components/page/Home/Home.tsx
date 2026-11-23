@@ -37,7 +37,7 @@ export const Home: FC<Props> = (props) => {
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.h2}>{homeTranslate("packageTitleText")}</h2>
+        <Heading headingTag="h2">{homeTranslate("packageTitleText")}</Heading>
 
         <PackageCardList laneNumber={2} packages={packages} />
       </section>
