@@ -41,6 +41,7 @@
       },
       "devDependencies": {
         "@chromatic-com/storybook": "latest",
+        "@csstools/postcss-global-data": "4.0.0",
         "@storybook/addon-a11y": "10.6.5",
         "@storybook/addon-docs": "10.6.5",
         "@storybook/addon-mcp": "10.6.5",
@@ -68,6 +69,7 @@
         "oxlint": "1.90.0",
         "playwright": "latest",
         "postcss": "8.5.32",
+        "postcss-custom-media": "12.0.3",
         "sort-package-json": "4.1.0",
         "storybook": "10.6.5",
         "stylelint": "17.16.0",
@@ -425,6 +427,8 @@
 
     "@cspell/url": ["@cspell/url@10.4.0", "", {}, "sha512-8NvDv8h3eaxejAvD+crMsSEgGq6LiunfS6iD2TBAcDqskNsIpN43AMHNNRf7T7Fd/3Y413nQDBH4RmsHcNsiqg=="],
 
+    "@csstools/cascade-layer-name-parser": ["@csstools/cascade-layer-name-parser@3.0.2", "", { "peerDependencies": { "@csstools/css-parser-algorithms": "^4.0.2", "@csstools/css-tokenizer": "^4.0.2" } }, "sha512-B731RJ9pfJj3D5GJPp8ccsaaHMdwBmlOb4QWAYQUFpmMxonxJvNeeIoo0E89CjMJaKDvQXy9MKpSXY/i7XgeFA=="],
+
     "@csstools/css-calc": ["@csstools/css-calc@3.4.3", "", { "peerDependencies": { "@csstools/css-parser-algorithms": "^4.0.2", "@csstools/css-tokenizer": "^4.0.2" } }, "sha512-iex20d8CHVkyvg6B7UKV7uHnI2Bqo9g+EFfT9E0y+GvTvhZ/DwONJ+9aKb1dlqm0ZiGsL5RXjp0fCoJYnkeDjA=="],
 
     "@csstools/css-parser-algorithms": ["@csstools/css-parser-algorithms@4.0.2", "", { "peerDependencies": { "@csstools/css-tokenizer": "^4.0.2" } }, "sha512-40cSKyMvK+tq4qz6Awrlye2WGuOKt3FwPgtGg6KTfbHOWNw+Rk1rzbAtZnZ6IBhsY491HLRnDXwoyBAijmmILA=="],
@@ -434,6 +438,8 @@
     "@csstools/css-tokenizer": ["@csstools/css-tokenizer@4.0.2", "", {}, "sha512-OoKoR0f76dCY666JlcbhmVTs2drYj1GUXZTYTcbUgJjh9Nv41aFfZ21bPQTERm5+L5cBDo466NltB2lplS5GBw=="],
 
     "@csstools/media-query-list-parser": ["@csstools/media-query-list-parser@5.0.2", "", { "peerDependencies": { "@csstools/css-parser-algorithms": "^4.0.2", "@csstools/css-tokenizer": "^4.0.2" } }, "sha512-qx19O8AbbLLbDSAcI6YOby/Vq8rV51psgIvlF5OZT/L8fQJDCyQifL6k+kYU4a8ySpzJ4RBzZkIs530bAn8y4Q=="],
+
+    "@csstools/postcss-global-data": ["@csstools/postcss-global-data@4.0.0", "", { "peerDependencies": { "postcss": "^8.4" } }, "sha512-mPKrL3Tzt8k1V+hTkU8XTH6JKRekB97oKHv/MekC9nfmRa+gMf1swlHRt8YK722sYN4xOipl17FZst99jsScLA=="],
 
     "@csstools/selector-resolve-nested": ["@csstools/selector-resolve-nested@4.0.2", "", { "peerDependencies": { "postcss-selector-parser": "^7.1.1" } }, "sha512-JpjNBJFA+4OnAHKRK4AMp8xrYyLhI9XapOeBlP2PhRU/IylSw+1ep3BFNTksBJnrTS3KT6kqKNVfpzLLwZUW5Q=="],
 
@@ -1704,6 +1710,8 @@
     "po-parser": ["po-parser@2.2.0", "", {}, "sha512-NdTrKgh0oO7+y+RFX8KKhOB438x/j94UGXEFzl/7pHH0JjWSn42iJ9tgmPksIO6n1JKDHmNDcejPJfKspljB9g=="],
 
     "postcss": ["postcss@8.5.32", "", { "dependencies": { "nanoid": "^3.3.20", "picocolors": "^1.1.1", "source-map-js": "^1.2.2" } }, "sha512-LJlKCCAUFKOuZxipUdYw1NzIITEsPcgyOG9LkvRJvuKj/bRzbuRY0ARXvL0pWGpsZvn8jku+LMep2eU0seHp8g=="],
+
+    "postcss-custom-media": ["postcss-custom-media@12.0.3", "", { "dependencies": { "@csstools/cascade-layer-name-parser": "^3.0.2", "@csstools/css-parser-algorithms": "^4.0.2", "@csstools/css-tokenizer": "^4.0.2", "@csstools/media-query-list-parser": "^5.0.2" }, "peerDependencies": { "postcss": "^8.4" } }, "sha512-pgOICT/unQexoA/Vh4ZvyAUrcwwA/nHh0SJcOwOombpwDEj1x5N6zK+kz97wy9NslhU6UxhE5c5Q/M2gpYfkJA=="],
 
     "postcss-load-config": ["postcss-load-config@6.0.1", "", { "dependencies": { "lilconfig": "^3.1.1" }, "peerDependencies": { "jiti": ">=1.21.0", "postcss": ">=8.0.9", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["jiti", "postcss", "tsx", "yaml"] }, "sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g=="],
 

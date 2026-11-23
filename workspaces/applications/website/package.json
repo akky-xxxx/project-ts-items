@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "latest",
+    "@csstools/postcss-global-data": "4.0.0",
     "@storybook/addon-a11y": "10.6.5",
     "@storybook/addon-docs": "10.6.5",
     "@storybook/addon-mcp": "10.6.5",
@@ -70,6 +71,7 @@
     "oxlint": "1.90.0",
     "playwright": "latest",
     "postcss": "8.5.32",
+    "postcss-custom-media": "12.0.3",
     "sort-package-json": "4.1.0",
     "storybook": "10.6.5",
     "stylelint": "17.16.0",
