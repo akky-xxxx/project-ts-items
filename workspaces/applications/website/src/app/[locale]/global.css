@@ -37,12 +37,19 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-mono);
-  font-size: 1.4rem;
   line-height: 1.6;
   margin: 0;
   transition:
     background-color var(--duration-transition),
     color var(--duration-transition);
+
+  @media (--large) {
+    font-size: 1.4rem;
+  }
+
+  @media (--medium) or (--small) {
+    font-size: 1.3rem;
+  }
 }
 
 dialog:modal {

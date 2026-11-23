@@ -6,6 +6,13 @@
   align-items: center;
   column-gap: 12px;
   display: flex;
+
+  @media (--medium) or (--small) {
+    & img {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
 }
 
 .section {

@@ -36,11 +36,19 @@
 }
 
 .footerInner {
-  align-items: center;
   display: flex;
-  justify-content: space-between;
   margin-inline: auto;
   max-width: var(--contents-max-width);
+
+  @media (--large) or (--medium) {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (--small) {
+    flex-direction: column;
+    row-gap: 3.2rem;
+  }
 }
 
 .services {
@@ -49,4 +57,12 @@
   list-style: none;
   margin-block: 0;
   padding-left: 0;
+
+  @media (--large) or (--medium) {
+    column-gap: 1.6rem;
+  }
+
+  @media (--small) {
+    column-gap: 3.2rem;
+  }
 }

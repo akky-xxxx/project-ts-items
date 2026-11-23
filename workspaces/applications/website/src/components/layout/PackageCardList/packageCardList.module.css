@@ -11,5 +11,11 @@
 }
 
 .rootDouble {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (--large) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (--medium) or (--small) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

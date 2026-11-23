@@ -18,5 +18,12 @@
 
 .projectName {
   color: var(--color-heading-text);
-  font-size: 2.3rem;
+
+  @media (--large) {
+    font-size: 2.3rem;
+  }
+
+  @media (--medium) or (--small) {
+    font-size: 2.1rem;
+  }
 }

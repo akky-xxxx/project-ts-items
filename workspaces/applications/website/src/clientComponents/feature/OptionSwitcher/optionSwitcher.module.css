@@ -6,8 +6,15 @@
 }
 
 .legend {
-  font-size: 1.2rem;
   padding: 0;
+
+  @media (--large) {
+    font-size: 1.3rem;
+  }
+
+  @media (--medium) or (--small) {
+    font-size: 1.2rem;
+  }
 }
 
 .ul {

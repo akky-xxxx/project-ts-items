@@ -11,7 +11,7 @@ export const HeaderNavigation: FC = () => {
   const navigationTranslate = useTranslations("header.navigation")
 
   return (
-    <nav aria-label={navigationTranslate("ariaLabel")}>
+    <nav aria-label={navigationTranslate("ariaLabel")} className={styles.root}>
       <ul className={styles.ul}>
         <li>
           <HeaderNavigationLink href="/packages/">

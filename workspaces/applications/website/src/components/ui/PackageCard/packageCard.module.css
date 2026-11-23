@@ -29,11 +29,19 @@
 }
 
 .header {
-  align-items: center;
-  column-gap: 16px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (--large) or (--medium) {
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  @media (--small) {
+    flex-direction: column;
+    row-gap: 8px;
+  }
 }
 
 .link {
@@ -52,6 +60,19 @@
   &:focus-visible {
     outline: none;
   }
+
+  @media (--medium) {
+    & img {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  @media (--small) {
+    & img {
+      display: none;
+    }
+  }
 }
 
 .version {
@@ -59,11 +80,19 @@
 }
 
 .body {
-  align-items: flex-end;
-  column-gap: 24px;
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
+
+  @media (--large) or (--medium) {
+    align-items: flex-end;
+    column-gap: 24px;
+  }
+
+  @media (--small) {
+    flex-direction: column;
+    row-gap: 12px;
+  }
 }
 
 .description {
@@ -72,10 +101,12 @@
 }
 
 .descriptionClamped {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  @media (--large) {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
 }
 
 .linkText {
