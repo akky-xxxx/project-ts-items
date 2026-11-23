@@ -1,6 +1,5 @@
 import { mocked } from "storybook/test"
 
-import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
 import { SuspenseDecorator } from "../../../tests/SuspenseDecorator/SuspenseDecorator.tsx"
@@ -11,11 +10,10 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
 const meta = {
   component: MenuModalNavigation,
-
-  args: {
-    navigationElement: <DummyForStorybook label="navigationElement" />,
-  },
   decorators: [SuspenseDecorator],
+  globals: {
+    viewport: { value: "mobile2" },
+  },
 } satisfies Meta<typeof MenuModalNavigation>
 
 export default meta
