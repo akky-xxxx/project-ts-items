@@ -14,7 +14,7 @@ export const MenuModalNavigation: FC = () => {
     <nav aria-label={navigationTranslations("ariaLabel")}>
       <ul className={styles.ul}>
         <li>
-          <Link className={styles.link} href="/package/">
+          <Link className={styles.link} href="/packages/">
             {navigationTranslations("package")}
           </Link>
         </li>
@@ -23,7 +23,7 @@ export const MenuModalNavigation: FC = () => {
           featureName="changeLogPagesFeature"
           newFeatureElement={
             <li>
-              <Link className={styles.link} href="/package/">
+              <Link className={styles.link} href="/change-log/">
                 {navigationTranslations("changeLog")}
               </Link>
             </li>
