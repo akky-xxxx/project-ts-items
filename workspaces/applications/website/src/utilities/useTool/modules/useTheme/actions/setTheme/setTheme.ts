@@ -2,9 +2,9 @@
 
 import { cookies } from "next/headers"
 
-import { COOKIE_KEY_THEME } from "../../../../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
+import { COOKIE_KEY_THEME } from "../../../../../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
 
-import type { themeSchema } from "../../../../../schemas/themeSchema/themeSchema.ts"
+import type { themeSchema } from "../../../../../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
 
 type Theme = z.output<typeof themeSchema>

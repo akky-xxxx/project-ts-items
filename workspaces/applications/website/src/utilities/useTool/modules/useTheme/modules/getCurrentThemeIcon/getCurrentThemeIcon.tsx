@@ -1,9 +1,9 @@
-import { GearIcon } from "../../../../../../../components/icons/GearIcon/GearIcon.tsx"
-import { MoonIcon } from "../../../../../../../components/icons/MoonIcon/MoonIcon.tsx"
-import { SunIcon } from "../../../../../../../components/icons/SunIcon/SunIcon.tsx"
-import { THEME_SWITCHER_ICON_PROPS } from "../../../../constants/THEME_SWITCHER_ICON_PROPS/THEME_SWITCHER_ICON_PROPS.ts"
+import { GearIcon } from "../../../../../../components/icons/GearIcon/GearIcon.tsx"
+import { MoonIcon } from "../../../../../../components/icons/MoonIcon/MoonIcon.tsx"
+import { SunIcon } from "../../../../../../components/icons/SunIcon/SunIcon.tsx"
+import { THEME_SWITCHER_ICON_PROPS } from "../../../../../../constants/THEME_SWITCHER_ICON_PROPS/THEME_SWITCHER_ICON_PROPS.ts"
 
-import type { themeSchema } from "../../../../../../../schemas/themeSchema/themeSchema.ts"
+import type { themeSchema } from "../../../../../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
 
 type Input = {

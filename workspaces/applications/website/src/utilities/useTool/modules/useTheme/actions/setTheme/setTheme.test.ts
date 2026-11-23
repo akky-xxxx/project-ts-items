@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
-import { setTheme } from "./SetTheme.ts"
+import { setTheme } from "./setTheme.ts"
 
 vi.mock(import("next/headers"))
 

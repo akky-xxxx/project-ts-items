@@ -1,14 +1,14 @@
 import { startTransition, useCallback, useState } from "react"
 
-import { GearIcon } from "../../../../../components/icons/GearIcon/GearIcon.tsx"
-import { MoonIcon } from "../../../../../components/icons/MoonIcon/MoonIcon.tsx"
-import { SunIcon } from "../../../../../components/icons/SunIcon/SunIcon.tsx"
-import { themeSchema } from "../../../../../schemas/themeSchema/themeSchema.ts"
-import { setTheme } from "../../actions/SetTheme/SetTheme.ts"
-import { THEME_SWITCHER_ICON_PROPS } from "../../constants/THEME_SWITCHER_ICON_PROPS/THEME_SWITCHER_ICON_PROPS.ts"
+import { GearIcon } from "../../../../components/icons/GearIcon/GearIcon.tsx"
+import { MoonIcon } from "../../../../components/icons/MoonIcon/MoonIcon.tsx"
+import { SunIcon } from "../../../../components/icons/SunIcon/SunIcon.tsx"
+import { THEME_SWITCHER_ICON_PROPS } from "../../../../constants/THEME_SWITCHER_ICON_PROPS/THEME_SWITCHER_ICON_PROPS.ts"
+import { themeSchema } from "../../../../schemas/themeSchema/themeSchema.ts"
+import { setTheme } from "./actions/setTheme/setTheme.ts"
 import { getCurrentThemeIcon } from "./modules/getCurrentThemeIcon/getCurrentThemeIcon.tsx"
 
-import type { OptionSwitcher } from "../../../OptionSwitcher/OptionSwitcher.tsx"
+import type { OptionSwitcher } from "../../../../clientComponents/feature/OptionSwitcher/OptionSwitcher.tsx"
 import type { ComponentProps } from "react"
 import type * as z from "zod/mini"
 

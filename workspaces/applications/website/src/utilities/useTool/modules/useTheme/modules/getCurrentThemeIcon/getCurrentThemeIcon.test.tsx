@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest"
 
-import { GearIcon } from "../../../../../../../components/icons/GearIcon/GearIcon.tsx"
-import { MoonIcon } from "../../../../../../../components/icons/MoonIcon/MoonIcon.tsx"
-import { SunIcon } from "../../../../../../../components/icons/SunIcon/SunIcon.tsx"
-import { THEME_SWITCHER_ICON_PROPS } from "../../../../constants/THEME_SWITCHER_ICON_PROPS/THEME_SWITCHER_ICON_PROPS.ts"
+import { GearIcon } from "../../../../../../components/icons/GearIcon/GearIcon.tsx"
+import { MoonIcon } from "../../../../../../components/icons/MoonIcon/MoonIcon.tsx"
+import { SunIcon } from "../../../../../../components/icons/SunIcon/SunIcon.tsx"
+import { THEME_SWITCHER_ICON_PROPS } from "../../../../../../constants/THEME_SWITCHER_ICON_PROPS/THEME_SWITCHER_ICON_PROPS.ts"
 import { getCurrentThemeIcon } from "./getCurrentThemeIcon.tsx"
 
 type Theme = Parameters<typeof getCurrentThemeIcon>[0]["theme"]

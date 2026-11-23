@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 
-import { useLocale } from "../../clientComponents/feature/HeaderTool/modules/useLocale/useLocale.ts"
-import { useTheme } from "../../clientComponents/feature/HeaderTool/modules/useTheme/useTheme.tsx"
+import { useLocale } from "./modules/useLocale/useLocale.ts"
+import { useTheme } from "./modules/useTheme/useTheme.tsx"
 
 import type { themeSchema } from "../../schemas/themeSchema/themeSchema.ts"
 import type * as z from "zod/mini"
