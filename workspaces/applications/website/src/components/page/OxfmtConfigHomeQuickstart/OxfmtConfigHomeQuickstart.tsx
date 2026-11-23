@@ -1,0 +1,61 @@
+import { useTranslations } from "next-intl"
+import { Fragment } from "react"
+
+import { CodeArea } from "../../../clientComponents/feature/CodeArea/CodeArea.tsx"
+import { Tab } from "../../../clientComponents/feature/Tab/Tab.tsx"
+import { renderLineBreak } from "../../../utilities/renderLineBreak/renderLineBreak.tsx"
+import { Breadcrumb } from "../../ui/Breadcrumb/Breadcrumb.tsx"
+import { CodeBlock } from "../../ui/CodeBlock/CodeBlock.tsx"
+import { Heading1Wrapper, Section } from "../../ui/docsElements/docsElements.tsx"
+import { Heading } from "../../ui/Heading/Heading.tsx"
+import { COPY_ICON_ELEMENT } from "./constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
+import { INSTALL_TAB_ITEMS } from "./constants/INSTALL_TAB_ITEMS/INSTALL_TAB_ITEMS.tsx"
+import { SETTING_CODE } from "./constants/SETTING_CODE/SETTING_CODE.ts"
+
+import type { ComponentProps, FC } from "react"
+
+import styles from "./oxfmtConfigHomeQuickstart.module.css"
+
+type Props = {
+  breadcrumbItems: NonNullable<ComponentProps<typeof Breadcrumb>["items"]>
+}
+
+export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
+  const { breadcrumbItems } = props
+  const oxfmtConfigQuickstartTranslate = useTranslations("pages.oxfmtConfigQuickstart")
+  const pageTitleText = oxfmtConfigQuickstartTranslate("pageTitle")
+
+  return (
+    <Fragment>
+      <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
+
+      <Heading1Wrapper>
+        <Heading headingTag="h1">{pageTitleText}</Heading>
+      </Heading1Wrapper>
+
+      <p>{oxfmtConfigQuickstartTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+
+      <Section>
+        <Heading headingTag="h2">{oxfmtConfigQuickstartTranslate("installTitle")}</Heading>
+
+        <div className={styles.tabWrapper}>
+          <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
+        </div>
+      </Section>
+
+      <Section>
+        <Heading headingTag="h2">{oxfmtConfigQuickstartTranslate("setupTitle")}</Heading>
+
+        <div className={styles.oxfmtConfigSetupWrapper}>
+          <CodeArea
+            copyIconElement={COPY_ICON_ELEMENT}
+            copyTargetText={SETTING_CODE}
+            title="oxfmt.config.mts"
+          >
+            <CodeBlock code={SETTING_CODE} lang="typescript" />
+          </CodeArea>
+        </div>
+      </Section>
+    </Fragment>
+  )
+}

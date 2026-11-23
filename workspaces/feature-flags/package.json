@@ -1,0 +1,49 @@
+{
+  "name": "@ts-items/feature-flags",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./website": "./src/website/schemas/featureFlagSchema/featureFlagSchema.ts"
+  },
+  "scripts": {
+    "check-code": "run-p lint test -c --aggregate-output",
+    "fix": "run-p fix:* -c --aggregate-output",
+    "fix:oxfmt": "oxfmt -c ./oxfmt.config.mts",
+    "fix:oxlint": "bun lint:oxlint --fix",
+    "fix:sort-package-json": "sort-package-json",
+    "gen:website-local": "bun scripts/entries/website-local/website-local.mts",
+    "gen:website-prd": "bun scripts/entries/website-prd/website-prd.mts",
+    "gen:website-stg": "bun scripts/entries/website-stg/website-stg.mts",
+    "lint": "run-p lint:* -c --aggregate-output",
+    "lint:cspell": "cspell lint \"**\" --no-progress",
+    "lint:knip": "knip -c knip.config.mts",
+    "lint:oxfmt": "bun fix:oxfmt --check",
+    "lint:oxlint": "oxlint -c ./oxlint.config.mts --deny-warnings --report-unused-disable-directives --format=stylish",
+    "lint:sort-package-json": "bun fix:sort-package-json --check",
+    "lint:type-check": "bun check",
+    "test": "bun test",
+    "upload:website": "infisical run --env=local --path=/workspaces/feature-flags -- bun scripts/entries/website-upload/website-upload.mts"
+  },
+  "devDependencies": {
+    "@inquirer/prompts": "8.8.0",
+    "@ts-items/configurations": "workspace:*",
+    "@ts-items/oxfmt-config": "workspace:*",
+    "@ts-items/oxlint-config": "workspace:*",
+    "@tsconfig/strictest": "2.0.8",
+    "@types/bun": "1.4.4",
+    "@vercel/blob": "2.9.0",
+    "cspell": "10.4.0",
+    "knip": "6.43.0",
+    "npm-run-all2": "9.0.4",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
+    "oxlint-tsgolint": "7.0.2005",
+    "sort-package-json": "4.1.0",
+    "typescript": "6.0.3",
+    "zod": "4.6.7"
+  },
+  "peerDependencies": {
+    "zod": "^4.6.7"
+  }
+}

@@ -1,0 +1,13 @@
+.heading1Wrapper {
+  margin-top: 30px;
+}
+
+.heading1WrapperWithIcon {
+  align-items: center;
+  column-gap: 12px;
+  display: flex;
+}
+
+.section {
+  margin-top: 30px;
+}

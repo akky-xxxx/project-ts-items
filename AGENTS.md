@@ -36,7 +36,7 @@ codex はこのリポジトリにおいて**レビュワー専任**として動�
 ### フロー
 
 1. 対象の作業ディレクトリの `result_*.md` のうち未レビューのものを、ファイル名ではなく実際の更新日時(mtime)が古い順に読む
-2. そこに書かれた変更内容について、該当するコードを実際に確認する(`result` の記述を鵜呑みにしない)
+2. そこに書かれた変更内容について、該当するコードを実際に確認する(`result` の記述を鵜呑みにしない)。`result` の `- worktree:` にパスが書かれている場合、変更はメインの作業ツリーではなくその git worktree にあるため、そのパス配下のファイル・ブランチを確認する(`-` の場合はメインの作業ツリー)。確認先でチェックアウト中のブランチが `- branch:` と異なる場合は、別ブランチの状態をレビューしないよう、その旨を指摘として報告する
 3. 同じ作業ディレクトリに `review_{timestamp}.md` を新規作成し、後述の出力形式でレビュー結果を書き込む
 4. Claude Code の対応結果は同じ作業ディレクトリに次の `result_{timestamp}.md` として届く。それを読んで、また新しい `review_{timestamp}.md` を書く
 
@@ -45,7 +45,7 @@ codex はこのリポジトリにおいて**レビュワー専任**として動�
 このファイルはレビュー観点の要約であり、詳細な規約は以下を一次情報として参照する。内容が矛盾する場合はこちらを優先する。
 
 - `CLAUDE.md`: リポジトリ構成、コマンドの正式な定義
-- `.claude/rules/*.md`: 共有パッケージの設計(`publish-packages.md`)、ツールで強制される規約(`coding-guideline.md`)、GitHub Actions(`github-actions.md`)、コミット(`commit.md`)・PR(`pr.md`)・機密情報(`secrets.md`)の取り扱い、AI 間のファイルベース連携(`ai-communication.md`)のルール
+- `.claude/rules/*.md`: 共有パッケージの設計(`publish-packages.md`)、ツールで強制される規約(`coding-guideline.md`)、GitHub Actions(`github-actions.md`)、コミット(`commit.md`)・PR(`pr.md`)・機密情報(`secrets.md`)の取り扱い、テストの書き方(`test.md`)、AI 間のファイルベース連携(`ai-communication.md`)のルール
 - `docs/release.md`: 共有パッケージと `website` のリリース運用
 - `scripts/commitlint/directories/`: 有効な commit scope の算出方法(`package.json` の `workspaces` glob に一致するディレクトリ名)
 
@@ -55,7 +55,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - `workspaces/applications/*`: アプリケーション(例: `website`)
 - `workspaces/configurations`: リポジトリ固有の設定(`@ts-items/configurations`。build せず `.mts` を直接公開)
-- `workspaces/packages/*/*`: 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`。`src/` を `dist/` に build して公開)
+- `workspaces/packages/*/*`: 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config` / `@ts-items/react-types`。`src/` を `dist/` に build して公開。`react-types` は型定義(`.d.ts`)だけを出力する)
 
 詳細は `CLAUDE.md` の「構成」と `.claude/rules/publish-packages.md` を参照。
 
@@ -95,9 +95,10 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 ### テスト
 
-- 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト)が追加されているか
+- 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト / 型パッケージの型テスト)が追加されているか。不具合修正の場合、そのテストが修正前のコードで失敗するか(ロジックを切り出してテストした場合、不具合が起きていた呼び出し側の組み合わせが切り出し先に含まれているか)
 - ブラックボックス(公開 interface 経由)とホワイトボックス(内部ロジック)の使い分けが適切か
-- `describe`/`it` が日本語で書かれているか
+- 期待値に実装と同じ定数を import して使っていないか(cookie 名・キー名など、値の変更が利用者に影響するものは、リテラルで固定しないと定数の誤変更をテストで検出できない)
+- ネストした `describe` と `it` が日本語で書かれているか(トップレベルの `describe` はテスト対象の名前だけにする。`.claude/rules/test.md` を参照)
 
 ### コミット/PR
 
@@ -118,7 +119,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 ```bash
 bun lint                                 # ルートの lint(cspell / knip / oxfmt --check / oxlint / sort-package-json --check / type-check)
 bun a:lint                               # ルート + 全 @ts-items/* と website の lint
-bun w:test                               # 全 @ts-items/* と website の test(dry run / Storybook の vitest)
+bun w:test                               # 全 @ts-items/* と website の test(dry run / 型テスト / Storybook の vitest)
 bun check-code                           # w:test → a:lint(直列)
 bun --filter <package name> lint         # パッケージ単位の lint
 bun --filter <package name> test         # パッケージ単位の test

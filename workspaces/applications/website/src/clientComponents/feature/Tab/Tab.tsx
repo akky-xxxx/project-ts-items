@@ -1,61 +1,65 @@
 "use client"
 
-import { startTransition, useState, ViewTransition } from "react"
+import { ViewTransition } from "react"
 
-import type { FC, ReactNode } from "react"
+import { CodeArea } from "../CodeArea/CodeArea.tsx"
+import { useTab } from "./useTab.ts"
 
-interface Item {
-  contents: ReactNode
-  id: string
-  tab: ReactNode
+import type { ReactElement, FC } from "react"
+
+import styles from "./tab.module.css"
+
+type TabValue = string
+type Item = {
+  copyText: string
+  tabLabelText: string
+  tabValue: TabValue
+  tabContent: ReactElement
 }
-
-interface Props {
-  items: Item[]
+type Props = {
+  copyIconElement: ReactElement
+  currentActiveTabValue?: Item["tabValue"]
+  items: [Item, ...Item[]]
+  title: string
 }
-
-const FIRST_ITEM_INDEX = 0
 
 export const Tab: FC<Props> = (props) => {
-  const { items } = props
-  const [visibleIndex, setVisibleIndex] = useState(FIRST_ITEM_INDEX)
-  const createHandleClickTab = (index: number) => () => {
-    startTransition(() => {
-      setVisibleIndex(index)
-    })
-  }
+  const { copyIconElement, items, title } = props
+  const { activeTabValue, getTabButtonClassName, copyTargetText, handleChange } = useTab(props)
 
   return (
     <div>
-      <ul>
-        {items.map(({ id, tab }, index) => {
-          const isEnabled = index !== visibleIndex
+      <ul className={styles.ul}>
+        {items.map((item) => {
+          const { tabLabelText, tabValue } = item
 
           return (
-            <li key={id}>
-              <button onClick={createHandleClickTab(index)} disabled={!isEnabled} type="button">
-                {tab}
+            <li key={tabValue}>
+              <button
+                className={getTabButtonClassName(tabValue)}
+                type="button"
+                onClick={handleChange(tabValue)}
+              >
+                {tabLabelText}
               </button>
             </li>
           )
         })}
       </ul>
 
-      <ul>
-        {items.map(({ id, contents }, index) => {
-          const isVisible = index === visibleIndex
+      <CodeArea copyIconElement={copyIconElement} copyTargetText={copyTargetText} title={title}>
+        <ViewTransition>
+          {items.map((item) => {
+            const { tabContent, tabValue } = item
 
-          if (!isVisible) {
-            return null
-          }
+            if (tabValue !== activeTabValue) {
+              return null
+            }
 
-          return (
-            <ViewTransition key={id}>
-              <li>{contents}</li>
-            </ViewTransition>
-          )
-        })}
-      </ul>
+            return <div key={tabValue}>{tabContent}</div>
+          })}
+        </ViewTransition>
+      </CodeArea>
     </div>
   )
 }

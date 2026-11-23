@@ -1,0 +1,83 @@
+import { useTranslations } from "next-intl"
+
+import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
+import { PROJECT_NAME } from "../../../constants/PROJECT_NAME/PROJECT_NAME.ts"
+import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
+import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
+import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
+import { buildPackageCardItems } from "../../../utilities/buildPackageCardItems/buildPackageCardItems.tsx"
+import { Packages } from "./Packages.tsx"
+
+import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import type { ComponentProps, FC } from "react"
+
+const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
+  const packageTranslate = useTranslations("packages")
+
+  return (
+    <Packages
+      {...props}
+      packages={buildPackageCardItems({
+        headingTag: "h2",
+        packageTranslate,
+        versionTexts: {
+          "oxfmt-config": "1.0.0",
+          "oxlint-config": "2.0.0",
+        },
+      })}
+    />
+  )
+}
+
+const meta = {
+  component: Packages,
+
+  argTypes: {
+    packages: {
+      control: false,
+      description: "表示するパッケージ一覧(各要素は PackageCard の props)",
+    },
+  },
+  args: {
+    packages: [
+      {
+        descriptionNode: "{descriptionNode}",
+        headingTag: "h2",
+        innerLinkHref: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
+        packageLogoNode: <DummyForStorybook label="P1" />,
+        packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxfmtConfig.name}`,
+        versionText: "1.0.0",
+      },
+      {
+        descriptionNode: "{descriptionNode}",
+        headingTag: "h2",
+        innerLinkHref: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
+        packageLogoNode: <DummyForStorybook label="P2" />,
+        packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
+        versionText: "1.0.0",
+      },
+    ],
+  },
+} satisfies Meta<typeof Packages>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  argTypes: {
+    packages: {
+      control: "object",
+    },
+  },
+}
+
+export const Ja: Story = {
+  ...JA_LOCALE_FOR_STORYBOOK,
+  render: (args) => <Localized {...args} />,
+}
+
+export const En: Story = {
+  ...EN_LOCALE_FOR_STORYBOOK,
+  render: (args) => <Localized {...args} />,
+}

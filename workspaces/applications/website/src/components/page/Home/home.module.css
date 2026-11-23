@@ -1,0 +1,25 @@
+.root {
+  display: grid;
+  margin-inline: auto;
+  max-width: var(--contents-max-width);
+  padding-block: 36px;
+  row-gap: 36px;
+}
+
+/* docsElements の Heading1Wrapper の余白は、grid の row-gap で間隔を取るトップページでは不要 */
+.heading1Wrapper {
+  margin-top: 0;
+}
+
+.p {
+  margin-block: 0;
+}
+
+.section {
+  display: grid;
+  row-gap: 20px;
+}
+
+.h2 {
+  font-size: 1.8rem;
+}

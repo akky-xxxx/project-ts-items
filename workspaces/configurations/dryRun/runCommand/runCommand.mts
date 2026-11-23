@@ -1,4 +1,4 @@
-interface CommandResult {
+type CommandResult = {
   exitCode: number
   stderr: string
   stdout: string

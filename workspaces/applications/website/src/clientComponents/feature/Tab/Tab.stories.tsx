@@ -1,29 +1,64 @@
-import { expect, userEvent, within } from "storybook/test"
+import { Fragment } from "react"
+import { Toaster } from "react-hot-toast"
 
+import { CodeBlock } from "../../../components/ui/CodeBlock/CodeBlock.tsx"
+import { DummyForStorybook } from "../../../tests/DummyForStorybook/DummyForStorybook.tsx"
 import { Tab } from "./Tab.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
-import type { ReactNode } from "react"
-
-const Dummy = ({ children }: { children: ReactNode }) => <div>{children}</div>
 
 const meta = {
   component: Tab,
 
+  argTypes: {
+    copyIconElement: {
+      control: false,
+      description: "コンテンツ領域のヘッダー右側に表示するコピー用アイコン",
+    },
+    currentActiveTabValue: {
+      description: "初期表示で選択するタブの tabValue(省略時は items の先頭)",
+    },
+    items: {
+      control: false,
+      description:
+        "タブの一覧(copyText: コピーボタン押下時にクリップボードへ書き込む文字列 / tabLabelText: タブのボタンのテキスト / tabValue: タブの識別子 / tabContent: 選択時に表示する内容)。1件以上",
+    },
+    title: {
+      description: "コンテンツ領域のヘッダー左側に表示するタイトル",
+    },
+  },
   args: {
+    copyIconElement: <DummyForStorybook label="C" />,
     items: [
       {
-        contents: <Dummy>Content for Tab 1</Dummy>,
-        id: "tab-1",
-        tab: <Dummy>Tab 1</Dummy>,
+        copyText: "copyText1",
+        tabContent: <DummyForStorybook label="tabContent1" />,
+        tabLabelText: "tabLabelText1",
+        tabValue: "tabValue1",
       },
       {
-        contents: <Dummy>Content for Tab 2</Dummy>,
-        id: "tab-2",
-        tab: <Dummy>Tab 2</Dummy>,
+        copyText: "copyText2",
+        tabContent: <DummyForStorybook label="tabContent2" />,
+        tabLabelText: "tabLabelText2",
+        tabValue: "tabValue2",
+      },
+      {
+        copyText: "copyText3",
+        tabContent: <DummyForStorybook label="tabContent3" />,
+        tabLabelText: "tabLabelText3",
+        tabValue: "tabValue3",
       },
     ],
+    title: "{title}",
   },
+  decorators: [
+    (Story) => (
+      <Fragment>
+        <Story />
+        <Toaster />
+      </Fragment>
+    ),
+  ],
 } satisfies Meta<typeof Tab>
 
 export default meta
@@ -32,14 +67,22 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
-export const TestForContentsChange: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const secondButtonElement = canvas.getByRole("button", { name: "Tab 2" })
-    await expect(secondButtonElement).toBeInTheDocument()
-    await userEvent.click(secondButtonElement)
-    await expect(await canvas.findByText("Content for Tab 2")).toBeInTheDocument()
-    await expect(canvas.queryByText("Content for Tab 1")).not.toBeInTheDocument()
+export const WithCodeBlock: Story = {
+  args: {
+    items: [
+      {
+        copyText: "bun add -D @ts-items/oxlint-config oxlint",
+        tabContent: <CodeBlock code="bun add -D @ts-items/oxlint-config oxlint" lang="bash" />,
+        tabLabelText: "bun",
+        tabValue: "bun",
+      },
+      {
+        copyText: "npm install -D @ts-items/oxlint-config oxlint",
+        tabContent: <CodeBlock code="npm install -D @ts-items/oxlint-config oxlint" lang="bash" />,
+        tabLabelText: "npm",
+        tabValue: "npm",
+      },
+    ],
+    title: "Terminal",
   },
-  tags: ["!autodocs"],
 }

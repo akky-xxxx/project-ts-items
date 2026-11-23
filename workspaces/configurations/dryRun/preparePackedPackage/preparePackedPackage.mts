@@ -1,6 +1,6 @@
 import { runCommand } from "../runCommand/runCommand.mts"
 
-interface Parameters {
+type Parameters = {
   /** パッケージ直下から作業ディレクトリへそのままコピーするディレクトリ */
   copyDirectories: readonly string[]
   /** 作業ディレクトリに書き出すファイル(作業ディレクトリからの相対パス → 内容) */

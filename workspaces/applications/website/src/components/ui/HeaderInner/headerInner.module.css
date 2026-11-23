@@ -1,0 +1,22 @@
+.root {
+  align-items: center;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  height: 100%;
+  margin-inline: auto;
+  max-width: var(--contents-max-width);
+}
+
+.siteName {
+  align-items: center;
+  color: var(--color-text);
+  column-gap: 0.9rem;
+  display: flex;
+  margin-right: 3.6rem;
+  text-decoration: none;
+}
+
+.projectName {
+  color: var(--color-heading-text);
+  font-size: 2.3rem;
+}

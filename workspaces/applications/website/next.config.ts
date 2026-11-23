@@ -4,6 +4,8 @@ import type { NextConfig } from "next"
 
 const withNextIntl = createNextIntlPlugin()
 
-const nextConfig = {} satisfies NextConfig
+const nextConfig = {
+  trailingSlash: true,
+} satisfies NextConfig
 
 export default withNextIntl(nextConfig)

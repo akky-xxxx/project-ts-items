@@ -18,13 +18,15 @@
   - 自分(agent)だけで内容を確認して進めるのは不可。必ずユーザーの承認を待つ
   - 複数コミットに分ける場合は、コミットごとに承認を得る
   - 同一ファイル内の複数の独立した変更を別コミットに分ける場合、先にすべての変更を適用してから `git diff` を手動でハンク単位に切り出して `git apply --cached` で部分 stage するのではなく、変更ごとに Edit して都度 `git diff --cached` を確認・承認・commit する。手動で組んだパッチはコンテキストのずれで意図しない箇所に適用されても検出しづらい
-  - lockfile などの生成物(`bun.lock` 等)が複数のスコープの変更にまたがって更新される場合も、手で部分 stage しない。コミットの分け方は変更を適用する前に決め、スコープごとに「変更 → 生成コマンド(`bun install` 等)→ `git diff --cached` の確認・承認・commit」を繰り返す。設計フェーズで用意した確定版をまとめて適用する場合も、適用と適用後の `diff` による突き合わせの単位をこの分け方に合わせる。1つの意図による変更で複数のスコープの生成物が同時に変わり、スコープごとに分けると変更内容として意味をなさない場合(複数の workspace に共通する依存のバージョンを一括で上げる等)は、分けずに複数のスコープを表す scope(`*` / `packages`)の1コミットにする
+  - lockfile などの生成物(`bun.lock` 等)が複数のスコープの変更にまたがって更新される場合も、手で部分 stage しない。コミットの分け方は変更を適用する前に決め、スコープごとに「変更 → 生成コマンド(`bun install` 等)→ `git diff --cached` の確認・承認・commit」を繰り返す。設計フェーズで用意した確定版をまとめて適用する場合も、適用と適用後の `diff` による突き合わせの単位をこの分け方に合わせる。1つの意図による変更で複数のスコープの生成物が同時に変わり、スコープごとに分けると変更内容として意味をなさない場合(複数の workspace に共通する依存のバージョンを一括で上げる等)は、分けずに複数のスコープを表す scope(`*` / `packages`)の1コミットにする。ユーザーの指示でコミットを後回しにする場合など、決めた分け方どおりに「変更 → 生成コマンド → commit」を繰り返せないときは、変更を適用する前にその旨をユーザーに伝える。あわせて、まとめて適用すると後から分けるには生成物を部分 stage するしかなくなることを伝え、分け方を変える(1コミットにまとめる等)か確認する
   - 作業を促す指示(「一通り作業して」「先にコミットして」等)や、承認済みの実装プランにコミット内容が書かれていることは、承認の代替にならない。往復が増えても省略しない
 - `develop` / `main` に直接コミットしない。1本目のコミットを作る前に作業ブランチを切る
   - ブランチ名は `<commit type>/<kebab-case の要約>`(例: `docs/ai-communication-flow-followup`)
   - 切るタイミングは実装着手前。コミット直前まで待たない
+  - `.claude/rules/worktree.md` の「作業場所の判定」で worktree を作成すると判定した場合は、メインの作業ツリーでは切らず、同ファイルの手順で worktree の作成と同時に切る
   - 既に `develop` 上でコミットしてしまった場合は、その commit から作業ブランチを作り、`develop` を作業開始時点の commit(ローカル `develop` が `origin/develop` と一致していたなら `origin/develop`)に戻す
   - 新しいタスク(別 issue 等)に着手する際は、既存の作業ブランチを使い回さず、`develop` の最新から新しく作業ブランチを切る。ブランチを切り替えたら `git branch --show-current` 等で対象タスク用のブランチになっていることを確認してから最初の変更に入る
+  - `origin/develop` を起点に作業ブランチを切る場合は `--no-track` を付ける(例: `git switch -c <branch> --no-track origin/develop`)。git の既定(`branch.autoSetupMerge` が `true`)では、リモート追跡ブランチを起点にすると upstream が `origin/develop` に設定され、引数なしの `git push` が名前の不一致で失敗する、引数なしの `git pull` の取り込み元が `origin/develop` になる、`git status` の ahead/behind が `origin/develop` 基準になる、といった食い違いが起きる。upstream が付いてしまった場合は `git branch --unset-upstream` で外す。upstream の設定は push するユーザーに任せる
 - 一時的な確認(整形結果のプレビュー等)の目的で `git stash` を使わない。`git stash pop` は直前に自分が stash したとは限らず、リポジトリに残っている無関係な stash(他ブランチ・他セッションのもの)を誤って適用する恐れがある。一時退避が必要な場合は `git diff` の出力確認や、リポジトリ外(スクラッチディレクトリ等)へのファイル書き出しで代替する。
 
 ## メッセージの形式
@@ -39,7 +41,7 @@
 - 破壊的変更を含むコミットは、type/scope の直後に `!` を付ける(例: `feat(oxlint-config)!: enable no-console rule`)。既存の履歴もこの形式で書かれている
 - あわせて body に `BREAKING CHANGE: <何が壊れるか・利用者側の移行方法>` のフッターを英語で書く。`!` だけでは影響範囲と移行方法が履歴に残らないため
 - 破壊的変更とみなすもの
-  - 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)や `@ts-items/configurations` の公開 API(`exports` のパス、export 名、関数シグネチャ、型)の削除・改名・互換性の無い変更
+  - 共有パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config` / `@ts-items/react-types`)や `@ts-items/configurations` の公開 API(`exports` のパス、export 名、関数シグネチャ、型)の削除・改名・互換性の無い変更
   - 共有設定の変更で、利用者の既存コードが新たに lint エラーになる、または整形結果が変わるもの(ルールの追加・有効化、severity の引き上げ、閾値を厳しくする変更、整形オプションの変更)
   - 動作要件の引き上げ(Node / TypeScript / `peerDependencies` の必須バージョン等)
 - 該当しないもの: 利用者に影響しない内部リファクタ、ルールの無効化や閾値の緩和(新たなエラーを生まない変更)、他の workspace から参照されない workspace(`website` 等)だけで閉じる変更。`@ts-items/configurations` は `private` だが他の workspace から参照されるため、公開 API の変更は破壊的変更に含める

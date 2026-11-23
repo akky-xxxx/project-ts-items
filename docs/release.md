@@ -4,7 +4,7 @@
 
 ## 概要
 
-- 対象: `workspaces/packages/*/*` の共有パッケージ(現在は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)。`website` は対象外で、別の workflow で tag と GitHub Release だけを作る(「website のリリース」を参照)
+- 対象: `workspaces/packages/*/*` の共有パッケージ(現在は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config` / `@ts-items/react-types`)。`website` は対象外で、別の workflow で tag と GitHub Release だけを作る(「website のリリース」を参照)
 - [release-please](https://github.com/googleapis/release-please)(manifest モード)がバージョン更新・CHANGELOG・タグ・GitHub Release を担当し、`.github/workflows/release.yml` が npm への publish を行う
 - 関係するファイル
   - `release-please-config.json`: release-please の設定(対象パッケージ、版の上がり方など)

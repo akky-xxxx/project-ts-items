@@ -1,6 +1,9 @@
 import { defineConfig } from "oxlint"
 
+import { withRulePrefix } from "../../utilities/withRulePrefix/withRulePrefix.ts"
 import { eslintRules } from "./rules/eslintRules/eslintRules.ts"
+import { importRules } from "./rules/importRules/importRules.ts"
+import { oxcRules } from "./rules/oxcRules/oxcRules.ts"
 import { typescriptRules } from "./rules/typescriptRules/typescriptRules.ts"
 import { unicornRules } from "./rules/unicornRules/unicornRules.ts"
 
@@ -14,32 +17,21 @@ export const baseConfig = defineConfig({
     style: "error",
     suspicious: "error",
   },
+  overrides: [
+    {
+      // Declaration merging(module augmentation 等)は interface でしか書けず、type への自動修正で拡張が無効になるため
+      files: ["**/*.d.{ts,mts,cts}"],
+      rules: withRulePrefix("typescript", {
+        "consistent-type-definitions": "off",
+      }),
+    },
+  ],
   plugins: ["eslint", "import", "oxc", "unicorn"],
   rules: {
     ...eslintRules,
+    ...importRules,
+    ...oxcRules,
     ...typescriptRules,
     ...unicornRules,
-    "explicit-function-return-type": "off",
-    "explicit-module-boundary-types": "off",
-    "exports-last": "off",
-    "filename-case": "off",
-    "group-exports": "off",
-    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
-    "import/no-relative-parent-imports": "off",
-    "no-duplicate-imports": ["error", { allowSeparateTypeImports: true }],
-    "no-inline-comments": "off",
-    "no-named-export": "off",
-    "no-nested-ternary": "error",
-    "no-null": "off",
-    "no-rest-spread-properties": "off",
-    "no-ternary": "off",
-    "no-undefined": "off",
-    "no-unneeded-ternary": "error",
-    "no-warning-comments": "off",
-    "one-var": "off",
-    "oxc/no-async-await": "off",
-    "oxc/no-optional-chaining": "off",
-    "prefer-default-export": "off",
-    "sort-imports": "off",
   },
 })

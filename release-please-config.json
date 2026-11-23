@@ -10,6 +10,9 @@
     },
     "workspaces/packages/configurations/oxlint-config": {
       "component": "oxlint-config"
+    },
+    "workspaces/packages/types/react-types": {
+      "component": "react-types"
     }
   }
 }

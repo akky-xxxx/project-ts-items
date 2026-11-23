@@ -1,0 +1,84 @@
+.root {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  line-height: 1.9;
+  padding: 26px;
+  position: relative;
+  transition: background-color var(--duration-transition);
+
+  &:has(:focus-visible) {
+    background-color: var(--color-background-hover);
+    outline: 2px solid currentcolor;
+  }
+
+  @media (hover: hover) {
+    &:not(:hover, :has(:focus-visible)) {
+      background-color: var(--color-background);
+    }
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:has(:focus-visible)) {
+      background-color: var(--color-background);
+    }
+  }
+}
+
+.header {
+  align-items: center;
+  column-gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.link {
+  align-items: center;
+  color: inherit;
+  column-gap: 12px;
+  display: flex;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.version {
+  font-size: 1.2rem;
+}
+
+.body {
+  align-items: flex-end;
+  column-gap: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.description {
+  font-size: 1.3rem;
+  margin-block: 0;
+}
+
+.descriptionClamped {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.linkText {
+  color: var(--color-text);
+  flex-shrink: 0;
+}

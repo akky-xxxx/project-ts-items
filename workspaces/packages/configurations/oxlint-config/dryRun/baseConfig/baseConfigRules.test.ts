@@ -17,6 +17,7 @@ describe("baseConfig の rules", () => {
     ["exportsLast/disabled.ts", "import(exports-last)", "none"],
     ["filenameCase/PascalCaseName.ts", "unicorn(filename-case)", "none"],
     ["groupExports/disabled.ts", "import(group-exports)", "none"],
+    ["maxDependencies/disabled.ts", "import(max-dependencies)", "none"],
     ["noAsyncAwait/disabled.ts", "oxc(no-async-await)", "none"],
     ["noDuplicateImports/invalid.ts", "eslint(no-duplicate-imports)", "error"],
     ["noDuplicateImports/valid.ts", "eslint(no-duplicate-imports)", "none"],

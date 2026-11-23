@@ -1,0 +1,7 @@
+.ul {
+  column-gap: 2.6rem;
+  display: flex;
+  list-style: none;
+  margin-block: 0;
+  padding-left: 0;
+}

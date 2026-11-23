@@ -28,6 +28,7 @@ export const eslintRules = withRulePrefix("eslint", {
   "max-nested-callbacks": ["error", 3],
   "max-params": ["warn", 3],
   "max-statements": ["error", 10],
+  "no-duplicate-imports": ["error", { allowSeparateTypeImports: true }],
   "no-implicit-coercion": [
     "warn",
     {
@@ -36,15 +37,30 @@ export const eslintRules = withRulePrefix("eslint", {
       string: true,
     },
   ],
-  "no-magic-numbers": "warn",
+  "no-inline-comments": "off",
+  "no-magic-numbers": [
+    "warn",
+    {
+      ignoreNumericLiteralTypes: true,
+      ignoreReadonlyClassProperties: true,
+      ignoreTypeIndexes: true,
+    },
+  ],
+  "no-nested-ternary": "error",
   "no-param-reassign": [
     "error",
     {
       props: true,
     },
   ],
+  "no-ternary": "off",
+  "no-undefined": "off",
+  "no-unneeded-ternary": "error",
   "no-use-before-define": "error",
+  "no-warning-comments": "off",
+  "one-var": "off",
   "prefer-named-capture-group": "warn",
   "require-await": "off",
+  "sort-imports": "off",
   "sort-keys": ["warn", "asc", { allowLineSeparatedGroups: true }],
 } as const satisfies DummyRuleMap)

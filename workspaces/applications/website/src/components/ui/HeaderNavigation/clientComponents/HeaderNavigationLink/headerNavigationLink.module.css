@@ -1,0 +1,27 @@
+.root {
+  transition: color var(--duration-transition);
+
+  &:focus-visible {
+    color: var(--color-text-hover);
+  }
+
+  &[aria-current="page"] {
+    color: var(--color-heading-text) !important;
+  }
+
+  @media (hover: hover) {
+    &:not(:hover, :focus-visible) {
+      color: var(--color-text);
+    }
+
+    &:hover {
+      color: var(--color-text-hover);
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:focus-visible) {
+      color: var(--color-text);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+describe("sample", () => {
+  it("runs", () => {})
+})

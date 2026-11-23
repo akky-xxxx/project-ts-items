@@ -1,0 +1,5 @@
+.pre {
+  font-family: var(--font-mono);
+  margin-block: 0;
+  overflow-x: auto;
+}
