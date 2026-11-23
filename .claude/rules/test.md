@@ -18,4 +18,5 @@ paths:
 - テスト用のストーリー(名前が `TestFor` で始まるストーリー)は、表示用のストーリーを置く `X.stories.tsx` と分け、同じディレクトリの `X.test.stories.tsx`(stories が `.ts` の場合は `X.test.stories.ts`)に置く
   - `X.stories.test.tsx` にはしない。Storybook の既定の CSF インデクサは `stories.tsx` / `story.tsx` などで終わるファイルしか読み込まず、`.storybook/main.ts` の `stories` に追加してもインデックス時にエラーになる(storybook 10.6.5 で確認)
   - meta は `X.stories.tsx` の default export を import して spread し、`tags: ["!dev", "!autodocs"]` を付ける。サイドバーと autodocs には出さず、vitest(`@storybook/addon-vitest`)でだけ実行する
+  - 表示対象の無いもの(Storybook 用の setup・helper など)をテストする場合は、表示用の `X.stories.tsx` を作らず、`X.test.stories.tsx` の meta を直接書く。`component` には website の `src/tests/DummyForStorybook` を使い、`tags: ["!dev", "!autodocs"]`・ファイル名・`TestFor` で始まる story 名の規約は同じく適用する(例: `src/tests/setupMswWorkerForStorybook/setupMswWorkerForStorybook.test.stories.tsx`)
   - 表示用のストーリー(`En` / `Ja` 等)の設定を前提にする場合は、`X.stories.tsx` から import して spread する
