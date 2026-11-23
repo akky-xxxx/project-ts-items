@@ -83,3 +83,4 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - `.claude/rules/publish-packages.md`(`workspaces/packages/**`): 共有パッケージの構成・build・dry run
 - `.claude/rules/secrets.md`: 機密情報の取り扱い
 - `.claude/rules/test.md`(`**/*.stories.{mts,ts,tsx}`・`**/*.test.{mts,ts,tsx}`): テストの書き方(期待値の固定など)
+- `.claude/rules/worktree.md`: 新規実装・別タスクに着手する際の git worktree での作業(作業場所の判定・作成・連携ファイルの扱い)
