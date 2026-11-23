@@ -2,7 +2,7 @@ import { expect, userEvent, waitFor, within } from "storybook/test"
 
 import { fixLightThemeForStorybook } from "../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
 import { getUserEventForStorybook } from "../../../tests/getUserEventForStorybook/getUserEventForStorybook.ts"
-import meta from "./OptionSwitcher.stories.tsx"
+import meta, { Sp } from "./OptionSwitcher.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -103,6 +103,23 @@ export const TestForCheckedItemFocusVisibleStyle: Story = {
       backgroundColor: "rgb(237, 245, 241)",
       outlineStyle: "solid",
       outlineWidth: "2px",
+    })
+  },
+}
+
+/** SP 幅では、選択中の項目だけ背景色が付き、未選択の項目は背景が透明になる */
+export const TestForSpCheckedItemStyle: Story = {
+  ...Sp,
+  beforeEach: fixLightThemeForStorybook,
+  play: async (context) => {
+    const { canvasElement } = context
+    await waitFor(async () => {
+      await expect(getLabelElement(canvasElement, "item3")).toHaveStyle({
+        backgroundColor: "rgb(236, 245, 241)",
+      })
+    })
+    await expect(getLabelElement(canvasElement, "item1")).toHaveStyle({
+      backgroundColor: "rgba(0, 0, 0, 0)",
     })
   },
 }
