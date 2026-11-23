@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.2.0](https://github.com/akky-xxxx/project-ts-items/compare/oxlint-config-v0.1.0...oxlint-config-v0.2.0) (2026-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **oxlint-config:** interfaces outside declaration files are now reported by typescript/consistent-type-definitions. Run `oxlint --fix` to convert them to type aliases, and keep module augmentations in declaration files.
+
+### Features
+
+* **oxlint-config:** add vitestConfig ([fe365a4](https://github.com/akky-xxxx/project-ts-items/commit/fe365a4ca14be78bbf58cbb72d3f106c45b71730))
+* **oxlint-config:** add vitestConfig ([ca2fdfc](https://github.com/akky-xxxx/project-ts-items/commit/ca2fdfce7e684e36820100f8fd79390bcd82407b))
+* **oxlint-config:** allow up to 300 lines in stories files ([431081c](https://github.com/akky-xxxx/project-ts-items/commit/431081cf08587efb6e7b0cc079875be9cf3d39ee))
+* **oxlint-config:** disable import/max-dependencies in baseConfig ([753ebc9](https://github.com/akky-xxxx/project-ts-items/commit/753ebc96df0fee6839bf775eeb9dc1226b34f73f))
+* **oxlint-config:** disable react-perf rules and no-magic-numbers in test files ([b56f99a](https://github.com/akky-xxxx/project-ts-items/commit/b56f99ae577ce739872589901f40dda65d180134))
+* **oxlint-config:** ignore type-level numbers in no-magic-numbers ([b4b7fa3](https://github.com/akky-xxxx/project-ts-items/commit/b4b7fa32ff6e4640bef8569060c59c9923c7c915))
+* **oxlint-config:** off the partial react-perf rules ([00d4208](https://github.com/akky-xxxx/project-ts-items/commit/00d42085e87a6baa41d7034ee0b90f6d97054946))
+* **oxlint-config:** prefer type aliases over interfaces ([7ae675f](https://github.com/akky-xxxx/project-ts-items/commit/7ae675f7de27cedf119cf13d78ce3dc8472643ac))
+* **oxlint-config:** relax baseConfig and storybookConfig rules ([420d0f2](https://github.com/akky-xxxx/project-ts-items/commit/420d0f2188335b950593bb494c8275df330a8242))
+* **oxlint-config:** update vitestConfig ([ff12dd1](https://github.com/akky-xxxx/project-ts-items/commit/ff12dd199ea71225b5b4a3694a1b7183181848c5))
+
 ## [0.1.0](https://github.com/akky-xxxx/project-ts-items/compare/oxlint-config-v0.0.1...oxlint-config-v0.1.0) (2026-11-09)
 
 
