@@ -38,7 +38,9 @@ export const OxlintConfigHome: FC<Props> = (props) => {
       <Section>
         <Heading headingTag="h2">{pagesTranslate("oxlintConfigHome.backgroundTitle")}</Heading>
 
-        <p>{pagesTranslate.rich("oxlintConfigHome.backgroundDescription", { br: renderLineBreak })}</p>
+        <p>
+          {pagesTranslate.rich("oxlintConfigHome.backgroundDescription", { br: renderLineBreak })}
+        </p>
       </Section>
     </Fragment>
   )

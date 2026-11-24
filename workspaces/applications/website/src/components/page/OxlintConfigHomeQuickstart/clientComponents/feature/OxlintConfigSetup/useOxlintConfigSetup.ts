@@ -9,7 +9,11 @@ export const useOxlintConfigSetup = () => {
   const { enabledSwitches, handleChangeBase, handleToggleSwitch, selectedBase } = useFormStates()
   const formValues = { enabledSwitches, selectedBase }
   const sourceKey = getSourceKey(formValues)
-  const switchItems = getSwitchItems({ enabledSwitches, handleToggleSwitch, pageTranslate: pagesTranslate })
+  const switchItems = getSwitchItems({
+    enabledSwitches,
+    handleToggleSwitch,
+    pageTranslate: pagesTranslate,
+  })
 
   return {
     handleChangeBase,

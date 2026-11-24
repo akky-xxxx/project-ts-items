@@ -34,7 +34,9 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
         <Heading headingTag="h1">{pageTitleText}</Heading>
       </Heading1Wrapper>
 
-      <p>{pagesTranslate.rich("oxlintConfigQuickstart.pageDescription", { br: renderLineBreak })}</p>
+      <p>
+        {pagesTranslate.rich("oxlintConfigQuickstart.pageDescription", { br: renderLineBreak })}
+      </p>
 
       <Section>
         <Heading headingTag="h2">{pagesTranslate("oxlintConfigQuickstart.installTitle")}</Heading>

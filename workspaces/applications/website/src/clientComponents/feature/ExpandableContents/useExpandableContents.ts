@@ -22,7 +22,9 @@ export const useExpandableContents = (input: Input) => {
     })
   }
   const buttonLabelText = componentsTranslate(
-    isExpanded ? "ui.expandableContents.collapseButtonLabelText" : "ui.expandableContents.expandButtonLabelText",
+    isExpanded
+      ? "ui.expandableContents.collapseButtonLabelText"
+      : "ui.expandableContents.expandButtonLabelText",
   )
   // 折りたたみ中はスクロール領域になるため、キーボードで操作でき、支援技術に名前が伝わるようにする
   const contentsAttributes: ContentsAttributes = isExpanded

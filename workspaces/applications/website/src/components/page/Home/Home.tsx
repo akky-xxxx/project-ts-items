@@ -33,7 +33,9 @@ export const Home: FC<Props> = (props) => {
       <section className={styles.section}>
         <Heading headingTag="h2">{pagesTranslate("home.pageTitle")}</Heading>
 
-        <p className={styles.p}>{pagesTranslate.rich("home.pageDescription", { br: renderLineBreak })}</p>
+        <p className={styles.p}>
+          {pagesTranslate.rich("home.pageDescription", { br: renderLineBreak })}
+        </p>
       </section>
 
       <section className={styles.section}>

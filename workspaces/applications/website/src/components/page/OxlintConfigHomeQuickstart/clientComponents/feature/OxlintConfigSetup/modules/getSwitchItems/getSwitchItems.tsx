@@ -28,9 +28,12 @@ const SWITCH_ITEM_SETTINGS = {
     getLabelNode: (pageTranslate) => (
       <SwitchDescription
         titleText="Storybook"
-        descriptionText={pageTranslate.rich("oxlintConfigQuickstart.switching.storybookDescription", {
-          br: renderLineBreak,
-        })}
+        descriptionText={pageTranslate.rich(
+          "oxlintConfigQuickstart.switching.storybookDescription",
+          {
+            br: renderLineBreak,
+          },
+        )}
       />
     ),
     value: "storybook",
@@ -39,9 +42,12 @@ const SWITCH_ITEM_SETTINGS = {
     getLabelNode: (pageTranslate) => (
       <SwitchDescription
         titleText={pageTranslate("oxlintConfigQuickstart.switching.typeAwareLintingTitle")}
-        descriptionText={pageTranslate.rich("oxlintConfigQuickstart.switching.typeAwareLintingDescription", {
-          br: renderLineBreak,
-        })}
+        descriptionText={pageTranslate.rich(
+          "oxlintConfigQuickstart.switching.typeAwareLintingDescription",
+          {
+            br: renderLineBreak,
+          },
+        )}
       />
     ),
     value: "type-aware-linting",
