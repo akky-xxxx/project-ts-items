@@ -20,7 +20,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 
   return {
     description: pagesTranslate("oxfmtConfigQuickstart.pageDescription"),
-    title: `${pagesTranslate("oxfmtConfigQuickstart.pageTitle")} | ${PACKAGE_MASTER.oxfmtConfig.name}`,
+    title: `${pagesTranslate("oxfmtConfigQuickstart.pageTitle")} | ${PACKAGE_MASTER["oxfmt-config"].name}`,
   }
 }
 
@@ -35,8 +35,8 @@ const Page = async (): Promise<ReactNode> => {
           text: pagesTranslate("packages.pageTitle"),
         },
         {
-          href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
-          text: PACKAGE_MASTER.oxfmtConfig.name,
+          href: `/packages/${PACKAGE_MASTER["oxfmt-config"].name}/`,
+          text: PACKAGE_MASTER["oxfmt-config"].name,
         },
       ]}
     />

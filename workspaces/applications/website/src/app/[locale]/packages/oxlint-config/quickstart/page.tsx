@@ -21,7 +21,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   return {
     // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
     description: pagesTranslate.markup("oxlintConfigQuickstart.pageDescription", { br: () => " " }),
-    title: `${pagesTranslate("oxlintConfigQuickstart.pageTitle")} | ${PACKAGE_MASTER.oxlintConfig.name}`,
+    title: `${pagesTranslate("oxlintConfigQuickstart.pageTitle")} | ${PACKAGE_MASTER["oxlint-config"].name}`,
   }
 }
 
@@ -36,8 +36,8 @@ const Page = async (): Promise<ReactNode> => {
           text: pagesTranslate("packages.pageTitle"),
         },
         {
-          href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
-          text: PACKAGE_MASTER.oxlintConfig.name,
+          href: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/`,
+          text: PACKAGE_MASTER["oxlint-config"].name,
         },
       ]}
     />

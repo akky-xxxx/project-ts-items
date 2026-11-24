@@ -17,7 +17,7 @@ const meta = {
     },
   },
   args: {
-    currentPageText: PACKAGE_MASTER.oxlintConfig.name,
+    currentPageText: PACKAGE_MASTER["oxlint-config"].name,
     items: [
       {
         href: "/packages/",

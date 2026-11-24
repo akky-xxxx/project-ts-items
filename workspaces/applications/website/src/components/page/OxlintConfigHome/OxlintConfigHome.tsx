@@ -21,11 +21,11 @@ export const OxlintConfigHome: FC<Props> = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb currentPageText={PACKAGE_MASTER.oxlintConfig.name} items={breadcrumbItems} />
+      <Breadcrumb currentPageText={PACKAGE_MASTER["oxlint-config"].name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={LINT_ICON_ELEMENT}>
         <Heading headingTag="h1">
-          {PROJECT_NAME}/{PACKAGE_MASTER.oxlintConfig.name}
+          {PROJECT_NAME}/{PACKAGE_MASTER["oxlint-config"].name}
         </Heading>
       </Heading1Wrapper>
 
