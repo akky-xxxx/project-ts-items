@@ -16,23 +16,23 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const translate = await getTranslations({ locale, namespace: "pages.oxfmtConfigQuickstart" })
+  const pagesTranslate = await getTranslations({ locale, namespace: "pages" })
 
   return {
-    description: translate("pageDescription"),
-    title: `${translate("pageTitle")} | ${PACKAGE_MASTER.oxfmtConfig.name}`,
+    description: pagesTranslate("oxfmtConfigQuickstart.pageDescription"),
+    title: `${pagesTranslate("oxfmtConfigQuickstart.pageTitle")} | ${PACKAGE_MASTER.oxfmtConfig.name}`,
   }
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const packagesPageTranslate = await getTranslations("pages.packages")
+  const pagesTranslate = await getTranslations("pages")
 
   return (
     <OxfmtConfigHomeQuickstart
       breadcrumbItems={[
         {
           href: "/packages/",
-          text: packagesPageTranslate("pageTitle"),
+          text: pagesTranslate("packages.pageTitle"),
         },
         {
           href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,

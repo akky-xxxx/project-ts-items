@@ -17,12 +17,12 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const translate = await getTranslations({ locale, namespace: "pages.home" })
+  const pagesTranslate = await getTranslations({ locale, namespace: "pages" })
 
   return {
     // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
-    description: translate.markup("pageDescription", { br: () => " " }),
-    title: translate("pageTitle"),
+    description: pagesTranslate.markup("home.pageDescription", { br: () => " " }),
+    title: pagesTranslate("home.pageTitle"),
   }
 }
 
