@@ -2,7 +2,9 @@ import { CheckedIcon } from "./CheckedIcon/CheckedIcon.tsx"
 import { CommandIcon } from "./CommandIcon/CommandIcon.tsx"
 import { DEFAULT_SIZE } from "./constants/DEFAULT_SIZE/DEFAULT_SIZE.ts"
 import { CopyIcon } from "./CopyIcon/CopyIcon.tsx"
+import { CrossIcon } from "./CrossIcon/CrossIcon.tsx"
 import { GearIcon } from "./GearIcon/GearIcon.tsx"
+import { HamburgerIcon } from "./HamburgerIcon/HamburgerIcon.tsx"
 import { LanguageIcon } from "./LanguageIcon/LanguageIcon.tsx"
 import { MoonIcon } from "./MoonIcon/MoonIcon.tsx"
 import { SearchIcon } from "./SearchIcon/SearchIcon.tsx"
@@ -29,7 +31,9 @@ const Icons: FC<Props> = (props) => (
     <CheckedIcon {...IconSize} {...props} />
     <CommandIcon {...IconSize} {...props} />
     <CopyIcon {...IconSize} {...props} />
+    <CrossIcon {...IconSize} {...props} />
     <GearIcon {...IconSize} {...props} />
+    <HamburgerIcon {...IconSize} {...props} />
     <LanguageIcon {...IconSize} {...props} />
     <MoonIcon {...IconSize} {...props} />
     <SearchIcon {...IconSize} {...props} />
