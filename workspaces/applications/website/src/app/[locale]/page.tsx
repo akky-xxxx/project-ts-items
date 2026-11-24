@@ -27,12 +27,13 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const [packageTranslate, oxfmtConfigVersion, oxlintConfigVersion, reactTypesVersion] = await Promise.all([
-    getTranslations("packages"),
-    getPackageVersion("oxfmt-config"),
-    getPackageVersion("oxlint-config"),
-    getPackageVersion("react-types"),
-  ])
+  const [packageTranslate, oxfmtConfigVersion, oxlintConfigVersion, reactTypesVersion] =
+    await Promise.all([
+      getTranslations("packages"),
+      getPackageVersion("oxfmt-config"),
+      getPackageVersion("oxlint-config"),
+      getPackageVersion("react-types"),
+    ])
 
   return (
     <Home

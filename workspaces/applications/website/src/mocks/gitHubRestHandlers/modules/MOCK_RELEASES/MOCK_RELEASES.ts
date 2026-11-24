@@ -27,7 +27,11 @@ const createRelease = (id: number, tagName: string): GitHubRelease => ({
 })
 
 /** モックの release 一覧(新しい順)。実際の結果と見分けるため、tag の末尾に -mock を付ける */
-export const MOCK_RELEASES = ["oxlint-config-v1.1.0-mock", "oxlint-config-v1.0.0-mock", "react-types-v1.0.0-mock"].map(
+export const MOCK_RELEASES = [
+  "oxlint-config-v1.1.0-mock",
+  "oxlint-config-v1.0.0-mock",
+  "react-types-v1.0.0-mock",
+].map(
   // Id は古いものから 1, 2, … と振る
   (tagName, index, tagNames) => createRelease(tagNames.length - index, tagName),
 ) satisfies GitHubRelease[]
