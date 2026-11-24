@@ -40,6 +40,7 @@ bun lint:oxlint      # 個別実行も可能(lint:<name> / fix:<name>)
 ## 構成
 
 ```
+docs/adr/                   # ADR(過去に決めた判断とその理由)。NNNN-<kebab-case の要約>.md の連番
 scripts/<tool>/<name>/      # ルートの設定からのみ使うスクリプト(例: commitlint の directories)
 workspaces/applications/*   # アプリケーション(例: website)
 workspaces/configurations   # リポジトリ固有の設定(1ディレクトリ1エクスポート)。@ts-items/configurations として workspace 化
@@ -47,6 +48,7 @@ workspaces/feature-flags    # feature flag の定義(website から利用する�
 workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケージ名 の2階層(例: configurations/oxfmt-config)
 ```
 
+- 依存の管理方法・ツール構成などの方針を変える前に、`docs/adr/` に同じ対象を扱う ADR が無いか確認する。ADR で見送った方針を採る場合は、ADR の「再検討の条件」に当たるかを確かめ、当たらなければ着手しない
 - ルートの `*.config.mts` は薄いエントリにとどめる。oxfmt / oxlint の共通設定は `@ts-items/oxfmt-config` / `@ts-items/oxlint-config` から import し、このリポジトリ固有の設定(cspell の `packages.txt`、oxlint の `forConfigurationFiles` など)は `workspaces/configurations/<tool>/<name>/` に置く。ルートの設定からのみ使うスクリプトは `scripts/<tool>/<name>/` に置く
 - `workspaces/configurations/` の設定を workspace から使う場合は `"@ts-items/configurations": "workspace:*"` に依存し、`@ts-items/configurations/<tool>` で import する(`<tool>/index.mts` で集約し、公開対象は `workspaces/configurations/package.json` の `exports` に追加)
 - `@ts-items/configurations` は build せず `.mts` を直接 `exports` で公開する。自身の lint 設定を持つ
