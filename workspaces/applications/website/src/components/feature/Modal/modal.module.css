@@ -1,0 +1,9 @@
+.root {
+  background-color: var(--color-background);
+  border: none;
+  padding: 0;
+}
+
+.spMenu {
+  width: 100%;
+}

@@ -45,6 +45,15 @@ body {
     color var(--duration-transition);
 }
 
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
 h1,
 h2,
 h3,
