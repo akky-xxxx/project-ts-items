@@ -1,7 +1,7 @@
 import { expect } from "storybook/test"
 
 import { restoreThemeDatasetForStorybook } from "../../../tests/restoreThemeDatasetForStorybook/restoreThemeDatasetForStorybook.ts"
-import meta, { Bash, TypeScript } from "./CodeBlock.stories.tsx"
+import meta, { Bash, Tsx, TypeScript } from "./CodeBlock.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -76,4 +76,17 @@ export const TestForBashDarkColor = createTokenColorStory(Bash, {
   color: "rgb(179, 146, 240)",
   theme: "dark",
   tokenText: "bun",
+})
+
+// JSX のタグ名は tsx の文法でだけタグとして色付けされる
+export const TestForTsxLightColor = createTokenColorStory(Tsx, {
+  color: "rgb(34, 134, 58)",
+  theme: "light",
+  tokenText: "div",
+})
+
+export const TestForTsxDarkColor = createTokenColorStory(Tsx, {
+  color: "rgb(133, 232, 157)",
+  theme: "dark",
+  tokenText: "div",
 })

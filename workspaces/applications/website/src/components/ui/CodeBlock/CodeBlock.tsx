@@ -9,7 +9,7 @@ import styles from "./codeBlock.module.css"
 
 type Props = {
   code: string
-  lang: "bash" | "typescript"
+  lang: "bash" | "tsx" | "typescript"
 }
 
 const FIRST_LINE_OFFSET = 0

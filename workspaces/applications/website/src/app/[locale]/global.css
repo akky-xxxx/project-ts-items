@@ -111,3 +111,9 @@ strong {
     }
   }
 }
+
+.code {
+  background-color: var(--color-background-secondary);
+  font-style: italic;
+  padding: 0.3rem 0.7rem;
+}
