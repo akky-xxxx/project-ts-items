@@ -24,6 +24,9 @@ describe("reactConfig", () => {
     ["jsxNoNewFunctionAsProp/disabled.tsx", "react-perf(jsx-no-new-function-as-prop)", "none"],
     ["jsxNoNewObjectAsProp/disabled.tsx", "react-perf(jsx-no-new-object-as-prop)", "none"],
     ["jsxPropsNoSpreading/disabled.tsx", "react(jsx-props-no-spreading)", "none"],
+    ["noUnknownProperty/ignore/command.tsx", "react(no-unknown-property)", "none"],
+    ["noUnknownProperty/ignore/commandfor.tsx", "react(no-unknown-property)", "none"],
+    ["noUnknownProperty/invalid.tsx", "react(no-unknown-property)", "error"],
     ["reactInJsxScope/disabled.tsx", "react(react-in-jsx-scope)", "none"],
   ] as const)("%s で %s が %s になる", (fixture, code, expected) => {
     expect(getSeverity(code, fixture)).toBe(expected)
