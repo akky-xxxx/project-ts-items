@@ -84,7 +84,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更した場合、対応する dry run の fixture とテストケースが追加・更新されているか
 - 設定ファイル経由でしか参照されない依存が knip の `ignoreDependencies` に追加されているか、逆に不要な ignore が残っていないか
 - cspell の未知語が適切な辞書(`packages.txt` = パッケージ名・ツール名、`domain.txt` = リポジトリ固有の固有名詞)に追加されているか。辞書を追加した場合、`dictionaryNames` と `@ts-items/configurations` 自身の `cspell.config.mts` の両方に反映されているか
-- 依存の追加・更新が exact バージョンになっているか(`bunfig.toml`)
+- `dependencies` / `devDependencies` のうちレジストリから取得する依存の追加・更新が exact バージョンになっているか(`bunfig.toml`)。ただし公開パッケージ(`workspaces/packages/**`)の `dependencies` は `^` 付きの範囲になっているか(`bun add` / `bun update` は exact で書き込むため、付け直し漏れが無いか)
 
 ### セキュリティ
 
