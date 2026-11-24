@@ -1,0 +1,56 @@
+import { hasLocale } from "next-intl"
+import { getTranslations } from "next-intl/server"
+import { notFound } from "next/navigation"
+
+import { PackageSwitcher } from "../../../../clientComponents/feature/PackageSwitcher/PackageSwitcher.tsx"
+import { DocsLayout } from "../../../../components/layout/DocsLayout/DocsLayout.tsx"
+import { DocsSidebar } from "../../../../components/layout/DocsSidebar/DocsSidebar.tsx"
+import { DocsNavigationUl } from "../../../../components/ui/DocsNavigationUl/DocsNavigationUl.tsx"
+import { PACKAGE_MASTER } from "../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
+import { routing } from "../../../../i18n/constants/routing/routing.ts"
+import { getPackageVersion } from "../../../../utilities/getPackageVersion/getPackageVersion.ts"
+
+import type { ReactNode } from "react"
+
+type Props = LayoutProps<"/[locale]">
+
+export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }))
+
+const Layout = async (props: Props): Promise<ReactNode> => {
+  const { children, params } = props
+  const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+  const [pagesTranslate, versionText] = await Promise.all([
+    getTranslations({ locale, namespace: "pages" }),
+    getPackageVersion("react-types"),
+  ])
+
+  return (
+    <DocsLayout
+      docsSidebarElement={
+        <DocsSidebar
+          npmHref="https://www.npmjs.com/package/@ts-items/react-types"
+          packagesSelectorElement={<PackageSwitcher />}
+          docsNavigationUlElement={
+            <DocsNavigationUl
+              items={[
+                {
+                  href: `/packages/${PACKAGE_MASTER["react-types"].name}/`,
+                  text: pagesTranslate("reactTypesHome.pageTitle"),
+                },
+              ]}
+            />
+          }
+          versionText={versionText}
+        />
+      }
+    >
+      {children}
+    </DocsLayout>
+  )
+}
+
+export default Layout
