@@ -18,7 +18,7 @@ describe("package master を配列にした上でユニーク性・同一性を�
 
   it("順序が意図したとおりになっていること", () => {
     const names = SORTED_PACKAGES_AS_DISPLAY_ORDER.map(({ name }) => name)
-    const expected = ["oxlint-config", "oxfmt-config"] as const satisfies PackageName[]
+    const expected = ["oxlint-config", "oxfmt-config", "react-types"] as const satisfies PackageName[]
     expect(names).toStrictEqual(expected)
   })
 })

@@ -16,33 +16,36 @@ const buildItems = (
     versionTexts: {
       "oxfmt-config": "1.0.0",
       "oxlint-config": "2.0.0",
+      "react-types": "3.0.0",
     },
   })
 
 describe(buildPackageCardItems, () => {
-  it("oxlint-config と oxfmt-config の順に2件を返す", () => {
+  it("oxlint-config、oxfmt-config、react-types の順に3件を返す", () => {
     expect(buildItems().map((item) => item.packageNameText)).toStrictEqual([
       "@ts-items/oxlint-config",
       "@ts-items/oxfmt-config",
+      "@ts-items/react-types",
     ])
   })
 
   it("各パッケージのバージョンを返す", () => {
-    expect(buildItems().map((item) => item.versionText)).toStrictEqual(["2.0.0", "1.0.0"])
+    expect(buildItems().map((item) => item.versionText)).toStrictEqual(["2.0.0", "1.0.0", "3.0.0"])
   })
 
   it("各パッケージの詳細ページへのリンク先を返す", () => {
     expect(buildItems().map((item) => item.innerLinkHref)).toStrictEqual([
       "/packages/oxlint-config/",
       "/packages/oxfmt-config/",
+      "/packages/react-types/",
     ])
   })
 
   it("h2 を指定すると各カードの見出しを h2 にする", () => {
-    expect(buildItems("h2").map((item) => item.headingTag)).toStrictEqual(["h2", "h2"])
+    expect(buildItems("h2").map((item) => item.headingTag)).toStrictEqual(["h2", "h2", "h2"])
   })
 
   it("h3 を指定すると各カードの見出しを h3 にする", () => {
-    expect(buildItems("h3").map((item) => item.headingTag)).toStrictEqual(["h3", "h3"])
+    expect(buildItems("h3").map((item) => item.headingTag)).toStrictEqual(["h3", "h3", "h3"])
   })
 })
