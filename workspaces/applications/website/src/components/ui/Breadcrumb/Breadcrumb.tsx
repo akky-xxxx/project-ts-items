@@ -21,10 +21,10 @@ type Props = {
 
 export const Breadcrumb: FC<Props> = (props) => {
   const { currentPageText, items } = props
-  const breadcrumbTranslate = useTranslations("components.ui.breadcrumb")
+  const componentsTranslate = useTranslations("components")
 
   return (
-    <nav aria-label={breadcrumbTranslate("labelText")}>
+    <nav aria-label={componentsTranslate("ui.breadcrumb.labelText")}>
       <ol className={styles.ol}>
         <BreadcrumbItem href="/" isCurrentPage={false}>
           {PROJECT_NAME}

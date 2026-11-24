@@ -13,7 +13,7 @@ type ContentsAttributes = Pick<HTMLAttributes<HTMLDivElement>, "aria-label" | "r
 
 export const useExpandableContents = (input: Input) => {
   const { maxHeight = "300px" } = input
-  const expandableContentsTranslate = useTranslations("components.ui.expandableContents")
+  const componentsTranslate = useTranslations("components")
   const contentsId = useId()
   const [isExpanded, setIsExpanded] = useState(false)
   const handleToggle = () => {
@@ -21,14 +21,14 @@ export const useExpandableContents = (input: Input) => {
       setIsExpanded((previous) => !previous)
     })
   }
-  const buttonLabelText = expandableContentsTranslate(
-    isExpanded ? "collapseButtonLabelText" : "expandButtonLabelText",
+  const buttonLabelText = componentsTranslate(
+    isExpanded ? "ui.expandableContents.collapseButtonLabelText" : "ui.expandableContents.expandButtonLabelText",
   )
   // 折りたたみ中はスクロール領域になるため、キーボードで操作でき、支援技術に名前が伝わるようにする
   const contentsAttributes: ContentsAttributes = isExpanded
     ? {}
     : {
-        "aria-label": expandableContentsTranslate("contentsLabelText"),
+        "aria-label": componentsTranslate("ui.expandableContents.contentsLabelText"),
         "role": "region",
         "tabIndex": 0,
       }
