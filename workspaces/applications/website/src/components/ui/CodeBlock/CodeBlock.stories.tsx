@@ -7,7 +7,7 @@ const meta = {
 
   argTypes: {
     code: { description: "表示するコード" },
-    lang: { description: "syntax highlight に使う言語(bash・typescript)" },
+    lang: { description: "syntax highlight に使う言語(bash・tsx・typescript)" },
   },
 } satisfies Meta<typeof CodeBlock>
 
@@ -19,6 +19,13 @@ export const Bash: Story = {
   args: {
     code: "bun add -D @ts-items/oxlint-config oxlint",
     lang: "bash",
+  },
+}
+
+export const Tsx: Story = {
+  args: {
+    code: "const Greeting = () => <div>Hello World</div>",
+    lang: "tsx",
   },
 }
 
