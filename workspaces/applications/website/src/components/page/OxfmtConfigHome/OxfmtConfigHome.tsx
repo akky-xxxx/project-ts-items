@@ -16,7 +16,7 @@ type Props = {
 
 export const OxfmtConfigHome: FC<Props> = (props) => {
   const { breadcrumbItems } = props
-  const oxfmtConfigHomeTranslate = useTranslations("pages.oxfmtConfigHome")
+  const pagesTranslate = useTranslations("pages")
 
   return (
     <Fragment>
@@ -29,15 +29,15 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
       </Heading1Wrapper>
 
       <Section>
-        <Heading headingTag="h2">{oxfmtConfigHomeTranslate("pageTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigHome.pageTitle")}</Heading>
 
-        <p>{oxfmtConfigHomeTranslate("pageDescription")}</p>
+        <p>{pagesTranslate("oxfmtConfigHome.pageDescription")}</p>
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{oxfmtConfigHomeTranslate("backgroundTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigHome.backgroundTitle")}</Heading>
 
-        <p>{oxfmtConfigHomeTranslate("backgroundDescription")}</p>
+        <p>{pagesTranslate("oxfmtConfigHome.backgroundDescription")}</p>
       </Section>
     </Fragment>
   )

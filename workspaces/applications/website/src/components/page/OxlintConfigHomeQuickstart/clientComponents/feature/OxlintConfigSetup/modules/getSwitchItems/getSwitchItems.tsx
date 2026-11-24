@@ -8,7 +8,7 @@ import type { SwitchName } from "../../types/SwitchName/SwitchName.ts"
 import type { createTranslator, Messages } from "next-intl"
 import type { ComponentProps, ReactNode } from "react"
 
-type PageTranslate = ReturnType<typeof createTranslator<Messages, "pages.oxlintConfigQuickstart">>
+type PageTranslate = ReturnType<typeof createTranslator<Messages, "pages">>
 
 type Input = {
   enabledSwitches: FormValues["enabledSwitches"]
@@ -28,7 +28,7 @@ const SWITCH_ITEM_SETTINGS = {
     getLabelNode: (pageTranslate) => (
       <SwitchDescription
         titleText="Storybook"
-        descriptionText={pageTranslate.rich("switching.storybookDescription", {
+        descriptionText={pageTranslate.rich("oxlintConfigQuickstart.switching.storybookDescription", {
           br: renderLineBreak,
         })}
       />
@@ -38,8 +38,8 @@ const SWITCH_ITEM_SETTINGS = {
   typeAwareLinting: {
     getLabelNode: (pageTranslate) => (
       <SwitchDescription
-        titleText={pageTranslate("switching.typeAwareLintingTitle")}
-        descriptionText={pageTranslate.rich("switching.typeAwareLintingDescription", {
+        titleText={pageTranslate("oxlintConfigQuickstart.switching.typeAwareLintingTitle")}
+        descriptionText={pageTranslate.rich("oxlintConfigQuickstart.switching.typeAwareLintingDescription", {
           br: renderLineBreak,
         })}
       />
@@ -50,7 +50,7 @@ const SWITCH_ITEM_SETTINGS = {
     getLabelNode: (pageTranslate) => (
       <SwitchDescription
         titleText="Vitest"
-        descriptionText={pageTranslate.rich("switching.vitestDescription", {
+        descriptionText={pageTranslate.rich("oxlintConfigQuickstart.switching.vitestDescription", {
           br: renderLineBreak,
         })}
       />
