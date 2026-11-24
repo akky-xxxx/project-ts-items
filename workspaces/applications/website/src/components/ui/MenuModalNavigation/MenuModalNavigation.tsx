@@ -8,14 +8,14 @@ import type { FC } from "react"
 import styles from "./menuModalNavigation.module.css"
 
 export const MenuModalNavigation: FC = () => {
-  const navigationTranslations = useTranslations("header.navigation")
+  const navigationTranslate = useTranslations("header.navigation")
 
   return (
-    <nav aria-label={navigationTranslations("ariaLabel")}>
+    <nav aria-label={navigationTranslate("ariaLabel")}>
       <ul className={styles.ul}>
         <li>
           <Link className={styles.link} href="/packages/">
-            {navigationTranslations("package")}
+            {navigationTranslate("package")}
           </Link>
         </li>
 
@@ -24,7 +24,7 @@ export const MenuModalNavigation: FC = () => {
           newFeatureElement={
             <li>
               <Link className={styles.link} href="/change-log/">
-                {navigationTranslations("changeLog")}
+                {navigationTranslate("changeLog")}
               </Link>
             </li>
           }
