@@ -20,11 +20,11 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb currentPageText={PACKAGE_MASTER.oxfmtConfig.name} items={breadcrumbItems} />
+      <Breadcrumb currentPageText={PACKAGE_MASTER["oxfmt-config"].name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={FORMAT_ICON_ELEMENT}>
         <Heading headingTag="h1">
-          {PROJECT_NAME}/{PACKAGE_MASTER.oxfmtConfig.name}
+          {PROJECT_NAME}/{PACKAGE_MASTER["oxfmt-config"].name}
         </Heading>
       </Heading1Wrapper>
 

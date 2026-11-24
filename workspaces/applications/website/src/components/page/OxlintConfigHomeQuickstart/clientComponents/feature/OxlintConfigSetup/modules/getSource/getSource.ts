@@ -39,7 +39,7 @@ export const getSource = (formValues: FormValues) => {
   const [firstOptionLine] = optionLines
 
   const source = [
-    `import { ${configurationNames} } from "${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}"
+    `import { ${configurationNames} } from "${PROJECT_NAME}/${PACKAGE_MASTER["oxlint-config"].name}"
 import { defineConfig } from "oxlint"
 
 export default defineConfig({

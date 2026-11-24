@@ -47,9 +47,9 @@ const meta = {
   args: {
     descriptionNode: "{descriptionNode}",
     headingTag: "h2",
-    innerLinkHref: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
+    innerLinkHref: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/`,
     packageLogoNode: <DummyForStorybook label="P" />,
-    packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER.oxlintConfig.name}`,
+    packageNameText: `${PROJECT_NAME}/${PACKAGE_MASTER["oxlint-config"].name}`,
     versionText: "1.0.0",
   },
   render: (args) => <Localized {...args} />,

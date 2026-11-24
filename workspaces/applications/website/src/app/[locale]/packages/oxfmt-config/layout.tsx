@@ -38,11 +38,11 @@ const Layout = async (props: Props): Promise<ReactNode> => {
             <DocsNavigationUl
               items={[
                 {
-                  href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
+                  href: `/packages/${PACKAGE_MASTER["oxfmt-config"].name}/`,
                   text: pagesTranslate("oxfmtConfigHome.pageTitle"),
                 },
                 {
-                  href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/quickstart/`,
+                  href: `/packages/${PACKAGE_MASTER["oxfmt-config"].name}/quickstart/`,
                   text: pagesTranslate("oxfmtConfigQuickstart.pageTitle"),
                 },
               ]}

@@ -38,11 +38,11 @@ const Layout = async (props: Props): Promise<ReactNode> => {
             <DocsNavigationUl
               items={[
                 {
-                  href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
+                  href: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/`,
                   text: pagesTranslate("oxlintConfigHome.pageTitle"),
                 },
                 {
-                  href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/quickstart/`,
+                  href: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/quickstart/`,
                   text: pagesTranslate("oxlintConfigQuickstart.pageTitle"),
                 },
               ]}

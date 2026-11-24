@@ -12,7 +12,7 @@ const meta = {
     nextjs: {
       navigation: {
         // 表示中のパッケージ名は pathname から求める
-        pathname: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
+        pathname: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/`,
       },
     },
   },

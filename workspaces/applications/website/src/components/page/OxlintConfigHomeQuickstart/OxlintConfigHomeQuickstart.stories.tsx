@@ -18,8 +18,8 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
         text: pagesTranslate("packages.pageTitle"),
       },
       {
-        href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
-        text: PACKAGE_MASTER.oxlintConfig.name,
+        href: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/`,
+        text: PACKAGE_MASTER["oxlint-config"].name,
       },
     ],
     [pagesTranslate],
@@ -41,8 +41,8 @@ const meta = {
     breadcrumbItems: [
       { href: "/packages/", text: "{breadcrumbItemText}" },
       {
-        href: `/packages/${PACKAGE_MASTER.oxlintConfig.name}/`,
-        text: PACKAGE_MASTER.oxlintConfig.name,
+        href: `/packages/${PACKAGE_MASTER["oxlint-config"].name}/`,
+        text: PACKAGE_MASTER["oxlint-config"].name,
       },
     ],
   },

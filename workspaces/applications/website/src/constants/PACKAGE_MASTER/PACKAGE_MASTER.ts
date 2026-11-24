@@ -10,14 +10,15 @@ type PackageRecord = {
 }
 
 export const PACKAGE_MASTER = {
-  oxfmtConfig: {
+  "oxfmt-config": {
     description: "oxfmt-config.description",
     logoImagePath: LOGO_IMAGE_PATHS.formatter,
     name: "oxfmt-config",
   },
-  oxlintConfig: {
+  "oxlint-config": {
     description: "oxlint-config.description",
     logoImagePath: LOGO_IMAGE_PATHS.linter,
     name: "oxlint-config",
   },
-} as const satisfies Record<string, PackageRecord>
+  // TODO: 先に既存キーの修正をするために一旦 react-types を取り除く
+} as const satisfies Record<Exclude<PackageName, "react-types">, PackageRecord>

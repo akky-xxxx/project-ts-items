@@ -18,8 +18,8 @@ const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) 
         text: pagesTranslate("packages.pageTitle"),
       },
       {
-        href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
-        text: PACKAGE_MASTER.oxfmtConfig.name,
+        href: `/packages/${PACKAGE_MASTER["oxfmt-config"].name}/`,
+        text: PACKAGE_MASTER["oxfmt-config"].name,
       },
     ],
     [pagesTranslate],
@@ -41,8 +41,8 @@ const meta = {
     breadcrumbItems: [
       { href: "/packages/", text: "{breadcrumbItemText}" },
       {
-        href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
-        text: PACKAGE_MASTER.oxfmtConfig.name,
+        href: `/packages/${PACKAGE_MASTER["oxfmt-config"].name}/`,
+        text: PACKAGE_MASTER["oxfmt-config"].name,
       },
     ],
   },
