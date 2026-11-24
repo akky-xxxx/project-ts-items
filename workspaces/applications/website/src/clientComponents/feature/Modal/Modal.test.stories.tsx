@@ -4,6 +4,7 @@ import { getUserEventForStorybook } from "../../../tests/getUserEventForStoryboo
 import meta, { SpMenu } from "./Modal.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import type { MouseEvent } from "react"
 
 const testMeta = {
   ...meta,
@@ -39,6 +40,10 @@ const getBackdropY = (dialog: HTMLElement) => {
   return (bottom + globalThis.innerHeight) / 2
 }
 
+const preventDefault = (event: MouseEvent) => {
+  event.preventDefault()
+}
+
 export const TestForHiddenByDefault: Story = {
   ...SpMenu,
   play: async (context) => {
@@ -67,6 +72,39 @@ export const TestForCloseByEscapeKey: Story = {
     await waitFor(async () => {
       await expect(within(canvasElement).getByRole("dialog", { hidden: true })).not.toBeVisible()
     })
+  },
+}
+
+export const TestForCloseByLinkClick: Story = {
+  ...SpMenu,
+  args: {
+    ...SpMenu.args,
+    // Vitest のブラウザモードでは実際に遷移するとテストページとの接続が切れるため、遷移だけ抑止する
+    children: (
+      <a href="#modal-link" onClick={preventDefault}>
+        リンク
+      </a>
+    ),
+  },
+  play: async (context) => {
+    const { canvasElement } = context
+    const userEvent = await openModal(canvasElement)
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("link", { name: "リンク" }))
+    await waitFor(async () => {
+      await expect(canvas.getByRole("dialog", { hidden: true })).not.toBeVisible()
+    })
+  },
+}
+
+export const TestForKeepOpenByContentClick: Story = {
+  ...SpMenu,
+  play: async (context) => {
+    const { canvasElement } = context
+    const userEvent = await openModal(canvasElement)
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByText("{Modal}"))
+    await expect(canvas.getByRole("dialog")).toBeVisible()
   },
 }
 

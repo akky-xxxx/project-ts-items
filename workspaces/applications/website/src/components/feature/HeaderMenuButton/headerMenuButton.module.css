@@ -1,0 +1,22 @@
+.root {
+  &:has(dialog[open]) {
+    button[command="show-modal"] {
+      display: none;
+    }
+  }
+
+  &:not(&:has(dialog[open])) {
+    button[command="close"] {
+      display: none;
+    }
+  }
+
+  @media (--medium) or (--large) {
+    display: none;
+  }
+}
+
+.button {
+  background-color: transparent;
+  border: 0;
+}

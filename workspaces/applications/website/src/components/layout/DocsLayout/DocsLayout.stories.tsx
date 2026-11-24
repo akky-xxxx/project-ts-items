@@ -7,10 +7,15 @@ import { DocsLayout } from "./DocsLayout.tsx"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
+const MENU_BUTTON_ELEMENT = <DummyForStorybook label="menuButtonElement" />
 const NAVIGATION_ELEMENT = <DummyForStorybook label="navigationElement" />
 const TOOL_ELEMENT = <DummyForStorybook label="toolElement" />
 const HEADER_INNER_ELEMENT = (
-  <HeaderInner navigationElement={NAVIGATION_ELEMENT} toolElement={TOOL_ELEMENT} />
+  <HeaderInner
+    menuButtonElement={MENU_BUTTON_ELEMENT}
+    navigationElement={NAVIGATION_ELEMENT}
+    toolElement={TOOL_ELEMENT}
+  />
 )
 
 const WithRootLayout: FC<ComponentProps<typeof DocsLayout>> = (props) => (

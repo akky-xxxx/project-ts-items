@@ -7,6 +7,10 @@ const meta = {
   component: HeaderInner,
 
   argTypes: {
+    menuButtonElement: {
+      control: false,
+      description: "SP 幅で表示するメニューボタン(HeaderMenuButton を想定)",
+    },
     navigationElement: {
       control: false,
       description: "ヘッダーのナビゲーション(HeaderNavigation を想定)",
@@ -17,6 +21,7 @@ const meta = {
     },
   },
   args: {
+    menuButtonElement: <DummyForStorybook label="menuButtonElement" />,
     navigationElement: <DummyForStorybook label="navigationElement" />,
     toolElement: <DummyForStorybook label="toolElement" />,
   },

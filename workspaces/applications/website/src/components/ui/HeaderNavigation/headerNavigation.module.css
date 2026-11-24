@@ -1,3 +1,9 @@
+.root {
+  @media (--small) {
+    display: none;
+  }
+}
+
 .ul {
   column-gap: 2.6rem;
   display: flex;

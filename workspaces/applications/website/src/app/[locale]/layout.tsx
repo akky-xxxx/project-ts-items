@@ -3,20 +3,24 @@ import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 
 import { HeaderTool } from "../../clientComponents/feature/HeaderTool/HeaderTool.tsx"
+import { MenuModalTool } from "../../clientComponents/feature/MenuModalTool/MenuModalTool.tsx"
+import { HeaderMenuButton } from "../../components/feature/HeaderMenuButton/HeaderMenuButton.tsx"
+import { MenuModalInner } from "../../components/layout/MenuModalInner/MenuModalInner.tsx"
 import { RootLayout } from "../../components/layout/RootLayout/RootLayout.tsx"
 import { HeaderInner } from "../../components/ui/HeaderInner/HeaderInner.tsx"
 import { HeaderNavigation } from "../../components/ui/HeaderNavigation/HeaderNavigation.tsx"
+import { MenuModalNavigation } from "../../components/ui/MenuModalNavigation/MenuModalNavigation.tsx"
 import { COOKIE_KEY_THEME } from "../../constants/COOKIE_KEYS/COOKIE_KEYS.ts"
 import { FONT_VARIABLES } from "../../constants/FONT_VARIABLES/FONT_VARIABLES.ts"
 import { PROJECT_NAME } from "../../constants/PROJECT_NAME/PROJECT_NAME.ts"
 import { routing } from "../../i18n/constants/routing/routing.ts"
 import { getThemeFromCookie } from "../../utilities/getThemeFromCookie/getThemeFromCookie.ts"
 
-import type { Metadata } from "next"
-import type { ReactNode } from "react"
-
 import "./reset.css"
 import "./global.css"
+
+import type { Metadata } from "next"
+import type { ReactNode } from "react"
 
 type Props = LayoutProps<"/[locale]">
 
@@ -51,6 +55,14 @@ const Layout = async (props: Props): Promise<ReactNode> => {
   const thisYear = new Date().getFullYear()
   const headerInnerElement = (
     <HeaderInner
+      menuButtonElement={
+        <HeaderMenuButton>
+          <MenuModalInner
+            navigationElement={<MenuModalNavigation />}
+            toolElement={<MenuModalTool theme={theme} />}
+          />
+        </HeaderMenuButton>
+      }
       navigationElement={<HeaderNavigation />}
       toolElement={<HeaderTool theme={theme} />}
     />

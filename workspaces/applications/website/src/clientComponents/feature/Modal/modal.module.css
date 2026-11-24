@@ -1,0 +1,17 @@
+.root {
+  background-color: var(--color-background);
+  border: none;
+  padding: 0;
+}
+
+.spMenu {
+  margin-inline: auto;
+  margin-top: var(--header-height);
+  width: 100%;
+
+  &::backdrop {
+    margin-inline: auto;
+    margin-top: var(--header-height);
+    width: 100%;
+  }
+}

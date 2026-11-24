@@ -1,21 +1,46 @@
 .root {
   display: grid;
-  grid-template-columns: 252px minmax(0, 1fr) 224px;
   grid-template-rows: minmax(0, 1fr);
   height: 100%;
   margin-inline: auto;
   max-width: var(--contents-width);
   position: relative;
+
+  @media (--large) {
+    grid-template-columns: 252px minmax(0, 1fr) 224px;
+  }
+
+  @media (--medium) {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  @media (--small) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .rootWithoutToc {
-  grid-template-columns: 252px minmax(0, 1fr);
+  @media (--large) {
+    grid-template-columns: 252px minmax(0, 1fr);
+  }
+
+  @media (--medium) {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  @media (--small) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .docsSidebar {
   border-right: 1px solid var(--color-border);
   overflow-y: auto;
   padding-block: 24px;
+
+  @media (--small) {
+    display: none;
+  }
 }
 
 .main {
@@ -29,4 +54,8 @@
   padding-left: 16px;
   padding-right: 32px;
   padding-top: 24px;
+
+  @media (--medium) or (--small) {
+    display: none;
+  }
 }

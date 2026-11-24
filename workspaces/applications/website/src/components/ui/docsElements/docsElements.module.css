@@ -6,6 +6,19 @@
   align-items: center;
   column-gap: 12px;
   display: flex;
+
+  @media (--medium) or (--small) {
+    & img {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  @media (--small) {
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 1.2rem;
+  }
 }
 
 .section {
