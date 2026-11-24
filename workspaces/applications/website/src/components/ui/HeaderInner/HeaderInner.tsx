@@ -6,12 +6,13 @@ import type { FC, ReactElement } from "react"
 import styles from "./headerInner.module.css"
 
 type Props = {
+  menuButtonElement: ReactElement
   navigationElement: ReactElement
   toolElement: ReactElement
 }
 
 export const HeaderInner: FC<Props> = (props) => {
-  const { navigationElement, toolElement } = props
+  const { menuButtonElement, navigationElement, toolElement } = props
 
   return (
     <div className={styles.root}>
@@ -24,6 +25,8 @@ export const HeaderInner: FC<Props> = (props) => {
       {navigationElement}
 
       {toolElement}
+
+      {menuButtonElement}
     </div>
   )
 }
