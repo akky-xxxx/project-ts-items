@@ -41,7 +41,7 @@ export const TestForListItems: Story = {
     const listItemElements = canvas
       .getAllByRole("listitem")
       .filter((listItemElement) => listItemElement.closest("nav") === null)
-    await expect(listItemElements).toHaveLength(2)
+    await expect(listItemElements).toHaveLength(3)
   },
 }
 

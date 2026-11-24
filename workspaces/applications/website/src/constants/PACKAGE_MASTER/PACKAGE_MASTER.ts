@@ -20,5 +20,9 @@ export const PACKAGE_MASTER = {
     logoImagePath: LOGO_IMAGE_PATHS.linter,
     name: "oxlint-config",
   },
-  // TODO: 先に既存キーの修正をするために一旦 react-types を取り除く
-} as const satisfies Record<Exclude<PackageName, "react-types">, PackageRecord>
+  "react-types": {
+    description: "react-types.description",
+    logoImagePath: LOGO_IMAGE_PATHS.types,
+    name: "react-types",
+  },
+} as const satisfies Record<PackageName, PackageRecord>

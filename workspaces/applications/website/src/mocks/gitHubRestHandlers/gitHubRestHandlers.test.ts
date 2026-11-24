@@ -42,8 +42,9 @@ describe(reposListReleases, () => {
     expect.hasAssertions()
     await expect(reposListReleases("owner", "repo")).resolves.toMatchObject({
       data: [
-        { id: 2, tag_name: "oxlint-config-v1.1.0-mock" },
-        { id: 1, tag_name: "oxlint-config-v1.0.0-mock" },
+        { id: 3, tag_name: "oxlint-config-v1.1.0-mock" },
+        { id: 2, tag_name: "oxlint-config-v1.0.0-mock" },
+        { id: 1, tag_name: "react-types-v1.0.0-mock" },
       ],
       status: 200,
     })

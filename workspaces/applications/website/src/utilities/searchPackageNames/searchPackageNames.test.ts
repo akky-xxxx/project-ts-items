@@ -68,6 +68,7 @@ describe(searchPackageNames, () => {
     await expect(searchPackageNames()).resolves.toStrictEqual([
       "@ts-items/oxfmt-config-mock",
       "@ts-items/oxlint-config-mock",
+      "@ts-items/react-types-mock",
     ])
   })
 })

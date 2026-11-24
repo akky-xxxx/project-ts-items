@@ -29,6 +29,10 @@ export const TestForHeadingStructure: Story = {
       .map((element) => element.textContent)
     await expect(heading1Texts).toStrictEqual(["@ts-items"])
     await expect(heading2Texts).toStrictEqual(["Tool for TypeScript projects", "Packages"])
-    await expect(heading3Texts).toStrictEqual(["@ts-items/oxlint-config", "@ts-items/oxfmt-config"])
+    await expect(heading3Texts).toStrictEqual([
+      "@ts-items/oxlint-config",
+      "@ts-items/oxfmt-config",
+      "@ts-items/react-types",
+    ])
   },
 }
