@@ -167,7 +167,11 @@
       },
       "peerDependencies": {
         "oxlint": ">=1.89.0",
+        "oxlint-tsgolint": ">=7.0.2003",
       },
+      "optionalPeers": [
+        "oxlint-tsgolint",
+      ],
     },
     "workspaces/packages/types/react-types": {
       "name": "@ts-items/react-types",

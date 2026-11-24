@@ -54,7 +54,13 @@
     "typescript": "6.0.3"
   },
   "peerDependencies": {
-    "oxlint": ">=1.89.0"
+    "oxlint": ">=1.89.0",
+    "oxlint-tsgolint": ">=7.0.2003"
+  },
+  "peerDependenciesMeta": {
+    "oxlint-tsgolint": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"
