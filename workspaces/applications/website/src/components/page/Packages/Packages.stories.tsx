@@ -23,6 +23,7 @@ const Localized: FC<ComponentProps<typeof Packages>> = (props) => {
         versionTexts: {
           "oxfmt-config": "1.0.0",
           "oxlint-config": "2.0.0",
+          "react-types": "3.0.0",
         },
       })}
     />
