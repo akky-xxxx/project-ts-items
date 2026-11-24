@@ -12,6 +12,8 @@ paths:
 - `src/` を `tsc -p tsconfig.build.json` で `dist/` に出力する(`build` スクリプト。`prepublishOnly` でも実行)。`files` は `dist` のみ
 - `exports` が `dist/` を指すため knip が `src/` のエントリを辿れない。各パッケージの `knip.config.mts` の `entry` に `src/` のエントリ(設定パッケージは `src/configurations/index.ts`、型パッケージは `src/index.ts`)を指定している
 - release-please が生成する各パッケージの `CHANGELOG.md` は、`@ts-items/configurations/release` の `GENERATED_RELEASE_PATTERNS` で oxfmt(`ignorePatterns`)/ cspell(`ignorePaths`)の対象外にしている。release-please の出力(見出し後の連続した空行、`*` のリストマーカー)は oxfmt の整形結果と一致せず、cspell もコミットの subject 由来の未知語で失敗しうる。いずれも生成物なので手で直さない
+- `dependencies`(利用者の環境にもインストールされる依存)の版は `^` 付きの範囲で指定する。exact で指定すると、その版が利用者側で同じパッケージに依存する他のパッケージの要求範囲から外れたときに版を共有できず、重複してインストールされる。`^` 付きの範囲なら、互いの要求範囲を満たす共通の版を選べる場合が増える
+  - ルートの `bunfig.toml`(`exact = true`)により、`bun add` は `^` 付きで指定しても exact で書き込み、`bun update` も既存の `^` 付きの指定を exact に書き換える(bun 1.4.4 で確認。`peerDependencies` の範囲は書き換えない)。`dependencies` を追加・更新したら、`package.json` の版指定に `^` を付け直してから `bun install` を実行し、`bun.lock` に反映する
 
 ## 設定パッケージ(`@ts-items/oxfmt-config` / `@ts-items/oxlint-config`)
 
