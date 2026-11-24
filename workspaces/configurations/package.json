@@ -36,6 +36,6 @@
     "oxlint": "1.94.0",
     "oxlint-tsgolint": "7.0.2007",
     "sort-package-json": "4.1.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
