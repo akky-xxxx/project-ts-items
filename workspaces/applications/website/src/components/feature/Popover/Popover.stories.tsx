@@ -6,7 +6,7 @@ import { Popover } from "./Popover.tsx"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
-const WrapperStyle = {
+const WRAPPER_STYLE = {
   padding: 20,
 } as const
 
@@ -14,7 +14,7 @@ const WithOpenButton: FC<ComponentProps<typeof Popover>> = (props) => {
   const { id } = props
 
   return (
-    <div style={WrapperStyle}>
+    <div style={WRAPPER_STYLE}>
       <div>
         <button type="button" popoverTarget={id}>
           開く

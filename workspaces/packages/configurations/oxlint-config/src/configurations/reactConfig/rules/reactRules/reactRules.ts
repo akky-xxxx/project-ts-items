@@ -18,5 +18,12 @@ export const reactRules = withRulePrefix("react", {
   "jsx-max-depth": ["error", { max: 5 }],
   "jsx-no-literals": "off",
   "jsx-props-no-spreading": "off",
+  "no-unknown-property": [
+    "error",
+    {
+      // Allow standard HTML attributes not yet recognized by oxlint.
+      ignore: ["command", "commandfor"],
+    },
+  ],
   "react-in-jsx-scope": "off",
 })
