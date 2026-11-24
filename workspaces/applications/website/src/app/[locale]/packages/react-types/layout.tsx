@@ -41,6 +41,10 @@ const Layout = async (props: Props): Promise<ReactNode> => {
                   href: `/packages/${PACKAGE_MASTER["react-types"].name}/`,
                   text: pagesTranslate("reactTypesHome.pageTitle"),
                 },
+                {
+                  href: `/packages/${PACKAGE_MASTER["react-types"].name}/quickstart/`,
+                  text: pagesTranslate("reactTypesQuickstart.pageTitle"),
+                },
               ]}
             />
           }

@@ -5,6 +5,7 @@ import { OXLINT_CONFIG_HOME } from "./constants/OXLINT_CONFIG_HOME/OXLINT_CONFIG
 import { OXLINT_CONFIG_QUICK } from "./constants/OXLINT_CONFIG_QUICK/OXLINT_CONFIG_QUICK.ts"
 import { PACKAGES } from "./constants/PACKAGES/PACKAGES.ts"
 import { REACT_TYPES_HOME } from "./constants/REACT_TYPES_HOME/REACT_TYPES_HOME.ts"
+import { REACT_TYPES_QUICK } from "./constants/REACT_TYPES_QUICK/REACT_TYPES_QUICK.ts"
 
 import type { Dictionary } from "../../../../types/Dictionary/Dictionary.ts"
 
@@ -16,4 +17,5 @@ export const PAGES = {
   oxlintConfigQuickstart: OXLINT_CONFIG_QUICK,
   packages: PACKAGES,
   reactTypesHome: REACT_TYPES_HOME,
+  reactTypesQuickstart: REACT_TYPES_QUICK,
 } as const satisfies Dictionary
