@@ -17,11 +17,11 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const translate = await getTranslations({ locale, namespace: "pages.packages" })
+  const pagesTranslate = await getTranslations({ locale, namespace: "pages" })
 
   return {
-    description: translate("pageDescription"),
-    title: translate("pageTitle"),
+    description: pagesTranslate("packages.pageDescription"),
+    title: pagesTranslate("packages.pageTitle"),
   }
 }
 

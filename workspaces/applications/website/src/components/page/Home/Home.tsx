@@ -20,7 +20,7 @@ type Props = {
 
 export const Home: FC<Props> = (props) => {
   const { packages } = props
-  const homeTranslate = useTranslations("pages.home")
+  const pagesTranslate = useTranslations("pages")
 
   return (
     <main className={styles.root}>
@@ -31,13 +31,15 @@ export const Home: FC<Props> = (props) => {
       </Heading1Wrapper>
 
       <section className={styles.section}>
-        <Heading headingTag="h2">{homeTranslate("pageTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("home.pageTitle")}</Heading>
 
-        <p className={styles.p}>{homeTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+        <p className={styles.p}>
+          {pagesTranslate.rich("home.pageDescription", { br: renderLineBreak })}
+        </p>
       </section>
 
       <section className={styles.section}>
-        <Heading headingTag="h2">{homeTranslate("packageTitleText")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("home.packageTitleText")}</Heading>
 
         <PackageCardList laneNumber={2} packages={packages} />
       </section>

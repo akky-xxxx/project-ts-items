@@ -16,24 +16,24 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-  const translate = await getTranslations({ locale, namespace: "pages.oxlintConfigHome" })
+  const pagesTranslate = await getTranslations({ locale, namespace: "pages" })
 
   return {
     // 説明文の meta タグは改行できないため、<br> を半角スペースに置き換える
-    description: translate.markup("pageDescription", { br: () => " " }),
-    title: `${translate("pageTitle")} | ${PACKAGE_MASTER.oxlintConfig.name}`,
+    description: pagesTranslate.markup("oxlintConfigHome.pageDescription", { br: () => " " }),
+    title: `${pagesTranslate("oxlintConfigHome.pageTitle")} | ${PACKAGE_MASTER.oxlintConfig.name}`,
   }
 }
 
 const Page = async (): Promise<ReactNode> => {
-  const packagesPageTranslate = await getTranslations("pages.packages")
+  const pagesTranslate = await getTranslations("pages")
 
   return (
     <OxlintConfigHome
       breadcrumbItems={[
         {
           href: "/packages/",
-          text: packagesPageTranslate("pageTitle"),
+          text: pagesTranslate("packages.pageTitle"),
         },
       ]}
     />

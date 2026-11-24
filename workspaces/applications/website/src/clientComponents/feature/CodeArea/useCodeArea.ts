@@ -8,9 +8,9 @@ type Input = {
 
 export const useCodeArea = (input: Input) => {
   const { copyTargetText } = input
-  const codeAreaTranslate = useTranslations("components.ui.codeArea")
-  const copiedText = codeAreaTranslate("copiedText")
-  const copyButtonLabelText = codeAreaTranslate("copyButtonLabelText")
+  const componentsTranslate = useTranslations("components")
+  const copiedText = componentsTranslate("ui.codeArea.copiedText")
+  const copyButtonLabelText = componentsTranslate("ui.codeArea.copyButtonLabelText")
 
   const handleCopy = useCallback(() => {
     if (copyTargetText === undefined) {

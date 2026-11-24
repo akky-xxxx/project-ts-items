@@ -23,8 +23,8 @@ const CODE_BLOCK_MAP = getCodeBlockMap()
 
 export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
   const { breadcrumbItems } = props
-  const oxlintConfigQuickstartTranslate = useTranslations("pages.oxlintConfigQuickstart")
-  const pageTitleText = oxlintConfigQuickstartTranslate("pageTitle")
+  const pagesTranslate = useTranslations("pages")
+  const pageTitleText = pagesTranslate("oxlintConfigQuickstart.pageTitle")
 
   return (
     <Fragment>
@@ -34,10 +34,12 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
         <Heading headingTag="h1">{pageTitleText}</Heading>
       </Heading1Wrapper>
 
-      <p>{oxlintConfigQuickstartTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+      <p>
+        {pagesTranslate.rich("oxlintConfigQuickstart.pageDescription", { br: renderLineBreak })}
+      </p>
 
       <Section>
-        <Heading headingTag="h2">{oxlintConfigQuickstartTranslate("installTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxlintConfigQuickstart.installTitle")}</Heading>
 
         <div className={styles.tabWrapper}>
           <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
@@ -45,7 +47,7 @@ export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{oxlintConfigQuickstartTranslate("setupTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxlintConfigQuickstart.setupTitle")}</Heading>
 
         <div className={styles.oxlintConfigSetupWrapper}>
           <OxlintConfigSetup codeBlockMap={CODE_BLOCK_MAP} />

@@ -22,8 +22,8 @@ type Props = {
 
 export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
   const { breadcrumbItems } = props
-  const oxfmtConfigQuickstartTranslate = useTranslations("pages.oxfmtConfigQuickstart")
-  const pageTitleText = oxfmtConfigQuickstartTranslate("pageTitle")
+  const pagesTranslate = useTranslations("pages")
+  const pageTitleText = pagesTranslate("oxfmtConfigQuickstart.pageTitle")
 
   return (
     <Fragment>
@@ -33,10 +33,10 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
         <Heading headingTag="h1">{pageTitleText}</Heading>
       </Heading1Wrapper>
 
-      <p>{oxfmtConfigQuickstartTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+      <p>{pagesTranslate.rich("oxfmtConfigQuickstart.pageDescription", { br: renderLineBreak })}</p>
 
       <Section>
-        <Heading headingTag="h2">{oxfmtConfigQuickstartTranslate("installTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigQuickstart.installTitle")}</Heading>
 
         <div className={styles.tabWrapper}>
           <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
@@ -44,7 +44,7 @@ export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{oxfmtConfigQuickstartTranslate("setupTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigQuickstart.setupTitle")}</Heading>
 
         <div className={styles.oxfmtConfigSetupWrapper}>
           <CodeArea

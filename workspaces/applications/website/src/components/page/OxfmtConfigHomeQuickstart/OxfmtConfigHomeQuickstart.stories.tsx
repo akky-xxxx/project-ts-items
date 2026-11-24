@@ -10,19 +10,19 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
 const Localized: FC<ComponentProps<typeof OxfmtConfigHomeQuickstart>> = (props) => {
-  const packagesPageTranslate = useTranslations("pages.packages")
+  const pagesTranslate = useTranslations("pages")
   const breadcrumbItems = useMemo(
     () => [
       {
         href: "/packages/",
-        text: packagesPageTranslate("pageTitle"),
+        text: pagesTranslate("packages.pageTitle"),
       },
       {
         href: `/packages/${PACKAGE_MASTER.oxfmtConfig.name}/`,
         text: PACKAGE_MASTER.oxfmtConfig.name,
       },
     ],
-    [packagesPageTranslate],
+    [pagesTranslate],
   )
 
   return <OxfmtConfigHomeQuickstart {...props} breadcrumbItems={breadcrumbItems} />

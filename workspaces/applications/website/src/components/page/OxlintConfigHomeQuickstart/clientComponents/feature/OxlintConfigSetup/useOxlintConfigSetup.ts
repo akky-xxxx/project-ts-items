@@ -5,15 +5,19 @@ import { getSwitchItems } from "./modules/getSwitchItems/getSwitchItems.tsx"
 import { useFormStates } from "./modules/useFormStates/useFormStates.ts"
 
 export const useOxlintConfigSetup = () => {
-  const pageTranslate = useTranslations("pages.oxlintConfigQuickstart")
+  const pagesTranslate = useTranslations("pages")
   const { enabledSwitches, handleChangeBase, handleToggleSwitch, selectedBase } = useFormStates()
   const formValues = { enabledSwitches, selectedBase }
   const sourceKey = getSourceKey(formValues)
-  const switchItems = getSwitchItems({ enabledSwitches, handleToggleSwitch, pageTranslate })
+  const switchItems = getSwitchItems({
+    enabledSwitches,
+    handleToggleSwitch,
+    pageTranslate: pagesTranslate,
+  })
 
   return {
     handleChangeBase,
-    selectConfiguration: pageTranslate("selectConfiguration"),
+    selectConfiguration: pagesTranslate("oxlintConfigQuickstart.selectConfiguration"),
     selectedBase,
     sourceKey,
     switchItems,

@@ -17,7 +17,7 @@ type Props = {
 
 export const OxlintConfigHome: FC<Props> = (props) => {
   const { breadcrumbItems } = props
-  const oxlintConfigHomeTranslate = useTranslations("pages.oxlintConfigHome")
+  const pagesTranslate = useTranslations("pages")
 
   return (
     <Fragment>
@@ -30,15 +30,17 @@ export const OxlintConfigHome: FC<Props> = (props) => {
       </Heading1Wrapper>
 
       <Section>
-        <Heading headingTag="h2">{oxlintConfigHomeTranslate("pageTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxlintConfigHome.pageTitle")}</Heading>
 
-        <p>{oxlintConfigHomeTranslate.rich("pageDescription", { br: renderLineBreak })}</p>
+        <p>{pagesTranslate.rich("oxlintConfigHome.pageDescription", { br: renderLineBreak })}</p>
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{oxlintConfigHomeTranslate("backgroundTitle")}</Heading>
+        <Heading headingTag="h2">{pagesTranslate("oxlintConfigHome.backgroundTitle")}</Heading>
 
-        <p>{oxlintConfigHomeTranslate.rich("backgroundDescription", { br: renderLineBreak })}</p>
+        <p>
+          {pagesTranslate.rich("oxlintConfigHome.backgroundDescription", { br: renderLineBreak })}
+        </p>
       </Section>
     </Fragment>
   )

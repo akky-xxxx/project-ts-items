@@ -14,8 +14,8 @@ type Props = {
 
 export const Packages: FC<Props> = (props) => {
   const { packages } = props
-  const packagesTranslate = useTranslations("pages.packages")
-  const pageTitleText = packagesTranslate("pageTitle")
+  const pagesTranslate = useTranslations("pages")
+  const pageTitleText = pagesTranslate("packages.pageTitle")
 
   return (
     <main className={styles.root}>
@@ -25,7 +25,7 @@ export const Packages: FC<Props> = (props) => {
         <Heading headingTag="h1">{pageTitleText}</Heading>
       </div>
 
-      <p className={styles.description}>{packagesTranslate("pageDescription")}</p>
+      <p className={styles.description}>{pagesTranslate("packages.pageDescription")}</p>
 
       <div className={styles.packageCardListWrapper}>
         <PackageCardList laneNumber={1} packages={packages} />

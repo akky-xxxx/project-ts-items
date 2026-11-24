@@ -12,7 +12,7 @@ type Input = Parameters<typeof getSwitchItems>[0]
 const pageTranslate = createTranslator({
   locale: "en",
   messages: toLocaleMessages(siteDictionary, "en"),
-  namespace: "pages.oxlintConfigQuickstart",
+  namespace: "pages",
 })
 
 const ALL_DISABLED = { storybook: false, typeAwareLinting: false, vitest: false }

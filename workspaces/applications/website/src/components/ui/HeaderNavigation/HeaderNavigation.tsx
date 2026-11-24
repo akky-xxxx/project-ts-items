@@ -8,14 +8,14 @@ import type { FC } from "react"
 import styles from "./headerNavigation.module.css"
 
 export const HeaderNavigation: FC = () => {
-  const navigationTranslate = useTranslations("header.navigation")
+  const headerTranslate = useTranslations("header")
 
   return (
-    <nav aria-label={navigationTranslate("ariaLabel")} className={styles.root}>
+    <nav aria-label={headerTranslate("navigation.ariaLabel")} className={styles.root}>
       <ul className={styles.ul}>
         <li>
           <HeaderNavigationLink href="/packages/">
-            {navigationTranslate("package")}
+            {headerTranslate("navigation.package")}
           </HeaderNavigationLink>
         </li>
 
@@ -24,7 +24,7 @@ export const HeaderNavigation: FC = () => {
           newFeatureElement={
             <li>
               <HeaderNavigationLink href="/change-log/">
-                {navigationTranslate("changeLog")}
+                {headerTranslate("navigation.changeLog")}
               </HeaderNavigationLink>
             </li>
           }
