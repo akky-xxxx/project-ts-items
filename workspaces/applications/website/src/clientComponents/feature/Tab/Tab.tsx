@@ -28,7 +28,7 @@ export const Tab: FC<Props> = (props) => {
   const { activeTabValue, getTabButtonClassName, copyTargetText, handleChange } = useTab(props)
 
   return (
-    <div>
+    <div className={styles.root}>
       <ul className={styles.ul}>
         {items.map((item) => {
           const { tabLabelText, tabValue } = item
