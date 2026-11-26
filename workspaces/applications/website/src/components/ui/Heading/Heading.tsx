@@ -3,7 +3,7 @@ import type { FcWithChildren } from "@ts-items/react-types"
 import styles from "./heading.module.css"
 
 type Props = {
-  headingTag: "h1" | "h2" | "h3"
+  headingTag: "h1" | "h2" | "h3" | "h4"
 }
 
 export const Heading: FcWithChildren<Props> = (props) => {
