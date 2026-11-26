@@ -3,7 +3,7 @@ import type { Dictionary } from "../../../../../../types/Dictionary/Dictionary.t
 
 const PACKAGE_NAME = "react-types" satisfies PackageName
 
-export const REACT_TYPES_QUICK = {
+export const REACT_TYPES_QUICKSTART = {
   installNote: {
     en: "Your project needs <code>@types/react</code> 18 or later and <code>typescript</code> 5.0 or later.",
     ja: "利用するプロジェクトに <code>@types/react</code>(18 以上)と <code>typescript</code>(5.0 以上)が必要です。",
