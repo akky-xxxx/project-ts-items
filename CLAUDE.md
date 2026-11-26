@@ -84,5 +84,5 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - `.claude/rules/pr.md`: PR 作成ルール
 - `.claude/rules/publish-packages.md`(`workspaces/packages/**`): 共有パッケージの構成・build・dry run
 - `.claude/rules/secrets.md`: 機密情報の取り扱い
-- `.claude/rules/test.md`(`**/*.stories.{mts,ts,tsx}`・`**/*.test.{mts,ts,tsx}`): テストの書き方(期待値の固定など)
+- `.claude/rules/test.md`(`**/*.stories.{mts,ts,tsx}`・`**/*.test.{mts,ts,tsx}`): テストの書き方(期待値の固定、修正前のコードでの失敗の確認など)。テストファイルを開かずに、追跡対象のファイルを一時的に書き戻してテストを実行する場合も、書き戻す前に読む
 - `.claude/rules/worktree.md`: 新規実装・別タスクに着手する際の git worktree での作業(作業場所の判定・作成・連携ファイルの扱い)
