@@ -5,6 +5,7 @@ import type { DummyRuleMap } from "oxlint"
 /* oxlint-disable no-magic-numbers */
 export const eslintRules = withRulePrefix("eslint", {
   "arrow-body-style": ["error", "as-needed"],
+  "capitalized-comments": "off",
   "complexity": ["error", {
     max: 5,
     variant: "modified",
