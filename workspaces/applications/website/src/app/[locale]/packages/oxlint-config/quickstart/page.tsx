@@ -2,7 +2,7 @@ import { hasLocale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
-import { OxlintConfigHomeQuickstart } from "../../../../../components/page/OxlintConfigHomeQuickstart/OxlintConfigHomeQuickstart.tsx"
+import { OxlintConfigQuickstart } from "../../../../../components/page/OxlintConfigQuickstart/OxlintConfigQuickstart.tsx"
 import { PACKAGE_MASTER } from "../../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../../i18n/constants/routing/routing.ts"
 
@@ -29,7 +29,7 @@ const Page = async (): Promise<ReactNode> => {
   const pagesTranslate = await getTranslations("pages")
 
   return (
-    <OxlintConfigHomeQuickstart
+    <OxlintConfigQuickstart
       breadcrumbItems={[
         {
           href: "/packages/",

@@ -14,13 +14,13 @@ import { SETTING_CODE } from "./constants/SETTING_CODE/SETTING_CODE.ts"
 
 import type { ComponentProps, FC } from "react"
 
-import styles from "./oxfmtConfigHomeQuickstart.module.css"
+import styles from "./oxfmtConfigQuickstart.module.css"
 
 type Props = {
   breadcrumbItems: NonNullable<ComponentProps<typeof Breadcrumb>["items"]>
 }
 
-export const OxfmtConfigHomeQuickstart: FC<Props> = (props) => {
+export const OxfmtConfigQuickstart: FC<Props> = (props) => {
   const { breadcrumbItems } = props
   const pagesTranslate = useTranslations("pages")
   const pageTitleText = pagesTranslate("oxfmtConfigQuickstart.pageTitle")

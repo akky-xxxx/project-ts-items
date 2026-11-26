@@ -3,7 +3,7 @@ import type { Dictionary } from "../../../../../../types/Dictionary/Dictionary.t
 
 const PACKAGE_NAME = "oxlint-config" satisfies PackageName
 
-export const OXLINT_CONFIG_QUICK = {
+export const OXLINT_CONFIG_QUICKSTART = {
   installTitle: {
     en: "Installation",
     ja: "インストール",

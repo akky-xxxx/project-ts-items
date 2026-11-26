@@ -3,7 +3,7 @@ import type { Dictionary } from "../../../../../../types/Dictionary/Dictionary.t
 
 const PACKAGE_NAME = "oxfmt-config" satisfies PackageName
 
-export const OXFMT_CONFIG_QUICK = {
+export const OXFMT_CONFIG_QUICKSTART = {
   installTitle: {
     en: "Installation",
     ja: "インストール",
