@@ -71,7 +71,7 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 
 ## リリース
 
-共有パッケージ(release-please による版の更新と npm への publish)と `website`(tag と GitHub Release の作成)のリリース運用は `docs/release.md` にまとめている。リリース設定(`release-please-config.json` / `.release-please-manifest.json` / `.github/workflows/release*.yml`)の変更、パッケージの追加、`Release-As` フッター付きのコミットの作成、develop → main の PR 作成・マージ、Release PR の確認・マージ、npm への手動 publish を行う前に読む。
+共有パッケージ(release-please による版の更新と npm への publish)と `website`(tag と GitHub Release の作成)のリリース運用は `docs/release.md` にまとめている。リリース設定(`release-please-config.json` / `.release-please-manifest.json` / `.github/workflows/release*.yml`)の変更、パッケージの追加、`Release-As` フッター付きのコミットの作成、develop → main の PR 作成・マージ、Release PR の確認・マージ、npm への手動 publish を行う前に読む。共有パッケージの配下を変更するコミットの type を決める場合(type によって版が上がるかが決まる)と、共有パッケージ・`website` の依存や設定の宣言をそれらの path の外(ルートの `package.json` 等)へ移す設計をする場合(release-please がどのパッケージを対象にするかと、`website` の tag の作成・リリースノートの抽出は path で決まる)も、事前に読む。
 
 ## 切り出したルール
 
