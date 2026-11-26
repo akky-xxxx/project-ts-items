@@ -1,0 +1,10 @@
+.root {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.header {
+  align-items: center;
+  column-gap: 1rem;
+  display: flex;
+}
