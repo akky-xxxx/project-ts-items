@@ -66,12 +66,13 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
   - `packages.txt`: パッケージ名・ツール名
   - `domain.txt`: GitHub のオーナー名など、このリポジトリ固有の固有名詞
   - `commands.txt`: ツールのコマンド・オプション・組み込み関数名(例: `bunx`、git の `--oneline`、jq の `ltrimstr`)
+  - `web.txt`: HTML の要素名・属性名など、Web 標準の用語(例: `commandfor`、`noopener`)
 - knip は `tsconfig.json` の `extends` で参照する依存(例: `@tsconfig/strictest`)を使用中と判定するため、`ignoreDependencies` には追加しない。設定ファイル経由でしか参照されず knip が未使用と判定する依存が出た場合に限り、`knip.config.mts` の `ignoreDependencies` に追加する
 - 同じディレクトリ階層に、大文字小文字だけが異なるディレクトリ名・ファイル名を作らない(例: 型の `Dictionary/Dictionary.ts` と値の `dictionary/dictionary.ts`)。1ディレクトリ1エクスポートと、型は UpperCamelCase・値は camelCase という命名規約を組み合わせると、型と値に同じ語を使ったときに起きる。macOS の既定のファイルシステム(大文字小文字を区別しない)では同じパスとして上書きされ、CI(Linux)では別のファイルになる。設計時に変更予定のパスを並べた段階で確認し、値の側を別名にする
 
 ## リリース
 
-共有パッケージ(release-please による版の更新と npm への publish)と `website`(tag と GitHub Release の作成)のリリース運用は `docs/release.md` にまとめている。リリース設定(`release-please-config.json` / `.release-please-manifest.json` / `.github/workflows/release*.yml`)の変更、パッケージの追加、`Release-As` フッター付きのコミットの作成、develop → main の PR 作成・マージ、Release PR の確認・マージ、npm への手動 publish を行う前に読む。
+共有パッケージ(release-please による版の更新と npm への publish)と `website`(tag と GitHub Release の作成)のリリース運用は `docs/release.md` にまとめている。リリース設定(`release-please-config.json` / `.release-please-manifest.json` / `.github/workflows/release*.yml`)の変更、パッケージの追加、`Release-As` フッター付きのコミットの作成、develop → main の PR 作成・マージ、Release PR の確認・マージ、npm への手動 publish を行う前に読む。共有パッケージの配下を変更するコミットの type を決める場合(type によって版が上がるかが決まる)と、共有パッケージ・`website` の依存や設定の宣言をそれらの path の外(ルートの `package.json` 等)へ移す設計をする場合(release-please がどのパッケージを対象にするかと、`website` の tag の作成・リリースノートの抽出は path で決まる)も、事前に読む。
 
 ## 切り出したルール
 
@@ -84,5 +85,5 @@ workspaces/packages/*/*     # 共有パッケージ。カテゴリ/パッケー�
 - `.claude/rules/pr.md`: PR 作成ルール
 - `.claude/rules/publish-packages.md`(`workspaces/packages/**`): 共有パッケージの構成・build・dry run
 - `.claude/rules/secrets.md`: 機密情報の取り扱い
-- `.claude/rules/test.md`(`**/*.stories.{mts,ts,tsx}`・`**/*.test.{mts,ts,tsx}`): テストの書き方(期待値の固定など)
+- `.claude/rules/test.md`(`**/*.stories.{mts,ts,tsx}`・`**/*.test.{mts,ts,tsx}`): テストの書き方(期待値の固定、修正前のコードでの失敗の確認など)。テストファイルを開かずに、追跡対象のファイルを一時的に書き戻してテストを実行する場合も、書き戻す前に読む
 - `.claude/rules/worktree.md`: 新規実装・別タスクに着手する際の git worktree での作業(作業場所の判定・作成・連携ファイルの扱い)

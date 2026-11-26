@@ -83,7 +83,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 - 共有パッケージの `src/` を変更した場合、他の workspace は `dist/` を参照するため、再ビルド前提の確認(`bun prepare:build`)が result に書かれているか
 - 明示的に書いた設定値(rules / categories / plugins / オプション)を追加・変更した場合、対応する dry run の fixture とテストケースが追加・更新されているか
 - 設定ファイル経由でしか参照されない依存が knip の `ignoreDependencies` に追加されているか、逆に不要な ignore が残っていないか
-- cspell の未知語が適切な辞書(`packages.txt` = パッケージ名・ツール名、`domain.txt` = リポジトリ固有の固有名詞)に追加されているか。辞書を追加した場合、`dictionaryNames` と `@ts-items/configurations` 自身の `cspell.config.mts` の両方に反映されているか
+- cspell の未知語が適切な辞書(`packages.txt` = パッケージ名・ツール名、`domain.txt` = リポジトリ固有の固有名詞、`commands.txt` = ツールのコマンド・オプション・組み込み関数名、`web.txt` = HTML の要素名・属性名など Web 標準の用語)に追加されているか。辞書を追加した場合、`dictionaryNames` と `@ts-items/configurations` 自身の `cspell.config.mts` の両方に反映されているか
 - `dependencies` / `devDependencies` のうちレジストリから取得する依存の追加・更新が exact バージョンになっているか(`bunfig.toml`)。ただし公開パッケージ(`workspaces/packages/**`)の `dependencies` は `^` 付きの範囲になっているか(`bun add` / `bun update` は exact で書き込むため、付け直し漏れが無いか)
 
 ### セキュリティ
@@ -95,7 +95,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 ### テスト
 
-- 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト / 型パッケージの型テスト)が追加されているか。不具合修正の場合、そのテストが修正前のコードで失敗するか(ロジックを切り出してテストした場合、不具合が起きていた呼び出し側の組み合わせが切り出し先に含まれているか)
+- 仕様変更や不具合修正に対応するテスト(dry run の fixture / helper の co-location テスト / 型パッケージの型テスト)が追加されているか。不具合修正の場合、そのテストが修正前のコードで失敗するか(ロジックを切り出してテストした場合、不具合が起きていた呼び出し側の組み合わせが切り出し先に含まれているか。1つの修正で複数の値(タブごとの表示値とコピー値、ロケールごとの文言等)を直した場合、各値について、その値だけを修正前に戻すとテストが失敗するか)
 - ブラックボックス(公開 interface 経由)とホワイトボックス(内部ロジック)の使い分けが適切か
 - 期待値に実装と同じ定数を import して使っていないか(cookie 名・キー名など、値の変更が利用者に影響するものは、リテラルで固定しないと定数の誤変更をテストで検出できない)
 - ネストした `describe` と `it` が日本語で書かれているか(トップレベルの `describe` はテスト対象の名前だけにする。`.claude/rules/test.md` を参照)
@@ -111,6 +111,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - 共有パッケージの設定変更が利用者側(このリポジトリの各 workspace を含む)の lint / format 結果を変えないか、変える場合はその旨が result に書かれているか
 - `CLAUDE.md` / `AGENTS.md` / `.claude/**` の記述と実際の設定・スクリプトが食い違っていないか
+  - 作業手順を定める記述(`.claude/skills/**`・`.claude/agents/**` 等)は、手順の各段階が、同じ局面を定める他の規約(`CLAUDE.md`・`.claude/rules/*` が定める作業場所の判定・コミットの承認と粒度・ai-communication のフロー・push 前の品質ゲート、`docs/adr/`、CI の workflow が行う検証)と食い違っていないか
 
 ## 調査のためのコマンド実行(読み取り専用のみ)
 
