@@ -13,7 +13,7 @@ import { INSTALL_TAB_ITEMS } from "./constants/INSTALL_TAB_ITEMS/INSTALL_TAB_ITE
 
 import type { ComponentProps, FC } from "react"
 
-import styles from "./oxlintConfigHomeQuickstart.module.css"
+import styles from "./oxlintConfigQuickstart.module.css"
 
 type Props = {
   breadcrumbItems: NonNullable<ComponentProps<typeof Breadcrumb>["items"]>
@@ -21,7 +21,7 @@ type Props = {
 
 const CODE_BLOCK_MAP = getCodeBlockMap()
 
-export const OxlintConfigHomeQuickstart: FC<Props> = (props) => {
+export const OxlintConfigQuickstart: FC<Props> = (props) => {
   const { breadcrumbItems } = props
   const pagesTranslate = useTranslations("pages")
   const pageTitleText = pagesTranslate("oxlintConfigQuickstart.pageTitle")
