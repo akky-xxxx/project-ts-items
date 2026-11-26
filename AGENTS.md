@@ -111,6 +111,7 @@ Bun workspaces による TypeScript モノレポ。ルートの開発ツール�
 
 - 共有パッケージの設定変更が利用者側(このリポジトリの各 workspace を含む)の lint / format 結果を変えないか、変える場合はその旨が result に書かれているか
 - `CLAUDE.md` / `AGENTS.md` / `.claude/**` の記述と実際の設定・スクリプトが食い違っていないか
+  - 作業手順を定める記述(`.claude/skills/**`・`.claude/agents/**` 等)は、手順の各段階が、同じ局面を定める他の規約(`CLAUDE.md`・`.claude/rules/*` が定める作業場所の判定・コミットの承認と粒度・ai-communication のフロー・push 前の品質ゲート、`docs/adr/`、CI の workflow が行う検証)と食い違っていないか
 
 ## 調査のためのコマンド実行(読み取り専用のみ)
 
