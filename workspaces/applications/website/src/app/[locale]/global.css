@@ -7,6 +7,14 @@
   --color-border: light-dark(#e3e8e6, #303c36);
   --color-box-shadow: light-dark(#14261f10, #0000002b);
   --color-heading-text: light-dark(#202827, #e4ebe7);
+  --color-severity-allow-background: light-dark(#e5eff7, #233440);
+  --color-severity-allow-color: light-dark(#35658a, #9ac5e5);
+  --color-severity-error-background: light-dark(#f8e8e8, #392629);
+  --color-severity-error-color: light-dark(#a33d43, #f0a5aa);
+  --color-severity-off-background: light-dark(#ecefee, #29312f);
+  --color-severity-off-color: light-dark(#5c6765, #a5b5af);
+  --color-severity-warn-background: light-dark(#f8f1d9, #383321);
+  --color-severity-warn-color: light-dark(#806019, #e5cb79);
   --color-text: light-dark(#687371, #9baaa3);
   --color-text-accent: light-dark(#287664, #8bc7ab);
   --color-text-hover: light-dark(#195a49, #b1deca);
