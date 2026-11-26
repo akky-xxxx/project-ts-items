@@ -1,8 +1,8 @@
 import { CodeArea } from "../../../../../clientComponents/feature/CodeArea/CodeArea.tsx"
+import { COPY_ICON_ELEMENT } from "../../../../../constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 import { CodeBlock } from "../../../../ui/CodeBlock/CodeBlock.tsx"
 import { Section } from "../../../../ui/docsElements/docsElements.tsx"
 import { Heading } from "../../../../ui/Heading/Heading.tsx"
-import { COPY_ICON_ELEMENT } from "../../constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 
 import type { ComponentProps, FC, ReactNode } from "react"
 
