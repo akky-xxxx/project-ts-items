@@ -6,10 +6,13 @@ import type { DummyRuleMap } from "oxlint"
 export const eslintRules = withRulePrefix("eslint", {
   "arrow-body-style": ["error", "as-needed"],
   "capitalized-comments": "off",
-  "complexity": ["error", {
-    max: 5,
-    variant: "modified",
-  }],
+  "complexity": [
+    "error",
+    {
+      max: 5,
+      variant: "modified",
+    },
+  ],
   "curly": ["warn", "all"],
   "id-length": [
     "error",
