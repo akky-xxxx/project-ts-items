@@ -12,8 +12,6 @@ import path from "node:path"
  */
 export const readJson = async (filePath: string): Promise<unknown> => {
   const text = await readFile(
-    // Turbopack が実行時に決まるパスを辿ってプロジェクト全体をデプロイ物に含めないよう、追跡対象から外す(ローカル開発でしか通らない)
-    // oxlint-disable-next-line eslint/capitalized-comments -- turbopackIgnore is a case-sensitive Turbopack directive
     path.resolve(/*turbopackIgnore: true*/ process.cwd(), filePath),
     "utf8",
   )
