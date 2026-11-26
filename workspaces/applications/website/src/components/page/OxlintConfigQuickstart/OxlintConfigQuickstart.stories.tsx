@@ -4,12 +4,12 @@ import { useMemo } from "react"
 import { PACKAGE_MASTER } from "../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { EN_LOCALE_FOR_STORYBOOK } from "../../../tests/EN_LOCALE_FOR_STORYBOOK/EN_LOCALE_FOR_STORYBOOK.ts"
 import { JA_LOCALE_FOR_STORYBOOK } from "../../../tests/JA_LOCALE_FOR_STORYBOOK/JA_LOCALE_FOR_STORYBOOK.ts"
-import { OxlintConfigHomeQuickstart } from "./OxlintConfigHomeQuickstart.tsx"
+import { OxlintConfigQuickstart } from "./OxlintConfigQuickstart.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import type { ComponentProps, FC } from "react"
 
-const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props) => {
+const Localized: FC<ComponentProps<typeof OxlintConfigQuickstart>> = (props) => {
   const pagesTranslate = useTranslations("pages")
   const breadcrumbItems = useMemo(
     () => [
@@ -25,11 +25,11 @@ const Localized: FC<ComponentProps<typeof OxlintConfigHomeQuickstart>> = (props)
     [pagesTranslate],
   )
 
-  return <OxlintConfigHomeQuickstart {...props} breadcrumbItems={breadcrumbItems} />
+  return <OxlintConfigQuickstart {...props} breadcrumbItems={breadcrumbItems} />
 }
 
 const meta = {
-  component: OxlintConfigHomeQuickstart,
+  component: OxlintConfigQuickstart,
 
   argTypes: {
     breadcrumbItems: {
@@ -47,7 +47,7 @@ const meta = {
     ],
   },
   render: (args) => <Localized {...args} />,
-} satisfies Meta<typeof OxlintConfigHomeQuickstart>
+} satisfies Meta<typeof OxlintConfigQuickstart>
 
 export default meta
 

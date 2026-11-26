@@ -2,7 +2,7 @@ import { hasLocale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
-import { OxfmtConfigHomeQuickstart } from "../../../../../components/page/OxfmtConfigHomeQuickstart/OxfmtConfigHomeQuickstart.tsx"
+import { OxfmtConfigQuickstart } from "../../../../../components/page/OxfmtConfigQuickstart/OxfmtConfigQuickstart.tsx"
 import { PACKAGE_MASTER } from "../../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../../i18n/constants/routing/routing.ts"
 
@@ -28,7 +28,7 @@ const Page = async (): Promise<ReactNode> => {
   const pagesTranslate = await getTranslations("pages")
 
   return (
-    <OxfmtConfigHomeQuickstart
+    <OxfmtConfigQuickstart
       breadcrumbItems={[
         {
           href: "/packages/",
