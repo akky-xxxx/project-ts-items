@@ -1,9 +1,9 @@
 "use client"
 
 import { CodeArea } from "../../../../../../clientComponents/feature/CodeArea/CodeArea.tsx"
+import { COPY_ICON_ELEMENT } from "../../../../../../constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 import { Radio } from "../../../../../ui/Radio/Radio.tsx"
 import { Toggle } from "../../../../../ui/Toggle/Toggle.tsx"
-import { COPY_ICON_ELEMENT } from "../../../constants/COPY_ICON_ELEMENT/COPY_ICON_ELEMENT.tsx"
 import { BASES } from "./constants/BASES/BASES.ts"
 import { useOxlintConfigSetup } from "./useOxlintConfigSetup.ts"
 
