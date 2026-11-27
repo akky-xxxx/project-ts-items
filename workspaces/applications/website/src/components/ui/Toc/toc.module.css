@@ -1,0 +1,14 @@
+.root {
+  overflow-y: auto;
+  padding-left: 16px;
+  padding-right: 32px;
+  padding-top: 24px;
+
+  @media (--medium) or (--small) {
+    display: none;
+  }
+}
+
+.p {
+  margin-block: 0;
+}
