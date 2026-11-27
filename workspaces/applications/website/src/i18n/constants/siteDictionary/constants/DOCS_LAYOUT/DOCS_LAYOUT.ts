@@ -18,7 +18,7 @@ export const DOCS_LAYOUT = {
     ja: "パッケージを選択",
   },
   toc: {
-    en: "Table of contents",
-    ja: "目次",
+    en: "ON THIS PAGE",
+    ja: "このページの内容",
   },
 } as const satisfies Dictionary
