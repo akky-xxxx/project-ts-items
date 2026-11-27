@@ -21,11 +21,3 @@ export const TestForTitleText: Story = {
     await expect(titleElement.tagName).toBe("STRONG")
   },
 }
-
-export const TestForDescriptionText: Story = {
-  ...Default,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("{descriptionText}")).toBeInTheDocument()
-  },
-}

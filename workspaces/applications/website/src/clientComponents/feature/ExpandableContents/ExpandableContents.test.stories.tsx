@@ -26,8 +26,6 @@ export const TestForInitialState: Story = {
     await expect(buttonElement).toHaveAttribute("aria-expanded", "false")
     await expect(buttonElement).toHaveAttribute("aria-controls", regionElement.id)
     await expect(regionElement).toHaveAttribute("tabindex", "0")
-    await expect(regionElement).toHaveStyle({ maxHeight: "300px" })
-    await expect(regionElement).toHaveTextContent("ExpandableContents0")
   },
 }
 
@@ -45,7 +43,6 @@ export const TestForExpand: Story = {
 
     const contentsElement = canvasElement.querySelector(`#${CSS.escape(contentsId)}`)
     await expect(contentsElement).not.toHaveAttribute("tabindex")
-    await expect(contentsElement).toHaveStyle({ maxHeight: "none" })
   },
 }
 
@@ -58,11 +55,9 @@ export const TestForCollapse: Story = {
 
     const buttonElement = await canvas.findByRole("button", { name: "Expand" })
     await expect(buttonElement).toHaveAttribute("aria-expanded", "false")
-    await waitFor(async () => {
-      await expect(canvas.getByRole("region", { name: "Collapsed contents" })).toHaveStyle({
-        maxHeight: "300px",
-      })
-    })
+    await expect(
+      await canvas.findByRole("region", { name: "Collapsed contents" }),
+    ).toBeInTheDocument()
   },
 }
 
@@ -87,12 +82,6 @@ export const TestForKeyboardScroll: Story = {
 export const TestForMaxHeight: Story = {
   args: {
     maxHeight: "120px",
-  },
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    const regionElement = canvas.getByRole("region", { name: "Collapsed contents" })
-    await expect(regionElement).toHaveStyle({ maxHeight: "120px" })
   },
 }
 

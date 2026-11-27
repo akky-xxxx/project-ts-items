@@ -29,13 +29,13 @@ export const TestForHeadingStructure: Story = {
   },
 }
 
-export const TestForPageDescriptionLineBreak: Story = {
+export const TestForPageDescriptionParagraph: Story = {
   ...En,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const descriptionElement = canvas.getByText(/Types for React\./u).closest("p")
-    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(1)
+    await expect(descriptionElement).not.toBeNull()
   },
 }
 

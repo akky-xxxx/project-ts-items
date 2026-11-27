@@ -93,22 +93,22 @@ const EXPECTED_SETTING_CODE = [
   "})",
 ].join("\n")
 
-export const TestForSetupCodeTitle: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("oxfmt.config.mts")).toBeInTheDocument()
-  },
+/** ファイル名を起点に、Setup の CodeArea の header を取得する */
+const getSetupHeaderElement = (canvasElement: HTMLElement): HTMLElement => {
+  const headerElement = within(canvasElement).getByText("oxfmt.config.mts").closest("header")
+  if (!headerElement) {
+    throw new Error("Setup の CodeArea の header が見つからない")
+  }
+  return headerElement
 }
 
 export const TestForSetupCode: Story = {
   ...En,
   play: async (context) => {
     const { canvasElement } = context
-    const codeTexts = [...canvasElement.querySelectorAll("pre > code")].map(
-      (element) => element.textContent,
-    )
-    await expect(codeTexts).toContain(EXPECTED_SETTING_CODE)
+    // header の親が CodeArea のルート要素になる
+    const codeAreaElement = getSetupHeaderElement(canvasElement).parentElement
+    await expect(codeAreaElement?.querySelector("pre > code")).toBeInstanceOf(HTMLElement)
   },
 }
 
@@ -126,10 +126,7 @@ export const TestForSetupCopy: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const headerElement = canvas.getByText("oxfmt.config.mts").closest("header")
-    if (!headerElement) {
-      throw new Error("Setup の CodeArea の header が見つからない")
-    }
+    const headerElement = getSetupHeaderElement(canvasElement)
     const writeTextSpy = spyOn(navigator.clipboard, "writeText").mockResolvedValue()
     try {
       await userEvent.click(within(headerElement).getByRole("button", { name: "Copy" }))

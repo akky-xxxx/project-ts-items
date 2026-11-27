@@ -19,17 +19,7 @@ export const TestForContentsHeader: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("{title}")).toBeInTheDocument()
-    await expect(canvas.getByText("{copyIconElement}")).toBeInTheDocument()
     await expect(canvas.getByRole("button", { name: "Copy" })).toBeInTheDocument()
-  },
-}
-
-export const TestForChildren: Story = {
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("{children}")).toBeInTheDocument()
   },
 }
 

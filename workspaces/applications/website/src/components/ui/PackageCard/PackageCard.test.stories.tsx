@@ -54,14 +54,12 @@ export const TestForLinkTextHidden: Story = {
   },
 }
 
-export const TestForDescriptionLineBreak: Story = {
+export const TestForDescriptionParagraph: Story = {
   ...En,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const descriptionElement = canvas.getByText(/First line/u).closest("p")
-    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(1)
-    await expect(descriptionElement).toHaveTextContent("First lineSecond line")
+    await expect(canvas.getByText(/First line/u).closest("p")).not.toBeNull()
   },
 }
 

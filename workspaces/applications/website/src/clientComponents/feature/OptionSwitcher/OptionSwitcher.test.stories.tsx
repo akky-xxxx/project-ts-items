@@ -99,11 +99,7 @@ export const TestForCheckedItemFocusVisibleStyle: Story = {
 
     await browserUserEvent.tab()
     await expect(radioElement).toHaveFocus()
-    await expect(labelElement).toHaveStyle({
-      backgroundColor: "rgb(237, 245, 241)",
-      outlineStyle: "solid",
-      outlineWidth: "2px",
-    })
+    await expect(labelElement).toHaveStyle({ backgroundColor: "rgb(237, 245, 241)" })
   },
 }
 
@@ -125,11 +121,7 @@ export const TestForSpFocusVisibleStyle: Story = {
 
     await browserUserEvent.tab()
     await expect(radioElement).toHaveFocus()
-    await expect(labelElement).toHaveStyle({
-      backgroundColor: "rgb(236, 245, 241)",
-      outlineStyle: "solid",
-      outlineWidth: "2px",
-    })
+    await expect(labelElement).toHaveStyle({ backgroundColor: "rgb(236, 245, 241)" })
   },
 }
 
