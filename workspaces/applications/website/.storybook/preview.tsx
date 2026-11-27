@@ -7,6 +7,8 @@ import { FONT_VARIABLES } from "../src/constants/FONT_VARIABLES/FONT_VARIABLES.t
 import { routing } from "../src/i18n/constants/routing/routing.ts"
 import { siteDictionary } from "../src/i18n/constants/siteDictionary/siteDictionary.ts"
 import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocaleMessages.ts"
+import { themeSchema } from "../src/schemas/themeSchema/themeSchema.ts"
+import { applyThemeGlobalForStorybook } from "../src/tests/applyThemeGlobalForStorybook/applyThemeGlobalForStorybook.ts"
 import { setupMswWorkerForStorybook } from "../src/tests/setupMswWorkerForStorybook/setupMswWorkerForStorybook.ts"
 import { VIEWPORT_OPTIONS_FOR_STORYBOOK } from "../src/tests/VIEWPORT_OPTIONS_FOR_STORYBOOK/VIEWPORT_OPTIONS_FOR_STORYBOOK.ts"
 
@@ -19,11 +21,15 @@ import "../src/app/[locale]/global.css"
 // oxlint-disable-next-line vitest/require-hook -- sb.mock is a storybook module mock that must be registered at the top level of preview
 sb.mock(import("../src/utilities/isFeatureEnabled/isFeatureEnabled.ts"))
 
+const mswPreviewAnnotations = createPreviewAnnotations(setupMswWorkerForStorybook)
+
 const preview: Preview = {
-  ...createPreviewAnnotations(setupMswWorkerForStorybook),
+  ...mswPreviewAnnotations,
   beforeAll: () => {
     document.documentElement.classList.add(...FONT_VARIABLES)
   },
+  // msw-storybook-addon の annotations も beforeEach を持つため、上書きせずに並べる
+  beforeEach: [mswPreviewAnnotations.beforeEach ?? [], applyThemeGlobalForStorybook].flat(),
   decorators: [
     (Story, context) => {
       const { locale: requestedLocale } = context.globals
@@ -47,9 +53,18 @@ const preview: Preview = {
         items: [...routing.locales],
       },
     },
+    theme: {
+      description: "Theme for data-theme of html element",
+      toolbar: {
+        dynamicTitle: true,
+        icon: "mirror",
+        items: [...themeSchema.options],
+      },
+    },
   },
   initialGlobals: {
     locale: routing.defaultLocale,
+    theme: "system",
   },
   parameters: {
     a11y: {
