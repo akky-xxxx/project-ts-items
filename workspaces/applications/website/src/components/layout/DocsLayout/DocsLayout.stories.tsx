@@ -18,6 +18,8 @@ const HEADER_INNER_ELEMENT = (
   />
 )
 
+const MAIN_STYLE = { overflowY: "auto" } as const
+
 const WithRootLayout: FC<ComponentProps<typeof DocsLayout>> = (props) => (
   <RootLayout headerInnerElement={HEADER_INNER_ELEMENT} thisYear={2026}>
     <DocsLayout {...props} />
@@ -30,17 +32,20 @@ const meta = {
   argTypes: {
     children: { control: false },
     docsSidebarElement: { control: false },
-    tocElement: { control: false },
   },
   args: {
-    children: <LongContents text="children" />,
+    // main のランドマークと内部スクロールは children 側が持つ
+    children: (
+      <main style={MAIN_STYLE}>
+        <LongContents text="children" />
+      </main>
+    ),
     // DocsSidebar と同じく、ナビゲーションのランドマークは docsSidebarElement 側が持つ
     docsSidebarElement: (
       <nav aria-label="{docsSidebarLabelText}">
         <LongContents text="docsSidebarElement" />
       </nav>
     ),
-    tocElement: <LongContents text="tocElement" />,
   },
   render: (props) => <WithRootLayout {...props} />,
 } satisfies Meta<typeof DocsLayout>
@@ -50,9 +55,3 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
-
-export const WithoutToc: Story = {
-  args: {
-    tocElement: undefined,
-  },
-}

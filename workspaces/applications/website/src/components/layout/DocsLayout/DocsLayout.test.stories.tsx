@@ -54,29 +54,6 @@ export const TestForLandmarks: Story = {
 
     const mainElement = canvas.getByRole("main")
     await expect(within(mainElement).getByText("{children0}")).toBeInTheDocument()
-    // 内部でスクロールする main は、キーボードでスクロールできるようフォーカスを受け取れる
-    mainElement.focus()
-    await expect(mainElement).toHaveFocus()
-  },
-}
-
-export const TestForLandmarksWithoutToc: Story = {
-  args: {
-    tocElement: undefined,
-  },
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    await expect(canvas.queryByRole("complementary")).toBeNull()
-
-    const mainElement = canvas.getByRole("main")
-    const { parentElement } = mainElement
-    if (parentElement === null) {
-      throw new Error("main の親要素が見つからない")
-    }
-    await expect(mainElement.getBoundingClientRect().right).toBe(
-      parentElement.getBoundingClientRect().right,
-    )
   },
 }
 
@@ -88,7 +65,6 @@ const expectColumnsFitBetweenHeaderAndFooter = async (canvasElement: HTMLElement
 
   await expectBetweenHeaderAndFooter(getDocsSidebarColumnElement(canvasElement), canvasElement)
   await expectBetweenHeaderAndFooter(canvas.getByRole("main"), canvasElement)
-  await expectBetweenHeaderAndFooter(canvas.getByRole("complementary"), canvasElement)
 
   const { clientHeight, scrollHeight } = document.documentElement
   await expect(scrollHeight).toBeLessThanOrEqual(clientHeight)
@@ -122,22 +98,24 @@ export const TestForColumnsFitWithWrappedFooter: Story = {
   },
 }
 
-export const TestForLongUnbreakableMain: Story = {
+/**
+ * 折り返せない長い children でも、children の列が押し広げられないことを検証する
+ * (スクロールコンテナは自動最小サイズが 0 になり押し広げを検出できないため、children の main は内部スクロールさせない)
+ */
+export const TestForLongUnbreakableChildren: Story = {
   args: {
-    children: "children.".repeat(100),
+    children: <main>{"children.".repeat(100)}</main>,
     docsSidebarElement: (
       <nav aria-label="{docsSidebarLabelText}">
         <LongContents length={10} text="docsSidebarElement" />
       </nav>
     ),
-    tocElement: <LongContents length={10} text="tocElement" />,
   },
   play: async (context) => {
     const { canvasElement } = context
     const mainElement = within(canvasElement).getByRole("main")
-    await expect(mainElement.scrollWidth).toBeLessThanOrEqual(mainElement.clientWidth)
-
-    const { clientWidth, scrollWidth } = document.documentElement
-    await expect(scrollWidth).toBeLessThanOrEqual(clientWidth)
+    await expect(mainElement.getBoundingClientRect().right).toBeLessThanOrEqual(
+      document.documentElement.clientWidth,
+    )
   },
 }
