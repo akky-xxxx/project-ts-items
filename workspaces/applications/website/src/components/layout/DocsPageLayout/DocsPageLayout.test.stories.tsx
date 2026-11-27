@@ -25,6 +25,9 @@ export const TestForLandmarks: Story = {
     const mainElement = canvas.getByRole("main")
     await expect(within(mainElement).getByText("{children0}")).toBeInTheDocument()
     await expect(within(mainElement).queryByRole("navigation")).not.toBeInTheDocument()
+    // 内部でスクロールする main は、キーボードでスクロールできるようフォーカスを受け取れる
+    mainElement.focus()
+    await expect(mainElement).toHaveFocus()
 
     const tocNavigationElement = canvas.getByRole("navigation", { name: "{tocLabelText}" })
     await expect(tocNavigationElement).toHaveTextContent("{tocElement0}")

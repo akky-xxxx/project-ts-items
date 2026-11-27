@@ -14,7 +14,10 @@ export const DocsPageLayout: FcWithChildren<Props> = (props) => {
 
   return (
     <Fragment>
-      <main className={styles.main}>{children}</main>
+      {/* 内部でスクロールする領域のため、キーボード操作でスクロールできるようフォーカス可能にする(Safari はスクロール領域を自動ではフォーカス対象にしない) */}
+      <main className={styles.main} tabIndex={0}>
+        {children}
+      </main>
 
       {tocElement}
     </Fragment>
