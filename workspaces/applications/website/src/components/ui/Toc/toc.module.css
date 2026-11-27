@@ -1,0 +1,6 @@
+.ul {
+  display: grid;
+  list-style: none;
+  padding: 0;
+  row-gap: 2rem;
+}
