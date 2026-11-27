@@ -1,0 +1,14 @@
+/* VIEWPORT_OPTIONS_FOR_STORYBOOK の回帰テスト用。presets.css の custom media のうち、どれに一致したかを custom property で返す */
+.breakpoint {
+  @media (--small) {
+    --breakpoint-for-storybook: small;
+  }
+
+  @media (--medium) {
+    --breakpoint-for-storybook: medium;
+  }
+
+  @media (--large) {
+    --breakpoint-for-storybook: large;
+  }
+}

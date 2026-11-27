@@ -7,9 +7,11 @@ import { SMALL_VIEWPORT_FOR_STORYBOOK } from "../SMALL_VIEWPORT_FOR_STORYBOOK/SM
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
+import styles from "./breakpointForStorybook.module.css"
+
 /**
  * .storybook/preview.tsx に登録する viewport の回帰テスト。表示用の story は無いため meta を直接書く
- * 条件は src/app/[locale]/presets.css の custom media と同じものを書く
+ * breakpoint は、presets.css の custom media を使う breakpointForStorybook.module.css が返す値で判定する(条件をテストに複製しない)
  */
 const testMeta = {
   args: { label: "viewport" },
@@ -21,19 +23,28 @@ export default testMeta
 
 type Story = StoryObj<typeof testMeta>
 
+type ReadBreakpoint = (canvasElement: HTMLElement) => string
+
+const readBreakpoint: ReadBreakpoint = (canvasElement) => {
+  const element = document.createElement("div")
+  element.className = styles.breakpoint
+  canvasElement.append(element)
+  return getComputedStyle(element).getPropertyValue("--breakpoint-for-storybook")
+}
+
 export const TestForSmall: Story = {
   ...SMALL_VIEWPORT_FOR_STORYBOOK,
-  play: async () => {
+  play: async (context) => {
     await expect(globalThis.innerWidth).toBe(375)
-    await expect(globalThis.matchMedia("(768px >= width)").matches).toBe(true)
+    await expect(readBreakpoint(context.canvasElement)).toBe("small")
   },
 }
 
 export const TestForMedium: Story = {
   ...MEDIUM_VIEWPORT_FOR_STORYBOOK,
-  play: async () => {
+  play: async (context) => {
     await expect(globalThis.innerWidth).toBe(834)
-    await expect(globalThis.matchMedia("(768px < width < 1024px)").matches).toBe(true)
+    await expect(readBreakpoint(context.canvasElement)).toBe("medium")
   },
 }
 
@@ -50,6 +61,6 @@ export const TestForLarge: Story = {
       width: "1200px",
     })
     await expect(globalThis.innerWidth).toBe(1200)
-    await expect(globalThis.matchMedia("(width >= 1024px)").matches).toBe(true)
+    await expect(readBreakpoint(context.canvasElement)).toBe("large")
   },
 }
