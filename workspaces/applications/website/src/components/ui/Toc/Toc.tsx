@@ -1,17 +1,11 @@
 import { useTranslations } from "next-intl"
 
-import { TocLink } from "./clientComponents/TocLink/TocLink.tsx"
+import { TocList } from "./clientComponents/TocList/TocList.tsx"
 
-import type { FC } from "react"
+import type { ComponentProps, FC } from "react"
 
-import styles from "./toc.module.css"
-
-type Item = {
-  anchor: string
-  text: string
-}
 type Props = {
-  items: Item[]
+  items: ComponentProps<typeof TocList>["items"]
 }
 
 export const Toc: FC<Props> = (props) => {
@@ -22,17 +16,7 @@ export const Toc: FC<Props> = (props) => {
     <nav aria-label={docsLayoutTranslate("toc")}>
       <p>{docsLayoutTranslate("toc")}</p>
 
-      <ul className={styles.ul}>
-        {items.map((item) => {
-          const { anchor, text } = item
-
-          return (
-            <li key={text}>
-              <TocLink anchor={anchor}>{text}</TocLink>
-            </li>
-          )
-        })}
-      </ul>
+      <TocList items={items} />
     </nav>
   )
 }

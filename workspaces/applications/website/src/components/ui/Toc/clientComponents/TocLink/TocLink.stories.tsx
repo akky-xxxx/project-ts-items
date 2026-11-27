@@ -6,20 +6,11 @@ const meta = {
   component: TocLink,
 
   argTypes: {
-    anchor: {
-      description:
-        'リンク先のアンカー(# 付き。現在の URL の hash と一致すると aria-current="location" を付ける)',
-    },
+    anchor: { description: "リンク先のアンカー(# 付き)" },
     children: { description: "リンクテキスト" },
+    isCurrent: { description: '現在位置かどうか(true のとき aria-current="location" を付ける)' },
   },
   args: {},
-  decorators: [
-    (Story) => {
-      globalThis.history.replaceState(null, "", "#install")
-
-      return <Story />
-    },
-  ],
 } satisfies Meta<typeof TocLink>
 
 export default meta
@@ -30,6 +21,7 @@ export const DeActive: Story = {
   args: {
     anchor: "#about",
     children: "About",
+    isCurrent: false,
   },
 }
 
@@ -37,5 +29,6 @@ export const Active: Story = {
   args: {
     anchor: "#install",
     children: "Install",
+    isCurrent: true,
   },
 }
