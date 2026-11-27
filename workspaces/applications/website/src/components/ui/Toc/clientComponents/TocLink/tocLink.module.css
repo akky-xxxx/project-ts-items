@@ -1,0 +1,16 @@
+.root {
+  border-left: 0.2rem solid var(--color-border);
+  color: var(--color-text);
+  padding-block: 0.4rem;
+  padding-left: 1rem;
+
+  &:hover {
+    border-left-color: var(--color-text-hover);
+    color: var(--color-text-hover);
+  }
+
+  &[aria-current="location"] {
+    border-left-color: var(--color-text-accent);
+    color: var(--color-text-accent);
+  }
+}
