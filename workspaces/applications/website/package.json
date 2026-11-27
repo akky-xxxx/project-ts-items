@@ -28,7 +28,12 @@
     "prepare:typegen": "next typegen",
     "storybook": "storybook dev -p 3100",
     "test": "run-s prepare:orval test:vitest",
-    "test:vitest": "vitest run"
+    "test:vitest": "vitest run",
+    "test:vrt": "run-s prepare:orval test:vrt:vitest",
+    "test:vrt:server": "docker run --rm --init -p 127.0.0.1:3200:3200 mcr.microsoft.com/playwright:v1.65.0-noble /usr/bin/npx -y playwright@1.65.0 run-server --port 3200 --host 0.0.0.0",
+    "test:vrt:update": "run-s prepare:orval test:vrt:vitest-update",
+    "test:vrt:vitest": "vitest run -c vitest.vrt.config.mts",
+    "test:vrt:vitest-update": "bun test:vrt:vitest -u"
   },
   "dependencies": {
     "@ts-items/feature-flags": "workspace:*",
