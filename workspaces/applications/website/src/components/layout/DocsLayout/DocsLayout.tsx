@@ -1,5 +1,3 @@
-import { useTranslations } from "next-intl"
-
 import type { FcWithChildren } from "@ts-items/react-types"
 import type { ReactElement } from "react"
 
@@ -12,7 +10,6 @@ type Props = {
 
 export const DocsLayout: FcWithChildren<Props> = (props) => {
   const { children, docsSidebarElement, tocElement } = props
-  const docsLayoutTranslate = useTranslations("docsLayout")
   const isHidingToc = tocElement === undefined
   const rootClasses = [styles.root, isHidingToc && styles.rootWithoutToc].filter(Boolean).join(" ")
 
@@ -25,11 +22,7 @@ export const DocsLayout: FcWithChildren<Props> = (props) => {
         {children}
       </main>
 
-      {isHidingToc ? null : (
-        <aside className={styles.toc}>
-          <nav aria-label={docsLayoutTranslate("toc")}>{tocElement}</nav>
-        </aside>
-      )}
+      {isHidingToc ? null : <aside className={styles.toc}>{tocElement}</aside>}
     </div>
   )
 }
