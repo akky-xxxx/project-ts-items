@@ -7,7 +7,7 @@
   position: relative;
 
   @media (--large) {
-    grid-template-columns: 252px minmax(0, 1fr);
+    grid-template-columns: 252px minmax(0, 1fr) 224px;
   }
 
   @media (--medium) {
