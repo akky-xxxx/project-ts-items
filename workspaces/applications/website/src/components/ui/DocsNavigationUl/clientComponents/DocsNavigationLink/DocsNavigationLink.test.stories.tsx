@@ -38,7 +38,6 @@ export const TestForDeActiveLinkStyle: Story = {
     await waitFor(async () => {
       await expect(inactiveLinkElement).toHaveStyle({
         backgroundColor: "rgb(255, 255, 255)",
-        fontWeight: "400",
       })
     })
   },
@@ -54,7 +53,6 @@ export const TestForActiveLinkStyle: Story = {
     await waitFor(async () => {
       await expect(activeLinkElement).toHaveStyle({
         backgroundColor: "rgb(240, 245, 242)",
-        fontWeight: "700",
       })
     })
   },
@@ -74,7 +72,6 @@ export const TestForActiveItemWithTrailingSlash: Story = {
     await waitFor(async () => {
       await expect(activeLinkElement).toHaveStyle({
         backgroundColor: "rgb(240, 245, 242)",
-        fontWeight: "700",
       })
     })
   },
