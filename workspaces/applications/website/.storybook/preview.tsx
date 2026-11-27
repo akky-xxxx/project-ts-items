@@ -1,12 +1,14 @@
 import { createPreviewAnnotations } from "msw-storybook-addon/preview"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { sb } from "storybook/test"
+import { MINIMAL_VIEWPORTS } from "storybook/viewport"
 
 import { FONT_VARIABLES } from "../src/constants/FONT_VARIABLES/FONT_VARIABLES.ts"
 import { routing } from "../src/i18n/constants/routing/routing.ts"
 import { siteDictionary } from "../src/i18n/constants/siteDictionary/siteDictionary.ts"
 import { toLocaleMessages } from "../src/i18n/utilities/toLocaleMessages/toLocaleMessages.ts"
 import { setupMswWorkerForStorybook } from "../src/tests/setupMswWorkerForStorybook/setupMswWorkerForStorybook.ts"
+import { VIEWPORT_OPTIONS_FOR_STORYBOOK } from "../src/tests/VIEWPORT_OPTIONS_FOR_STORYBOOK/VIEWPORT_OPTIONS_FOR_STORYBOOK.ts"
 
 import type { Preview } from "@storybook/nextjs-vite"
 
@@ -64,6 +66,10 @@ const preview: Preview = {
     },
     layout: "fullscreen",
     nextjs: { appDirectory: true },
+    viewport: {
+      // 既存の story が使う既定の viewport(mobile2 等)を残したまま、サイトのブレークポイントに対応する viewport を足す
+      options: { ...MINIMAL_VIEWPORTS, ...VIEWPORT_OPTIONS_FOR_STORYBOOK },
+    },
   },
   tags: ["autodocs"],
 }
