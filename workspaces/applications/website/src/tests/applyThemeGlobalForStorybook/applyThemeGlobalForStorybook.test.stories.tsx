@@ -53,11 +53,30 @@ export const TestForStoryBeforeEach: Story = {
 export const TestForInvalidTheme: Story = {
   play: async () => {
     document.documentElement.dataset.theme = "dark"
-    const restoreThemeDataset = applyThemeGlobalForStorybook({ globals: { theme: "unknown" } })
+    const restoreThemeDataset = applyThemeGlobalForStorybook({
+      globals: { theme: "unknown" },
+      viewMode: "story",
+    })
     await expect(document.documentElement.dataset.theme).toBe("dark")
 
     document.documentElement.dataset.theme = "light"
     restoreThemeDataset()
     await expect(document.documentElement.dataset.theme).toBe("dark")
+  },
+}
+
+/** Docs では同じページの story が html 要素を共有するため、story の globals ではなくツールバーの値に従う */
+export const TestForDocs: Story = {
+  play: async () => {
+    document.documentElement.dataset.theme = "system"
+    const restoreThemeDataset = applyThemeGlobalForStorybook({
+      globals: { theme: "dark" },
+      userGlobals: { theme: "light" },
+      viewMode: "docs",
+    })
+    await expect(document.documentElement.dataset.theme).toBe("light")
+
+    restoreThemeDataset()
+    await expect(document.documentElement.dataset.theme).toBe("system")
   },
 }
