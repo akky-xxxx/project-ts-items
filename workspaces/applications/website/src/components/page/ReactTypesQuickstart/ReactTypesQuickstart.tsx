@@ -28,13 +28,17 @@ export const ReactTypesQuickstart: FC<Props> = (props) => {
       <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitleText}</Heading>
+        <Heading headingTag="h1" id="quickstart">
+          {pageTitleText}
+        </Heading>
       </Heading1Wrapper>
 
       <p>{pagesTranslate.rich("reactTypesQuickstart.pageDescription", { br: renderLineBreak })}</p>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("reactTypesQuickstart.installTitle")}</Heading>
+        <Heading headingTag="h2" id="installation">
+          {pagesTranslate("reactTypesQuickstart.installTitle")}
+        </Heading>
 
         <p>
           {pagesTranslate.rich("reactTypesQuickstart.installNote", { code: renderCodeElement })}
@@ -46,7 +50,9 @@ export const ReactTypesQuickstart: FC<Props> = (props) => {
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("reactTypesQuickstart.usageTitle")}</Heading>
+        <Heading headingTag="h2" id="usage">
+          {pagesTranslate("reactTypesQuickstart.usageTitle")}
+        </Heading>
 
         {types.map((typeRecord) => (
           <TypeRecord key={typeRecord.typeName} {...typeRecord} />
