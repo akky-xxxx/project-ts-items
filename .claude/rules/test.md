@@ -31,3 +31,18 @@ paths:
   - meta は `X.stories.tsx` の default export を import して spread し、`tags: ["!dev", "!autodocs"]` を付ける。サイドバーと autodocs には出さず、vitest(`@storybook/addon-vitest`)でだけ実行する
   - 表示対象の無いもの(Storybook 用の setup・helper など)をテストする場合は、表示用の `X.stories.tsx` を作らず、`X.test.stories.tsx` の meta を直接書く。`component` には website の `src/tests/DummyForStorybook` を使い、`tags: ["!dev", "!autodocs"]`・ファイル名・`TestFor` で始まる story 名の規約は同じく適用する(例: `src/tests/setupMswWorkerForStorybook/setupMswWorkerForStorybook.test.stories.tsx`)
   - 表示用のストーリー(`En` / `Ja` 等)の設定を前提にする場合は、`X.stories.tsx` から import して spread する
+
+## visual regression test(VRT)
+
+- website の story は、`no-vrt` タグを付けたものを除いてすべて VRT の対象になる。play の後の画面全体を撮り、各 stories ファイルの隣の `__screenshots__/<stories のファイル名>/` にある基準画像と比較する(実行方法は `CLAUDE.md` を参照)
+- 基準画像は、保存場所が決まるまではコミットしない(`__screenshots__/` は gitignore 済み)。手元の基準画像は、比較の基準にしたい状態で `test:vrt:update` を実行して作る。基準画像の無い story は、`test:vrt` では新しく画像を作ったうえで失敗する
+- story の見た目が変わる変更(コンポーネント・スタイル・story・play の追加や変更)をする場合は、次の順で確認する
+  1. 変更前の状態(作業ブランチの起点など)で `test:vrt:update` を実行し、基準画像を作る
+  2. 変更後に `test:vrt` を実行し、失敗した story の画像を目視で確認して、意図しない見た目の変化が含まれていないことを確かめる。確認する画像は失敗の種類で異なる
+     - 基準画像と一致しなかった story: 失敗のメッセージの `Actual screenshot:` が示す実際の画像(`.vitest/attachments/` に出力される)を、`Reference screenshot:` が示す基準画像と見比べる。`Diff image:` も示された場合は、その差分の画像も使う。画像の寸法が基準画像と異なる場合(ページの高さが変わった場合など)は、差分の画像は作られない
+     - 基準画像の無い story(追加・改名したもの): 失敗のメッセージの `Reference screenshot:` が示す、新しく作られた基準画像。この画像は失敗した時点で基準として保存され、次の `test:vrt` ではそのまま一致するため、再実行の前に確認する
+  3. 意図した変化だけであれば、`test:vrt:update` で手元の基準画像を更新する。`test:vrt:update` は差分の有無にかかわらず通るため、比較は更新の前に `test:vrt` で行う
+- story・stories ファイルを改名・削除しても、古い基準画像は `test:vrt:update` では消えない。不要になった `__screenshots__/` 配下の画像は手で削除する
+- 撮るたびに描画が変わる story(現在時刻・乱数に依存するもの等)は、meta または story の `tags` に `no-vrt` を付けて対象から外し、外す理由をコメントで書く
+- react-hot-toast の toast は撮影の前に消すため、toast の見た目の変化は VRT では検出されない
+- Web フォントを読み込めなかった場合は、撮影の前に失敗する(代替フォントの画像を基準にしないため。`test:vrt:update` でも基準画像は更新されない)

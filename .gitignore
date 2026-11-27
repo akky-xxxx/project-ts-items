@@ -91,6 +91,12 @@ coverage/
 *.lcov
 .nyc_output
 
+# Vitest attachments (actual / diff images of visual regression tests)
+.vitest/
+
+# Vitest baseline images of visual regression tests (not committed until a storage location is decided)
+__screenshots__/
+
 # Build output
 dist/
 build/Release
