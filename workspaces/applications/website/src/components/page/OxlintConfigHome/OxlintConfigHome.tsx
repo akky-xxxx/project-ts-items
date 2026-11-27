@@ -24,19 +24,23 @@ export const OxlintConfigHome: FC<Props> = (props) => {
       <Breadcrumb currentPageText={PACKAGE_MASTER["oxlint-config"].name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={LINT_ICON_ELEMENT}>
-        <Heading headingTag="h1">
+        <Heading headingTag="h1" id={PACKAGE_MASTER["oxlint-config"].name}>
           {PROJECT_NAME}/{PACKAGE_MASTER["oxlint-config"].name}
         </Heading>
       </Heading1Wrapper>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxlintConfigHome.pageTitle")}</Heading>
+        <Heading headingTag="h2" id="introduction">
+          {pagesTranslate("oxlintConfigHome.pageTitle")}
+        </Heading>
 
         <p>{pagesTranslate.rich("oxlintConfigHome.pageDescription", { br: renderLineBreak })}</p>
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxlintConfigHome.backgroundTitle")}</Heading>
+        <Heading headingTag="h2" id="overview">
+          {pagesTranslate("oxlintConfigHome.backgroundTitle")}
+        </Heading>
 
         <p>
           {pagesTranslate.rich("oxlintConfigHome.backgroundDescription", { br: renderLineBreak })}

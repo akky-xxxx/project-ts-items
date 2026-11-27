@@ -2,12 +2,14 @@ import { hasLocale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
+import { DocsPageLayout } from "../../../../components/layout/DocsPageLayout/DocsPageLayout.tsx"
 import { ReactTypesHome } from "../../../../components/page/ReactTypesHome/ReactTypesHome.tsx"
+import { Toc } from "../../../../components/ui/Toc/Toc.tsx"
 import { PACKAGE_MASTER } from "../../../../constants/PACKAGE_MASTER/PACKAGE_MASTER.ts"
 import { routing } from "../../../../i18n/constants/routing/routing.ts"
 
 import type { Metadata } from "next"
-import type { ReactNode } from "react"
+import type { ComponentProps, ReactNode } from "react"
 
 type Props = PageProps<"/[locale]/packages/react-types">
 
@@ -27,16 +29,33 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 
 const Page = async (): Promise<ReactNode> => {
   const pagesTranslate = await getTranslations("pages")
+  const packageName = PACKAGE_MASTER["react-types"].name
+  const items = [
+    {
+      anchor: `#${packageName}`,
+      text: packageName,
+    },
+    {
+      anchor: "#introduction",
+      text: pagesTranslate("reactTypesHome.pageTitle"),
+    },
+    {
+      anchor: "#overview",
+      text: pagesTranslate("reactTypesHome.backgroundTitle"),
+    },
+  ] satisfies ComponentProps<typeof Toc>["items"]
 
   return (
-    <ReactTypesHome
-      breadcrumbItems={[
-        {
-          href: "/packages/",
-          text: pagesTranslate("packages.pageTitle"),
-        },
-      ]}
-    />
+    <DocsPageLayout tocElement={<Toc items={items} />}>
+      <ReactTypesHome
+        breadcrumbItems={[
+          {
+            href: "/packages/",
+            text: pagesTranslate("packages.pageTitle"),
+          },
+        ]}
+      />
+    </DocsPageLayout>
   )
 }
 
