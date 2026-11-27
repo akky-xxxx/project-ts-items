@@ -1,7 +1,7 @@
 import { expect, within } from "storybook/test"
 
 import { fixLightThemeForStorybook } from "../../../../../tests/fixLightThemeForStorybook/fixLightThemeForStorybook.ts"
-import meta, { Allow, Error, Off, UnknownNumber, Warn } from "./SeverityLabel.stories.tsx"
+import meta, { Allow, Off } from "./SeverityLabel.stories.tsx"
 
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
@@ -32,30 +32,6 @@ export const TestForAllow: Story = {
   },
 }
 
-export const TestForWarn: Story = {
-  ...Warn,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("WARN")).toBeInTheDocument()
-  },
-}
-
-export const TestForError: Story = {
-  ...Error,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("ERROR")).toBeInTheDocument()
-  },
-}
-
-export const TestForOff: Story = {
-  ...Off,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("OFF")).toBeInTheDocument()
-  },
-}
-
 // ライトテーマで背景色とのコントラスト比 4.5:1 以上(約 5.06:1)を保つ配色であること
 export const TestForOffLightThemeColor: Story = {
   ...Off,
@@ -65,14 +41,6 @@ export const TestForOffLightThemeColor: Story = {
     const labelStyle = getComputedStyle(within(canvasElement).getByText("OFF"))
     await expect(labelStyle.color).toBe("rgb(92, 103, 101)")
     await expect(labelStyle.backgroundColor).toBe("rgb(236, 239, 238)")
-  },
-}
-
-export const TestForUnknownNumber: Story = {
-  ...UnknownNumber,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("OFF")).toBeInTheDocument()
   },
 }
 

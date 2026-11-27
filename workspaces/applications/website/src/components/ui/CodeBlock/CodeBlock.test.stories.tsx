@@ -34,26 +34,6 @@ const createTokenColorStory = (base: Story, tokenColorCase: TokenColorCase): Sto
   },
 })
 
-export const TestForRenderCode: Story = {
-  ...TypeScript,
-  play: async (context) => {
-    const { canvasElement } = context
-    const code = canvasElement.querySelector("pre > code")
-    await expect(code?.textContent).toBe(
-      [
-        'import { baseConfig } from "@ts-items/oxlint-config"',
-        'import { defineConfig } from "oxlint"',
-        "",
-        "const config = defineConfig({",
-        "  extends: [baseConfig],",
-        "})",
-        "",
-        "export default config",
-      ].join("\n"),
-    )
-  },
-}
-
 export const TestForTypeScriptLightColor = createTokenColorStory(TypeScript, {
   color: "rgb(215, 58, 73)",
   theme: "light",

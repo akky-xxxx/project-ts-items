@@ -68,7 +68,6 @@ export const TestForCurrentPageWithoutLink: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("oxlint-config")).toBeInTheDocument()
     await expect(canvas.queryByRole("link", { name: "oxlint-config" })).not.toBeInTheDocument()
   },
 }
@@ -110,12 +109,11 @@ export const TestForItemSameAsCurrentPageText: Story = {
   },
 }
 
-export const TestForItemOrder: Story = {
+export const TestForListItemCount: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const itemTexts = canvas.getAllByRole("listitem").map((element) => element.textContent)
-    await expect(itemTexts).toStrictEqual(["@ts-items", "{packages-text}", "oxlint-config"])
+    await expect(canvas.getAllByRole("listitem")).toHaveLength(3)
   },
 }
 

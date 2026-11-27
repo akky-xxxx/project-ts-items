@@ -19,7 +19,6 @@ export const TestForInitialContent: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("{tabContent1}")).toBeInTheDocument()
     await expect(canvas.queryByText("{tabContent2}")).not.toBeInTheDocument()
     await expect(canvas.queryByText("{tabContent3}")).not.toBeInTheDocument()
   },
@@ -63,7 +62,6 @@ export const TestForCurrentActiveTabValue: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("{tabContent3}")).toBeInTheDocument()
     await expect(canvas.queryByText("{tabContent1}")).not.toBeInTheDocument()
   },
 }

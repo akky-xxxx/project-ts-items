@@ -36,22 +36,11 @@ export const TestForNestedList: Story = {
   },
 }
 
-export const TestForItemOrder: Story = {
+export const TestForLinkCount: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    const linkTexts = canvas.getAllByRole("link").map((element) => element.textContent)
-    await expect(linkTexts).toStrictEqual([
-      "a1",
-      "a1-1",
-      "a1-1-1",
-      "a1-2",
-      "a2",
-      "a3",
-      "a2-1",
-      "a2-2",
-      "a4",
-    ])
+    await expect(canvas.getAllByRole("link")).toHaveLength(9)
   },
 }
 

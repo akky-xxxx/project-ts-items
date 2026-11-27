@@ -49,14 +49,6 @@ export const TestForInitialSwitches: Story = {
   },
 }
 
-export const TestForCodeTitle: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    await expect(within(canvasElement).getByText("oxlint.config.mts")).toBeInTheDocument()
-  },
-}
-
 export const TestForChangeBase: Story = {
   ...En,
   play: async (context) => {

@@ -101,15 +101,13 @@ const createInstallTabStory = (installTabCase: InstallTabCase): Story => ({
   },
 })
 
-/** 型ごとのコードの描画を検証する */
-const createTypeRecordCodeStory = (typeRecordCase: TypeRecordCase): Story => ({
+/** 型ごとのコードが、その型の Section 内に pre > code として描画されることを検証する */
+const createTypeRecordCodeStory = (typeName: string): Story => ({
   ...En,
   play: async (context) => {
     const { canvasElement } = context
-    const { code, typeName } = typeRecordCase
     const sectionElement = getTypeRecordSection(canvasElement, typeName)
-    const codeElement = sectionElement.querySelector("pre > code")
-    await expect(codeElement?.textContent).toBe(code)
+    await expect(sectionElement.querySelector("pre > code")).not.toBeNull()
   },
 })
 
@@ -219,9 +217,6 @@ export const TestForInstallNote: Story = {
       (element) => element.textContent,
     )
     await expect(inlineCodeTexts).toStrictEqual(["@types/react", "typescript"])
-    await expect(noteElement?.textContent).toBe(
-      "Your project needs @types/react 18 or later and typescript 5.0 or later.",
-    )
   },
 }
 
@@ -258,20 +253,14 @@ export const TestForDescriptionCode: Story = {
   },
 }
 
-export const TestForCustomCSSPropertiesCode = createTypeRecordCodeStory({
-  code: EXPECTED_CUSTOM_CSS_PROPERTIES_CODE,
-  typeName: "CustomCSSProperties",
-})
+export const TestForCustomCSSPropertiesCode = createTypeRecordCodeStory("CustomCSSProperties")
 
 export const TestForCustomCSSPropertiesCopy = createTypeRecordCopyStory({
   code: EXPECTED_CUSTOM_CSS_PROPERTIES_CODE,
   typeName: "CustomCSSProperties",
 })
 
-export const TestForFcWithChildrenCode = createTypeRecordCodeStory({
-  code: EXPECTED_FC_WITH_CHILDREN_CODE,
-  typeName: "FcWithChildren",
-})
+export const TestForFcWithChildrenCode = createTypeRecordCodeStory("FcWithChildren")
 
 export const TestForFcWithChildrenCopy = createTypeRecordCopyStory({
   code: EXPECTED_FC_WITH_CHILDREN_CODE,

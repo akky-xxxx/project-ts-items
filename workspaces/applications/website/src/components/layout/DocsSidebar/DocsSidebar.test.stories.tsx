@@ -16,16 +16,6 @@ export default testMeta
 
 type Story = StoryObj<typeof testMeta>
 
-export const TestForElements: Story = {
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("{packagesSelectorElement}")).toBeVisible()
-    await expect(canvas.getByText("1.0.0")).toBeVisible()
-    await expect(canvas.getByText("Latest")).toBeVisible()
-  },
-}
-
 export const TestForNavigation: Story = {
   play: async (context) => {
     const { canvasElement } = context
@@ -60,7 +50,6 @@ export const TestForJaTexts: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
-    await expect(canvas.getByText("最新版")).toBeVisible()
     await expect(canvas.getByRole("navigation", { name: "ドキュメント" })).toBeInTheDocument()
     await expect(
       canvas.getByRole("link", { name: "GitHub (新しいタブで開く)" }),

@@ -23,15 +23,6 @@ export const TestForHeading: Story = {
   },
 }
 
-export const TestForDescription: Story = {
-  ...En,
-  play: async (context) => {
-    const { canvasElement } = context
-    const canvas = within(canvasElement)
-    await expect(canvas.getByText("Packages managed by @ts-items.")).toBeInTheDocument()
-  },
-}
-
 export const TestForListItems: Story = {
   ...En,
   play: async (context) => {

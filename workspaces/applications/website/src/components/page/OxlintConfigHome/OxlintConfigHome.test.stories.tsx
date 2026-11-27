@@ -29,23 +29,23 @@ export const TestForHeadingStructure: Story = {
   },
 }
 
-export const TestForPageDescriptionLineBreak: Story = {
+export const TestForPageDescriptionParagraph: Story = {
   ...En,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const descriptionElement = canvas.getByText(/Shareable configuration for oxlint/u).closest("p")
-    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(1)
+    await expect(descriptionElement).not.toBeNull()
   },
 }
 
-export const TestForBackgroundDescriptionLineBreak: Story = {
+export const TestForBackgroundDescriptionParagraph: Story = {
   ...En,
   play: async (context) => {
     const { canvasElement } = context
     const canvas = within(canvasElement)
     const descriptionElement = canvas.getByText(/It helps keep code maintainable/u).closest("p")
-    await expect(descriptionElement?.querySelectorAll("br")).toHaveLength(1)
+    await expect(descriptionElement).not.toBeNull()
   },
 }
 

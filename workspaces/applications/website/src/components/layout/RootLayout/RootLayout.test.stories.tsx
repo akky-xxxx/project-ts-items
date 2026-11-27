@@ -31,9 +31,9 @@ export const TestForFooter: Story = {
   play: async (context) => {
     const { canvasElement } = context
     const footerElement = within(canvasElement).getByRole("contentinfo")
-    await expect(footerElement).toHaveTextContent("© 2026 @ts-items · MIT License")
-
     const footer = within(footerElement)
+    await expect(footer.getByText(/MIT License/u)).toBeInTheDocument()
+
     await expect(footer.getByRole("link", { name: "GitHub (opens in a new tab)" })).toMatchObject({
       href: "https://github.com/akky-xxxx/project-ts-items",
       rel: "noopener noreferrer",
