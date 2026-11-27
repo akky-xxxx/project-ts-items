@@ -31,7 +31,9 @@ export const OxlintConfigQuickstart: FC<Props> = (props) => {
       <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitleText}</Heading>
+        <Heading headingTag="h1" id="quickstart">
+          {pageTitleText}
+        </Heading>
       </Heading1Wrapper>
 
       <p>
@@ -39,7 +41,9 @@ export const OxlintConfigQuickstart: FC<Props> = (props) => {
       </p>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxlintConfigQuickstart.installTitle")}</Heading>
+        <Heading headingTag="h2" id="installation">
+          {pagesTranslate("oxlintConfigQuickstart.installTitle")}
+        </Heading>
 
         <div className={styles.tabWrapper}>
           <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
@@ -47,7 +51,9 @@ export const OxlintConfigQuickstart: FC<Props> = (props) => {
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxlintConfigQuickstart.setupTitle")}</Heading>
+        <Heading headingTag="h2" id="setup">
+          {pagesTranslate("oxlintConfigQuickstart.setupTitle")}
+        </Heading>
 
         <div className={styles.oxlintConfigSetupWrapper}>
           <OxlintConfigSetup codeBlockMap={CODE_BLOCK_MAP} />
