@@ -37,9 +37,18 @@ export const TestForMedium: Story = {
   },
 }
 
+/**
+ * large は viewport が見つからない場合の既定の寸法(1200x900)と同じため、描画幅だけでは登録・選択を区別できない
+ * そのため globals の選択値と、parameters に登録された寸法も確かめる
+ */
 export const TestForLarge: Story = {
   ...LARGE_VIEWPORT_FOR_STORYBOOK,
-  play: async () => {
+  play: async (context) => {
+    await expect(context.globals).toHaveProperty("viewport", { value: "large" })
+    await expect(context.parameters).toHaveProperty(["viewport", "options", "large", "styles"], {
+      height: "900px",
+      width: "1200px",
+    })
     await expect(globalThis.innerWidth).toBe(1200)
     await expect(globalThis.matchMedia("(width >= 1024px)").matches).toBe(true)
   },
