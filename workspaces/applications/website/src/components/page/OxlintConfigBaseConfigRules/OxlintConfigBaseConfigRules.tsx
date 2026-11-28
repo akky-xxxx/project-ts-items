@@ -35,7 +35,9 @@ export const OxlintConfigBaseConfigRules: FC<Props> = (props) => {
       <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitleText}</Heading>
+        <Heading headingTag="h1" id="overall">
+          {pageTitleText}
+        </Heading>
       </Heading1Wrapper>
 
       <ExpandableContents>
@@ -45,11 +47,13 @@ export const OxlintConfigBaseConfigRules: FC<Props> = (props) => {
       </ExpandableContents>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxlintConfigBaseConfigRules.rules")}</Heading>
+        <Heading headingTag="h2" id="rules">
+          {pagesTranslate("oxlintConfigBaseConfigRules.rules")}
+        </Heading>
 
         {CATEGORIES.map((category) => (
           <Section key={category}>
-            <Heading headingTag="h3">
+            <Heading headingTag="h3" id={category}>
               {pagesTranslate("oxlintConfigBaseConfigRules.categoryHeading", { category })}
             </Heading>
 

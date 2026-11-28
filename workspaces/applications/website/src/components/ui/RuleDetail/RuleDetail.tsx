@@ -32,7 +32,9 @@ export const RuleDetail: FC<Props> = (props) => {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        <Heading headingTag="h4">{ruleName}</Heading>
+        <Heading headingTag="h4" id={ruleName}>
+          {ruleName}
+        </Heading>
         <SeverityLabel severity={severity} />
       </header>
 
