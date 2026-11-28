@@ -23,19 +23,23 @@ export const OxfmtConfigHome: FC<Props> = (props) => {
       <Breadcrumb currentPageText={PACKAGE_MASTER["oxfmt-config"].name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={FORMAT_ICON_ELEMENT}>
-        <Heading headingTag="h1">
+        <Heading headingTag="h1" id={PACKAGE_MASTER["oxfmt-config"].name}>
           {PROJECT_NAME}/{PACKAGE_MASTER["oxfmt-config"].name}
         </Heading>
       </Heading1Wrapper>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigHome.pageTitle")}</Heading>
+        <Heading headingTag="h2" id="introduction">
+          {pagesTranslate("oxfmtConfigHome.pageTitle")}
+        </Heading>
 
         <p>{pagesTranslate("oxfmtConfigHome.pageDescription")}</p>
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigHome.backgroundTitle")}</Heading>
+        <Heading headingTag="h2" id="overview">
+          {pagesTranslate("oxfmtConfigHome.backgroundTitle")}
+        </Heading>
 
         <p>{pagesTranslate("oxfmtConfigHome.backgroundDescription")}</p>
       </Section>

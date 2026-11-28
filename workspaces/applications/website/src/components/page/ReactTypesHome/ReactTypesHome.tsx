@@ -24,19 +24,23 @@ export const ReactTypesHome: FC<Props> = (props) => {
       <Breadcrumb currentPageText={PACKAGE_MASTER["react-types"].name} items={breadcrumbItems} />
 
       <Heading1Wrapper iconNode={TYPES_ICON_ELEMENT}>
-        <Heading headingTag="h1">
+        <Heading headingTag="h1" id={PACKAGE_MASTER["react-types"].name}>
           {PROJECT_NAME}/{PACKAGE_MASTER["react-types"].name}
         </Heading>
       </Heading1Wrapper>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("reactTypesHome.pageTitle")}</Heading>
+        <Heading headingTag="h2" id="introduction">
+          {pagesTranslate("reactTypesHome.pageTitle")}
+        </Heading>
 
         <p>{pagesTranslate.rich("reactTypesHome.pageDescription", { br: renderLineBreak })}</p>
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("reactTypesHome.backgroundTitle")}</Heading>
+        <Heading headingTag="h2" id="overview">
+          {pagesTranslate("reactTypesHome.backgroundTitle")}
+        </Heading>
 
         <p>
           {pagesTranslate.rich("reactTypesHome.backgroundDescription", { br: renderLineBreak })}

@@ -1,6 +1,6 @@
 "use client"
 
-import { TocLink } from "../TocLink/TocLink.tsx"
+import { TocLink } from "./clientComponents/TocLink/TocLink.tsx"
 import { useTocList } from "./useTocList.ts"
 
 import type { FC } from "react"

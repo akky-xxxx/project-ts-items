@@ -3,6 +3,9 @@
   color: var(--color-text);
   padding-block: 0.4rem;
   padding-left: 1rem;
+  transition:
+    color var(--duration-transition),
+    border-left-color var(--duration-transition);
 
   &:hover {
     border-left-color: var(--color-text-hover);

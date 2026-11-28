@@ -20,7 +20,9 @@ export const TypeRecord: FC<Props> = (props) => {
 
   return (
     <Section>
-      <Heading headingTag="h3">{typeName}</Heading>
+      <Heading headingTag="h3" id={typeName}>
+        {typeName}
+      </Heading>
 
       <p>{description}</p>
 

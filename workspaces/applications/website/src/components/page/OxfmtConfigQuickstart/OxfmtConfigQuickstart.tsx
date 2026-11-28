@@ -30,13 +30,17 @@ export const OxfmtConfigQuickstart: FC<Props> = (props) => {
       <Breadcrumb currentPageText={pageTitleText} items={breadcrumbItems} />
 
       <Heading1Wrapper>
-        <Heading headingTag="h1">{pageTitleText}</Heading>
+        <Heading headingTag="h1" id="quickstart">
+          {pageTitleText}
+        </Heading>
       </Heading1Wrapper>
 
       <p>{pagesTranslate.rich("oxfmtConfigQuickstart.pageDescription", { br: renderLineBreak })}</p>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigQuickstart.installTitle")}</Heading>
+        <Heading headingTag="h2" id="installation">
+          {pagesTranslate("oxfmtConfigQuickstart.installTitle")}
+        </Heading>
 
         <div className={styles.tabWrapper}>
           <Tab copyIconElement={COPY_ICON_ELEMENT} items={INSTALL_TAB_ITEMS} title="Terminal" />
@@ -44,7 +48,9 @@ export const OxfmtConfigQuickstart: FC<Props> = (props) => {
       </Section>
 
       <Section>
-        <Heading headingTag="h2">{pagesTranslate("oxfmtConfigQuickstart.setupTitle")}</Heading>
+        <Heading headingTag="h2" id="setup">
+          {pagesTranslate("oxfmtConfigQuickstart.setupTitle")}
+        </Heading>
 
         <div className={styles.oxfmtConfigSetupWrapper}>
           <CodeArea
