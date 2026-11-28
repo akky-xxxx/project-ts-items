@@ -2,5 +2,18 @@
   display: grid;
   list-style: none;
   padding: 0;
-  row-gap: 2rem;
+
+  @media (--large) {
+    row-gap: 2rem;
+  }
+
+  @media (--small) or (--medium) {
+    margin-block: 1rem 0;
+  }
+}
+
+.li + .li {
+  @media (--small) or (--medium) {
+    border-top: 1px solid var(--color-border);
+  }
 }

@@ -1,14 +1,15 @@
 .root {
-  overflow-y: auto;
-  padding-left: 16px;
-  padding-right: 32px;
-  padding-top: 24px;
-
-  @media (--medium) or (--small) {
-    display: none;
+  @media (--small) or (--medium) {
+    display: grid;
+    row-gap: 1rem;
   }
 }
 
 .p {
   margin-block: 0;
+  white-space: nowrap;
+
+  @media (--small) or (--medium) {
+    display: none;
+  }
 }

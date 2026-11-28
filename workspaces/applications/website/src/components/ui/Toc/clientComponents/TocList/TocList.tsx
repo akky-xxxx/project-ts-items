@@ -25,7 +25,7 @@ export const TocList: FC<Props> = (props) => {
         const { anchor, text } = item
 
         return (
-          <li key={anchor}>
+          <li key={anchor} className={styles.li}>
             <TocLink anchor={anchor} isCurrent={anchor === currentAnchor}>
               {text}
             </TocLink>

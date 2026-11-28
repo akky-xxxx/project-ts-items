@@ -1,5 +1,16 @@
 .heading1Wrapper {
-  margin-top: 30px;
+
+  @media (--large) {
+    margin-top: 30px;
+  }
+
+  @media (--medium) {
+    margin-top: 24px;
+  }
+
+  @media (--small) {
+    margin-top: 12px;
+  }
 }
 
 .heading1WrapperWithIcon {

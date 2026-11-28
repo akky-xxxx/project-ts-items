@@ -6,7 +6,7 @@
   overflow-wrap: anywhere;
   padding-left: 0;
 
-  @media (--small) {
+  @media (--medium) or (--small) {
     display: none;
   }
 }

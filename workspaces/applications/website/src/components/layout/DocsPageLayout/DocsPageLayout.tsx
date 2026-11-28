@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 
+
 import type { FcWithChildren } from "@ts-items/react-types"
 import type { ReactElement } from "react"
 
@@ -19,7 +20,15 @@ export const DocsPageLayout: FcWithChildren<Props> = (props) => {
         {children}
       </main>
 
-      {tocElement}
+      <div className={styles.tocWrapper}>
+        <details className={styles.details}>
+          <summary>Table of contents</summary>
+
+          {tocElement}
+        </details>
+
+        <div className={styles.rightPaneWrapper}>{tocElement}</div>
+      </div>
     </Fragment>
   )
 }

@@ -1,8 +1,5 @@
 .root {
-  border-left: 0.2rem solid var(--color-border);
   color: var(--color-text);
-  padding-block: 0.4rem;
-  padding-left: 1rem;
   transition:
     color var(--duration-transition),
     border-left-color var(--duration-transition);
@@ -15,5 +12,17 @@
   &[aria-current="location"] {
     border-left-color: var(--color-text-accent);
     color: var(--color-text-accent);
+  }
+
+  @media (--large) {
+    border-left: 0.2rem solid var(--color-border);
+    padding-block: 0.4rem;
+    padding-left: 1rem;
+  }
+
+  @media (--small) or (--medium) {
+    display: block;
+    padding-block: 1.4rem;
+    white-space: nowrap;
   }
 }
